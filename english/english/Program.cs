@@ -8,6 +8,10 @@ namespace english
     {
         static void Main(string[] args)
         {
+
+
+            Console.WriteLine("Enter to exit ...");
+            Console.ReadLine();
         }
     }
 }
