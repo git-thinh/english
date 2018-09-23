@@ -1,0 +1,6 @@
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue\bin\Debug\Xilium.CefGlue.xml
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue\bin\Debug\Xilium.CefGlue.dll
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue\bin\Debug\Xilium.CefGlue.pdb
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue\obj\Debug\CefGlue.csprojResolveAssemblyReference.cache
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue\obj\Debug\Xilium.CefGlue.dll
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue\obj\Debug\Xilium.CefGlue.pdb

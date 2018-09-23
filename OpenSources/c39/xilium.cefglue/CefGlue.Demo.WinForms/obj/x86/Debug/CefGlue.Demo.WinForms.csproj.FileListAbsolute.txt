@@ -1,0 +1,17 @@
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.Demo.WinForms\bin\x86\Debug\Xilium.CefGlue.Demo.WinForms.exe.config
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.Demo.WinForms\bin\x86\Debug\Xilium.CefGlue.Demo.WinForms.exe
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.Demo.WinForms\bin\x86\Debug\Xilium.CefGlue.Demo.WinForms.pdb
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.Demo.WinForms\bin\x86\Debug\Xilium.CefGlue.Demo.dll
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.Demo.WinForms\bin\x86\Debug\Xilium.CefGlue.dll
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.Demo.WinForms\bin\x86\Debug\Xilium.CefGlue.Demo.pdb
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.Demo.WinForms\bin\x86\Debug\Xilium.CefGlue.pdb
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.Demo.WinForms\bin\x86\Debug\Xilium.CefGlue.xml
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.Demo.WinForms\obj\x86\Debug\CefGlue.Demo.WinForms.csprojResolveAssemblyReference.cache
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.Demo.WinForms\obj\x86\Debug\Xilium.CefGlue.Demo.Properties.Resources.resources
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.Demo.WinForms\obj\x86\Debug\Xilium.CefGlue.Demo.WebNavigationBox.resources
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.Demo.WinForms\obj\x86\Debug\CefGlue.Demo.WinForms.csproj.GenerateResource.Cache
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.Demo.WinForms\obj\x86\Debug\Xilium.CefGlue.Demo.WinForms.exe
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.Demo.WinForms\obj\x86\Debug\Xilium.CefGlue.Demo.WinForms.pdb
+D:\Projects\lvcef-master\Run86\Xilium.CefGlue.Demo.WinForms.exe.config
+D:\Projects\lvcef-master\Run86\Xilium.CefGlue.Demo.WinForms.exe
+D:\Projects\lvcef-master\Run86\Xilium.CefGlue.Demo.WinForms.pdb

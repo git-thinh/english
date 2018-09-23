@@ -1,0 +1,1 @@
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.Demo.GtkSharp\obj\x86\Debug\CefGlue.Demo.GtkSharp.csprojResolveAssemblyReference.cache

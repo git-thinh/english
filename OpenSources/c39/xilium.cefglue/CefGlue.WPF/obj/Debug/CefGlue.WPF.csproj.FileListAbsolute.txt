@@ -1,0 +1,12 @@
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WPF\bin\Debug\Xilium.CefGlue.WPF.dll
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WPF\bin\Debug\Xilium.CefGlue.WPF.pdb
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WPF\bin\Debug\NLog.dll
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WPF\bin\Debug\Xilium.CefGlue.dll
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WPF\bin\Debug\Xilium.CefGlue.pdb
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WPF\bin\Debug\Xilium.CefGlue.xml
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WPF\bin\Debug\NLog.xml
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WPF\obj\Debug\CefGlue.WPF.csprojResolveAssemblyReference.cache
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WPF\obj\Debug\Xilium.CefGlue.WPF.Properties.Resources.resources
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WPF\obj\Debug\CefGlue.WPF.csproj.GenerateResource.Cache
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WPF\obj\Debug\Xilium.CefGlue.WPF.dll
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WPF\obj\Debug\Xilium.CefGlue.WPF.pdb

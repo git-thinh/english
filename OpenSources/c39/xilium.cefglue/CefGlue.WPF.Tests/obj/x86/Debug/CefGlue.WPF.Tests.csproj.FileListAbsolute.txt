@@ -1,0 +1,12 @@
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WPF.Tests\bin\x86\Debug\CefGlue.WPF.Tests.dll
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WPF.Tests\bin\x86\Debug\CefGlue.WPF.Tests.pdb
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WPF.Tests\bin\x86\Debug\Xilium.CefGlue.dll
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WPF.Tests\bin\x86\Debug\Xilium.CefGlue.WPF.dll
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WPF.Tests\bin\x86\Debug\NLog.dll
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WPF.Tests\bin\x86\Debug\Xilium.CefGlue.WPF.pdb
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WPF.Tests\bin\x86\Debug\Xilium.CefGlue.pdb
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WPF.Tests\bin\x86\Debug\Xilium.CefGlue.xml
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WPF.Tests\bin\x86\Debug\NLog.xml
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WPF.Tests\obj\x86\Debug\CefGlue.WPF.Tests.csprojResolveAssemblyReference.cache
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WPF.Tests\obj\x86\Debug\CefGlue.WPF.Tests.dll
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WPF.Tests\obj\x86\Debug\CefGlue.WPF.Tests.pdb

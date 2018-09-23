@@ -1,0 +1,8 @@
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WindowsForms\bin\Debug\Xilium.CefGlue.WindowsForms.dll
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WindowsForms\bin\Debug\Xilium.CefGlue.WindowsForms.pdb
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WindowsForms\bin\Debug\Xilium.CefGlue.dll
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WindowsForms\bin\Debug\Xilium.CefGlue.pdb
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WindowsForms\bin\Debug\Xilium.CefGlue.xml
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WindowsForms\obj\Debug\CefGlue.WindowsForms.csprojResolveAssemblyReference.cache
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WindowsForms\obj\Debug\Xilium.CefGlue.WindowsForms.dll
+D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WindowsForms\obj\Debug\Xilium.CefGlue.WindowsForms.pdb
