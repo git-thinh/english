@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bin", "bin", "{37466511-2C7
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrowserUI", "BrowserUI\BrowserUI.csproj", "{72036546-8502-457A-9F30-703D320009A8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ellib", "..\..\Projects\elbro\ellib\ellib.csproj", "{A24A595A-6CFD-4AD6-92B1-B8DAABEB893A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,14 @@ Global
 		{72036546-8502-457A-9F30-703D320009A8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{72036546-8502-457A-9F30-703D320009A8}.Release|x86.ActiveCfg = Release|Any CPU
 		{72036546-8502-457A-9F30-703D320009A8}.Release|x86.Build.0 = Release|Any CPU
+		{A24A595A-6CFD-4AD6-92B1-B8DAABEB893A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A24A595A-6CFD-4AD6-92B1-B8DAABEB893A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A24A595A-6CFD-4AD6-92B1-B8DAABEB893A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A24A595A-6CFD-4AD6-92B1-B8DAABEB893A}.Debug|x86.Build.0 = Debug|Any CPU
+		{A24A595A-6CFD-4AD6-92B1-B8DAABEB893A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A24A595A-6CFD-4AD6-92B1-B8DAABEB893A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A24A595A-6CFD-4AD6-92B1-B8DAABEB893A}.Release|x86.ActiveCfg = Release|Any CPU
+		{A24A595A-6CFD-4AD6-92B1-B8DAABEB893A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

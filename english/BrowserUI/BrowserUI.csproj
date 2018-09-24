@@ -33,6 +33,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Xilium.CefGlue, Version=66.0.1.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
@@ -41,7 +43,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="LVCef\LVCefBrowserProcessHandler.cs" />
+    <Compile Include="LVCef\LVCefClient.cs" />
+    <Compile Include="LVCef\LVCefLifeSpanHandler.cs" />
+    <Compile Include="LVCef\LVCefMessageRouterHandler.cs" />
+    <Compile Include="LVCef\LVCefRequestHandler.cs" />
+    <Compile Include="LVCef\LVCefControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LVCef\NativeMethods.cs" />
+    <Compile Include="LVCef\SetWindowPosFlags.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
