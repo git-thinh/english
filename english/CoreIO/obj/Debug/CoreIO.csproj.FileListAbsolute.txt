@@ -1,0 +1,4 @@
+G:\english\Run86\bin\CoreIO.dll
+G:\english\Run86\bin\CoreIO.pdb
+G:\english\english\CoreIO\obj\Debug\CoreIO.dll
+G:\english\english\CoreIO\obj\Debug\CoreIO.pdb

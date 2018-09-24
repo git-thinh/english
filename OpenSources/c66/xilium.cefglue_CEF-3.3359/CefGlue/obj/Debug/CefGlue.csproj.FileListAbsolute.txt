@@ -9,3 +9,9 @@ D:\english\Run86\bin\Xilium.CefGlue.pdb
 D:\english\OpenSources\c66\xilium.cefglue_CEF-3.3359\CefGlue\obj\Debug\CefGlue.csprojResolveAssemblyReference.cache
 D:\english\OpenSources\c66\xilium.cefglue_CEF-3.3359\CefGlue\obj\Debug\Xilium.CefGlue.dll
 D:\english\OpenSources\c66\xilium.cefglue_CEF-3.3359\CefGlue\obj\Debug\Xilium.CefGlue.pdb
+G:\english\Run86\bin\Xilium.CefGlue.xml
+G:\english\Run86\bin\Xilium.CefGlue.dll
+G:\english\Run86\bin\Xilium.CefGlue.pdb
+G:\english\OpenSources\c66\xilium.cefglue_CEF-3.3359\CefGlue\obj\Debug\CefGlue.csprojResolveAssemblyReference.cache
+G:\english\OpenSources\c66\xilium.cefglue_CEF-3.3359\CefGlue\obj\Debug\Xilium.CefGlue.dll
+G:\english\OpenSources\c66\xilium.cefglue_CEF-3.3359\CefGlue\obj\Debug\Xilium.CefGlue.pdb
