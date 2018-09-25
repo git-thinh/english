@@ -55,3 +55,6 @@
 [0925/230659:ERROR:.\socket\ssl_client_socket_nss.cc(2196)] handshake failed; NSS error code -5961, net_error -101
 [0925/230703:INFO:CONSOLE(0)] "Uncaught Error: INVALID_STATE_ERR: DOM Exception 11," source: http://media1.admicro.vn/core/admcore.js(868)
 [0925/233526:INFO:CONSOLE(0)] "Uncaught SyntaxError: Illegal return statement," source: (1)
+[0926/051755:INFO:CONSOLE(0)] "Uncaught SyntaxError: Illegal return statement," source: (1)
+[0926/055509:INFO:CONSOLE(0)] "%c%s," source: https://news.google.com/?hl=en-US&gl=US&ceid=US:en(267)
+[0926/055509:INFO:CONSOLE(0)] "%c%s," source: https://news.google.com/?hl=en-US&gl=US&ceid=US:en(267)

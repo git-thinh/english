@@ -80,6 +80,57 @@
     <Compile Include="fBrowser.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="LIB\ControlTransparent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Class1.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Combination.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Hook.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\HotKeys\HotKeyArgs.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\HotKeys\HotKeySet.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\HotKeys\HotKeySetCollection.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\HotKeys\HotKeySetsListener.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\IKeyboardEvents.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\IKeyboardMouseEvents.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\IMouseEvents.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Implementation\AppEventFacade.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Implementation\AppKeyListener.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Implementation\AppMouseListener.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Implementation\BaseListener.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Implementation\ButtonSet.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Implementation\Callback.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Implementation\Chord.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Implementation\EventFacade.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Implementation\GlobalEventFacade.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Implementation\GlobalKeyListener.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Implementation\GlobalMouseListener.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Implementation\KeyboardState.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Implementation\KeyListener.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Implementation\KeysExtensions.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Implementation\MouseListener.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Implementation\Subscribe.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\KeyCombinationExtensions.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\KeyEventArgsExt.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\KeyPressEventArgsExt.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\MouseEventExtArgs.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Sequence.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\SequenceBase.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\AppMouseStruct.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\CallbackData.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\HookHelper.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\HookIds.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\HookNativeMethods.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\HookProcedure.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\HookProcedureHandle.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\HookResult.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\HotkeysNativeMethods.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\KeyboardHookStruct.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\KeyboardNativeMethods.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\Messages.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\MouseNativeMethods.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\MouseStruct.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\Point.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\ThreadNativeMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -89,6 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <Content Include="LIB\Gma.System.MouseKeyHook\HotKeys\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources.resx">

@@ -50,3 +50,5 @@ OpenSources/c7/.vs/CefSharp/v15/Server/sqlite3/storage.ide
 OpenSources/c7/.vs/CefSharp/v15/.suo
 Run86/c7/debug.log
 Run86/c7/CefSharp.Example.pdb
+Run86/browser/debug.log
+Run86/browser/Browser.pdb
