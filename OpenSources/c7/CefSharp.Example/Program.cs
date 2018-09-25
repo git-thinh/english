@@ -23,6 +23,8 @@ namespace CefSharp.Example
 
             Browser browser = new Browser();
             Application.Run(browser);
+
+            CEF.Shutdown();
         }
 
     }

@@ -6,6 +6,7 @@
 <body>
 
     <h3>Tests</h3>
+    <button onclick="doLog()">test console log</button><br>
     <button onclick="doModal()">Open the modal dialog</button><br>
     <button onclick="window.close()">Close this window</button>
 
@@ -16,6 +17,15 @@
     <div id="result"></div>
 
     <script>
+        function doLog() {
+            console.log(new Date().toString());
+        }
+
+        function doAlert(s) {
+            s = s + ': ' + new Date().toString();
+            alert(s);
+            return s;
+        }
 
         function init() {
             timer();

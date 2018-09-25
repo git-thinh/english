@@ -23,12 +23,14 @@ namespace CefSharp.Example
             _browserControl.Dock = DockStyle.Fill;
             _browserControl.PropertyChanged += HandleBrowserPropertyChanged;
             _browserControl.ConsoleMessage += HandleConsoleMessage;
-            _browserControl.BeforeResourceLoadHandler = this;
+            _browserControl.BeforeResourceLoadHandler = this; 
             toolStripContainer.ContentPanel.Controls.Add(_browserControl);            
         }
 
         private void HandleBrowserPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
+            Debug.WriteLine("PROPERTY_CHANGED = " + e.PropertyName + "; IsLoading = " + _browserControl.IsLoading.ToString());
+
             Invoke(new MethodInvoker(() => { if (!IsDisposed) UpdateBrowserControls(sender, e); }));
         }
 
@@ -50,6 +52,9 @@ namespace CefSharp.Example
                     break;
                 case "IsLoading":
                     goButton.Text = _browserControl.IsLoading ? "Stop" : "Go";
+                    if (!_browserControl.IsLoading) {
+                        //_browserControl.RunScript(" alert ", "about:blank", 0);
+                    }
                     break;
             }
         }
@@ -173,6 +178,10 @@ namespace CefSharp.Example
                 }
             }
         }
+        private void HandleConsoleMessage(object sender, ConsoleMessageEventArgs e)
+        {
+            //MessageBox.Show(e.Source + ":" + e.Line + " " + e.Message, "JavaScript console message");
+        }
 
         private void TestSchemeHandlerToolStripMenuItemClick(object sender, EventArgs e)
         {
@@ -184,10 +193,6 @@ namespace CefSharp.Example
             _browserControl.Load("javascript:console.log('console log message text')");
         }
 
-        private void HandleConsoleMessage(object sender, ConsoleMessageEventArgs e)
-        {
-            MessageBox.Show(e.Source + ":" + e.Line + " " + e.Message, "JavaScript console message");
-        }
 
         private void TestBingClrObjectToJsToolStripMenuItemClick(object sender, EventArgs e)
         {
@@ -242,6 +247,32 @@ namespace CefSharp.Example
         private void menuDOM_Access_Click(object sender, EventArgs e)
         {
             _browserControl.Load("test://test/domaccess.html");
+        }
+
+        private void Browser_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (_browserControl.IsLoading) _browserControl.Stop();
+            _browserControl.Dispose();
+        }
+
+        private void callJSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InputForm inputForm = new InputForm("Call Function JS", "doAlert('Mr Thinh')");
+            if (inputForm.ShowDialog() == DialogResult.OK)
+            {
+                string script = inputForm.GetInput() + ";return false;";
+                _browserControl.Load("javascript:" + script);
+
+                //try
+                //{
+                //    string result = _browserControl.RunScript(script, "about:blank", 0, 5000);
+                //    MessageBox.Show(result, "Result");
+                //}
+                //catch (Exception err)
+                //{
+                //    MessageBox.Show(err.ToString(), "Error");
+                //}
+            }
         }
     }
 }

@@ -47,9 +47,6 @@
             this.testConsoleMessagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testBingCLRObjectToJSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuPopupModal = new System.Windows.Forms.ToolStripMenuItem();
-            this.bookmarksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cefSharpHomeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fireBugLiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuDOM_Access = new System.Windows.Forms.ToolStripMenuItem();
             this.javaScriptExtensionPerformanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.localStorageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,6 +54,10 @@
             this.transparencyExamplesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userInterfaceAppExampleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aJAXXMLHttpRequestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bookmarksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cefSharpHomeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fireBugLiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.callJSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripContainer.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -187,7 +188,8 @@
             this.offScreenRenderingAppExampleToolStripMenuItem,
             this.transparencyExamplesToolStripMenuItem,
             this.userInterfaceAppExampleToolStripMenuItem,
-            this.aJAXXMLHttpRequestToolStripMenuItem});
+            this.aJAXXMLHttpRequestToolStripMenuItem,
+            this.callJSToolStripMenuItem});
             this.testsToolStripMenuItem.Name = "testsToolStripMenuItem";
             this.testsToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
             this.testsToolStripMenuItem.Text = "Tests";
@@ -241,29 +243,6 @@
             this.menuPopupModal.Text = "PopupModal";
             this.menuPopupModal.Click += new System.EventHandler(this.popupModalToolStripMenuItem_Click);
             // 
-            // bookmarksToolStripMenuItem
-            // 
-            this.bookmarksToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cefSharpHomeToolStripMenuItem,
-            this.fireBugLiteToolStripMenuItem});
-            this.bookmarksToolStripMenuItem.Name = "bookmarksToolStripMenuItem";
-            this.bookmarksToolStripMenuItem.Size = new System.Drawing.Size(78, 20);
-            this.bookmarksToolStripMenuItem.Text = "Bookmarks";
-            // 
-            // cefSharpHomeToolStripMenuItem
-            // 
-            this.cefSharpHomeToolStripMenuItem.Name = "cefSharpHomeToolStripMenuItem";
-            this.cefSharpHomeToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.cefSharpHomeToolStripMenuItem.Text = "CefSharp Home";
-            this.cefSharpHomeToolStripMenuItem.Click += new System.EventHandler(this.cefSharpHomeToolStripMenuItem_Click);
-            // 
-            // fireBugLiteToolStripMenuItem
-            // 
-            this.fireBugLiteToolStripMenuItem.Name = "fireBugLiteToolStripMenuItem";
-            this.fireBugLiteToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.fireBugLiteToolStripMenuItem.Text = "FireBug Lite";
-            this.fireBugLiteToolStripMenuItem.Click += new System.EventHandler(this.fireBugLiteToolStripMenuItem_Click);
-            // 
             // menuDOM_Access
             // 
             this.menuDOM_Access.Name = "menuDOM_Access";
@@ -313,6 +292,36 @@
             this.aJAXXMLHttpRequestToolStripMenuItem.Text = "AJAX XMLHttpRequest";
             this.aJAXXMLHttpRequestToolStripMenuItem.Click += new System.EventHandler(this.aJAXXMLHttpRequestToolStripMenuItem_Click);
             // 
+            // bookmarksToolStripMenuItem
+            // 
+            this.bookmarksToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cefSharpHomeToolStripMenuItem,
+            this.fireBugLiteToolStripMenuItem});
+            this.bookmarksToolStripMenuItem.Name = "bookmarksToolStripMenuItem";
+            this.bookmarksToolStripMenuItem.Size = new System.Drawing.Size(78, 20);
+            this.bookmarksToolStripMenuItem.Text = "Bookmarks";
+            // 
+            // cefSharpHomeToolStripMenuItem
+            // 
+            this.cefSharpHomeToolStripMenuItem.Name = "cefSharpHomeToolStripMenuItem";
+            this.cefSharpHomeToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.cefSharpHomeToolStripMenuItem.Text = "CefSharp Home";
+            this.cefSharpHomeToolStripMenuItem.Click += new System.EventHandler(this.cefSharpHomeToolStripMenuItem_Click);
+            // 
+            // fireBugLiteToolStripMenuItem
+            // 
+            this.fireBugLiteToolStripMenuItem.Name = "fireBugLiteToolStripMenuItem";
+            this.fireBugLiteToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.fireBugLiteToolStripMenuItem.Text = "FireBug Lite";
+            this.fireBugLiteToolStripMenuItem.Click += new System.EventHandler(this.fireBugLiteToolStripMenuItem_Click);
+            // 
+            // callJSToolStripMenuItem
+            // 
+            this.callJSToolStripMenuItem.Name = "callJSToolStripMenuItem";
+            this.callJSToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+            this.callJSToolStripMenuItem.Text = "Call JS";
+            this.callJSToolStripMenuItem.Click += new System.EventHandler(this.callJSToolStripMenuItem_Click);
+            // 
             // Browser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -324,6 +333,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Browser";
             this.Text = "Browser";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Browser_FormClosing);
             this.toolStripContainer.TopToolStripPanel.ResumeLayout(false);
             this.toolStripContainer.TopToolStripPanel.PerformLayout();
             this.toolStripContainer.ResumeLayout(false);
@@ -367,5 +377,6 @@
         private System.Windows.Forms.ToolStripMenuItem transparencyExamplesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem userInterfaceAppExampleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aJAXXMLHttpRequestToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem callJSToolStripMenuItem;
     }
 }

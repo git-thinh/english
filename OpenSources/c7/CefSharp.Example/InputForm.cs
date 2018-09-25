@@ -10,6 +10,13 @@ namespace CefSharp.Example
             InitializeComponent();
         }
 
+        public InputForm(string title, string val = "")
+        {
+            InitializeComponent();
+            this.Text = title;
+            input.Text = val;
+        }
+
         public String GetInput()
         {
             return input.Text;
