@@ -56,6 +56,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BigArray\BigArray.cs" />
+    <Compile Include="BigArray\BigBooleanArray.cs" />
+    <Compile Include="BigArray\BigByteArray.cs" />
+    <Compile Include="BigArray\BigCharArray.cs" />
+    <Compile Include="BigArray\BigDecimalArray.cs" />
+    <Compile Include="BigArray\BigDoubleArray.cs" />
+    <Compile Include="BigArray\BigInt16Array.cs" />
+    <Compile Include="BigArray\BigInt32Array.cs" />
+    <Compile Include="BigArray\BigInt64Array.cs" />
+    <Compile Include="BigArray\BigSByteArray.cs" />
+    <Compile Include="BigArray\BigSingleArray.cs" />
+    <Compile Include="BigArray\BigUInt16Array.cs" />
+    <Compile Include="BigArray\BigUInt32Array.cs" />
+    <Compile Include="BigArray\BigUInt64Array.cs" />
+    <Compile Include="BigArray\CachedStream.cs" />
     <Compile Include="Fleck\ConnectionNotAvailableException.cs" />
     <Compile Include="Fleck\FleckLog.cs" />
     <Compile Include="Fleck\FrameType.cs" />
@@ -251,6 +266,8 @@
     <Compile Include="mustache\VariableFoundEventArgs.cs" />
     <Compile Include="mustache\WithTagDefinition.cs" />
     <Compile Include="mustache\_config.cs" />
+    <Compile Include="Office\DocxToText.cs" />
+    <Compile Include="Office\Excel\ExcelWriter.cs" />
     <Compile Include="Pipe\NamedPipeClient.cs" />
     <Compile Include="Pipe\NamedPipeConnection.cs" />
     <Compile Include="Pipe\NamedPipeServer.cs" />
@@ -583,6 +600,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Fold.g.cs</LastGenOutput>
     </None>
+    <Content Include="BigArray\ReadMe.txt" />
     <Content Include="Fleck\ReadMe.txt" />
     <Content Include="Google\YoutubeExplode\Readme.txt" />
     <Content Include="IpcChannel\ReadMe.txt" />
