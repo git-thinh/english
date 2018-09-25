@@ -38,12 +38,13 @@
 
         function doModal() {
             updateId('result', "Modal dialog is open...", true);
-            var result = window.showModalDialog("test://test/modaldialog.html", { msg: "Hi from parent" });
-            if (typeof result == "object") {
-                updateId('result', "Result: " + result.msg, true);
-            } else {
-                updateId('result', "Dialog was closed", true);
-            }
+            //var result = window.showModalDialog("test://test/modaldialog.html", { msg: "Hi from parent" });
+            var result = window.open("test://test/modaldialog.html", { msg: "Hi from parent" });
+            //if (typeof result == "object") {
+            //    updateId('result', "Result: " + result.msg, true);
+            //} else {
+            //    updateId('result', "Dialog was closed", true);
+            //}
         }
 
         window.addEventListener('load', init, false);

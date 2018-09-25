@@ -42,6 +42,62 @@ namespace CefSharp.Example
                 return true;
             }
 
+            if (request.Url.EndsWith("Transparency.html", StringComparison.OrdinalIgnoreCase))
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(Resources.transparency);
+                stream = new MemoryStream(bytes);
+                mimeType = "text/html";
+                return true;
+            }
+
+            if (request.Url.EndsWith("xmlhttprequest.html", StringComparison.OrdinalIgnoreCase))
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(Resources.xmlhttprequest);
+                stream = new MemoryStream(bytes);
+                mimeType = "text/html";
+                return true;
+            }
+
+            if (request.Url.EndsWith("uiplugin.html", StringComparison.OrdinalIgnoreCase))
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(Resources.uiplugin);
+                stream = new MemoryStream(bytes);
+                mimeType = "text/html";
+                return true;
+            }
+
+            if (request.Url.EndsWith("osrplugin.html", StringComparison.OrdinalIgnoreCase))
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(Resources.osrplugin);
+                stream = new MemoryStream(bytes);
+                mimeType = "text/html";
+                return true;
+            }
+
+            if (request.Url.EndsWith("localstorage.html", StringComparison.OrdinalIgnoreCase))
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(Resources.localstorage);
+                stream = new MemoryStream(bytes);
+                mimeType = "text/html";
+                return true;
+            }
+
+            if (request.Url.EndsWith("extensionperf.html", StringComparison.OrdinalIgnoreCase))
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(Resources.extensionperf);
+                stream = new MemoryStream(bytes);
+                mimeType = "text/html";
+                return true;
+            }
+
+            if (request.Url.EndsWith("domaccess.html", StringComparison.OrdinalIgnoreCase))
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(Resources.domaccess);
+                stream = new MemoryStream(bytes);
+                mimeType = "text/html";
+                return true;
+            }
+
             return false;
         }
     }

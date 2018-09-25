@@ -11,7 +11,8 @@ namespace CefSharp.Example
     public partial class Browser : Form, IBeforeResourceLoad
     {
         private readonly CefWebBrowser _browserControl;
-        private const string cefSharpHomeUrl = "https://google.com.vn";
+        //private const string cefSharpHomeUrl = "https://google.com.vn";
+        private const string cefSharpHomeUrl = "test://test/modalmain.html";
         //private const string cefSharpHomeUrl = "https://vnexpress.net";
 
         public Browser()
@@ -206,7 +207,41 @@ namespace CefSharp.Example
         private void popupModalToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _browserControl.Load("test://test/modalmain.html");
+        }
 
+        private void aJAXXMLHttpRequestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _browserControl.Load("test://test/xmlhttprequest.html");
+        }
+
+        private void userInterfaceAppExampleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _browserControl.Load("test://test/uiplugin.html");
+        }
+
+        private void transparencyExamplesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _browserControl.Load("test://test/transparency.html");
+        }
+
+        private void offScreenRenderingAppExampleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _browserControl.Load("test://test/osrplugin.html");
+        }
+
+        private void localStorageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _browserControl.Load("test://test/localstorage.html");
+        }
+
+        private void javaScriptExtensionPerformanceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _browserControl.Load("test://test/extensionperf.html");
+        }
+
+        private void menuDOM_Access_Click(object sender, EventArgs e)
+        {
+            _browserControl.Load("test://test/domaccess.html");
         }
     }
 }

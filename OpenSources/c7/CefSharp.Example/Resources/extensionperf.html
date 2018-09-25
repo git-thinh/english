@@ -1,17 +1,20 @@
 ﻿<!DOCTYPE HTML>
 <html>
-    <head>
-        <title>JavaScript Extension: Performance</title>
-        <style>
-            body { font-family: Tahoma, Serif; font-size: 9pt; }
-        </style>
-    </head>
-    <body>
-        <h1>JavaScript Extension: Performance</h1>
+<head>
+    <title>JavaScript Extension: Performance</title>
+    <style>
+        body {
+            font-family: Tahoma, Serif;
+            font-size: 9pt;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Extension: Performance</h1>
 
-        <div><span id="statusBox"></span> <progress id="progressBox" value="0" style="display:none"></progress></div>
+    <div><span id="statusBox"></span> <progress id="progressBox" value="0" style="display:none"></progress></div>
 
-        <div style="padding-top:10px; padding-bottom:10px">
+    <div style="padding-top:10px; padding-bottom:10px">
         <table id="resultTable" border="1" cellspacing="1" cellpadding="4" width="100%">
             <thead>
                 <tr>
@@ -24,108 +27,108 @@
             </thead>
             <!-- result rows here -->
         </table>
-        </div>
+    </div>
 
-<script type="text/javascript">
-(function () {
-    var asyncExecution = true;
-    var testIterations = 100000;
-    var totalProbes = 10;
-    var probeDelay = 0;
+    <script type="text/javascript">
+        (function () {
+            var asyncExecution = true;
+            var testIterations = 100000;
+            var totalProbes = 10;
+            var probeDelay = 0;
 
-    var collectProbes = false;
+            var collectProbes = false;
 
-    function dummyCallTest() {
-        for (var i = 0; i < testIterations; i++) {
-            cef.test.dummy();
-        }
-    }
-
-    function execTestFunc(func) {
-        var begin = new Date();
-        func();
-        var end = new Date();
-        return (end - begin);
-    }
-
-    function execTest(test) {
-        function nextStep() {
-            if (asyncExecution) {
-                setTimeout(function () { execTest(test); }, probeDelay);
-            } else {
-                execTest(test);
+            function dummyCallTest() {
+                for (var i = 0; i < testIterations; i++) {
+                    cef.test.dummy();
+                }
             }
-        }
 
-        function nextTest() {
-            appendResult(test);
-            // ...
-        }
+            function execTestFunc(func) {
+                var begin = new Date();
+                func();
+                var end = new Date();
+                return (end - begin);
+            }
 
-        updateStatus(test);
-        if (!test.warmedUp) {
-            execTestFunc(test.func);
-            test.warmedUp = true;
-            return nextStep();
-        }
+            function execTest(test) {
+                function nextStep() {
+                    if (asyncExecution) {
+                        setTimeout(function () { execTest(test); }, probeDelay);
+                    } else {
+                        execTest(test);
+                    }
+                }
 
-        if (test.probe >= test.totalProbes) {
-            test.avg = test.total / test.totalProbes;
-            return nextTest();
-        }
+                function nextTest() {
+                    appendResult(test);
+                    // ...
+                }
 
-        var elapsed = execTestFunc(test.func);
-        test.total += elapsed;
-        if (!test.min) test.min = elapsed;
-        else if (test.min > elapsed) test.min = elapsed;
-        if (!test.max) test.max = elapsed;
-        else if (test.max < elapsed) test.max = elapsed;
-        if (collectProbes) {
-            test.results.push(elapsed);
-        }
-        test.probe++;
+                updateStatus(test);
+                if (!test.warmedUp) {
+                    execTestFunc(test.func);
+                    test.warmedUp = true;
+                    return nextStep();
+                }
 
-        return nextStep();
-    }
+                if (test.probe >= test.totalProbes) {
+                    test.avg = test.total / test.totalProbes;
+                    return nextTest();
+                }
 
-    function updateStatus(test) {
-        var statusBox = document.getElementById("statusBox");
-        var progressBox = document.getElementById("progressBox");
+                var elapsed = execTestFunc(test.func);
+                test.total += elapsed;
+                if (!test.min) test.min = elapsed;
+                else if (test.min > elapsed) test.min = elapsed;
+                if (!test.max) test.max = elapsed;
+                else if (test.max < elapsed) test.max = elapsed;
+                if (collectProbes) {
+                    test.results.push(elapsed);
+                }
+                test.probe++;
 
-        if (test.probe >= test.totalProbes) {
-            statusBox.innerText = test.name + " completed.";
-            progressBox.style.display = 'none';
-        } else {
-            statusBox.innerText = test.name + " (" + test.probe + "/" + test.totalProbes + ")";
-            progressBox.value = (test.probe / test.totalProbes);
-            progressBox.style.display = 'inline';
-        }
-    }
+                return nextStep();
+            }
 
-    function appendResult(test) {
-        var e = document.getElementById("resultTable");
+            function updateStatus(test) {
+                var statusBox = document.getElementById("statusBox");
+                var progressBox = document.getElementById("progressBox");
 
-        e.insertAdjacentHTML("beforeEnd",
-                            ["<tr>",
-                             "<td>", test.name, "</td>",
-                             "<td>", test.min, "ms</td>",
-                             "<td>", test.avg, "ms</td>",
-                             "<td>", test.max, "ms</td>",
-                             "<td>", test.results.join(", "), "</td>",
-                             "<tr>"
-                             ].join("")
-                             );
-    }
+                if (test.probe >= test.totalProbes) {
+                    statusBox.innerText = test.name + " completed.";
+                    progressBox.style.display = 'none';
+                } else {
+                    statusBox.innerText = test.name + " (" + test.probe + "/" + test.totalProbes + ")";
+                    progressBox.value = (test.probe / test.totalProbes);
+                    progressBox.style.display = 'inline';
+                }
+            }
 
-    function runTest(name, func) {
-        var test = { name: name, func: func, warmedUp: false, total: 0, totalProbes: totalProbes, probe: 0, results: [] };
-        setTimeout(function () { execTest(test); }, 10);
-    }
+            function appendResult(test) {
+                var e = document.getElementById("resultTable");
 
-    runTest("dummyCall", dummyCallTest);
+                e.insertAdjacentHTML("beforeEnd",
+                    ["<tr>",
+                        "<td>", test.name, "</td>",
+                        "<td>", test.min, "ms</td>",
+                        "<td>", test.avg, "ms</td>",
+                        "<td>", test.max, "ms</td>",
+                        "<td>", test.results.join(", "), "</td>",
+                        "<tr>"
+                    ].join("")
+                );
+            }
 
-})();
-</script>
+            function runTest(name, func) {
+                var test = { name: name, func: func, warmedUp: false, total: 0, totalProbes: totalProbes, probe: 0, results: [] };
+                setTimeout(function () { execTest(test); }, 10);
+            }
 
-    </body>
+            runTest("dummyCall", dummyCallTest);
+
+        })();
+    </script>
+
+</body>
 </html>
