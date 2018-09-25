@@ -68,6 +68,7 @@
     <Compile Include="LVCef\NativeMethods.cs" />
     <Compile Include="LVCef\SetWindowPosFlags.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System.Threading\CrossThreadExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CoreIO\CoreIO.csproj">

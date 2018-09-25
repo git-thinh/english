@@ -3,3 +3,9 @@ G:\english\Run86\bin\CoreUI.dll
 G:\english\Run86\bin\CoreUI.pdb
 G:\english\english\CoreUI\obj\Debug\CoreUI.dll
 G:\english\english\CoreUI\obj\Debug\CoreUI.pdb
+C:\english\Run86\bin\CoreUI.dll
+C:\english\Run86\bin\CoreUI.pdb
+C:\english\english\CoreUI\obj\Debug\CoreUI.csprojResolveAssemblyReference.cache
+C:\english\english\CoreUI\obj\Debug\CoreUI.csproj.CoreCompileInputs.cache
+C:\english\english\CoreUI\obj\Debug\CoreUI.dll
+C:\english\english\CoreUI\obj\Debug\CoreUI.pdb
