@@ -1,0 +1,9 @@
+C:\english\Run86\c7\CefUsageTests.exe.config
+C:\english\Run86\c7\CefUsageTests.exe
+C:\english\Run86\c7\CefUsageTests.pdb
+C:\english\OpenSources\c7\CefUsageTests\obj\Debug\CefUsageTests.MainForm.resources
+C:\english\OpenSources\c7\CefUsageTests\obj\Debug\CefUsageTests.Properties.Resources.resources
+C:\english\OpenSources\c7\CefUsageTests\obj\Debug\CefUsageTests.csproj.GenerateResource.Cache
+C:\english\OpenSources\c7\CefUsageTests\obj\Debug\CefUsageTests.csproj.CoreCompileInputs.cache
+C:\english\OpenSources\c7\CefUsageTests\obj\Debug\CefUsageTests.exe
+C:\english\OpenSources\c7\CefUsageTests\obj\Debug\CefUsageTests.pdb

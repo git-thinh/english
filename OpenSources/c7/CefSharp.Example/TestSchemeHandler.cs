@@ -26,6 +26,22 @@ namespace CefSharp.Example
                 return true;
             }
 
+            if (request.Url.EndsWith("modalmain.html", StringComparison.OrdinalIgnoreCase))
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(Resources.modalmain);
+                stream = new MemoryStream(bytes);
+                mimeType = "text/html";
+                return true;
+            }
+
+            if (request.Url.EndsWith("modaldialog.html", StringComparison.OrdinalIgnoreCase))
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(Resources.modaldialog);
+                stream = new MemoryStream(bytes);
+                mimeType = "text/html";
+                return true;
+            }
+
             return false;
         }
     }

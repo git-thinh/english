@@ -139,4 +139,31 @@
   <data name="BindingTest" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BindingTest.html;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="domaccess" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\domaccess.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
+  </data>
+  <data name="extensionperf" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\extensionperf.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="localstorage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\localstorage.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
+  </data>
+  <data name="modaldialog" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\modaldialog.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
+  </data>
+  <data name="modalmain" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\modalmain.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
+  </data>
+  <data name="osrplugin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\osrplugin.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
+  </data>
+  <data name="transparency" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\transparency.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
+  </data>
+  <data name="uiplugin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\uiplugin.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
+  </data>
+  <data name="xmlhttprequest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\xmlhttprequest.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
+  </data>
 </root>

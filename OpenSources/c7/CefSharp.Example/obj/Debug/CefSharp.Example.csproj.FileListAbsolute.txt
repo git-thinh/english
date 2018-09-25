@@ -1,0 +1,11 @@
+C:\english\Run86\c7\CefSharp.Example.exe
+C:\english\Run86\c7\CefSharp.Example.pdb
+C:\english\OpenSources\c7\CefSharp.Example\obj\Debug\CefSharp.Example.csprojResolveAssemblyReference.cache
+C:\english\OpenSources\c7\CefSharp.Example\obj\Debug\CefSharp.Example.AboutBox.resources
+C:\english\OpenSources\c7\CefSharp.Example\obj\Debug\CefSharp.Example.Browser.resources
+C:\english\OpenSources\c7\CefSharp.Example\obj\Debug\CefSharp.Example.InputForm.resources
+C:\english\OpenSources\c7\CefSharp.Example\obj\Debug\CefSharp.Example.Properties.Resources.resources
+C:\english\OpenSources\c7\CefSharp.Example\obj\Debug\CefSharp.Example.csproj.GenerateResource.Cache
+C:\english\OpenSources\c7\CefSharp.Example\obj\Debug\CefSharp.Example.csproj.CoreCompileInputs.cache
+C:\english\OpenSources\c7\CefSharp.Example\obj\Debug\CefSharp.Example.exe
+C:\english\OpenSources\c7\CefSharp.Example\obj\Debug\CefSharp.Example.pdb

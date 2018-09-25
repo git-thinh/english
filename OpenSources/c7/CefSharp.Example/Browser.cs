@@ -202,5 +202,11 @@ namespace CefSharp.Example
         {
             _browserControl.Load("http://getfirebug.com/firebuglite");
         }
+
+        private void popupModalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _browserControl.Load("test://test/modalmain.html");
+
+        }
     }
 }

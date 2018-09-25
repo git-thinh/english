@@ -144,6 +144,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\BindingTest.html" />
+    <None Include="Resources\xmlhttprequest.html" />
+    <None Include="Resources\uiplugin.html" />
+    <None Include="Resources\transparency.html" />
+    <None Include="Resources\domaccess.html" />
+    <None Include="Resources\extensionperf.html" />
+    <None Include="Resources\localstorage.html" />
+    <None Include="Resources\modaldialog.html" />
+    <None Include="Resources\modalmain.html" />
+    <None Include="Resources\osrplugin.html" />
     <Content Include="Resources\SchemeTest.html" />
   </ItemGroup>
   <ItemGroup>
