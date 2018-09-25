@@ -5,6 +5,7 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using CefSharp;
+using System.Threading;
 
 namespace CefSharp.Example
 {
@@ -26,6 +27,17 @@ namespace CefSharp.Example
             _browserControl.ConsoleMessage += HandleConsoleMessage;
             _browserControl.BeforeResourceLoadHandler = this; 
             toolStripContainer.ContentPanel.Controls.Add(_browserControl);            
+        }
+
+        private string RunScript(string script, int timeout)
+        {
+            var result = _browserControl.RunScript("function(){" + script + "}()", "CefSharp.Tests", 1, timeout);
+            return result;
+        }
+
+        private string RunScript(string script)
+        {
+            return RunScript(script, Timeout.Infinite);
         }
 
         private void HandleBrowserPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -255,6 +267,7 @@ namespace CefSharp.Example
         {
             if (_browserControl.IsLoading) _browserControl.Stop();
             _browserControl.Dispose();
+            GC.Collect();
         }
 
         private void callJSToolStripMenuItem_Click(object sender, EventArgs e)

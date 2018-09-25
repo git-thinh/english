@@ -6,3 +6,8 @@ D:\Projects\lvcef-master\xilium.cefglue\CefGlue.Tests\bin\x86\Debug\Xilium.CefGl
 D:\Projects\lvcef-master\xilium.cefglue\CefGlue.Tests\obj\x86\Debug\CefGlue.Tests.csprojResolveAssemblyReference.cache
 D:\Projects\lvcef-master\xilium.cefglue\CefGlue.Tests\obj\x86\Debug\CefGlue.Tests.dll
 D:\Projects\lvcef-master\xilium.cefglue\CefGlue.Tests\obj\x86\Debug\CefGlue.Tests.pdb
+G:\english\Run86\CefGlue.Tests.dll
+G:\english\Run86\CefGlue.Tests.pdb
+G:\english\OpenSources\c39\xilium.cefglue\CefGlue.Tests\obj\x86\Debug\CefGlue.Tests.csprojResolveAssemblyReference.cache
+G:\english\OpenSources\c39\xilium.cefglue\CefGlue.Tests\obj\x86\Debug\CefGlue.Tests.dll
+G:\english\OpenSources\c39\xilium.cefglue\CefGlue.Tests\obj\x86\Debug\CefGlue.Tests.pdb

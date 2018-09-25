@@ -1,0 +1,8 @@
+G:\english\OpenSources\c39\LVCef.TestControlAppSimple\obj\Debug\TestControlAppSimple.csprojResolveAssemblyReference.cache
+G:\english\OpenSources\c39\LVCef.TestControlAppSimple\obj\Debug\TestControlAppSimple.TestControlAppSimpleForm.resources
+G:\english\OpenSources\c39\LVCef.TestControlAppSimple\obj\Debug\TestControlAppSimple.Properties.Resources.resources
+G:\english\OpenSources\c39\LVCef.TestControlAppSimple\obj\Debug\TestControlAppSimple.csproj.GenerateResource.Cache
+G:\english\OpenSources\c39\LVCef.TestControlAppSimple\obj\Debug\TestControlAppSimple.exe
+G:\english\OpenSources\c39\LVCef.TestControlAppSimple\obj\Debug\TestControlAppSimple.pdb
+G:\english\Run86\TestControlAppSimple.exe
+G:\english\Run86\TestControlAppSimple.pdb

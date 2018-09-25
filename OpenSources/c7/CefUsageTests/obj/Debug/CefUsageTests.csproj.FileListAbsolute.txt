@@ -7,3 +7,6 @@ C:\english\OpenSources\c7\CefUsageTests\obj\Debug\CefUsageTests.csproj.GenerateR
 C:\english\OpenSources\c7\CefUsageTests\obj\Debug\CefUsageTests.csproj.CoreCompileInputs.cache
 C:\english\OpenSources\c7\CefUsageTests\obj\Debug\CefUsageTests.exe
 C:\english\OpenSources\c7\CefUsageTests\obj\Debug\CefUsageTests.pdb
+G:\english\Run86\c7\CefUsageTests.exe.config
+G:\english\OpenSources\c7\CefUsageTests\obj\Debug\CefUsageTests.exe
+G:\english\OpenSources\c7\CefUsageTests\obj\Debug\CefUsageTests.pdb

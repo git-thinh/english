@@ -1,0 +1,5 @@
+G:\english\OpenSources\c39\LVCef\obj\Debug\LVCef.csprojResolveAssemblyReference.cache
+G:\english\Run86\LVCef.dll
+G:\english\Run86\LVCef.pdb
+G:\english\OpenSources\c39\LVCef\obj\Debug\LVCef.dll
+G:\english\OpenSources\c39\LVCef\obj\Debug\LVCef.pdb

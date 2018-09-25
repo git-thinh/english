@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using CefSharp;
+using System.IO;
 
 namespace CefSharp.Example
 {
@@ -9,8 +10,11 @@ namespace CefSharp.Example
         [STAThread]
         static void Main(string[] args)
         {
-            Settings settings = new Settings();
-            BrowserSettings browserSettings = new BrowserSettings();
+            string pathCache = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "Cache");
+            if (!Directory.Exists(pathCache)) Directory.CreateDirectory(pathCache);
+
+            Settings settings = new Settings() { UserAgent = "Chrome7", CachePath = pathCache };
+            BrowserSettings browserSettings = new BrowserSettings() { PageCacheDisabled = true };
 
             if(!CEF.Initialize(settings, browserSettings))
             {

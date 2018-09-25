@@ -6,3 +6,13 @@ D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WindowsForms\bin\Debug\Xilium.Ce
 D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WindowsForms\obj\Debug\CefGlue.WindowsForms.csprojResolveAssemblyReference.cache
 D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WindowsForms\obj\Debug\Xilium.CefGlue.WindowsForms.dll
 D:\Projects\lvcef-master\xilium.cefglue\CefGlue.WindowsForms\obj\Debug\Xilium.CefGlue.WindowsForms.pdb
+G:\english\OpenSources\c39\xilium.cefglue\CefGlue.WindowsForms\bin\Debug\Xilium.CefGlue.WindowsForms.dll
+G:\english\OpenSources\c39\xilium.cefglue\CefGlue.WindowsForms\bin\Debug\Xilium.CefGlue.WindowsForms.pdb
+G:\english\OpenSources\c39\xilium.cefglue\CefGlue.WindowsForms\bin\Debug\Xilium.CefGlue.dll
+G:\english\OpenSources\c39\xilium.cefglue\CefGlue.WindowsForms\bin\Debug\Xilium.CefGlue.pdb
+G:\english\OpenSources\c39\xilium.cefglue\CefGlue.WindowsForms\bin\Debug\Xilium.CefGlue.xml
+G:\english\OpenSources\c39\xilium.cefglue\CefGlue.WindowsForms\obj\Debug\CefGlue.WindowsForms.csprojResolveAssemblyReference.cache
+G:\english\OpenSources\c39\xilium.cefglue\CefGlue.WindowsForms\obj\Debug\Xilium.CefGlue.WindowsForms.dll
+G:\english\OpenSources\c39\xilium.cefglue\CefGlue.WindowsForms\obj\Debug\Xilium.CefGlue.WindowsForms.pdb
+G:\english\Run86\Xilium.CefGlue.WindowsForms.dll
+G:\english\Run86\Xilium.CefGlue.WindowsForms.pdb

@@ -22,8 +22,8 @@ namespace TestControlAppSimple
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //lvCefControl1.StartUrl = "https://vnexpress.net";
-            lvCefControl1.StartUrl = "https://dictionary.cambridge.org/grammar/british-grammar/";
+            lvCefControl1.StartUrl = "https://vnexpress.net";
+            //lvCefControl1.StartUrl = "https://dictionary.cambridge.org/grammar/british-grammar/";
             //lvCefControl1.StartUrl = "http://localhost:8000/jstest.html";
             LVCefClient lvcefclient = lvCefControl1.CefClient;
             if (lvCefControl1.CefClient != null)

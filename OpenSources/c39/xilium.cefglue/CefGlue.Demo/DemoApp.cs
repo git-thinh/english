@@ -6,6 +6,7 @@
     using System.Diagnostics;
     using Xilium.CefGlue.Wrapper;
     using System.Threading;
+    using System.IO;
 
     public abstract class DemoApp : IDisposable
     {
@@ -62,14 +63,16 @@
 
         private int RunInternal(string[] args)
         {
-            CefRuntime.Load();
+            string path = Path.Combine(Path.GetDirectoryName(new Uri(System.Reflection.Assembly.GetEntryAssembly().CodeBase).LocalPath), "c39");
+
+            CefRuntime.Load(path);
 
             var settings = new CefSettings();
             settings.MultiThreadedMessageLoop = MultiThreadedMessageLoop = CefRuntime.Platform == CefRuntimePlatform.Windows;
             settings.SingleProcess = false;
             settings.LogSeverity = CefLogSeverity.Verbose;
             settings.LogFile = "cef.log";
-            settings.ResourcesDirPath = System.IO.Path.GetDirectoryName(new Uri(System.Reflection.Assembly.GetEntryAssembly().CodeBase).LocalPath);
+            settings.ResourcesDirPath = path;
             settings.RemoteDebuggingPort = 20480;
 
             var argv = args;

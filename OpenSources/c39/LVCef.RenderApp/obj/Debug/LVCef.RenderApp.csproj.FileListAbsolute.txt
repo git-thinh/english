@@ -1,0 +1,5 @@
+G:\english\OpenSources\c39\LVCef.RenderApp\obj\Debug\LVCef.RenderApp.csprojResolveAssemblyReference.cache
+G:\english\Run86\LVCef.RenderApp.exe
+G:\english\Run86\LVCef.RenderApp.pdb
+G:\english\OpenSources\c39\LVCef.RenderApp\obj\Debug\LVCef.RenderApp.exe
+G:\english\OpenSources\c39\LVCef.RenderApp\obj\Debug\LVCef.RenderApp.pdb

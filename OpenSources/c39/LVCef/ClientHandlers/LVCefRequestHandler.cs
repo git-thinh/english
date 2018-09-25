@@ -40,7 +40,7 @@
             _messageRouter.OnRenderProcessTerminated(browser);
         }
 
-        protected override bool OnBeforeBrowse(CefBrowser browser, CefFrame frame, CefRequest request, bool userGesture, bool isRedirect)
+        protected override bool OnBeforeBrowse(CefBrowser browser, CefFrame frame, CefRequest request, bool isRedirect)
         {
             Debug.WriteLine(DBGPREFIX + "OnBeforeBrowse");
             _messageRouter.OnBeforeBrowse(browser, frame);

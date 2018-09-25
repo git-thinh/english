@@ -11,3 +11,11 @@ D:\Projects\lvcef-master\xilium.cefglue\CefGlue.Client\obj\x86\Debug\Xilium.CefG
 D:\Projects\lvcef-master\xilium.cefglue\CefGlue.Client\obj\x86\Debug\CefGlue.Client.csproj.GenerateResource.Cache
 D:\Projects\lvcef-master\xilium.cefglue\CefGlue.Client\obj\x86\Debug\Xilium.CefGlue.Client.exe
 D:\Projects\lvcef-master\xilium.cefglue\CefGlue.Client\obj\x86\Debug\Xilium.CefGlue.Client.pdb
+G:\english\Run86\Xilium.CefGlue.Client.exe.config
+G:\english\Run86\Xilium.CefGlue.Client.exe
+G:\english\Run86\Xilium.CefGlue.Client.pdb
+G:\english\OpenSources\c39\xilium.cefglue\CefGlue.Client\obj\x86\Debug\CefGlue.Client.csprojResolveAssemblyReference.cache
+G:\english\OpenSources\c39\xilium.cefglue\CefGlue.Client\obj\x86\Debug\Xilium.CefGlue.Client.MainForm.resources
+G:\english\OpenSources\c39\xilium.cefglue\CefGlue.Client\obj\x86\Debug\CefGlue.Client.csproj.GenerateResource.Cache
+G:\english\OpenSources\c39\xilium.cefglue\CefGlue.Client\obj\x86\Debug\Xilium.CefGlue.Client.exe
+G:\english\OpenSources\c39\xilium.cefglue\CefGlue.Client\obj\x86\Debug\Xilium.CefGlue.Client.pdb

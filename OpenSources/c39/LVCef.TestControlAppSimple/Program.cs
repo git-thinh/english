@@ -21,7 +21,7 @@ namespace TestControlAppSimple
             Application.SetCompatibleTextRenderingDefault(false);
 
             string execDir = Path.GetDirectoryName(new Uri(Assembly.GetEntryAssembly().CodeBase).LocalPath);
-            execDir = Path.Combine(execDir, "bin") + @"\";
+            execDir = Path.Combine(execDir, "c39") + @"\";
 
             try
             {
@@ -55,25 +55,25 @@ namespace TestControlAppSimple
             if (exitCode != -1)
                 return exitCode;
 
-            //var settings = new CefSettings
-            //{
-            //    //Relative path from \cef, make sure to set Working Directory to \cef, see README.md
-            //    //BrowserSubprocessPath = @"..\dotnet\LVCef.RenderApp\bin\Debug\LVCef.RenderApp.exe",
-            //    BrowserSubprocessPath = @"LVCef.RenderApp.exe",
-            //    SingleProcess = false,
-            //    MultiThreadedMessageLoop = true,
-            //    LogSeverity = CefLogSeverity.Default,
-            //    LogFile = @"..\logs\TestControlAppSimple.log",
-            //};
+            var settings = new CefSettings
+            {
+                //Relative path from \cef, make sure to set Working Directory to \cef, see README.md
+                //BrowserSubprocessPath = @"..\dotnet\LVCef.RenderApp\bin\Debug\LVCef.RenderApp.exe",
+                //BrowserSubprocessPath = @"LVCef.RenderApp.exe",
+                SingleProcess = false,
+                MultiThreadedMessageLoop = true,
+                LogSeverity = CefLogSeverity.Default,
+                //LogFile = @"..\logs\TestControlAppSimple.log",
+            };
 
-            var settings = new CefSettings();
-            settings.MultiThreadedMessageLoop = true;
-            settings.SingleProcess = true;
-            settings.LogSeverity = CefLogSeverity.Disable;
-            settings.ResourcesDirPath = execDir;
-            settings.RemoteDebuggingPort = 55555;
-            settings.NoSandbox = true;
-            //settings.BrowserSubprocessPath = Path.Combine(execDir, "cefclient.exe"),
+            ////var settings = new CefSettings();
+            ////settings.MultiThreadedMessageLoop = true;
+            ////settings.SingleProcess = true;
+            ////settings.LogSeverity = CefLogSeverity.Disable;
+            ////settings.ResourcesDirPath = execDir;
+            ////settings.RemoteDebuggingPort = 55555;
+            ////settings.NoSandbox = true;
+            //////settings.BrowserSubprocessPath = Path.Combine(execDir, "cefclient.exe"),
 
 
             CefRuntime.Initialize(mainArgs, settings, null, IntPtr.Zero);

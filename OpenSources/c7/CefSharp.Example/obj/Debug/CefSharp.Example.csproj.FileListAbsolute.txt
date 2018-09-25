@@ -9,3 +9,13 @@ C:\english\OpenSources\c7\CefSharp.Example\obj\Debug\CefSharp.Example.csproj.Gen
 C:\english\OpenSources\c7\CefSharp.Example\obj\Debug\CefSharp.Example.csproj.CoreCompileInputs.cache
 C:\english\OpenSources\c7\CefSharp.Example\obj\Debug\CefSharp.Example.exe
 C:\english\OpenSources\c7\CefSharp.Example\obj\Debug\CefSharp.Example.pdb
+G:\english\OpenSources\c7\CefSharp.Example\obj\Debug\CefSharp.Example.exe
+G:\english\OpenSources\c7\CefSharp.Example\obj\Debug\CefSharp.Example.pdb
+G:\english\Run86\c7\CefSharp.Example.exe
+G:\english\Run86\c7\CefSharp.Example.pdb
+G:\english\OpenSources\c7\CefSharp.Example\obj\Debug\CefSharp.Example.csprojResolveAssemblyReference.cache
+G:\english\OpenSources\c7\CefSharp.Example\obj\Debug\CefSharp.Example.AboutBox.resources
+G:\english\OpenSources\c7\CefSharp.Example\obj\Debug\CefSharp.Example.Browser.resources
+G:\english\OpenSources\c7\CefSharp.Example\obj\Debug\CefSharp.Example.InputForm.resources
+G:\english\OpenSources\c7\CefSharp.Example\obj\Debug\CefSharp.Example.Properties.Resources.resources
+G:\english\OpenSources\c7\CefSharp.Example\obj\Debug\CefSharp.Example.csproj.GenerateResource.Cache
