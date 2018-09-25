@@ -1,0 +1,267 @@
+[0925/165227.714:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-devtools://devtools/product_registry_impl/product_registry_impl_module.js
+[0925/165227.745:ERROR:CONSOLE(22)] "Empty response arrived for script 'chrome-devtools://devtools/product_registry_impl/product_registry_impl_module.js'", source: chrome-devtools://devtools/shell.js (22)
+[0925/165227.750:ERROR:CONSOLE(106)] "Uncaught (in promise) Error: Could not instantiate: ProductRegistryImpl.Registry", source: chrome-devtools://devtools/shell.js (106)
+[0925/165227.754:ERROR:CONSOLE(106)] "Uncaught (in promise) Error: Could not instantiate: ProductRegistryImpl.Registry", source: chrome-devtools://devtools/shell.js (106)
+[0925/165227.757:ERROR:CONSOLE(106)] "Uncaught (in promise) Error: Could not instantiate: ProductRegistryImpl.Registry", source: chrome-devtools://devtools/shell.js (106)
+[0925/165439.681:INFO:CONSOLE(5935)] "3.339: Initializing; server= undefined.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165439.685:INFO:CONSOLE(5935)] "3.339: Initializing; room=undefined.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165447.634:INFO:CONSOLE(5935)] "11.290: Opening signaling channel.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165447.690:INFO:CONSOLE(5935)] "11.348: Error getting user media: Failed to execute 'getUserMedia' on 'MediaDevices': At least one of audio and video must be requested", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165447.694:INFO:CONSOLE(5935)] "11.349: getUserMedia error: Failed to get access to local media. Error name was TypeError. Continuing without sending a stream.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165455.653:INFO:CONSOLE(5935)] "19.311: Joined the room.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165455.658:INFO:CONSOLE(5935)] "19.312: Retrieved ICE server information.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165455.656:ERROR:adm_helpers.cc(73)] Failed to query stereo recording.
+[0925/165455.663:INFO:CONSOLE(5935)] "19.312: Signaling channel opened.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165455.666:WARNING:mediasession.cc(353)] Duplicate id found. Reassigning from 104 to 127
+[0925/165455.666:WARNING:mediasession.cc(353)] Duplicate id found. Reassigning from 106 to 125
+[0925/165455.666:WARNING:mediasession.cc(353)] Duplicate id found. Reassigning from 103 to 124
+[0925/165455.666:WARNING:mediasession.cc(353)] Duplicate id found. Reassigning from 105 to 123
+[0925/165455.668:INFO:CONSOLE(5935)] "19.312: Registering signaling channel.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165455.672:INFO:CONSOLE(5935)] "19.312: Signaling channel registered.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165455.678:INFO:CONSOLE(5935)] "19.312: Starting signaling.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165455.686:INFO:CONSOLE(5935)] "19.325: ECDSA certificate generated successfully.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165455.692:INFO:CONSOLE(5935)] "19.325: Creating RTCPeerConnnection with:
+  config: '{"rtcpMuxPolicy":"require","bundlePolicy":"max-bundle","iceServers":[{"urls":["stun:74.125.204.127:19302","stun:[2404:6800:4008:c04::7f]:19302"]},{"urls":["turn:74.125.23.127:19305?transport=udp","turn:[2404:6800:4008:c02::7f]:19305?transport=udp","turn:74.125.23.127:19305?transport=tcp","turn:[2404:6800:4008:c02::7f]:19305?transport=tcp"],"username":"COqurd0FEgZ1UeTpsEYYzc/s6OMTIICjBQ","credential":"eYAFDjI/JpqqmqFu688wFlC7Cc0=","maxRateKbps":"8000"}],"certificates":[{}]}';
+  constraints: '{"optional":[]}'.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165455.698:INFO:CONSOLE(5935)] "19.329: Created PeerConnectionClient", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165455.706:INFO:CONSOLE(5935)] "19.329: Sending offer to peer, with constraints: 
+'{"offerToReceiveAudio":1,"offerToReceiveVideo":1,"voiceActivityDetection":false}'.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165455.712:INFO:CONSOLE(5935)] "19.339: No preference on audio receive codec.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165455.720:INFO:CONSOLE(5935)] "19.339: Prefer video receive codec: VP9", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165455.726:INFO:CONSOLE(5935)] "19.341: C->GAE: {"sdp":"v=0\r\no=- 6172684051864821833 2 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\na=group:BUNDLE audio video\r\na=msid-semantic: WMS\r\nm=audio 9 UDP/TLS/RTP/SAVPF 111 103 104 9 0 8 110 112 113 126\r\nc=IN IP4 0.0.0.0\r\na=rtcp:9 IN IP4 0.0.0.0\r\na=ice-ufrag:NHuE\r\na=ice-pwd:AT38CqjPMuk2C19C2zUVza2Y\r\na=ice-options:trickle\r\na=fingerprint:sha-256 AB:00:68:72:9C:84:33:D6:3D:DA:56:75:17:2D:3D:6E:FB:B2:0D:BF:0F:8F:36:F3:C2:86:A1:2D:A1:3B:72:8A\r\na=setup:actpass\r\na=mid:audio\r\na=extmap:1 urn:ietf:params:rtp-hdrext:ssrc-audio-level\r\na=recvonly\r\na=rtcp-mux\r\na=rtpmap:111 opus/48000/2\r\na=rtcp-fb:111 transport-cc\r\na=fmtp:111 minptime=10;useinbandfec=1\r\na=rtpmap:103 ISAC/16000\r\na=rtpmap:104 ISAC/32000\r\na=rtpmap:9 G722/8000\r\na=rtpmap:0 PCMU/8000\r\na=rtpmap:8 PCMA/8000\r\na=rtpmap:110 telephone-event/48000\r\na=rtpmap:112 telephone-event/32000\r\na=rtpmap:113 telephone-event/16000\r\na=rtpmap:126 telephone-event/8000\r\nm=video 9 UDP/TLS/RTP/SAVPF 98 96 97 99 100 101 102 124 127 123 125 107 108\r\nc=IN IP4 0.0.0.0\r\na=rtcp:9 IN IP4 0.0.0.0\r\na=ice-ufrag:NHuE\r\na=ice-pwd:AT38CqjPMuk2C19C2zUVza2Y\r\na=ice-options:trickle\r\na=fingerprint:sha-256 AB:00:68:72:9C:84:33:D6:3D:DA:56:75:17:2D:3D:6E:FB:B2:0D:BF:0F:8F:36:F3:C2:86:A1:2D:A1:3B:72:8A\r\na=setup:actpass\r\na=mid:video\r\na=extmap:2 urn:ietf:params:rtp-hdrext:toffset\r\na=extmap:3 http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time\r\na=extmap:4 urn:3gpp:video-orientation\r\na=extmap:5 http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01\r\na=extmap:6 http://www.webrtc.org/experiments/rtp-hdrext/playout-delay\r\na=extmap:7 http://www.webrtc.org/experiments/rtp-hdrext/video-content-type\r\na=extmap:8 http://www.webrtc.org/experiments/rtp-hdrext/video-timing\r\na=recvonly\r\na=rtcp-mux\r\na=rtcp-rsize\r\na=rtpmap:96 VP8/90000\r\na=rtcp-fb:96 goog-remb\r\na=rtcp-fb:96 transport-cc\r\na=rtcp-fb:96 ccm fir\r\na=rtcp-fb:96 nack\r\na=rtcp-fb:96 nack pli\r\na=rtpmap:97 rtx/90000\r\na=fmtp:97 apt=96\r\na=rtpmap:98 VP9/90000\r\na=rtcp-fb:98 goog-remb\r\na=rtcp-fb:98 transport-cc\r\na=rtcp-fb:98 ccm fir\r\na=rtcp-fb:98 nack\r\na=rtcp-fb:98 nack pli\r\na=rtpmap:99 rtx/90000\r\na=fmtp:99 apt=98\r\na=rtpmap:100 H264/90000\r\na=rtcp-fb:100 goog-remb\r\na=rtcp-fb:100 transport-cc\r\na=rtcp-fb:100 ccm fir\r\na=rtcp-fb:100 nack\r\na=rtcp-fb:100 nack pli\r\na=fmtp:100 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=420032\r\na=rtpmap:101 rtx/90000\r\na=fmtp:101 apt=100\r\na=rtpmap:102 H264/90000\r\na=rtcp-fb:102 goog-remb\r\na=rtcp-fb:102 transport-cc\r\na=rtcp-fb:102 ccm fir\r\na=rtcp-fb:102 nack\r\na=rtcp-fb:102 nack pli\r\na=fmtp:102 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=4d0032\r\na=rtpmap:124 rtx/90000\r\na=fmtp:124 apt=102\r\na=rtpmap:127 H264/90000\r\na=rtcp-fb:127 goog-remb\r\na=rtcp-fb:127 transport-cc\r\na=rtcp-fb:127 ccm fir\r\na=rtcp-fb:127 nack\r\na=rtcp-fb:127 nack pli\r\na=fmtp:127 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=640032\r\na=rtpmap:123 rtx/90000\r\na=fmtp:123 apt=127\r\na=rtpmap:125 red/90000\r\na=rtpmap:107 rtx/90000\r\na=fmtp:107 apt=125\r\na=rtpmap:108 ulpfec/90000\r\n","type":"offer"}", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165455.733:INFO:CONSOLE(5935)] "19.344: Set session description success.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165455.734:INFO:CONSOLE(5935)] "19.345: Signaling state changed to: have-local-offer", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165455.735:WARNING:stunport.cc(433)] STUN server address is incompatible.
+[0925/165455.735:WARNING:stunport.cc(433)] STUN server address is incompatible.
+[0925/165455.735:WARNING:stunport.cc(433)] STUN server address is incompatible.
+[0925/165455.735:WARNING:stunport.cc(433)] STUN server address is incompatible.
+[0925/165455.743:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165455.743:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165455.751:INFO:CONSOLE(5935)] "19.399: C->GAE: {"type":"candidate","label":0,"id":"audio","candidate":"candidate:3052010174 1 udp 2113937151 192.168.81.216 53259 typ host generation 0 ufrag NHuE network-cost 50"}", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165455.784:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165455.785:WARNING:socket_host_tcp.cc(163)] Error from connecting socket, result=-109
+[0925/165455.785:WARNING:turnport.cc(476)] Jingle:Port[0BA5C4C0:audio:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: Connection with server failed, error=0
+[0925/165455.790:INFO:CONSOLE(5935)] "19.446: C->GAE: {"type":"candidate","label":0,"id":"audio","candidate":"candidate:842163049 1 udp 1677729535 113.20.96.116 53259 typ srflx raddr 192.168.81.216 rport 53259 generation 0 ufrag NHuE network-cost 50"}", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165455.826:WARNING:turnport.cc(448)] Socket is bound to the address:192.168.81.216, rather then an address associated with network:Net[any:0.0.0.x/0:Unknown]. Still allowing it since it's the 'any' address, possibly caused by multiple_routes being disabled.
+[0925/165455.837:WARNING:p2ptransportchannel.cc(638)] Jingle:Port[0B9DE688:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[0925/165455.837:WARNING:p2ptransportchannel.cc(638)] Jingle:Port[0B9DE688:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[0925/165455.837:WARNING:p2ptransportchannel.cc(638)] Jingle:Port[0B9DE688:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 0) failed: 0
+[0925/165455.837:WARNING:p2ptransportchannel.cc(638)] Jingle:Port[0EFDD970:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[0925/165455.837:WARNING:p2ptransportchannel.cc(638)] Jingle:Port[0EFDD970:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[0925/165455.837:WARNING:p2ptransportchannel.cc(638)] Jingle:Port[0EFDD970:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 0) failed: 0
+[0925/165455.880:INFO:CONSOLE(5935)] "19.534: C->GAE: {"type":"candidate","label":0,"id":"audio","candidate":"candidate:2423025534 1 udp 33563135 74.125.39.15 29143 typ relay raddr 113.20.96.116 rport 53259 generation 0 ufrag NHuE network-cost 50"}", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165455.921:INFO:CONSOLE(5935)] "19.576: C->GAE: {"type":"candidate","label":0,"id":"audio","candidate":"candidate:2157172357 1 udp 16785407 74.125.23.87 30249 typ relay raddr 113.20.96.116 rport 16681 generation 0 ufrag NHuE network-cost 50"}", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165455.985:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165455.985:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165456.036:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165456.485:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165456.485:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165456.537:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165457.486:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165457.487:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165457.539:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165459.487:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165459.487:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165459.539:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165503.487:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165503.487:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165503.540:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165505.931:INFO:CONSOLE(5935)] "29.585: Reloading main page.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165506.162:INFO:CONSOLE(5935)] "29.808: C->WSS: {"type":"bye"}", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165507.012:INFO:CONSOLE(5935)] "30.667: Cleanup completed.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165507.022:INFO:CONSOLE(5935)] "30.669: Channel closed with code:1000 reason:", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165507.270:INFO:CONSOLE(5935)] "0.256: Initializing; server= undefined.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165507.279:INFO:CONSOLE(5935)] "0.256: Initializing; room=undefined.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165516.050:INFO:CONSOLE(5935)] "9.038: Opening signaling channel.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165516.064:INFO:CONSOLE(5935)] "9.047: Error getting user media: Failed to execute 'getUserMedia' on 'MediaDevices': At least one of audio and video must be requested", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165516.070:INFO:CONSOLE(5935)] "9.047: getUserMedia error: Failed to get access to local media. Error name was TypeError. Continuing without sending a stream.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165517.414:WARNING:mediasession.cc(353)] Duplicate id found. Reassigning from 104 to 127
+[0925/165517.414:WARNING:mediasession.cc(353)] Duplicate id found. Reassigning from 106 to 125
+[0925/165517.414:WARNING:mediasession.cc(353)] Duplicate id found. Reassigning from 103 to 124
+[0925/165517.414:WARNING:mediasession.cc(353)] Duplicate id found. Reassigning from 105 to 123
+[0925/165517.420:INFO:CONSOLE(5935)] "10.405: Retrieved ICE server information.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165517.428:INFO:CONSOLE(5935)] "10.405: Joined the room.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165517.436:INFO:CONSOLE(5935)] "10.405: Signaling channel opened.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165517.443:INFO:CONSOLE(5935)] "10.405: Registering signaling channel.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165517.449:INFO:CONSOLE(5935)] "10.406: Signaling channel registered.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165517.456:INFO:CONSOLE(5935)] "10.406: Starting signaling.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165517.469:INFO:CONSOLE(5935)] "10.407: ECDSA certificate generated successfully.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165517.476:INFO:CONSOLE(5935)] "10.407: Creating RTCPeerConnnection with:
+  config: '{"rtcpMuxPolicy":"require","bundlePolicy":"max-bundle","iceServers":[{"urls":["stun:74.125.204.127:19302","stun:[2404:6800:4008:c04::7f]:19302"]},{"urls":["turn:74.125.204.127:19305?transport=udp","turn:[2404:6800:4008:c04::7f]:19305?transport=udp","turn:74.125.204.127:19305?transport=tcp","turn:[2404:6800:4008:c04::7f]:19305?transport=tcp"],"username":"CIWvrd0FEgZmQaq317oYzc/s6OMTIICjBQ","credential":"taod/e3JMMXiXwRUGWiATictkp4=","maxRateKbps":"8000"}],"certificates":[{}]}';
+  constraints: '{"optional":[]}'.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165517.483:INFO:CONSOLE(5935)] "10.409: Created PeerConnectionClient", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165517.489:INFO:CONSOLE(5935)] "10.409: Sending offer to peer, with constraints: 
+'{"offerToReceiveAudio":1,"offerToReceiveVideo":1,"voiceActivityDetection":false}'.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165517.496:INFO:CONSOLE(5935)] "10.415: No preference on audio receive codec.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165517.503:INFO:CONSOLE(5935)] "10.415: Prefer video receive codec: VP9", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165517.512:INFO:CONSOLE(5935)] "10.416: C->GAE: {"sdp":"v=0\r\no=- 1617971023424409037 2 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\na=group:BUNDLE audio video\r\na=msid-semantic: WMS\r\nm=audio 9 UDP/TLS/RTP/SAVPF 111 103 104 9 0 8 110 112 113 126\r\nc=IN IP4 0.0.0.0\r\na=rtcp:9 IN IP4 0.0.0.0\r\na=ice-ufrag:kR3r\r\na=ice-pwd:lSNUWVXMNotzXSZvKMAprvz9\r\na=ice-options:trickle\r\na=fingerprint:sha-256 73:40:01:77:CF:DC:C4:FA:7C:BD:69:D4:98:59:F3:F5:A1:D2:3C:7B:12:7C:0C:55:E4:5F:8E:F1:4F:3D:A6:BD\r\na=setup:actpass\r\na=mid:audio\r\na=extmap:1 urn:ietf:params:rtp-hdrext:ssrc-audio-level\r\na=recvonly\r\na=rtcp-mux\r\na=rtpmap:111 opus/48000/2\r\na=rtcp-fb:111 transport-cc\r\na=fmtp:111 minptime=10;useinbandfec=1\r\na=rtpmap:103 ISAC/16000\r\na=rtpmap:104 ISAC/32000\r\na=rtpmap:9 G722/8000\r\na=rtpmap:0 PCMU/8000\r\na=rtpmap:8 PCMA/8000\r\na=rtpmap:110 telephone-event/48000\r\na=rtpmap:112 telephone-event/32000\r\na=rtpmap:113 telephone-event/16000\r\na=rtpmap:126 telephone-event/8000\r\nm=video 9 UDP/TLS/RTP/SAVPF 98 96 97 99 100 101 102 124 127 123 125 107 108\r\nc=IN IP4 0.0.0.0\r\na=rtcp:9 IN IP4 0.0.0.0\r\na=ice-ufrag:kR3r\r\na=ice-pwd:lSNUWVXMNotzXSZvKMAprvz9\r\na=ice-options:trickle\r\na=fingerprint:sha-256 73:40:01:77:CF:DC:C4:FA:7C:BD:69:D4:98:59:F3:F5:A1:D2:3C:7B:12:7C:0C:55:E4:5F:8E:F1:4F:3D:A6:BD\r\na=setup:actpass\r\na=mid:video\r\na=extmap:2 urn:ietf:params:rtp-hdrext:toffset\r\na=extmap:3 http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time\r\na=extmap:4 urn:3gpp:video-orientation\r\na=extmap:5 http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01\r\na=extmap:6 http://www.webrtc.org/experiments/rtp-hdrext/playout-delay\r\na=extmap:7 http://www.webrtc.org/experiments/rtp-hdrext/video-content-type\r\na=extmap:8 http://www.webrtc.org/experiments/rtp-hdrext/video-timing\r\na=recvonly\r\na=rtcp-mux\r\na=rtcp-rsize\r\na=rtpmap:96 VP8/90000\r\na=rtcp-fb:96 goog-remb\r\na=rtcp-fb:96 transport-cc\r\na=rtcp-fb:96 ccm fir\r\na=rtcp-fb:96 nack\r\na=rtcp-fb:96 nack pli\r\na=rtpmap:97 rtx/90000\r\na=fmtp:97 apt=96\r\na=rtpmap:98 VP9/90000\r\na=rtcp-fb:98 goog-remb\r\na=rtcp-fb:98 transport-cc\r\na=rtcp-fb:98 ccm fir\r\na=rtcp-fb:98 nack\r\na=rtcp-fb:98 nack pli\r\na=rtpmap:99 rtx/90000\r\na=fmtp:99 apt=98\r\na=rtpmap:100 H264/90000\r\na=rtcp-fb:100 goog-remb\r\na=rtcp-fb:100 transport-cc\r\na=rtcp-fb:100 ccm fir\r\na=rtcp-fb:100 nack\r\na=rtcp-fb:100 nack pli\r\na=fmtp:100 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=420032\r\na=rtpmap:101 rtx/90000\r\na=fmtp:101 apt=100\r\na=rtpmap:102 H264/90000\r\na=rtcp-fb:102 goog-remb\r\na=rtcp-fb:102 transport-cc\r\na=rtcp-fb:102 ccm fir\r\na=rtcp-fb:102 nack\r\na=rtcp-fb:102 nack pli\r\na=fmtp:102 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=4d0032\r\na=rtpmap:124 rtx/90000\r\na=fmtp:124 apt=102\r\na=rtpmap:127 H264/90000\r\na=rtcp-fb:127 goog-remb\r\na=rtcp-fb:127 transport-cc\r\na=rtcp-fb:127 ccm fir\r\na=rtcp-fb:127 nack\r\na=rtcp-fb:127 nack pli\r\na=fmtp:127 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=640032\r\na=rtpmap:123 rtx/90000\r\na=fmtp:123 apt=127\r\na=rtpmap:125 red/90000\r\na=rtpmap:107 rtx/90000\r\na=fmtp:107 apt=125\r\na=rtpmap:108 ulpfec/90000\r\n","type":"offer"}", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165517.519:INFO:CONSOLE(5935)] "10.417: Signaling state changed to: have-local-offer", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165517.526:INFO:CONSOLE(5935)] "10.418: Set session description success.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165517.527:WARNING:stunport.cc(433)] STUN server address is incompatible.
+[0925/165517.527:WARNING:stunport.cc(433)] STUN server address is incompatible.
+[0925/165517.527:WARNING:stunport.cc(433)] STUN server address is incompatible.
+[0925/165517.527:WARNING:stunport.cc(433)] STUN server address is incompatible.
+[0925/165517.528:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165517.528:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165517.537:INFO:CONSOLE(5935)] "10.523: C->GAE: {"type":"candidate","label":0,"id":"audio","candidate":"candidate:3052010174 1 udp 2113937151 192.168.81.216 54124 typ host generation 0 ufrag kR3r network-cost 50"}", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165517.577:INFO:CONSOLE(5935)] "10.564: C->GAE: {"type":"candidate","label":0,"id":"audio","candidate":"candidate:842163049 1 udp 1677729535 113.20.96.116 54124 typ srflx raddr 192.168.81.216 rport 54124 generation 0 ufrag kR3r network-cost 50"}", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165517.578:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165517.579:WARNING:socket_host_tcp.cc(163)] Error from connecting socket, result=-109
+[0925/165517.579:WARNING:turnport.cc(476)] Jingle:Port[0F898518:audio:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: Connection with server failed, error=0
+[0925/165517.618:WARNING:turnport.cc(448)] Socket is bound to the address:192.168.81.216, rather then an address associated with network:Net[any:0.0.0.x/0:Unknown]. Still allowing it since it's the 'any' address, possibly caused by multiple_routes being disabled.
+[0925/165517.628:WARNING:p2ptransportchannel.cc(638)] Jingle:Port[0B9DE688:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[0925/165517.628:WARNING:p2ptransportchannel.cc(638)] Jingle:Port[0B9DE688:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[0925/165517.628:WARNING:p2ptransportchannel.cc(638)] Jingle:Port[0B9DE688:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 0) failed: 0
+[0925/165517.628:WARNING:p2ptransportchannel.cc(638)] Jingle:Port[0EFDD970:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[0925/165517.628:WARNING:p2ptransportchannel.cc(638)] Jingle:Port[0EFDD970:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[0925/165517.628:WARNING:p2ptransportchannel.cc(638)] Jingle:Port[0EFDD970:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 0) failed: 0
+[0925/165517.673:INFO:CONSOLE(5935)] "10.661: C->GAE: {"type":"candidate","label":0,"id":"audio","candidate":"candidate:2279096147 1 udp 33563135 74.125.204.87 26787 typ relay raddr 113.20.96.116 rport 54124 generation 0 ufrag kR3r network-cost 50"}", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165517.714:INFO:CONSOLE(5935)] "10.703: C->GAE: {"type":"candidate","label":0,"id":"audio","candidate":"candidate:3378234275 1 udp 16785407 74.125.204.87 26611 typ relay raddr 113.20.96.116 rport 16714 generation 0 ufrag kR3r network-cost 50"}", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165517.779:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165517.779:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165517.829:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165518.279:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165518.279:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165518.330:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165519.280:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165519.281:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165519.331:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165521.281:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165521.281:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165521.331:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165525.283:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165525.283:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165525.334:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/165527.635:INFO:CONSOLE(5935)] "20.622: Reloading main page.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165527.846:INFO:CONSOLE(5935)] "20.834: C->WSS: {"type":"bye"}", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165528.275:INFO:CONSOLE(5935)] "21.263: Cleanup completed.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165528.283:INFO:CONSOLE(5935)] "21.264: Channel closed with code:1000 reason:", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165528.519:INFO:CONSOLE(5935)] "0.240: Initializing; server= undefined.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165528.532:INFO:CONSOLE(5935)] "0.240: Initializing; room=undefined.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/165710.449:INFO:CONSOLE(463)] "Uncaught InvalidStateError: Failed to execute 'start' on 'SpeechRecognition': recognition has already started.", source: https://www.google.com/intl/en/chrome/demos/speech.html (463)
+[0925/165711.208:INFO:CONSOLE(463)] "Uncaught InvalidStateError: Failed to execute 'start' on 'SpeechRecognition': recognition has already started.", source: https://www.google.com/intl/en/chrome/demos/speech.html (463)
+[0925/165839.972:INFO:CONSOLE(170)] "A parser-blocking, cross site (i.e. different eTLD+1) script, https://ssl.google-analytics.com/ga.js, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details.", source: https://html5demos.com/drag/ (170)
+[0925/165839.987:INFO:CONSOLE(170)] "A parser-blocking, cross site (i.e. different eTLD+1) script, https://ssl.google-analytics.com/ga.js, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details.", source: https://html5demos.com/drag/ (170)
+[0925/165843.758:WARNING:angle_platform_impl.cc(59)] compileToBinary(228): 
+C:\fakepath(65,10-42): warning X3571: pow(f, e) will not work for negative f, use abs(f) or conditionally handle negative values if you expect them
+C:\fakepath(87,10-42): warning X3571: pow(f, e) will not work for negative f, use abs(f) or conditionally handle negative values if you expect them
+
+[0925/170304.319:ERROR:quota_settings.cc(109)] Unable to compute QuotaSettings.
+[0925/170304.319:WARNING:quota_manager.cc(1632)] No storage quota provided in QuotaSettings.
+[0925/170305.285:INFO:CONSOLE(0)] "The 'options' directive has been replaced with 'unsafe-inline' and 'unsafe-eval' source expressions for the 'script-src' and 'style-src' directives. Please use those directives instead, as 'options' has no effect.", source: http://html5test.com/assets/csp.html (0)
+[0925/170628.087:ERROR:quota_settings.cc(109)] Unable to compute QuotaSettings.
+[0925/170628.087:WARNING:quota_manager.cc(1632)] No storage quota provided in QuotaSettings.
+[0925/171528.545:INFO:CONSOLE(55)] "--Setup Grass---------------------------------------", source: http://webglsamples.org/tdl/log.js (55)
+[0925/171528.592:INFO:CONSOLE(55)] "--Setup Skybox---------------------------------------", source: http://webglsamples.org/tdl/log.js (55)
+[0925/171528.603:INFO:CONSOLE(55)] "--Setup HorizontalBlurPlane---------------------------------------", source: http://webglsamples.org/tdl/log.js (55)
+[0925/171528.620:INFO:CONSOLE(55)] "--Setup VerticalBlurPlane---------------------------------------", source: http://webglsamples.org/tdl/log.js (55)
+[0925/171528.633:INFO:CONSOLE(55)] "--Setup DofPlane---------------------------------------", source: http://webglsamples.org/tdl/log.js (55)
+[0925/171528.645:INFO:CONSOLE(55)] "using depth texture", source: http://webglsamples.org/tdl/log.js (55)
+[0925/171528.658:INFO:CONSOLE(55)] "--Setup RTPlane---------------------------------------", source: http://webglsamples.org/tdl/log.js (55)
+[0925/171528.668:INFO:CONSOLE(55)] "--Draw grass---------------------------------------", source: http://webglsamples.org/tdl/log.js (55)
+[0925/171528.679:INFO:CONSOLE(55)] "using requestAnimationFrame", source: http://webglsamples.org/tdl/log.js (55)
+[0925/171529.128:INFO:CONSOLE(55)] "loaded image: assets/bottom.png", source: http://webglsamples.org/tdl/log.js (55)
+[0925/171529.166:INFO:CONSOLE(55)] "loaded image: assets/top.png", source: http://webglsamples.org/tdl/log.js (55)
+[0925/171529.375:INFO:CONSOLE(55)] "loaded image: assets/mid.png", source: http://webglsamples.org/tdl/log.js (55)
+[0925/171529.389:INFO:CONSOLE(55)] "loaded image: assets/mid.png", source: http://webglsamples.org/tdl/log.js (55)
+[0925/171529.398:INFO:CONSOLE(55)] "loaded image: assets/mid.png", source: http://webglsamples.org/tdl/log.js (55)
+[0925/171529.407:INFO:CONSOLE(55)] "loaded image: assets/mid.png", source: http://webglsamples.org/tdl/log.js (55)
+[0925/171642.560:INFO:CONSOLE(5935)] "0.834: Initializing; server= undefined.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/171642.571:INFO:CONSOLE(5935)] "0.834: Initializing; room=undefined.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/171849.961:WARNING:ipc_message_attachment_set.cc(49)] MessageAttachmentSet destroyed with unconsumed attachments: 0/1
+[0925/172223.364:INFO:CONSOLE(463)] "Uncaught InvalidStateError: Failed to execute 'start' on 'SpeechRecognition': recognition has already started.", source: https://www.google.com/intl/en/chrome/demos/speech.html (463)
+[0925/172256.052:INFO:CONSOLE(55)] "--Setup Grass---------------------------------------", source: http://webglsamples.org/tdl/log.js (55)
+[0925/172256.099:INFO:CONSOLE(55)] "--Setup Skybox---------------------------------------", source: http://webglsamples.org/tdl/log.js (55)
+[0925/172256.109:INFO:CONSOLE(55)] "--Setup HorizontalBlurPlane---------------------------------------", source: http://webglsamples.org/tdl/log.js (55)
+[0925/172256.126:INFO:CONSOLE(55)] "--Setup VerticalBlurPlane---------------------------------------", source: http://webglsamples.org/tdl/log.js (55)
+[0925/172256.138:INFO:CONSOLE(55)] "--Setup DofPlane---------------------------------------", source: http://webglsamples.org/tdl/log.js (55)
+[0925/172256.150:INFO:CONSOLE(55)] "using depth texture", source: http://webglsamples.org/tdl/log.js (55)
+[0925/172256.161:INFO:CONSOLE(55)] "--Setup RTPlane---------------------------------------", source: http://webglsamples.org/tdl/log.js (55)
+[0925/172256.170:INFO:CONSOLE(55)] "--Draw grass---------------------------------------", source: http://webglsamples.org/tdl/log.js (55)
+[0925/172256.181:INFO:CONSOLE(55)] "using requestAnimationFrame", source: http://webglsamples.org/tdl/log.js (55)
+[0925/172256.337:INFO:CONSOLE(55)] "loaded image: assets/mid.png", source: http://webglsamples.org/tdl/log.js (55)
+[0925/172256.353:INFO:CONSOLE(55)] "loaded image: assets/mid.png", source: http://webglsamples.org/tdl/log.js (55)
+[0925/172256.366:INFO:CONSOLE(55)] "loaded image: assets/mid.png", source: http://webglsamples.org/tdl/log.js (55)
+[0925/172256.377:INFO:CONSOLE(55)] "loaded image: assets/mid.png", source: http://webglsamples.org/tdl/log.js (55)
+[0925/172256.389:INFO:CONSOLE(55)] "loaded image: assets/top.png", source: http://webglsamples.org/tdl/log.js (55)
+[0925/172256.404:INFO:CONSOLE(55)] "loaded image: assets/bottom.png", source: http://webglsamples.org/tdl/log.js (55)
+[0925/172307.669:INFO:CONSOLE(5935)] "1.562: Initializing; server= undefined.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/172307.679:INFO:CONSOLE(5935)] "1.563: Initializing; room=undefined.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/172308.802:INFO:CONSOLE(5935)] "2.690: Opening signaling channel.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/172308.841:INFO:CONSOLE(5935)] "2.732: Error getting user media: Failed to execute 'getUserMedia' on 'MediaDevices': At least one of audio and video must be requested", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/172308.850:INFO:CONSOLE(5935)] "2.733: getUserMedia error: Failed to get access to local media. Error name was TypeError. Continuing without sending a stream.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/172312.199:INFO:CONSOLE(5935)] "6.090: Retrieved ICE server information.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/172312.193:ERROR:adm_helpers.cc(73)] Failed to query stereo recording.
+[0925/172312.209:WARNING:mediasession.cc(353)] Duplicate id found. Reassigning from 104 to 127
+[0925/172312.209:WARNING:mediasession.cc(353)] Duplicate id found. Reassigning from 106 to 125
+[0925/172312.210:WARNING:mediasession.cc(353)] Duplicate id found. Reassigning from 103 to 124
+[0925/172312.210:WARNING:mediasession.cc(353)] Duplicate id found. Reassigning from 105 to 123
+[0925/172312.210:INFO:CONSOLE(5935)] "6.091: Joined the room.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/172312.222:INFO:CONSOLE(5935)] "6.091: Signaling channel opened.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/172312.232:INFO:CONSOLE(5935)] "6.091: Registering signaling channel.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/172312.242:INFO:CONSOLE(5935)] "6.091: Signaling channel registered.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/172312.253:INFO:CONSOLE(5935)] "6.091: Starting signaling.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/172312.265:INFO:CONSOLE(5935)] "6.109: ECDSA certificate generated successfully.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/172312.282:INFO:CONSOLE(5935)] "6.110: Creating RTCPeerConnnection with:
+  config: '{"rtcpMuxPolicy":"require","bundlePolicy":"max-bundle","iceServers":[{"urls":["stun:74.125.204.127:19302","stun:[2404:6800:4008:c04::7f]:19302"]},{"urls":["turn:64.233.188.127:19305?transport=udp","turn:[2404:6800:4008:c06::7f]:19305?transport=udp","turn:64.233.188.127:19305?transport=tcp","turn:[2404:6800:4008:c06::7f]:19305?transport=tcp"],"username":"CI68rd0FEgZyW7C2OMUYzc/s6OMTIICjBQ","credential":"bhcOiAiyzLeHH0vZAcIvfeWo19U=","maxRateKbps":"8000"}],"certificates":[{}]}';
+  constraints: '{"optional":[]}'.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/172312.298:INFO:CONSOLE(5935)] "6.112: Created PeerConnectionClient", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/172312.308:INFO:CONSOLE(5935)] "6.112: Sending offer to peer, with constraints: 
+'{"offerToReceiveAudio":1,"offerToReceiveVideo":1,"voiceActivityDetection":false}'.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/172312.318:INFO:CONSOLE(5935)] "6.121: No preference on audio receive codec.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/172312.327:INFO:CONSOLE(5935)] "6.121: Prefer video receive codec: VP9", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/172312.337:INFO:CONSOLE(5935)] "6.122: C->GAE: {"sdp":"v=0\r\no=- 1567736465157705030 2 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\na=group:BUNDLE audio video\r\na=msid-semantic: WMS\r\nm=audio 9 UDP/TLS/RTP/SAVPF 111 103 104 9 0 8 110 112 113 126\r\nc=IN IP4 0.0.0.0\r\na=rtcp:9 IN IP4 0.0.0.0\r\na=ice-ufrag:m/lM\r\na=ice-pwd:eA29O2OmcpqI6VOmXVJ0HL71\r\na=ice-options:trickle\r\na=fingerprint:sha-256 B3:6C:04:95:39:B6:68:CC:0E:89:B2:6C:86:FD:BE:6E:22:91:CF:7B:1B:07:C8:35:C3:D8:70:B8:AB:02:08:76\r\na=setup:actpass\r\na=mid:audio\r\na=extmap:1 urn:ietf:params:rtp-hdrext:ssrc-audio-level\r\na=recvonly\r\na=rtcp-mux\r\na=rtpmap:111 opus/48000/2\r\na=rtcp-fb:111 transport-cc\r\na=fmtp:111 minptime=10;useinbandfec=1\r\na=rtpmap:103 ISAC/16000\r\na=rtpmap:104 ISAC/32000\r\na=rtpmap:9 G722/8000\r\na=rtpmap:0 PCMU/8000\r\na=rtpmap:8 PCMA/8000\r\na=rtpmap:110 telephone-event/48000\r\na=rtpmap:112 telephone-event/32000\r\na=rtpmap:113 telephone-event/16000\r\na=rtpmap:126 telephone-event/8000\r\nm=video 9 UDP/TLS/RTP/SAVPF 98 96 97 99 100 101 102 124 127 123 125 107 108\r\nc=IN IP4 0.0.0.0\r\na=rtcp:9 IN IP4 0.0.0.0\r\na=ice-ufrag:m/lM\r\na=ice-pwd:eA29O2OmcpqI6VOmXVJ0HL71\r\na=ice-options:trickle\r\na=fingerprint:sha-256 B3:6C:04:95:39:B6:68:CC:0E:89:B2:6C:86:FD:BE:6E:22:91:CF:7B:1B:07:C8:35:C3:D8:70:B8:AB:02:08:76\r\na=setup:actpass\r\na=mid:video\r\na=extmap:2 urn:ietf:params:rtp-hdrext:toffset\r\na=extmap:3 http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time\r\na=extmap:4 urn:3gpp:video-orientation\r\na=extmap:5 http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01\r\na=extmap:6 http://www.webrtc.org/experiments/rtp-hdrext/playout-delay\r\na=extmap:7 http://www.webrtc.org/experiments/rtp-hdrext/video-content-type\r\na=extmap:8 http://www.webrtc.org/experiments/rtp-hdrext/video-timing\r\na=recvonly\r\na=rtcp-mux\r\na=rtcp-rsize\r\na=rtpmap:96 VP8/90000\r\na=rtcp-fb:96 goog-remb\r\na=rtcp-fb:96 transport-cc\r\na=rtcp-fb:96 ccm fir\r\na=rtcp-fb:96 nack\r\na=rtcp-fb:96 nack pli\r\na=rtpmap:97 rtx/90000\r\na=fmtp:97 apt=96\r\na=rtpmap:98 VP9/90000\r\na=rtcp-fb:98 goog-remb\r\na=rtcp-fb:98 transport-cc\r\na=rtcp-fb:98 ccm fir\r\na=rtcp-fb:98 nack\r\na=rtcp-fb:98 nack pli\r\na=rtpmap:99 rtx/90000\r\na=fmtp:99 apt=98\r\na=rtpmap:100 H264/90000\r\na=rtcp-fb:100 goog-remb\r\na=rtcp-fb:100 transport-cc\r\na=rtcp-fb:100 ccm fir\r\na=rtcp-fb:100 nack\r\na=rtcp-fb:100 nack pli\r\na=fmtp:100 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=420032\r\na=rtpmap:101 rtx/90000\r\na=fmtp:101 apt=100\r\na=rtpmap:102 H264/90000\r\na=rtcp-fb:102 goog-remb\r\na=rtcp-fb:102 transport-cc\r\na=rtcp-fb:102 ccm fir\r\na=rtcp-fb:102 nack\r\na=rtcp-fb:102 nack pli\r\na=fmtp:102 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=4d0032\r\na=rtpmap:124 rtx/90000\r\na=fmtp:124 apt=102\r\na=rtpmap:127 H264/90000\r\na=rtcp-fb:127 goog-remb\r\na=rtcp-fb:127 transport-cc\r\na=rtcp-fb:127 ccm fir\r\na=rtcp-fb:127 nack\r\na=rtcp-fb:127 nack pli\r\na=fmtp:127 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=640032\r\na=rtpmap:123 rtx/90000\r\na=fmtp:123 apt=127\r\na=rtpmap:125 red/90000\r\na=rtpmap:107 rtx/90000\r\na=fmtp:107 apt=125\r\na=rtpmap:108 ulpfec/90000\r\n","type":"offer"}", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/172312.339:INFO:CONSOLE(5935)] "6.123: Signaling state changed to: have-local-offer", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/172312.348:INFO:CONSOLE(5935)] "6.124: Set session description success.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/172312.350:WARNING:stunport.cc(433)] STUN server address is incompatible.
+[0925/172312.350:WARNING:stunport.cc(433)] STUN server address is incompatible.
+[0925/172312.350:WARNING:stunport.cc(433)] STUN server address is incompatible.
+[0925/172312.350:WARNING:stunport.cc(433)] STUN server address is incompatible.
+[0925/172312.355:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/172312.355:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/172312.367:INFO:CONSOLE(5935)] "6.258: C->GAE: {"type":"candidate","label":0,"id":"audio","candidate":"candidate:3052010174 1 udp 2113937151 192.168.81.216 64306 typ host generation 0 ufrag m/lM network-cost 50"}", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/172312.400:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/172312.401:WARNING:socket_host_tcp.cc(163)] Error from connecting socket, result=-109
+[0925/172312.401:WARNING:turnport.cc(476)] Jingle:Port[0A3ED740:audio:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: Connection with server failed, error=0
+[0925/172312.406:INFO:CONSOLE(5935)] "6.299: C->GAE: {"type":"candidate","label":0,"id":"audio","candidate":"candidate:842163049 1 udp 1677729535 113.20.96.116 64306 typ srflx raddr 192.168.81.216 rport 64306 generation 0 ufrag m/lM network-cost 50"}", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/172312.440:WARNING:turnport.cc(448)] Socket is bound to the address:192.168.81.216, rather then an address associated with network:Net[any:0.0.0.x/0:Unknown]. Still allowing it since it's the 'any' address, possibly caused by multiple_routes being disabled.
+[0925/172312.452:WARNING:p2ptransportchannel.cc(638)] Jingle:Port[08758380:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[0925/172312.452:WARNING:p2ptransportchannel.cc(638)] Jingle:Port[08758380:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[0925/172312.452:WARNING:p2ptransportchannel.cc(638)] Jingle:Port[08758380:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 0) failed: 0
+[0925/172312.452:WARNING:p2ptransportchannel.cc(638)] Jingle:Port[0A38ECF0:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[0925/172312.452:WARNING:p2ptransportchannel.cc(638)] Jingle:Port[0A38ECF0:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[0925/172312.452:WARNING:p2ptransportchannel.cc(638)] Jingle:Port[0A38ECF0:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 0) failed: 0
+[0925/172312.503:INFO:CONSOLE(5935)] "6.390: C->GAE: {"type":"candidate","label":0,"id":"audio","candidate":"candidate:1239237416 1 udp 33563135 64.233.188.86 29944 typ relay raddr 113.20.96.116 rport 64306 generation 0 ufrag m/lM network-cost 50"}", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/172312.544:INFO:CONSOLE(5935)] "6.432: C->GAE: {"type":"candidate","label":0,"id":"audio","candidate":"candidate:1534838101 1 udp 16785407 64.233.188.127 31259 typ relay raddr 113.20.96.116 rport 19191 generation 0 ufrag m/lM network-cost 50"}", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/172312.602:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/172312.602:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/172312.651:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/172313.103:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/172313.103:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/172313.152:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/172314.105:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/172314.105:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/172314.153:INFO:socket_host_udp.cc(397)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0925/172315.447:INFO:CONSOLE(5935)] "9.337: Reloading main page.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/172315.767:INFO:CONSOLE(5935)] "9.658: C->WSS: {"type":"bye"}", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/172317.638:INFO:CONSOLE(5935)] "11.526: Cleanup completed.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/172317.649:INFO:CONSOLE(5935)] "11.527: Channel closed with code:1000 reason:", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/172318.110:INFO:CONSOLE(5935)] "0.470: Initializing; server= undefined.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/172318.122:INFO:CONSOLE(5935)] "0.471: Initializing; room=undefined.", source: https://appr.tc/js/apprtc.debug.js (5935)
+[0925/172326.402:INFO:CONSOLE(0)] "Styling master document from stylesheets defined in HTML Imports is deprecated, and is planned to be removed in M67, around May 2018. Please refer to https://goo.gl/EGXzpw for possible migration paths.", source:  (0)
+[0925/172326.409:INFO:CONSOLE(0)] "Styling master document from stylesheets defined in HTML Imports is deprecated, and is planned to be removed in M67, around May 2018. Please refer to https://goo.gl/EGXzpw for possible migration paths.", source:  (0)
+[0925/173139.172:INFO:CONSOLE(24)] "<link rel=preload> must have a valid `as` value", source: https://www.youtube.com/watch?v=siOHh0uzcuY&html5=True (24)
+[0925/173141.525:INFO:CONSOLE(0)] "Refused to display 'https://accounts.google.com/ServiceLogin?passive=true&service=youtube&uilel=3&continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Fnext%3D%252Fsignin_passive%26hl%3Den%26feature%3Dpassive%26app%3Ddesktop%26action_handle_signin%3Dtrue&hl=en' in a frame because it set 'X-Frame-Options' to 'deny'.", source: https://www.youtube.com/watch?v=siOHh0uzcuY&html5=True (0)
+[0925/173141.551:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0925/173141.581:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0925/173141.640:INFO:CONSOLE(0)] "Styling master document from stylesheets defined in HTML Imports is deprecated, and is planned to be removed in M67, around May 2018. Please refer to https://goo.gl/EGXzpw for possible migration paths.", source:  (0)
+[0925/173142.301:INFO:CONSOLE(15)] "chrome.loadTimes() is deprecated, instead use standardized API: nextHopProtocol in Navigation Timing 2. https://www.chromestatus.com/features/5637885046816768.", source: https://s.ytimg.com/yts/jsbin/network-vflNZTggj/network.js (15)
+[0925/173142.301:ERROR:quota_settings.cc(109)] Unable to compute QuotaSettings.
+[0925/173142.301:WARNING:quota_manager.cc(1632)] No storage quota provided in QuotaSettings.
+[0925/173142.543:INFO:CONSOLE(1302)] "<link rel=preload> must have a valid `as` value", source: https://s.ytimg.com/yts/jsbin/desktop_polymer-vflshPDAF/desktop_polymer.js (1302)
+[0925/173142.718:ERROR:render_media_log.cc(30)] MediaEvent: MEDIA_ERROR_LOG_ENTRY {"error":"Failed to reconcile encoded audio times with decoded output."}
+[0925/173145.779:INFO:CONSOLE(0)] "The resource https://r5---sn-jhjup-nbol.googlevideo.com/generate_204 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it Please make sure it has an appropriate `as` value and it is preloaded intentionally.", source: https://www.youtube.com/watch?v=siOHh0uzcuY&html5=True (0)
+[0925/173145.791:INFO:CONSOLE(0)] "The resource https://r5---sn-jhjup-nbol.googlevideo.com/generate_204?conn2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it Please make sure it has an appropriate `as` value and it is preloaded intentionally.", source: https://www.youtube.com/watch?v=siOHh0uzcuY&html5=True (0)
+[0925/173334.993:INFO:CONSOLE(0)] "Styling master document from stylesheets defined in HTML Imports is deprecated, and is planned to be removed in M67, around May 2018. Please refer to https://goo.gl/EGXzpw for possible migration paths.", source:  (0)
+[0925/173349.508:INFO:CONSOLE(0)] "Styling master document from stylesheets defined in HTML Imports is deprecated, and is planned to be removed in M67, around May 2018. Please refer to https://goo.gl/EGXzpw for possible migration paths.", source:  (0)
+[0925/173349.537:INFO:CONSOLE(0)] "Styling master document from stylesheets defined in HTML Imports is deprecated, and is planned to be removed in M67, around May 2018. Please refer to https://goo.gl/EGXzpw for possible migration paths.", source:  (0)

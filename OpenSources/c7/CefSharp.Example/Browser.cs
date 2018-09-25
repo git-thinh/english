@@ -20,6 +20,7 @@ namespace CefSharp.Example
             InitializeComponent();
             Text = "CefSharp";
             _browserControl = new CefWebBrowser(cefSharpHomeUrl);
+            
             _browserControl.Dock = DockStyle.Fill;
             _browserControl.PropertyChanged += HandleBrowserPropertyChanged;
             _browserControl.ConsoleMessage += HandleConsoleMessage;
@@ -181,6 +182,7 @@ namespace CefSharp.Example
         private void HandleConsoleMessage(object sender, ConsoleMessageEventArgs e)
         {
             //MessageBox.Show(e.Source + ":" + e.Line + " " + e.Message, "JavaScript console message");
+            Debug.WriteLine("CONSOLE.LOG = " + e.Source + ":" + e.Line + " " + e.Message);
         }
 
         private void TestSchemeHandlerToolStripMenuItemClick(object sender, EventArgs e)

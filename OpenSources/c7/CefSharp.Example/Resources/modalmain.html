@@ -5,9 +5,16 @@
 </head>
 <body>
 
+    <button onclick="bound.windowOpenDialog('123')">Open Dialog from C#</button><br>
+    <button onclick="bound.windowOpen('123')">Open from C#</button><br>
+    <button onclick="doModal()">Open from JS</button><br>
+    Reply:<input id="reply" type="text" autofocus="autofocus" size="32"><br>
+
+    <button onclick="send_data()">send_data</button> <br />
+    <button onclick="send_json()">send_json</button> <br />
+
     <h3>Tests</h3>
     <button onclick="doLog()">test console log</button><br>
-    <button onclick="doModal()">Open the modal dialog</button><br>
     <button onclick="window.close()">Close this window</button>
 
     <h3>Time (timers are suppresed while the modal dialog is open)</h3>
@@ -17,6 +24,35 @@
     <div id="result"></div>
 
     <script>
+        var popup;
+
+        window.onstorage = function (e) {
+            console.log('MAIN:' + e.newValue);
+        };
+
+        function send_data() {
+            //localStorage.setItem('key', document.getElementById('reply').value);
+            //popup.postMessage(document.getElementById('reply').value, "*");
+            window.postMessage(document.getElementById('reply').value, "*");
+        }
+        function send_json() {
+            popup.postMessage({ value: document.getElementById('reply').value, time: new Date() }, "*");
+        }
+
+        function receiveMessage(event) {
+            // Do we trust the sender of this message?  (might be
+            // different from what we originally opened, for example).
+            //if (event.origin !== "http://example.com") return;
+
+            // event.source is popup
+            // event.data is "hi there yourself!  the secret response is: rheeeeet!"
+
+            console.log('MAIN: ' + event.data);
+
+            //updateId('result', event.data, true);
+        }
+        window.addEventListener("message", receiveMessage, false);
+
         function doLog() {
             console.log(new Date().toString());
         }
@@ -28,8 +64,8 @@
         }
 
         function init() {
-            timer();
-            setInterval(timer, 200);
+            //timer();
+            //setInterval(timer, 200);
         }
 
         function timer() {
@@ -49,12 +85,22 @@
         function doModal() {
             updateId('result', "Modal dialog is open...", true);
             //var result = window.showModalDialog("test://test/modaldialog.html", { msg: "Hi from parent" });
-            var result = window.open("test://test/modaldialog.html", { msg: "Hi from parent" });
-            //if (typeof result == "object") {
+            //popup = window.open("test://test/modaldialog.html", "popup", "width=200,height=100");
+            //popup = window.open("https://www.w3schools.com", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=400");
+            //if (typeof popup == "object") {
             //    updateId('result', "Result: " + result.msg, true);
             //} else {
             //    updateId('result', "Dialog was closed", true);
             //}
+
+
+            //var myWindow = window.open("", "myWindow", "width=200,height=100");
+            //myWindow.document.write("<p>This is 'myWindow'</p>");
+            //myWindow.opener.document.write("<p>This is the source window!</p>");
+
+
+            var myWindow = window.open("", "myWindow", "width=200,height=100");
+            myWindow.document.write("<p>This is 'myWindow'</p>");
         }
 
         window.addEventListener('load', init, false);

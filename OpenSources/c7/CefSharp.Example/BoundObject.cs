@@ -1,9 +1,28 @@
 using System;
+using System.Windows.Forms;
 
 namespace CefSharp.Example
 {
     public class BoundObject
     {
+        public void windowOpen(string str)
+        {
+            var f = new Form();
+            var _browserControl = new CefWebBrowser("test://test/modaldialog.html");
+            _browserControl.Dock = DockStyle.Fill;
+            f.Controls.Add(_browserControl);
+            f.Show();
+        }
+
+        public void windowOpenDialog(string str)
+        {
+            var f = new Form();
+            var _browserControl = new CefWebBrowser("test://test/modaldialog.html");
+            _browserControl.Dock = DockStyle.Fill;
+            f.Controls.Add(_browserControl);
+            f.Show();
+        }
+
         public string Repeat(string str, int n)
         {
             Console.WriteLine("In bound object method");
