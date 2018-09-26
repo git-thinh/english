@@ -4,3 +4,4 @@ G:\english\lenBrowser\obj\x86\Debug\lenBrowser.Resources.resources
 G:\english\lenBrowser\obj\x86\Debug\lenBrowser.csproj.GenerateResource.Cache
 G:\english\lenBrowser\obj\x86\Debug\Browser.exe
 G:\english\lenBrowser\obj\x86\Debug\Browser.pdb
+G:\english\lenBrowser\obj\x86\Debug\lenBrowser.csprojResolveAssemblyReference.cache

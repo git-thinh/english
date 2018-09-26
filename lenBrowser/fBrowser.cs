@@ -14,13 +14,21 @@ namespace lenBrowser
 {
     public class fBrowser : Form, IBeforeResourceLoad
     {
+        #region
+
         //////☆★☐☑⧉✉⦿⦾⚠⚿⛑✕✓⥀✖↭☊⦧▷◻◼⟲≔☰⚒❯►❚❚❮⟳⚑⚐✎✛
         //////🕮🖎✍⦦☊🕭🔔🗣🗢🖳🎚🏷🖈🎗🏱🏲🗀🗁🕷🖒🖓👍👎♥♡♫♪♬♫🎙🎖🗝●◯⬤⚲☰⚒🕩🕪❯►❮⟳⚐🗑✎✛🗋🖫⛉ ⛊ ⛨⚏★☆
-        const string URL_SETTING = "about:blank";
+
+        const string URL_SETTING = "http://setting.local";
         //const string URL = "https://vnexpress.net";
-        const string URL = "https://google.com.vn";
+        //const string URL = "https://google.com.vn";
+        //const string URL = "http://w2ui.com/web/demos/#!layout/layout-1";
+        //const string URL = "about:blank";
+        const string URL = "https://translate.google.com/#en/vi/good%20morning";
+
         readonly CefWebBrowser ui_browser;
         readonly CefWebBrowser ui_setting;
+
         readonly Panel ui_header;
         readonly Panel ui_footer;
         readonly Label ui_urlLabel;
@@ -29,9 +37,13 @@ namespace lenBrowser
         readonly Label ui_backLabel;
         readonly Label ui_nextLabel;
 
-        readonly Label m_resize;
+        readonly Label ui_resize;
         private bool m_resizing = false;
         const bool m_hook_MouseMove = true;
+
+        const int SETTING_WIDTH = 299;
+
+        #endregion
 
         public fBrowser()
         {
@@ -65,22 +77,21 @@ namespace lenBrowser
             #region [ SETTING ]
 
             ui_setting = new CefWebBrowser(URL_SETTING);
-            ui_setting.Width = 0;
+            ui_setting.Width = SETTING_WIDTH;
             ui_setting.Dock = DockStyle.Left;
-            ui_setting.PropertyChanged += f_browserPropertyChanged;
-            ui_setting.ConsoleMessage += f_browserConsoleMessage;
+            ui_setting.ConsoleMessage += f_settingConsoleMessage;
             this.Controls.Add(ui_setting);
 
-            var spliter = new Splitter() {
+            var spliter = new Splitter()
+            {
                 Dock = DockStyle.Left,
                 MinExtra = 0,
                 MinSize = 0,
             };
 
             this.Controls.AddRange(new Control[] { spliter, ui_setting });
-            
-            #endregion
 
+            #endregion
 
             #region [ HEADER ]
 
@@ -115,6 +126,7 @@ namespace lenBrowser
                 Width = 24,
                 Dock = DockStyle.Right
             };
+
             lblMin.Click += (se, ev) => { this.WindowState = FormWindowState.Minimized; };
             lblExit.Click += (se, ev) => { this.Close(); };
 
@@ -152,6 +164,9 @@ namespace lenBrowser
                 ui_backLabel, ui_nextLabel,  lblMin, lblExit
             });
 
+            ui_backLabel.Click += (se, ev) => f_browserBackPage();
+            ui_nextLabel.Click += (se, ev) => f_browserNextPage();
+
             #endregion
 
             #region [ FOOTER ]
@@ -166,10 +181,10 @@ namespace lenBrowser
 
             var menu = new Label()
             {
-                Text = "[ ♡ ]",
+                Text = "[ = ]",
                 Width = 28,
                 Dock = DockStyle.Left,
-                TextAlign = ContentAlignment.TopCenter, 
+                TextAlign = ContentAlignment.TopCenter,
             };
 
             ui_statusLabel = new Label()
@@ -179,27 +194,71 @@ namespace lenBrowser
             };
             ui_statusLabel.MouseMove += f_form_move_MouseDown;
 
-            m_resize = new Label()
+            ui_resize = new Label()
             {
                 Dock = DockStyle.Right,
                 Text = string.Empty,
                 Width = 14,
-                BackColor = Color.DimGray,
             };
-            ui_footer.Controls.AddRange(new Control[] { ui_statusLabel, menu, m_resize });
+            ui_footer.Controls.AddRange(new Control[] { ui_statusLabel, menu, ui_resize });
 
-            m_resize.MouseDown += (se, ev) => { f_hook_mouse_Open(); m_resizing = true; };
-            m_resize.MouseUp += (se, ev) =>
+            ui_resize.MouseDown += (se, ev) => { f_hook_mouse_Open(); m_resizing = true; };
+            ui_resize.MouseUp += (se, ev) =>
             {
                 m_resizing = false;
                 f_hook_mouse_Close();
                 //Debug.WriteLine("RESIZE: ok "); 
             };
-            #endregion
 
+            menu.Click += (se, ev) => f_settingToggle();
+
+            #endregion
         }
 
+        #region [ SETTING ]
+
+        void f_settingToggle()
+        {
+            if (ui_setting.Width == 0)
+            {
+                ui_setting.Width = SETTING_WIDTH;
+            }
+            else
+            {
+                ui_setting.Width = 0;
+            }
+        }
+
+        private void f_settingConsoleMessage(object sender, ConsoleMessageEventArgs e)
+        {
+            Console.WriteLine("SETTING.LOG = " + e.Source + ":" + e.Line + " " + e.Message);
+        }
+
+        #endregion
+
         #region [ BROWSER ]
+
+        void f_browserGoPage(string url)
+        {
+            if (ui_browser.IsLoading)
+            {
+                ui_browser.Stop();
+            }
+            else
+            {
+                ui_browser.Load(url);
+                ui_urlLabel.Text = url;
+                ui_urlTextBox.Text = url;
+            }
+        }
+
+        void f_browserBackPage()
+        {
+        }
+
+        void f_browserNextPage()
+        {
+        }
 
         private void f_browserReady()
         {
@@ -216,9 +275,9 @@ namespace lenBrowser
 
         private void f_browserConsoleMessage(object sender, ConsoleMessageEventArgs e)
         {
+            Console.WriteLine("MAIN.LOG = " + e.Source + ":" + e.Line + " " + e.Message);
         }
-
-
+        
         private void f_browserPropertyChangeUpdate(string propertyName)
         {
             switch (propertyName)

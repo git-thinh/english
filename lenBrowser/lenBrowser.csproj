@@ -77,6 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="apiJavascript.cs" />
     <Compile Include="fBrowser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +138,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="SettingScheme.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />

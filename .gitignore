@@ -15,3 +15,10 @@ english/english/obj/x86/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 english/english/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 english/english/bin/Debug/english.vshost.exe.manifest
 english/english/bin/Debug/english.vshost.exe
+.vs/config/applicationhost.config
+.vs/Browser/v14/.suo
+lenBrowser/obj/x86/Debug/Browser.pdb
+lenBrowser/obj/x86/Debug/lenBrowser.csproj.FileListAbsolute.txt
+lenBrowser/obj/x86/Debug/lenBrowser.csprojResolveAssemblyReference.cache
+lenBrowser/obj/x86/Debug/Browser.exe
+Run86/browser/debug.log
