@@ -385,3 +385,8 @@
 [0926/212016:INFO:CONSOLE(0)] "ERROR: Cannot insert node with id=level-1 (text: Level 1) because another node with the same id already exists.," source: http://setting.local/w2ui.min.js(11)
 [0926/212016:INFO:CONSOLE(0)] "ERROR: Cannot insert node with id=level-2 (text: Level 2) because another node with the same id already exists.," source: http://setting.local/w2ui.min.js(11)
 [0926/213242:INFO:CONSOLE(0)] "Uncaught TypeError: Cannot convert null to object," source: https://translate.google.com/translate/releases/twsfe_w_20180917_RC02/r/js/desktop_module_main.js(843)
+[0927/061101:INFO:CONSOLE(0)] "Uncaught TypeError: Cannot convert null to object," source: https://translate.google.com/translate/releases/twsfe_w_20180924_RC02/r/js/desktop_module_main.js(845)
+[0927/061954:INFO:CONSOLE(0)] "Last Event: focus Target: sidebar," source: http://setting.local/(62)
+[0927/061954:INFO:CONSOLE(0)] "[object Object]," source: http://setting.local/(63)
+[0927/061954:INFO:CONSOLE(0)] "Last Event: click Target: http://w2ui.com/web/demos/#!layout/layout-1," source: http://setting.local/(62)
+[0927/061954:INFO:CONSOLE(0)] "[object Object]," source: http://setting.local/(63)

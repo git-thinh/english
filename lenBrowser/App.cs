@@ -85,7 +85,7 @@ namespace lenBrowser
 
             CEF.RegisterScheme("http", "setting.local", new SettingSchemeHandlerFactory());
             //CEF.RegisterScheme("data", new SettingSchemeHandlerFactory());
-            CEF.RegisterJsObject("api", new apiJavascript());
+            CEF.RegisterJsObject("___api", new apiJavascript());
 
             Application.EnableVisualStyles();
             main = new fBrowser();

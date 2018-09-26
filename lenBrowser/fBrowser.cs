@@ -23,8 +23,8 @@ namespace lenBrowser
         //const string URL = "https://vnexpress.net";
         //const string URL = "https://google.com.vn";
         //const string URL = "http://w2ui.com/web/demos/#!layout/layout-1";
-        //const string URL = "about:blank";
-        const string URL = "https://translate.google.com/#en/vi/good%20morning";
+        const string URL = "about:blank";
+        //const string URL = "https://translate.google.com/#en/vi/hello";
 
         readonly CefWebBrowser ui_browser;
         readonly CefWebBrowser ui_setting;
