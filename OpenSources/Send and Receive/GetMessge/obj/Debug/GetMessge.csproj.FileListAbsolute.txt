@@ -1,0 +1,8 @@
+D:\NEERAJ\Currently Working Project\Neeraj\GetMessge\GetMessge\bin\Debug\GetMessge.exe
+D:\NEERAJ\Currently Working Project\Neeraj\GetMessge\GetMessge\bin\Debug\GetMessge.pdb
+D:\NEERAJ\Currently Working Project\Neeraj\GetMessge\GetMessge\obj\Debug\ResolveAssemblyReference.cache
+D:\NEERAJ\Currently Working Project\Neeraj\GetMessge\GetMessge\obj\Debug\GetMessge.Form1.resources
+D:\NEERAJ\Currently Working Project\Neeraj\GetMessge\GetMessge\obj\Debug\GetMessge.Properties.Resources.resources
+D:\NEERAJ\Currently Working Project\Neeraj\GetMessge\GetMessge\obj\Debug\GetMessge.csproj.GenerateResource.Cache
+D:\NEERAJ\Currently Working Project\Neeraj\GetMessge\GetMessge\obj\Debug\GetMessge.exe
+D:\NEERAJ\Currently Working Project\Neeraj\GetMessge\GetMessge\obj\Debug\GetMessge.pdb

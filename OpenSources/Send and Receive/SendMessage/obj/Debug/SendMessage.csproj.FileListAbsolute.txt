@@ -1,0 +1,8 @@
+D:\NEERAJ\Currently Working Project\Neeraj\SendMessage\SendMessage\obj\Debug\ResolveAssemblyReference.cache
+D:\NEERAJ\Currently Working Project\Neeraj\SendMessage\SendMessage\obj\Debug\SendMessage.Form1.resources
+D:\NEERAJ\Currently Working Project\Neeraj\SendMessage\SendMessage\obj\Debug\SendMessage.Properties.Resources.resources
+D:\NEERAJ\Currently Working Project\Neeraj\SendMessage\SendMessage\obj\Debug\SendMessage.csproj.GenerateResource.Cache
+D:\NEERAJ\Currently Working Project\Neeraj\SendMessage\SendMessage\bin\Debug\SendMessage.exe
+D:\NEERAJ\Currently Working Project\Neeraj\SendMessage\SendMessage\bin\Debug\SendMessage.pdb
+D:\NEERAJ\Currently Working Project\Neeraj\SendMessage\SendMessage\obj\Debug\SendMessage.exe
+D:\NEERAJ\Currently Working Project\Neeraj\SendMessage\SendMessage\obj\Debug\SendMessage.pdb

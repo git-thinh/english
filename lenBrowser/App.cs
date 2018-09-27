@@ -81,14 +81,15 @@ namespace lenBrowser
                 return;
             }
 
-            // data://
+            CacheMemory cache = new CacheMemory();
 
+            CEF.RegisterScheme("http", "cache.local", new CacheSchemeHandlerFactory(cache));
             CEF.RegisterScheme("http", "setting.local", new SettingSchemeHandlerFactory());
             //CEF.RegisterScheme("data", new SettingSchemeHandlerFactory());
             CEF.RegisterJsObject("___api", new apiJavascript());
 
             Application.EnableVisualStyles();
-            main = new fBrowser();
+            main = new fBrowser(cache);
             Application.Run(main);
         }
 

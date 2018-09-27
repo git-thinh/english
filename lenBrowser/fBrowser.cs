@@ -9,19 +9,26 @@ using System.Threading;
 using System.IO;
 using Gma.System.MouseKeyHook;
 using System.Runtime.InteropServices;
+using Newtonsoft.Json;
+using System.Net;
+using System.Web;
+using System.Collections.Concurrent;
 
 namespace lenBrowser
 {
     public class fBrowser : Form, IBeforeResourceLoad
     {
         #region
+        // This is where we create our message window. When this form is created it will create our hidden window.
+        readonly MessageListener MSG_WINDOW;
 
+        readonly ICache CACHE;
         //////☆★☐☑⧉✉⦿⦾⚠⚿⛑✕✓⥀✖↭☊⦧▷◻◼⟲≔☰⚒❯►❚❚❮⟳⚑⚐✎✛
         //////🕮🖎✍⦦☊🕭🔔🗣🗢🖳🎚🏷🖈🎗🏱🏲🗀🗁🕷🖒🖓👍👎♥♡♫♪♬♫🎙🎖🗝●◯⬤⚲☰⚒🕩🕪❯►❮⟳⚐🗑✎✛🗋🖫⛉ ⛊ ⛨⚏★☆
 
         const string URL_SETTING = "http://setting.local";
         //const string URL = "https://vnexpress.net";
-        //const string URL = "https://google.com.vn";
+        const string URL_GOOGLE = "https://google.com.vn";
         //const string URL = "http://w2ui.com/web/demos/#!layout/layout-1";
         const string URL = "about:blank";
         //const string URL = "https://translate.google.com/#en/vi/hello";
@@ -45,9 +52,12 @@ namespace lenBrowser
 
         #endregion
 
-        public fBrowser()
+        public fBrowser(ICache cache)
         {
             #region [ MAIN ]
+
+            MSG_WINDOW = new MessageListener(this);
+            CACHE = cache;
 
             this.FormBorderStyle = FormBorderStyle.None;
             this.Text = "Browser";
@@ -56,9 +66,15 @@ namespace lenBrowser
             {
                 //this.WindowState = FormWindowState.Maximized;
                 this.Width = 1024;
-                this.Height = Screen.PrimaryScreen.WorkingArea.Height;
-                this.Top = 0;
-                this.Left = Screen.PrimaryScreen.WorkingArea.Width - this.Width;
+                this.Height = Screen.PrimaryScreen.WorkingArea.Height - 300;
+                this.Top = 100;
+                this.Left = 200;// Screen.PrimaryScreen.WorkingArea.Width - this.Width;
+            };
+
+            this.FormClosing += (se, ev) =>
+            {
+                ui_setting.Dispose();
+                ui_browser.Dispose();
             };
 
             #endregion
@@ -214,7 +230,7 @@ namespace lenBrowser
 
             #endregion
         }
-
+        
         #region [ SETTING ]
 
         void f_settingToggle()
@@ -231,7 +247,8 @@ namespace lenBrowser
 
         private void f_settingConsoleMessage(object sender, ConsoleMessageEventArgs e)
         {
-            Console.WriteLine("SETTING.LOG = " + e.Source + ":" + e.Line + " " + e.Message);
+            //Console.WriteLine("SETTING.LOG = " + e.Source + ":" + e.Line + " " + e.Message);
+            f_api_processMessage(e.Message);
         }
 
         #endregion
@@ -277,7 +294,7 @@ namespace lenBrowser
         {
             Console.WriteLine("MAIN.LOG = " + e.Source + ":" + e.Line + " " + e.Message);
         }
-        
+
         private void f_browserPropertyChangeUpdate(string propertyName)
         {
             switch (propertyName)
@@ -505,7 +522,104 @@ namespace lenBrowser
 
         /*////////////////////////////////////////////////////////////////////////*/
 
-        #region [ API RESPONSE ]
+        #region [ API ]
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        static extern int SendMessage(IntPtr hwnd, int wMsg, int wParam, ref COPYDATASTRUCT lParam);
+        const int WM_COPYDATA = 0x4A;
+        
+        void f_api_sendNotification(string message)
+        {
+            COPYDATASTRUCT cds;
+            cds.dwData = 0;
+            cds.lpData = (int)Marshal.StringToHGlobalAnsi(message);
+            cds.cbData = message.Length;
+            //SendMessage(MSG_WINDOW.MainWindowHandle, (int)WM_COPYDATA, 0, ref cds);
+            SendMessage(MSG_WINDOW.Handle, (int)WM_COPYDATA, 0, ref cds);
+        }
+
+        public void f_api_messageReceiver(string data) {
+            ui_browser.Load(URL_GOOGLE);
+        }
+        
+        void f_api_processMessage(string message)
+        {
+            oCmd cmd = f_api_jsonCmdParser(message);
+            if (cmd != null)
+            {
+                switch (cmd.cmd)
+                {
+                    case "browser":
+                        #region
+                        string url = cmd.url;
+                        if (!string.IsNullOrEmpty(url))
+                        {
+                            Console.WriteLine("GO: " + url);
+                            //Invoke(new MethodInvoker(() => { if (!IsDisposed) f_browserGoPage(cmd.url); }));
+                            HttpWebRequest w = (HttpWebRequest)WebRequest.Create(new Uri(url));
+                            w.BeginGetResponse(asyncResult =>
+                            {
+                                string _url = ((HttpWebRequest)asyncResult.AsyncState).RequestUri.ToString();
+                                string data = string.Empty;
+                                bool isSuccess = false;
+                                try
+                                {
+                                    HttpWebResponse rs = (HttpWebResponse)w.EndGetResponse(asyncResult);
+                                    if (rs.StatusCode == HttpStatusCode.OK)
+                                    {
+                                        using (StreamReader sr = new StreamReader(rs.GetResponseStream(), System.Text.Encoding.UTF8))
+                                            data = sr.ReadToEnd();
+                                        rs.Close();
+                                    }
+
+                                    if (!string.IsNullOrEmpty(data))
+                                    {
+                                        data = HttpUtility.HtmlDecode(data);
+                                        //data = format_HTML(data);
+                                        //string[] urls = get_UrlHtml(url, data);
+                                        //if (urls.Length > 0)
+                                        //    StoreJob.f_url_AddRange(urls);
+                                        CACHE.Set(url, data);
+                                        isSuccess = true;
+                                        f_api_sendNotification(url);
+                                    }
+                                    else
+                                    {
+                                        isSuccess = false;
+                                        data = "REQUEST_FAIL";
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    data = ex.Message;
+                                }
+
+                                if (isSuccess)
+                                {
+
+                                }
+                            }, w);
+                        }
+                        #endregion
+                        break;
+                }
+            }
+        }
+
+        oCmd f_api_jsonCmdParser(string s)
+        {
+            if (string.IsNullOrEmpty(s)) return null;
+            s = s.Trim();
+            if ((s[0] == '{' || s[0] == '[') && (s[s.Length - 1] == '}' || s[s.Length - 1] == ']'))
+            {
+                try
+                {
+                    return JsonConvert.DeserializeObject<oCmd>(s);
+                }
+                catch { }
+            }
+            return null;
+        }
 
         #endregion
     }

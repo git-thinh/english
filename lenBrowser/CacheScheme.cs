@@ -1,0 +1,76 @@
+using CefSharp;
+using System;
+using System.IO;
+using System.Text;
+
+namespace lenBrowser
+{
+    public class CacheSchemeHandler : ISchemeHandler
+    {
+        readonly ICache cache;
+        public CacheSchemeHandler(ICache cache) : base() {
+            this.cache = cache;
+        }
+
+        public bool ProcessRequest(IRequest request, ref string mimeType, ref Stream stream)
+        {
+            Uri uri = new Uri(request.Url);
+            string path = uri.LocalPath;
+            if (path[0] == '/') path = path.Substring(1);
+
+            if (path == "")
+            {
+                Console.Clear();
+                path = "view/setting.html";
+            }
+            else path = "view/" + path;
+
+            Console.WriteLine(path);
+
+            if (File.Exists(path))
+            {
+                string ext = path.Substring(path.Length - 3, 3);
+                switch (ext)
+                {
+                    case "tml":
+                        mimeType = "text/html";
+                        break;
+                    case ".js":
+                        mimeType = "text/javascript";
+                        break;
+                    case "css":
+                        mimeType = "text/css";
+                        break;
+                }
+
+                byte[] bytes = File.ReadAllBytes(path);
+                stream = new MemoryStream(bytes);
+                return true;
+            }
+
+            //if(request.Url.EndsWith("SchemeTest.html", StringComparison.OrdinalIgnoreCase))
+            //{
+            //    //byte[] bytes = Encoding.UTF8.GetBytes(Resources.SchemeTest);
+            //    //stream = new MemoryStream(bytes);
+            //    //mimeType = "text/html";
+            //    //return true;
+            //}
+
+            return false;
+        }
+    }
+
+    public class CacheSchemeHandlerFactory : ISchemeHandlerFactory
+    {
+        readonly ICache cache;
+        public CacheSchemeHandlerFactory(ICache cache): base()
+        {
+            this.cache = cache;
+        }
+
+        public ISchemeHandler Create()
+        {
+            return new CacheSchemeHandler(this.cache);
+        }
+    }
+}

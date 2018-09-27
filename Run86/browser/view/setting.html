@@ -58,8 +58,10 @@
             });
 
             w2ui.sidebar.on('*', function (event) {
-                console.log('Last Event: ' + event.type + ' Target: ' + event.target);
-
+                if (event.type == 'click') {
+                    var cmd = JSON.stringify({ cmd: 'browser', url: event.node.id });
+                    console.log(cmd);
+                }
             });
         });
     </script>
