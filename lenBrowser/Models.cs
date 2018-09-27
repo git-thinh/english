@@ -5,9 +5,13 @@ using System.Text;
 
 namespace lenBrowser
 {
-    public interface ICache {
-        void Set(string key, string data);
+    public interface ICache
+    {
+        bool isExist(string key);
+        string Set(string key, string data);
         string Get(string key);
+        string getUrl(string key);
+        string getKeyByUrl(string url);
     }
 
     [StructLayout(LayoutKind.Sequential)]

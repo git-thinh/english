@@ -8,53 +8,37 @@ namespace lenBrowser
     public class CacheSchemeHandler : ISchemeHandler
     {
         readonly ICache cache;
-        public CacheSchemeHandler(ICache cache) : base() {
+        public CacheSchemeHandler(ICache cache) : base()
+        {
             this.cache = cache;
         }
 
         public bool ProcessRequest(IRequest request, ref string mimeType, ref Stream stream)
         {
-            Uri uri = new Uri(request.Url);
-            string path = uri.LocalPath;
-            if (path[0] == '/') path = path.Substring(1);
+            string path = cache.getKeyByUrl(request.Url);
+            Console.WriteLine("CACHE_REQUEST: " + path);
 
-            if (path == "")
+            if (cache.isExist(path))
             {
-                Console.Clear();
-                path = "view/setting.html";
-            }
-            else path = "view/" + path;
+                if (path.Contains(".htm"))
+                    mimeType = "text/html";
+                else if (path.Contains(".css"))
+                    mimeType = "text/css";
+                else if (path.Contains(".js"))
+                    mimeType = "text/javascript";
+                else mimeType = "text/html";
 
-            Console.WriteLine(path);
+                string body = cache.Get(path);
+                int posH1 = body.ToLower().IndexOf("<h1");
+                if (posH1 != -1) body = body.Substring(posH1, body.Length - posH1);
 
-            if (File.Exists(path))
-            {
-                string ext = path.Substring(path.Length - 3, 3);
-                switch (ext)
-                {
-                    case "tml":
-                        mimeType = "text/html";
-                        break;
-                    case ".js":
-                        mimeType = "text/javascript";
-                        break;
-                    case "css":
-                        mimeType = "text/css";
-                        break;
-                }
+                string temp = File.ReadAllText("view/view.html");
+                string htm = temp + body + "</body></html>";
 
-                byte[] bytes = File.ReadAllBytes(path);
+                byte[] bytes = Encoding.UTF8.GetBytes(htm);
                 stream = new MemoryStream(bytes);
                 return true;
             }
-
-            //if(request.Url.EndsWith("SchemeTest.html", StringComparison.OrdinalIgnoreCase))
-            //{
-            //    //byte[] bytes = Encoding.UTF8.GetBytes(Resources.SchemeTest);
-            //    //stream = new MemoryStream(bytes);
-            //    //mimeType = "text/html";
-            //    //return true;
-            //}
 
             return false;
         }
@@ -63,7 +47,7 @@ namespace lenBrowser
     public class CacheSchemeHandlerFactory : ISchemeHandlerFactory
     {
         readonly ICache cache;
-        public CacheSchemeHandlerFactory(ICache cache): base()
+        public CacheSchemeHandlerFactory(ICache cache) : base()
         {
             this.cache = cache;
         }

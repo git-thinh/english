@@ -83,6 +83,66 @@
     <Compile Include="App.cs" />
     <Compile Include="apiJavascript.cs" />
     <Compile Include="CacheMemory.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\crc32.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\EncodingFoundException.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlAttribute.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlAttributeCollection.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlCmdLine.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlCommentNode.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlConsoleListener.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlDocument.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlDocument.PathMethods.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlDocument.Xpath.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlElementFlag.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlEntity.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlNameTable.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlNode.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlNode.Encapsulator.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlNode.Xpath.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlNodeCollection.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlNodeNavigator.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlNodeType.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlParseError.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlParseErrorCode.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlTextNode.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlWeb.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlWeb.Xpath.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlWebException.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\InvalidProgramException.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\IOLibrary.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\Metro\HtmlWeb.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\Metro\InvalidProgramException.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\MixedCodeDocument.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\MixedCodeDocumentCodeFragment.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\MixedCodeDocumentFragment.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\MixedCodeDocumentFragmentList.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\MixedCodeDocumentFragmentType.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\MixedCodeDocumentTextFragment.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\NameValuePair.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\NameValuePairList.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\Trace.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\Trace.FullFramework.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\Utilities.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\CssSelector.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\ExtensionMethods.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\NodeExtensionMethods.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\PseudoClass.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\PseudoClassNameAttribute.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\PseudoClassSelectors\FirstChildPseudoClass.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\PseudoClassSelectors\LastChildPseudoClass.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\PseudoClassSelectors\NotPseudoClass.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\PseudoClassSelectors\NthChildPseudoClass.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\Selectors\AllSelector.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\Selectors\AttributeSelector.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\Selectors\ClassNameSelector.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\Selectors\IdSelector.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\Selectors\ImediateChildrenSelector.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\Selectors\PseudoClassSelector.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\Selectors\SiblingImediateSelector.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\Selectors\SiblingSelector.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\Selectors\TagNameSelector.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\Token.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\Tokenizer.cs" />
     <Compile Include="MessageListener.cs" />
     <Compile Include="fBrowser.cs">
       <SubType>Form</SubType>
@@ -146,6 +206,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="CacheScheme.cs" />
+    <Compile Include="TestScheme.cs" />
     <Compile Include="SettingScheme.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +218,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LIB\HtmlAgilityPack\CssSelectors\README.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

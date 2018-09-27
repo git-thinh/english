@@ -83,8 +83,9 @@ namespace lenBrowser
 
             CacheMemory cache = new CacheMemory();
 
-            CEF.RegisterScheme("http", "cache.local", new CacheSchemeHandlerFactory(cache));
+            CEF.RegisterScheme(CacheMemory.SCHEME, CacheMemory.HOST, new CacheSchemeHandlerFactory(cache));
             CEF.RegisterScheme("http", "setting.local", new SettingSchemeHandlerFactory());
+            CEF.RegisterScheme("http", "test.local", new TestSchemeHandlerFactory());
             //CEF.RegisterScheme("data", new SettingSchemeHandlerFactory());
             CEF.RegisterJsObject("___api", new apiJavascript());
 
