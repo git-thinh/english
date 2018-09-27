@@ -17,6 +17,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
+using System.Diagnostics;
 
 namespace lenBrowser
 {
@@ -235,7 +236,7 @@ namespace lenBrowser
 
             #endregion
         }
-        
+
         #region [ SETTING ]
 
         void f_settingToggle()
@@ -533,7 +534,7 @@ namespace lenBrowser
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         static extern int SendMessage(IntPtr hwnd, int wMsg, int wParam, ref COPYDATASTRUCT lParam);
         const int WM_COPYDATA = 0x4A;
-        
+
         void f_api_sendNotification(string message)
         {
             COPYDATASTRUCT cds;
@@ -544,10 +545,24 @@ namespace lenBrowser
             SendMessage(MSG_WINDOW.Handle, (int)WM_COPYDATA, 0, ref cds);
         }
 
-        public void f_api_messageReceiver(string data) {
+        public void f_api_messageReceiver(string data)
+        {
             ui_browser.Load(data);
         }
-        
+
+        /* https://stackoverflow.com/questions/4291912/process-start-how-to-get-the-output */
+        static Process HTTPS = new Process
+        {
+            StartInfo = new ProcessStartInfo
+            {
+                FileName = "https.exe",
+                //Arguments = "command line arguments to your executable",
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                CreateNoWindow = true
+            }
+        };
+
         void f_api_processMessage(string message)
         {
             oCmd cmd = f_api_jsonCmdParser(message);
@@ -562,57 +577,86 @@ namespace lenBrowser
                         {
                             Console.WriteLine("GO: " + url);
                             //Invoke(new MethodInvoker(() => { if (!IsDisposed) f_browserGoPage(cmd.url); }));
-                            ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => certificate.Issuer == "CN=localhost";
-                            //ServicePointManager.ServerCertificateValidationCallback = delegate (Object obj, X509Certificate certificate, X509Chain chain, SslPolicyErrors errors)
-                            //{
-                            //    return (true);
-                            //};
-                            ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-                            HttpWebRequest w = (HttpWebRequest)WebRequest.Create(new Uri(url));
-                            w.BeginGetResponse(asyncResult =>
+
+                            if (CACHE.isExist(url))
                             {
-                                string _url = ((HttpWebRequest)asyncResult.AsyncState).RequestUri.ToString();
-                                string data = string.Empty;
-                                bool isSuccess = false;
-                                try
+                                string url_cache = CACHE.getUrl(url);
+                                f_api_sendNotification(url_cache);
+                            }
+                            else
+                            {
+                                if (url.StartsWith("http://"))
                                 {
-                                    HttpWebResponse rs = (HttpWebResponse)w.EndGetResponse(asyncResult);
-                                    if (rs.StatusCode == HttpStatusCode.OK)
+                                    HttpWebRequest w = (HttpWebRequest)WebRequest.Create(new Uri(url));
+                                    w.BeginGetResponse(asyncResult =>
                                     {
-                                        using (StreamReader sr = new StreamReader(rs.GetResponseStream(), System.Text.Encoding.UTF8))
-                                            data = sr.ReadToEnd();
-                                        rs.Close();
-                                    }
+                                        string _url = ((HttpWebRequest)asyncResult.AsyncState).RequestUri.ToString();
+                                        string data = string.Empty;
+                                        bool isSuccess = false;
+                                        try
+                                        {
+                                            HttpWebResponse rs = (HttpWebResponse)w.EndGetResponse(asyncResult);
+                                            if (rs.StatusCode == HttpStatusCode.OK)
+                                            {
+                                                using (StreamReader sr = new StreamReader(rs.GetResponseStream(), System.Text.Encoding.UTF8))
+                                                    data = sr.ReadToEnd();
+                                                rs.Close();
+                                            }
 
-                                    if (!string.IsNullOrEmpty(data))
-                                    {
-                                        data = HttpUtility.HtmlDecode(data);
-                                        data = format_HTML(data);
-                                        File.WriteAllText("view/test/demo.HTML", data);
-                                        //string[] urls = get_UrlHtml(url, data);
-                                        //if (urls.Length > 0)
-                                        //    StoreJob.f_url_AddRange(urls);
-                                        string url_cache = CACHE.Set(url, data);
-                                        isSuccess = true;
-                                        f_api_sendNotification(url_cache);
-                                    }
-                                    else
-                                    {
-                                        isSuccess = false;
-                                        data = "REQUEST_FAIL";
-                                    }
-                                }
-                                catch (Exception ex)
-                                {
-                                    data = ex.Message;
-                                }
+                                            if (!string.IsNullOrEmpty(data))
+                                            {
+                                                data = HttpUtility.HtmlDecode(data);
+                                                data = format_HTML(data);
+                                                File.WriteAllText("view/test/demo.HTML", data);
+                                            //string[] urls = get_UrlHtml(url, data);
+                                            //if (urls.Length > 0)
+                                            //    StoreJob.f_url_AddRange(urls);
+                                            string url_cache = CACHE.Set(url, data);
+                                                isSuccess = true;
+                                                f_api_sendNotification(url_cache);
+                                            }
+                                            else
+                                            {
+                                                isSuccess = false;
+                                                data = "REQUEST_FAIL";
+                                            }
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            data = ex.Message;
+                                        }
 
-                                if (!isSuccess)
-                                {
-                                    Console.WriteLine("ERROR: " + url);
-                                    Console.WriteLine("----> " + data);
+                                        if (!isSuccess)
+                                        {
+                                            Console.WriteLine("ERROR: " + url);
+                                            Console.WriteLine("----> " + data);
+                                        }
+                                    }, w);
                                 }
-                            }, w);
+                                else
+                                if (url.StartsWith("https://"))
+                                {
+                                    HTTPS.StartInfo.Arguments = url;
+                                    HTTPS.Start();
+                                    StringBuilder buf = new StringBuilder();
+                                    //while (!HTTPS.StandardOutput.EndOfStream)
+                                    //{
+                                    //    string line = HTTPS.StandardOutput.ReadLine();
+                                    //    buf.AppendLine(line);
+                                    //}                                
+                                    //string data = HttpUtility.HtmlDecode(buf.ToString());
+                                    string data = HTTPS.StandardOutput.ReadToEnd();
+                                    data = HttpUtility.HtmlDecode(data);
+                                    data = format_HTML(data);
+                                    File.WriteAllText("view/test/demo.HTML", data);
+                                    //string[] urls = get_UrlHtml(url, data);
+                                    //if (urls.Length > 0)
+                                    //    StoreJob.f_url_AddRange(urls);
+                                    string url_cache = CACHE.Set(url, data);
+                                    f_api_sendNotification(url_cache);
+                                    HTTPS.WaitForExit();
+                                }
+                            }
                         }
                         #endregion
                         break;

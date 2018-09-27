@@ -5,3 +5,4 @@ G:\english\lenBrowser\obj\x86\Debug\lenBrowser.csproj.GenerateResource.Cache
 G:\english\lenBrowser\obj\x86\Debug\Browser.exe
 G:\english\lenBrowser\obj\x86\Debug\Browser.pdb
 G:\english\Run86\browser\Browser.exe.config
+G:\english\lenBrowser\obj\x86\Debug\lenBrowser.csprojResolveAssemblyReference.cache
