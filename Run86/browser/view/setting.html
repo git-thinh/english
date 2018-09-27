@@ -44,14 +44,20 @@
         $(function () {
             $('#sidebar').w2sidebar({
                 name: 'sidebar',
-                topHTML: '<div style="background-color: #eee; padding: 10px 5px; border-bottom: 1px solid silver">Some HTML</div>',
-                bottomHTML: '<div style="background-color: #eee; padding: 10px 5px; border-top: 1px solid silver">Some HTML</div>',
+                topHTML: '<div style="background-color: #eee; padding: 10px 5px; border-bottom: 1px solid silver">Learn English</div>',
+                bottomHTML: '<div style="background-color: #eee; padding: 10px 5px; border-top: 1px solid silver">//Bla bla bla ...</div>',
                 nodes: [
                    {
                        id: 'history', text: 'History', img: 'icon-folder', expanded: true, group: true,
-                       nodes: [{ id: 'https://translate.google.com/#en/vi/hello', text: 'translate.google.com', icon: 'fa-star-empty' },
-                               { id: 'http://w2ui.com/web/demos/#!layout/layout-1', text: 'w2ui.com', icon: 'fa-star-empty' },
-                               { id: 'https://vnexpress.net', text: 'Test', icon: 'fa-star-empty' }
+                       nodes: [{ id: 'https://translate.google.com/#en/vi/hello', text: 'translate.google.com' },
+                               { id: 'http://w2ui.com/web/demos/#!layout/layout-1', text: 'w2ui.com' },
+                               { id: 'https://vnexpress.net', text: 'Test' },
+                               { id: 'https://vuejs.org/v2/guide/', text: 'Vue JS' },
+                               { id: 'https://msdn.microsoft.com/en-us/library/ff361664(v=vs.110).aspx', text: 'MSDN' },
+                               { id: 'https://developer.mozilla.org/en-US/docs/Web', text: 'mozilla Web technologies' },
+                               { id: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters', text: 'mozilla rest_parameters' },
+                               { id: 'https://www.myenglishpages.com/site_php_files/grammar-lesson-tenses.php', text: 'grammar-lesson-tenses' },
+                               { id: 'https://learnenglish.britishcouncil.org/en/english-grammar/pronouns', text: 'learnenglish.britishcouncil' },
                        ]
                    }
                 ]

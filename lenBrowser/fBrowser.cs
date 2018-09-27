@@ -15,6 +15,8 @@ using System.Web;
 using System.Collections.Concurrent;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Security.Cryptography.X509Certificates;
+using System.Net.Security;
 
 namespace lenBrowser
 {
@@ -295,7 +297,8 @@ namespace lenBrowser
 
         private void f_browserConsoleMessage(object sender, ConsoleMessageEventArgs e)
         {
-            Console.WriteLine("MAIN.LOG = " + e.Source + ":" + e.Line + " " + e.Message);
+            //Console.WriteLine("MAIN.LOG = " + e.Source + ":" + e.Line + " " + e.Message);
+            Console.WriteLine("MAIN.LOG." + e.Line + ": " + e.Message);
         }
 
         private void f_browserPropertyChangeUpdate(string propertyName)
@@ -559,6 +562,12 @@ namespace lenBrowser
                         {
                             Console.WriteLine("GO: " + url);
                             //Invoke(new MethodInvoker(() => { if (!IsDisposed) f_browserGoPage(cmd.url); }));
+                            ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => certificate.Issuer == "CN=localhost";
+                            //ServicePointManager.ServerCertificateValidationCallback = delegate (Object obj, X509Certificate certificate, X509Chain chain, SslPolicyErrors errors)
+                            //{
+                            //    return (true);
+                            //};
+                            ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
                             HttpWebRequest w = (HttpWebRequest)WebRequest.Create(new Uri(url));
                             w.BeginGetResponse(asyncResult =>
                             {
@@ -598,9 +607,10 @@ namespace lenBrowser
                                     data = ex.Message;
                                 }
 
-                                if (isSuccess)
+                                if (!isSuccess)
                                 {
-
+                                    Console.WriteLine("ERROR: " + url);
+                                    Console.WriteLine("----> " + data);
                                 }
                             }, w);
                         }

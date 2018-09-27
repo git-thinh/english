@@ -26,11 +26,28 @@
         ::-webkit-scrollbar-thumb {
             border-radius: 0px;
             -webkit-box-shadow: none;
-            background-color: #999;
+            background-color: #ccc;
         }
     </style>
     <script type="text/javascript">
 
+        function f_domLoaded() {
+            console.info("DOM loaded");
+            var els = document.querySelectorAll('*');
+            for (var i = 0; i < els.length; i++) {
+                var el = els[i], s = el.innerText;
+                if (s == null || s == undefined || s.length == 0) {
+                    console.log('type = ' + el.type + '; name = ' + el.name + '; text = ' + s);
+                    el.style.display = 'none';
+                }
+            }
+        }
+        
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", f_domLoaded);
+        } else {
+            f_domLoaded();
+        }
     </script>
 </head>
 <body>
