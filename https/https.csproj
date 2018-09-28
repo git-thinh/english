@@ -43,11 +43,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IpcChannel\base\Check.cs" />
+    <Compile Include="IpcChannel\base\IWaitAndContinue.cs" />
+    <Compile Include="IpcChannel\base\LListNode.cs" />
+    <Compile Include="IpcChannel\base\MutexLock.cs" />
+    <Compile Include="IpcChannel\base\WaitAndContinueList.cs" />
+    <Compile Include="IpcChannel\base\WaitAndContinueWorker.cs" />
+    <Compile Include="IpcChannel\IIpcChannelRegistrar.cs" />
+    <Compile Include="IpcChannel\IpcChannelRegistrar.cs" />
+    <Compile Include="IpcChannel\IpcEvent.cs" />
+    <Compile Include="IpcChannel\IpcEventChannel.cs" />
+    <Compile Include="IpcChannel\IpcEventListener.cs" />
+    <Compile Include="IpcChannel\IpcEventMessage.cs" />
+    <Compile Include="IpcChannel\IpcEventSender.cs" />
+    <Compile Include="IpcChannel\IpcSignalEventArgs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="IpcChannel\ReadMe.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

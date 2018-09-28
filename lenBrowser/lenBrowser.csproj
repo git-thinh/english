@@ -143,6 +143,20 @@
     <Compile Include="LIB\HtmlAgilityPack\CssSelectors\Selectors\TagNameSelector.cs" />
     <Compile Include="LIB\HtmlAgilityPack\CssSelectors\Token.cs" />
     <Compile Include="LIB\HtmlAgilityPack\CssSelectors\Tokenizer.cs" />
+    <Compile Include="LIB\IpcChannel\base\Check.cs" />
+    <Compile Include="LIB\IpcChannel\base\IWaitAndContinue.cs" />
+    <Compile Include="LIB\IpcChannel\base\LListNode.cs" />
+    <Compile Include="LIB\IpcChannel\base\MutexLock.cs" />
+    <Compile Include="LIB\IpcChannel\base\WaitAndContinueList.cs" />
+    <Compile Include="LIB\IpcChannel\base\WaitAndContinueWorker.cs" />
+    <Compile Include="LIB\IpcChannel\IIpcChannelRegistrar.cs" />
+    <Compile Include="LIB\IpcChannel\IpcChannelRegistrar.cs" />
+    <Compile Include="LIB\IpcChannel\IpcEvent.cs" />
+    <Compile Include="LIB\IpcChannel\IpcEventChannel.cs" />
+    <Compile Include="LIB\IpcChannel\IpcEventListener.cs" />
+    <Compile Include="LIB\IpcChannel\IpcEventMessage.cs" />
+    <Compile Include="LIB\IpcChannel\IpcEventSender.cs" />
+    <Compile Include="LIB\IpcChannel\IpcSignalEventArgs.cs" />
     <Compile Include="MessageListener.cs" />
     <Compile Include="fBrowser.cs">
       <SubType>Form</SubType>
@@ -206,12 +220,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="CacheScheme.cs" />
+    <Compile Include="HttpScheme.cs" />
     <Compile Include="TestScheme.cs" />
     <Compile Include="SettingScheme.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
     <Content Include="LIB\Gma.System.MouseKeyHook\HotKeys\ReadMe.txt" />
+    <Content Include="LIB\IpcChannel\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources.resx">

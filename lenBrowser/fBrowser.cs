@@ -31,12 +31,15 @@ namespace lenBrowser
         //////☆★☐☑⧉✉⦿⦾⚠⚿⛑✕✓⥀✖↭☊⦧▷◻◼⟲≔☰⚒❯►❚❚❮⟳⚑⚐✎✛
         //////🕮🖎✍⦦☊🕭🔔🗣🗢🖳🎚🏷🖈🎗🏱🏲🗀🗁🕷🖒🖓👍👎♥♡♫♪♬♫🎙🎖🗝●◯⬤⚲☰⚒🕩🕪❯►❮⟳⚐🗑✎✛🗋🖫⛉ ⛊ ⛨⚏★☆
 
-        const string URL_SETTING = "http://setting.local";
+        const int SETTING_WIDTH = 0;
+        const string URL_SETTING = "about:blank";
+        //const string URL_SETTING = "http://setting.local";
         //const string URL = "https://vnexpress.net";
-        const string URL_GOOGLE = "https://google.com.vn";
+        //const string URL_GOOGLE = "https://google.com.vn";
         //const string URL = "http://w2ui.com/web/demos/#!layout/layout-1";
         //const string URL = "about:blank";
-        const string URL = "http://test.local/demo.html";
+        //const string URL = "http://test.local/demo.html";
+        const string URL = "https://dictionary.cambridge.org/grammar/british-grammar/above-or-over";
         //const string URL = "https://translate.google.com/#en/vi/hello";
 
         readonly CefWebBrowser ui_browser;
@@ -54,7 +57,6 @@ namespace lenBrowser
         private bool m_resizing = false;
         const bool m_hook_MouseMove = true;
 
-        const int SETTING_WIDTH = 299;
 
         #endregion
 
@@ -72,9 +74,9 @@ namespace lenBrowser
             {
                 //this.WindowState = FormWindowState.Maximized;
                 this.Width = 1024;
-                this.Height = Screen.PrimaryScreen.WorkingArea.Height - 300;
+                this.Height = Screen.PrimaryScreen.WorkingArea.Height - 200;
                 this.Top = 100;
-                this.Left = 200;// Screen.PrimaryScreen.WorkingArea.Width - this.Width;
+                this.Left = Screen.PrimaryScreen.WorkingArea.Width - this.Width;
             };
 
             this.FormClosing += (se, ev) =>
