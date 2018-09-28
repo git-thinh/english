@@ -18,7 +18,13 @@ namespace lenBrowser
 {
     public class App
     {
+        [STAThread]
+        static void Main(string[] args) => f_app_Run();
+
         static fBrowser main;
+
+        #region [ HTTPS ]
+
         /* https://stackoverflow.com/questions/4291912/process-start-how-to-get-the-output */
         static Process HTTPS = new Process
         {
@@ -33,10 +39,11 @@ namespace lenBrowser
         };
 
         const string EVENT_KEY_PATH = @"English\Browser";
-        static readonly string _channel = new Guid("{1B617C4B-BF68-4B8C-AE2B-A77E6A3ECEC5}").ToString();
-        static IIpcChannelRegistrar _registrar = new IpcChannelRegistrar(Registry.CurrentUser, EVENT_KEY_PATH);
-        static IpcEventChannel HTTPS_EVENT = new IpcEventChannel(_registrar, _channel);
+        static readonly string EVENT_CHANNEL = new Guid("{1B617C4B-BF68-4B8C-AE2B-A77E6A3ECEC5}").ToString();
+        static IIpcChannelRegistrar EVENT_REGISTRAR = new IpcChannelRegistrar(Registry.CurrentUser, EVENT_KEY_PATH);
+        static IpcEventChannel HTTPS_EVENT = new IpcEventChannel(EVENT_REGISTRAR, EVENT_CHANNEL);
         static string EVENT_KEY = "UI";
+        static string EVENT_KEY_HTTPS = "EVENT_HTTPS";
         static string EVENT_NAME = "MSG";
 
         public static void f_http_getSource(string url)
@@ -44,29 +51,25 @@ namespace lenBrowser
             HTTPS_EVENT.ExecutionTimeout = 1000;
             //HTTPS_EVENT.SendTo("CH1", "Message", "p1", "p2", "p3");
             //HTTPS_EVENT.SendTo(new string[] { "CH2" }, "Message", "p1", "p2", "p3");
-            // HTTPS_EVENT.SendTo(1000, new string[] { "ch1", "ch2" }, "Message", "p1", "p2", "p3");
-            HTTPS_EVENT.Broadcast(100, EVENT_NAME, url);
+            //HTTPS_EVENT.SendTo(1000, new string[] { "ch1", "ch2" }, "Message", "p1", "p2", "p3");
+
+            HTTPS_EVENT.SendTo(EVENT_KEY_HTTPS, EVENT_NAME, url, "1"); // [1] = "1" is write file cache
+
+            //HTTPS_EVENT.Broadcast(100, EVENT_NAME, url);
         }
 
-        static void f_http_exit()
+        static void f_http_Exit()
         {
             HTTPS_EVENT.StopListening();
             HTTPS_EVENT.StopAsyncSending(true, -1);
             HTTPS.Close();
         }
 
-        static void f_http_init()
+        static void f_http_Init()
         {
             HTTPS_EVENT.EnableAsyncSend();
             HTTPS_EVENT.StartListening(EVENT_KEY);
-            HTTPS_EVENT[EVENT_NAME].OnEvent += delegate (object o, IpcSignalEventArgs e)
-            {
-                if (e.EventChannel.ChannelName != EVENT_KEY)
-                {
-                    Console.WriteLine(string.Format("LISTENING_{0}: {1}", 1, String.Join(",", e.Arguments)));
-                }
-            };
-
+            HTTPS_EVENT[EVENT_NAME].OnEvent += f_http_messageReceiver;
 
             ////////////////HTTPS.StartInfo.Arguments = url;
             //////////////HTTPS.Start();
@@ -91,11 +94,30 @@ namespace lenBrowser
             ////////Thread.Sleep(1000);
         }
 
-        static void f_http_outputHandler(object sender, DataReceivedEventArgs e)
+        private static void f_http_messageReceiver(object sender, IpcSignalEventArgs e)
         {
-            string data = e.Data;
-            Console.Write(data);
+            if (e.EventChannel.ChannelName != EVENT_KEY)
+            {
+                string[] arr = e.Arguments;
+                Console.WriteLine(string.Format("MSG <= {0}: {1}", 1, String.Join(",", arr)));
+                if (arr.Length > 3 && arr[0] == "OK")
+                    f_ui_browserGoUrl("cache://" + arr[3]);
+            }
         }
+
+        #endregion
+
+        #region [ UI ]
+
+        static void f_ui_browserGoUrl(string url)
+        {
+            if (main != null)
+                main.f_browserGoPage(url);
+        }
+
+        #endregion
+
+        #region [ APP ]
 
         static App()
         {
@@ -131,29 +153,9 @@ namespace lenBrowser
             //};
         }
 
-        static void f_init()
+        static void f_app_Init()
         {
-            ThreadPool.SetMaxThreads(25, 25);
-            ServicePointManager.DefaultConnectionLimit = 1000;
-
-            f_http_init();
-
-            //////try
-            //////{
-            //////    // active SSL 1.1, 1.2, 1.3 for WebClient request HTTPS
-            //////    ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-            //////    ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3
-            //////        | (SecurityProtocolType)3072
-            //////        | (SecurityProtocolType)0x00000C00
-            //////        | SecurityProtocolType.Tls;
-            //////}
-            //////catch
-            //////{
-            //////    // active SSL 1.1, 1.2, 1.3 for WebClient request HTTPS
-            //////    ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-            //////    ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3
-            //////        | SecurityProtocolType.Tls;
-            //////}
+            f_http_Init();
 
             //string pathCache = Path.Combine(Path.GetDirectoryName(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)), "Cache");
             //if (!Directory.Exists(pathCache)) Directory.CreateDirectory(pathCache);
@@ -166,31 +168,26 @@ namespace lenBrowser
                 return;
             }
 
-            //System.Net.ServicePointManager.ServerCertificateValidationCallback += delegate (object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
-            //{
-            //    return true; // **** Always accept
-            //};
-            ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => certificate.Issuer == "CN=localhost";
-
             CacheMemory cache = new CacheMemory();
-
-            //CEF.RegisterScheme(CacheMemory.SCHEME, CacheMemory.HOST, new CacheSchemeHandlerFactory(cache));
-            //CEF.RegisterScheme("http", "setting.local", new SettingSchemeHandlerFactory());
-            //CEF.RegisterScheme("http", "test.local", new TestSchemeHandlerFactory());
-            //CEF.RegisterScheme("data", new SettingSchemeHandlerFactory());
-            //CEF.RegisterJsObject("___api", new apiJavascript());
-
+            CEF.RegisterScheme("setting", new SettingSchemeHandlerFactory());
+            CEF.RegisterScheme("cache", new CacheSchemeHandlerFactory());
             CEF.RegisterScheme("http", new HttpSchemeHandlerFactory());
             CEF.RegisterScheme("https", new HttpSchemeHandlerFactory());
 
-            Application.EnableVisualStyles();
             main = new fBrowser(cache);
+
+            //CEF.RegisterScheme(CacheMemory.SCHEME, CacheMemory.HOST, new CacheSchemeHandlerFactory(cache));
+            //CEF.RegisterScheme("http", "test.local", new TestSchemeHandlerFactory());
+            //CEF.RegisterJsObject("___api", new apiJavascript());
+
+
+            Application.EnableVisualStyles();
             Application.Run(main);
         }
 
-        static void f_exit()
+        static void f_app_Exit()
         {
-            f_http_exit();
+            f_http_Exit();
             //Console.WriteLine("Enter to EXIT...");
             //Console.ReadLine();
 
@@ -200,12 +197,13 @@ namespace lenBrowser
             GC.WaitForPendingFinalizers();
         }
 
-        [STAThread]
-        static void Main(string[] args)
+        static void f_app_Run()
         {
-            f_init();
-            f_http_init();
-            f_exit();
+            f_app_Init();
+            f_http_Init();
+            f_app_Exit();
         }
+
+        #endregion
     }
 }

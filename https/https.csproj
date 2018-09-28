@@ -35,6 +35,9 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,6 +46,66 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HtmlAgilityPack\Core\crc32.cs" />
+    <Compile Include="HtmlAgilityPack\Core\EncodingFoundException.cs" />
+    <Compile Include="HtmlAgilityPack\Core\HtmlAttribute.cs" />
+    <Compile Include="HtmlAgilityPack\Core\HtmlAttributeCollection.cs" />
+    <Compile Include="HtmlAgilityPack\Core\HtmlCmdLine.cs" />
+    <Compile Include="HtmlAgilityPack\Core\HtmlCommentNode.cs" />
+    <Compile Include="HtmlAgilityPack\Core\HtmlConsoleListener.cs" />
+    <Compile Include="HtmlAgilityPack\Core\HtmlDocument.cs" />
+    <Compile Include="HtmlAgilityPack\Core\HtmlDocument.PathMethods.cs" />
+    <Compile Include="HtmlAgilityPack\Core\HtmlDocument.Xpath.cs" />
+    <Compile Include="HtmlAgilityPack\Core\HtmlElementFlag.cs" />
+    <Compile Include="HtmlAgilityPack\Core\HtmlEntity.cs" />
+    <Compile Include="HtmlAgilityPack\Core\HtmlNameTable.cs" />
+    <Compile Include="HtmlAgilityPack\Core\HtmlNode.cs" />
+    <Compile Include="HtmlAgilityPack\Core\HtmlNode.Encapsulator.cs" />
+    <Compile Include="HtmlAgilityPack\Core\HtmlNode.Xpath.cs" />
+    <Compile Include="HtmlAgilityPack\Core\HtmlNodeCollection.cs" />
+    <Compile Include="HtmlAgilityPack\Core\HtmlNodeNavigator.cs" />
+    <Compile Include="HtmlAgilityPack\Core\HtmlNodeType.cs" />
+    <Compile Include="HtmlAgilityPack\Core\HtmlParseError.cs" />
+    <Compile Include="HtmlAgilityPack\Core\HtmlParseErrorCode.cs" />
+    <Compile Include="HtmlAgilityPack\Core\HtmlTextNode.cs" />
+    <Compile Include="HtmlAgilityPack\Core\HtmlWeb.cs" />
+    <Compile Include="HtmlAgilityPack\Core\HtmlWeb.Xpath.cs" />
+    <Compile Include="HtmlAgilityPack\Core\HtmlWebException.cs" />
+    <Compile Include="HtmlAgilityPack\Core\InvalidProgramException.cs" />
+    <Compile Include="HtmlAgilityPack\Core\IOLibrary.cs" />
+    <Compile Include="HtmlAgilityPack\Core\Metro\HtmlWeb.cs" />
+    <Compile Include="HtmlAgilityPack\Core\Metro\InvalidProgramException.cs" />
+    <Compile Include="HtmlAgilityPack\Core\MixedCodeDocument.cs" />
+    <Compile Include="HtmlAgilityPack\Core\MixedCodeDocumentCodeFragment.cs" />
+    <Compile Include="HtmlAgilityPack\Core\MixedCodeDocumentFragment.cs" />
+    <Compile Include="HtmlAgilityPack\Core\MixedCodeDocumentFragmentList.cs" />
+    <Compile Include="HtmlAgilityPack\Core\MixedCodeDocumentFragmentType.cs" />
+    <Compile Include="HtmlAgilityPack\Core\MixedCodeDocumentTextFragment.cs" />
+    <Compile Include="HtmlAgilityPack\Core\NameValuePair.cs" />
+    <Compile Include="HtmlAgilityPack\Core\NameValuePairList.cs" />
+    <Compile Include="HtmlAgilityPack\Core\Trace.cs" />
+    <Compile Include="HtmlAgilityPack\Core\Trace.FullFramework.cs" />
+    <Compile Include="HtmlAgilityPack\Core\Utilities.cs" />
+    <Compile Include="HtmlAgilityPack\CssSelectors\CssSelector.cs" />
+    <Compile Include="HtmlAgilityPack\CssSelectors\ExtensionMethods.cs" />
+    <Compile Include="HtmlAgilityPack\CssSelectors\NodeExtensionMethods.cs" />
+    <Compile Include="HtmlAgilityPack\CssSelectors\PseudoClass.cs" />
+    <Compile Include="HtmlAgilityPack\CssSelectors\PseudoClassNameAttribute.cs" />
+    <Compile Include="HtmlAgilityPack\CssSelectors\PseudoClassSelectors\FirstChildPseudoClass.cs" />
+    <Compile Include="HtmlAgilityPack\CssSelectors\PseudoClassSelectors\LastChildPseudoClass.cs" />
+    <Compile Include="HtmlAgilityPack\CssSelectors\PseudoClassSelectors\NotPseudoClass.cs" />
+    <Compile Include="HtmlAgilityPack\CssSelectors\PseudoClassSelectors\NthChildPseudoClass.cs" />
+    <Compile Include="HtmlAgilityPack\CssSelectors\Selectors\AllSelector.cs" />
+    <Compile Include="HtmlAgilityPack\CssSelectors\Selectors\AttributeSelector.cs" />
+    <Compile Include="HtmlAgilityPack\CssSelectors\Selectors\ClassNameSelector.cs" />
+    <Compile Include="HtmlAgilityPack\CssSelectors\Selectors\IdSelector.cs" />
+    <Compile Include="HtmlAgilityPack\CssSelectors\Selectors\ImediateChildrenSelector.cs" />
+    <Compile Include="HtmlAgilityPack\CssSelectors\Selectors\PseudoClassSelector.cs" />
+    <Compile Include="HtmlAgilityPack\CssSelectors\Selectors\SiblingImediateSelector.cs" />
+    <Compile Include="HtmlAgilityPack\CssSelectors\Selectors\SiblingSelector.cs" />
+    <Compile Include="HtmlAgilityPack\CssSelectors\Selectors\TagNameSelector.cs" />
+    <Compile Include="HtmlAgilityPack\CssSelectors\Token.cs" />
+    <Compile Include="HtmlAgilityPack\CssSelectors\Tokenizer.cs" />
     <Compile Include="IpcChannel\base\Check.cs" />
     <Compile Include="IpcChannel\base\IWaitAndContinue.cs" />
     <Compile Include="IpcChannel\base\LListNode.cs" />
@@ -62,6 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="HtmlAgilityPack\CssSelectors\README.md" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="IpcChannel\ReadMe.txt" />

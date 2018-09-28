@@ -32,14 +32,22 @@ namespace lenBrowser
         //////🕮🖎✍⦦☊🕭🔔🗣🗢🖳🎚🏷🖈🎗🏱🏲🗀🗁🕷🖒🖓👍👎♥♡♫♪♬♫🎙🎖🗝●◯⬤⚲☰⚒🕩🕪❯►❮⟳⚐🗑✎✛🗋🖫⛉ ⛊ ⛨⚏★☆
 
         const int SETTING_WIDTH = 0;
-        const string URL_SETTING = "about:blank";
-        //const string URL_SETTING = "http://setting.local";
+        //const string URL_SETTING = "about:blank";
+        const string URL_SETTING = "setting://setting.html";
         //const string URL = "https://vnexpress.net";
         //const string URL_GOOGLE = "https://google.com.vn";
         //const string URL = "http://w2ui.com/web/demos/#!layout/layout-1";
-        //const string URL = "about:blank";
+        const string URL = "about:blank";
         //const string URL = "http://test.local/demo.html";
-        const string URL = "https://dictionary.cambridge.org/grammar/british-grammar/above-or-over";
+
+        //const string URL = "https://dictionary.cambridge.org/grammar/british-grammar/above-or-over";        
+        //const string URL = "https://vuejs.org/v2/guide/";
+        //const string URL = "https://msdn.microsoft.com/en-us/library/ff361664(v=vs.110).aspx";
+        //const string URL = "https://developer.mozilla.org/en-US/docs/Web";
+        //const string URL = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters";
+        //const string URL = "https://www.myenglishpages.com/site_php_files/grammar-lesson-tenses.php";
+        //const string URL = "https://learnenglish.britishcouncil.org/en/english-grammar/pronouns";
+
         //const string URL = "https://translate.google.com/#en/vi/hello";
 
         readonly CefWebBrowser ui_browser;
@@ -263,7 +271,7 @@ namespace lenBrowser
 
         #region [ BROWSER ]
 
-        void f_browserGoPage(string url)
+        public void f_browserGoPage(string url)
         {
             if (ui_browser.IsLoading)
             {
@@ -578,87 +586,8 @@ namespace lenBrowser
                         if (!string.IsNullOrEmpty(url))
                         {
                             Console.WriteLine("GO: " + url);
-                            //Invoke(new MethodInvoker(() => { if (!IsDisposed) f_browserGoPage(cmd.url); }));
-
-                            if (CACHE.isExist(url))
-                            {
-                                string url_cache = CACHE.getUrl(url);
-                                f_api_sendNotification(url_cache);
-                            }
-                            else
-                            {
-                                if (url.StartsWith("http://"))
-                                {
-                                    HttpWebRequest w = (HttpWebRequest)WebRequest.Create(new Uri(url));
-                                    w.BeginGetResponse(asyncResult =>
-                                    {
-                                        string _url = ((HttpWebRequest)asyncResult.AsyncState).RequestUri.ToString();
-                                        string data = string.Empty;
-                                        bool isSuccess = false;
-                                        try
-                                        {
-                                            HttpWebResponse rs = (HttpWebResponse)w.EndGetResponse(asyncResult);
-                                            if (rs.StatusCode == HttpStatusCode.OK)
-                                            {
-                                                using (StreamReader sr = new StreamReader(rs.GetResponseStream(), System.Text.Encoding.UTF8))
-                                                    data = sr.ReadToEnd();
-                                                rs.Close();
-                                            }
-
-                                            if (!string.IsNullOrEmpty(data))
-                                            {
-                                                data = HttpUtility.HtmlDecode(data);
-                                                data = format_HTML(data);
-                                                File.WriteAllText("view/test/demo.HTML", data);
-                                            //string[] urls = get_UrlHtml(url, data);
-                                            //if (urls.Length > 0)
-                                            //    StoreJob.f_url_AddRange(urls);
-                                            string url_cache = CACHE.Set(url, data);
-                                                isSuccess = true;
-                                                f_api_sendNotification(url_cache);
-                                            }
-                                            else
-                                            {
-                                                isSuccess = false;
-                                                data = "REQUEST_FAIL";
-                                            }
-                                        }
-                                        catch (Exception ex)
-                                        {
-                                            data = ex.Message;
-                                        }
-
-                                        if (!isSuccess)
-                                        {
-                                            Console.WriteLine("ERROR: " + url);
-                                            Console.WriteLine("----> " + data);
-                                        }
-                                    }, w);
-                                }
-                                else
-                                if (url.StartsWith("https://"))
-                                {
-                                    HTTPS.StartInfo.Arguments = url;
-                                    HTTPS.Start();
-                                    StringBuilder buf = new StringBuilder();
-                                    //while (!HTTPS.StandardOutput.EndOfStream)
-                                    //{
-                                    //    string line = HTTPS.StandardOutput.ReadLine();
-                                    //    buf.AppendLine(line);
-                                    //}                                
-                                    //string data = HttpUtility.HtmlDecode(buf.ToString());
-                                    string data = HTTPS.StandardOutput.ReadToEnd();
-                                    data = HttpUtility.HtmlDecode(data);
-                                    data = format_HTML(data);
-                                    File.WriteAllText("view/test/demo.HTML", data);
-                                    //string[] urls = get_UrlHtml(url, data);
-                                    //if (urls.Length > 0)
-                                    //    StoreJob.f_url_AddRange(urls);
-                                    string url_cache = CACHE.Set(url, data);
-                                    f_api_sendNotification(url_cache);
-                                    HTTPS.WaitForExit();
-                                }
-                            }
+                            App.f_http_getSource(url);
+                            //Invoke(new MethodInvoker(() => { if (!IsDisposed) f_browserGoPage(cmd.url); }));                            
                         }
                         #endregion
                         break;

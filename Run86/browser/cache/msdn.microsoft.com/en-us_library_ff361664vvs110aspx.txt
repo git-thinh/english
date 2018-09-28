@@ -1,0 +1,205 @@
+https://msdn.microsoft.com/en-us/library/ff361664(v=vs.110).aspx
+<h1 class="title">.NET Development</h1>
+<div id="mainSection">
+<div id="mainBody"> <p>.NET is a general purpose development platform. It can be used for any kind of app type or workload where general purpose solutions are used. It has several key features that are attractive to many developers, including automatic memory management and modern programming languages, that make it easier to efficiently build high-quality apps.  Multiple implementations of .NET are available, based on open <a href="https://github.com/dotnet/coreclr/blob/master/Documentation/project-docs/dotnet-standards.md">.NET Standards</a> that specify the fundamentals of the platform.</p><p>This section of the MSDN Library contains documentation for the .NET Framework, which is one of the existing .NET implementations.  This topic will also talk about other .NET technologies and where you can find their related documentation.</p><div><h2 class="LW_CollapsibleArea_TitleDiv"><div><a class="LW_CollapsibleArea_TitleAhref" title="Collapse" role="heading"><span class="cl_CollapsibleArea_expanding LW_CollapsibleArea_Img"></span><span class="LW_CollapsibleArea_Title">.NET Core</span></a><div id="Anchor_0" class="LW_CollapsibleArea_Anchor_Div"><a href="/en-us/library/ff361664(v=vs.110).aspx#Anchor_0" class="LW_CollapsibleArea_Anchor_Img" title="Right-click to copy and share the link for this section"></a></div><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr" /></div></div></h2><div class="sectionblock"><a id="NET-Core"></a></div></div><p>.NET Core is a set of runtime, library and compiler components that allow you to create apps that run on Windows, macOS and Linux. It can be installed locally with your app with only the packages you need. It provides a lightweight development model and the flexibility to work with your favorite development tools on your favorite development platform. If you're new to the technology, visit the <a href="https://www.microsoft.com/net/core">.NET Core</a> page to find installation instructions for each supported platform. You'll also find on the new <a href="https://docs.microsoft.com/">docs.microsoft.com</a> site,  all the <a href="https://docs.microsoft.com/dotnet/articles/core/index">supporting documentation</a> and <a href="https://docs.microsoft.com/dotnet/core/api/index">API reference</a> for .NET Core.</p><p>You can currently use .NET Core to develop console or Web applications:</p><ul><li><p>To read about developing modern cloud-based Web application, see the <a href="https://docs.asp.net/">ASP.NET Core</a> documentation.</p></li><li><p>To read about working with data, see the <a href="https://ef.readthedocs.org/">Entity Framework</a> documentation.</p></li></ul><div><h2 class="LW_CollapsibleArea_TitleDiv"><div><a class="LW_CollapsibleArea_TitleAhref" title="Collapse" role="heading"><span class="cl_CollapsibleArea_expanding LW_CollapsibleArea_Img"></span><span class="LW_CollapsibleArea_Title">.NET Framework</span></a><div id="Anchor_1" class="LW_CollapsibleArea_Anchor_Div"><a href="/en-us/library/ff361664(v=vs.110).aspx#Anchor_1" class="LW_CollapsibleArea_Anchor_Img" title="Right-click to copy and share the link for this section"></a></div><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr" /></div></div></h2><div class="sectionblock"><a id="NET-Framework"></a></div></div><p>If you're new to the .NET Framework, see the <a href="https://msdn.microsoft.com/library/hh425099(v=vs.110).aspx">overview</a>. You'll also find <a href="http://go.microsoft.com/fwlink/?LinkID=235796">download instructions</a>, a complete <a href="http://go.microsoft.com/fwlink/p/?LinkId=256657">API reference</a>, overviews, step-by-step procedures, and code examples.</p><p>We update the latest versions of the .NET Framework documentation on a regular basis with content fixes and enhancements, but we do not maintain older versions. For this reason, we recommend that you use the following link even if you're using an older version of the .NET Framework:</p><ul><li><a href="http://go.microsoft.com/fwlink/?LinkId=227616">.NET Framework 4.6 and 4.5 (includes 4.5.1, 4.5.2, 4.6.1 and 4.6.2 Preview)</a>. See <a href="http://go.microsoft.com/fwlink/?LinkId=227617">what's new</a>.</li></ul><p>Earlier versions of the .NET Framework documentation are available from the table of contents pane on the left.</p><p>You can use the .NET Framework to develop apps for the desktop, web, and mobile devices, including Windows Store and Windows Phone Store apps:</p><ul><li><p>The .NET Framework can be used with such core app development technologies as <a href="https://msdn.microsoft.com/library/ms754130.aspx">Windows Presentation Foundation (WPF)</a>, <a href="https://msdn.microsoft.com/library/dd456779.aspx">Windows Communication Foundation (WCF)</a>, and <a href="https://msdn.microsoft.com/library/dd489441.aspx">Windows Workflow Foundation (WF)</a>.</p></li><li><p>To read about creating Windows 8.x Store apps in Windows 8, Windows 8.1, Windows 10 or Windows Phone apps, see the <a href="http://go.microsoft.com/fwlink/?LinkId=235503">Windows Dev Center</a>.</p></li><li><p>To read about creating Web sites and Web applications using ASP.NET, see the <a href="http://www.asp.net/">ASP.NET</a> site.</p></li><li><p>For information about creating portable .NET Framework assemblies that work without modification on Windows, Windows Phone, and other platforms, see <a href="https://msdn.microsoft.com/library/gg597391.aspx">Cross-Platform Development with the .NET Framework</a>.</p></li><li><p>For additional information about developing apps, visit the <a href="http://go.microsoft.com/fwlink/?LinkId=235795">Windows desktop apps</a> and <a href="http://go.microsoft.com/fwlink/?LinkId=235794">web development</a> sections of the MSDN Library.</p></li><li><p>You can use <a href="http://go.microsoft.com/fwlink/?LinkId=199864">Visual Studio</a> for your development tasks and select from a wide range of programming languages.</p></li></ul><p>The .NET Framework also releases out-of-band packages with new functionality and improved cross-platform support. For information about these, see <a href="https://msdn.microsoft.com/library/dn151288.aspx">The .NET Framework and Out-of-Band Releases</a>.</p><p>You can extend the capabilities of your apps with the following .NET Framework technologies:</p><ul><li><p><a href="http://go.microsoft.com/fwlink/p/?LinkId=235231">WCF Data Services</a></p><p>A technology that enables you to create services that use the Open Data Protocol (OData), which exposes and consumes data over the web or intranet by using the semantics of representational state transfer (REST).</p></li><li><p><a href="https://ef.readthedocs.org/">Entity Framework</a></p><p>A technology that supports the development of data-oriented software applications on a variety of platforms. The Entity Framework enables developers to work with data in the form of domain-specific objects and properties, without having to concern themselves with the underlying database tables and columns where this data is stored. With the Entity Framework, developers can work at a higher level of abstraction when they deal with data, and can create and maintain data-oriented applications with less code than in traditional applications. Earlier versions of the Entity Framework documentation are available from the table of contents pane on the left.</p></li><li><p><a href="https://msdn.microsoft.com/library/hh377151(v=vs.110).aspx">Windows Identity Foundation (WIF)</a></p><p>A set of .NET Framework classes that help you build claims-aware, relying party applications and security token services. In the .NET Framework 3.5 SP1 and the .NET Framework 4, the WIF runtime was downloaded separately (see <a href="http://go.microsoft.com/fwlink/p/?LinkId=180697">associated documentation</a>). Beginning with the .NET Framework 4.5, WIF is fully integrated into the .NET Framework, and <a href="http://go.microsoft.com/fwlink/p/?LinkId=251207">WIF content</a> is available in the .NET Framework documentation set.</p></li><li><p><a href="http://go.microsoft.com/fwlink/?LinkId=180699">Windows Server AppFabric</a></p><p>A set of integrated technologies that make it easier to build, scale, and manage web and composite apps that run on Internet Information Services (IIS).</p></li></ul></div>
+</div>
+</div>
+</div>
+<div class="libraryMemberFilter">
+<div class="filterContainer">
+<span>Show:</span>
+<label>
+Inherited
+</label>
+<label>
+Protected
+</label>
+</div>
+</div>
+</div>
+<div id="rightNavigationMenu" ms.cmpgrp="right nav">
+<div id="mobileButtons">
+<div id="navigationButtons">
+<a id="isd_print" href="https://msdn.microsoft.com/en-us/library/ff361664(d=printer,v=vs.110).aspx" rel="nofollow">Print </a>
+<a id="isd_printABook" href="/en-us/library/export/help/?returnurl=%2fen-us%2flibrary%2fff361664(v%3dvs.110).aspx">
+Export (<span class="count">0</span>)
+</a>
+</div>
+</div>
+<div id="navMain">
+<div id="closeNavigation">
+<a class="tocCloseSmall" id="closeButton"></a>
+</div>
+<div id="navigationButtons">
+<a id="isd_print" href="https://msdn.microsoft.com/en-us/library/ff361664(d=printer,v=vs.110).aspx" rel="nofollow">Print </a>
+<a id="isdShare" href="#" role="button" aria-expanded="false">
+Share
+</a>
+<a class="isdFacebook" href="#" aria-label="Share on Facebook">
+</a>
+<a class="isdTwitter" href="#" aria-label="Share on Twitter">
+</a>
+<a class="isdGooglePlus" href="#" aria-label="Share on Google+">
+</a>
+</div>
+</div>
+<div id="indoc_title">IN THIS ARTICLE</div>
+<ul id="indoc_toclist"></ul>
+</div>
+</div>
+</div>
+<div id="rightNavigationMenuThumbnail" class="rightNavigationMenuThumbnail">
+</div>
+</div>
+<div class="clear"></div>
+<div id="lib-footer">
+<div id="standardRatingBefore" class="clear stdr-container-before"></div>
+<div id="standardRating" class="stdr-container" ms.pgarea="body">
+<div class="stdr-close"></div>
+<div class="stdr-vote stdr-content">
+<div class="stdr-content">
+<span class="stdr-votetitle">Is this page helpful?</span>
+Yes
+No
+</div>
+</div>
+<div class="stdr-form">
+<div class="stdr-fieldtitle">Additional feedback?</div>
+<textarea class="stdr-detail" rows="6" maxlength="1500"></textarea>
+<div>
+<span class="stdr-count"><span class="stdr-charcnt">1500</span> characters remaining</span>
+<div class="stdr-buttons">
+Submit
+Skip this
+</div>
+</div>
+<div class="clear"></div>
+</div>
+</div>
+<div class="stdr-content">
+<span class="stdr-thankyou">Thank you!</span>
+<span class="stdr-appreciate">We appreciate your feedback.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer class="top" role="navigation" aria-label="footer">
+<div data-fragmentName="LeftLinks" id="Fragment_LeftLinks" xmlns="http://www.w3.org/1999/xhtml">
+<div class="linkList">
+<h4 class="linkListTitle">Dev centers</h4>
+<ul class="links">
+<li>
+<a href="https://developer.microsoft.com/en-us/windows" id="LeftLinks_2148_1" class="windowsBlue" xmlns="http://www.w3.org/1999/xhtml">Windows</a>
+</li>
+<li>
+<a href="https://dev.office.com/" id="LeftLinks_2148_3" class="office" xmlns="http://www.w3.org/1999/xhtml">Office</a>
+</li>
+<li>
+<a href="https://www.visualstudio.com/" id="LeftLinks_2148_4" class="visualStudio" xmlns="http://www.w3.org/1999/xhtml">Visual Studio</a>
+</li>
+<li>
+<a href="https://docs.microsoft.com/en-us/azure/" target="_blank" id="LeftLinks_2148_12" xmlns="http://www.w3.org/1999/xhtml">Microsoft Azure</a>
+</li>
+<li>
+<a href="https://msdn.microsoft.com/developer-centers-msdn" id="LeftLinks_2148_5" xmlns="http://www.w3.org/1999/xhtml">More...</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="rightLinks">
+<div data-fragmentName="CenterLinks1" id="Fragment_CenterLinks1" xmlns="http://www.w3.org/1999/xhtml">
+<div class="linkList">
+<h4 class="linkListTitle">Learning resources</h4>
+<ul class="links">
+<li>
+<a href="https://mva.microsoft.com/" id="CenterLinks1_2151_4" xmlns="http://www.w3.org/1999/xhtml">Microsoft Virtual Academy</a>
+</li>
+<li>
+<a href="https://channel9.msdn.com/" id="CenterLinks1_2151_5" xmlns="http://www.w3.org/1999/xhtml">Channel 9</a>
+</li>
+<li>
+<a href="https://msdn.microsoft.com/magazine/" id="CenterLinks1_2151_7" xmlns="http://www.w3.org/1999/xhtml">MSDN Magazine</a>
+</li>
+</ul>
+</div>
+</div>
+<div data-fragmentName="CenterLinks2" id="Fragment_CenterLinks2" xmlns="http://www.w3.org/1999/xhtml">
+<div class="linkList">
+<h4 class="linkListTitle">Community</h4>
+<ul class="links">
+<li>
+<a href="https://social.msdn.microsoft.com/forums/en-us/home" id="CenterLinks2_2151_8" xmlns="http://www.w3.org/1999/xhtml">Forums</a>
+</li>
+<li>
+<a href="https://blogs.msdn.microsoft.com/developer-tools/" id="CenterLinks2_2151_9" xmlns="http://www.w3.org/1999/xhtml">Blogs</a>
+</li>
+<li>
+<a href="https://www.codeplex.com/" id="CenterLinks2_2151_10" xmlns="http://www.w3.org/1999/xhtml">Codeplex</a>
+</li>
+</ul>
+</div>
+</div>
+<div data-fragmentName="CenterLinks3" id="Fragment_CenterLinks3" xmlns="http://www.w3.org/1999/xhtml">
+<div class="linkList">
+<h4 class="linkListTitle">Support</h4>
+<ul class="links">
+<li>
+<a href="https://msdn.microsoft.com/hh361695" id="CenterLinks3_2151_11" xmlns="http://www.w3.org/1999/xhtml">Self support</a>
+</li>
+</ul>
+</div>
+</div>
+<div data-fragmentName="CenterLinks4" id="Fragment_CenterLinks4" xmlns="http://www.w3.org/1999/xhtml">
+<div class="linkList">
+<h4 class="linkListTitle">Programs</h4>
+<ul class="links">
+<li>
+<a href="https://bizspark.microsoft.com/Startups/Index" id="CenterLinks4_2151_13" xmlns="http://www.w3.org/1999/xhtml">BizSpark (for startups)</a>
+</li>
+<li>
+<a href="https://imagine.microsoft.com/en-us" id="CenterLinks4_2151_22" xmlns="http://www.w3.org/1999/xhtml">Microsoft Imagine (for students)</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</footer>
+<footer class="bottom" role="contentinfo">
+<span class="localeContainer">
+<a href="#" onclick="$('#selectLocaleForm').submit();return false;" title="Change your language">United States (English)</a>
+</span>
+<div data-fragmentName="BottomLinks" id="Fragment_BottomLinks" xmlns="http://www.w3.org/1999/xhtml">
+<div class="linkList">
+<ul class="links horizontal">
+<li>
+<a href="https://msdn.microsoft.com/en-us/flashnewsletter" id="BottomLinks_2148_7" xmlns="http://www.w3.org/1999/xhtml">Newsletter</a>
+</li>
+<li>
+<a href="https://go.microsoft.com/fwlink/?LinkId=521839" id="BottomLinks_2148_8" xmlns="http://www.w3.org/1999/xhtml">Privacy & cookies</a>
+</li>
+<li>
+<a href="https://msdn.microsoft.com/en-us/cc300389" id="BottomLinks_2148_9" xmlns="http://www.w3.org/1999/xhtml">Terms of use</a>
+</li>
+<li>
+<a href="https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/" id="BottomLinks_2148_10" xmlns="http://www.w3.org/1999/xhtml">Trademarks</a>
+</li>
+</ul>
+</div>
+</div>
+<span class="logoLegal">
+<span class="logoSpan clip67x13" role="img" tabindex="0" aria-label="microsoft logo">
+<p class=box_img___><img alt="logo" class="logo" src="https://i-msdn.sec.s-msft.com/Areas/Centers/Themes/StandardDevCenter/Content/HeaderFooterSprite.png?v=636674807847059654" /></p>
+</span>
+<span class="copyright">© 2018 Microsoft</span>
+</span>
+</footer>
+</div>
+</div>
+<div class="footerPrintView">
+<div class="footerCopyrightPrintView">© 2018 Microsoft</div>
+</div>
+<![CDATA[ Third party scripts and code linked to or referenced from this website are licensed to you by the parties that own such code, not by Microsoft.  See ASP.NET Ajax CDN Terms of Use – http://www.asp.net/ajaxlibrary/CDN.ashx. ]]>
+<div id="globalRequestVerification">
+</div>
+</div>

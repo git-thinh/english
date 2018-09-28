@@ -11,7 +11,7 @@ namespace lenBrowser
         {
             Uri uri = new Uri(request.Url);
             string path = uri.LocalPath;
-            if (path[0] == '/') path = path.Substring(1);
+            if (path[0] == '/') path = uri.Host;
 
             if (path == "")
             {
@@ -20,7 +20,7 @@ namespace lenBrowser
             }
             else path = "view/" + path;
 
-            Console.WriteLine(path);
+            Console.WriteLine(request.Url + " -> " + path);
 
             if (File.Exists(path))
             {
