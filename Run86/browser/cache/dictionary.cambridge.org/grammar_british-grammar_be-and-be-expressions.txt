@@ -1,0 +1,415 @@
+<!--https://dictionary.cambridge.org/grammar/british-grammar/be-and-be-expressions-->
+<h1 class="cdo-hero__title">Make your words meaningful</h1>
+</div>
+<div class="cdo-hero__caption">
+<div class="contain">
+<i>i</i><span>Rafe Swan/Cultura/Getty</span>
+</div>
+</div>
+</div>
+<div class="cdo-hdr__blocks cdo-hdr__blocks--int">
+<div class="contain">
+<div class="cdo-search cdo-search--mod rounded">
+<div class="cdo-search__bar">
+<label class="accessibility" for="cdo-search-input">Search Term</label>
+<span class="cdo-search__controls">
+<i class="fcdo fcdo-search" aria-hidden="true"></i><span class="accessibility">Search</span>
+<span id="cdo-search-current-dataset" class="resp resp--med-i"></span>
+<i class="fcdo fcdo-dataset" aria-hidden="true"></i>
+</span>
+<div id="cdo-dataset" class="cdo-search__mega-menu">
+<div class="pad-extra">
+<div class="cdo-search__mega-menu__canvas a--rev">
+<div class="cdo-search__mega-menu__col1">
+<div class="h2 js-toggle" data-is-basic="1" data-target-selector="#megaMenuRecent">Recent and Recommended</div>
+<div id="megaMenuRecent" class="cdo-search__mega-menu__links">
+<ul id="cdo-dataset-prefered-list"></ul>
+</div>
+<div class="h2 js-toggle" data-is-basic="1" data-target-selector="#megaMenuDefinition">Definitions and Grammar</div>
+<div id="megaMenuDefinition" class="cdo-search__mega-menu__links">
+<p>Clear explanations of natural written and spoken English</p>
+<ul>
+<li><a href="#" data-dictCode="english" title="Cambridge English Dictionary">English</a></li>
+<li><a href="#" data-dictCode="learner-english" title="Learner’s Dictionary">Learner’s Dictionary</a></li>
+<li><a href="#" data-dictCode="essential-british-english" title="Essential British English Dictionary">Essential British English</a></li>
+<li><a href="#" data-dictCode="essential-american-english" title="Essential American English Dictionary">Essential American English</a></li>
+<li><a href="#" data-dictCode="british-grammar" title="Grammar">Grammar</a></li>
+</ul>
+</div>
+</div>
+<div class="cdo-search__mega-menu__col2">
+<div class="h2 js-toggle" data-is-basic="1" data-target-selector="#megaMenuTranslation">Translation</div>
+<div id="megaMenuTranslation" class="cdo-search__mega-menu__links">
+<div class="h3">Bilingual Dictionaries</div>
+<p>Click on the arrows to change the translation direction.</p>
+<ul>
+<li>
+<span class="bilingual-switch pointer js-toggle-children" data-target-selector="next" title="Change language direction"><i class="fcdo fcdo-exchange fcdo--nudge" aria-hidden="true"></i></span>
+<span>
+English–Spanish</a>
+Spanish–English</a>
+</span>
+</li>
+<li>
+<span class="bilingual-switch pointer js-toggle-children" data-target-selector="next" title="Change language direction"><i class="fcdo fcdo-exchange fcdo--nudge" aria-hidden="true"></i></span>
+<span>
+English–French</a>
+French–English</a>
+</span>
+</li>
+<li>
+<span class="bilingual-switch pointer js-toggle-children" data-target-selector="next" title="Change language direction"><i class="fcdo fcdo-exchange fcdo--nudge" aria-hidden="true"></i></span>
+<span>
+English–German</a>
+German–English</a>
+</span>
+</li>
+<li>
+<span class="bilingual-switch pointer js-toggle-children" data-target-selector="next" title="Change language direction"><i class="fcdo fcdo-exchange fcdo--nudge" aria-hidden="true"></i></span>
+<span>
+English–Indonesian</a>
+Indonesian–English</a>
+</span>
+</li>
+<li>
+<span class="bilingual-switch pointer js-toggle-children" data-target-selector="next" title="Change language direction"><i class="fcdo fcdo-exchange fcdo--nudge" aria-hidden="true"></i></span>
+<span>
+English–Italian</a>
+Italian–English</a>
+</span>
+</li>
+<li>
+<span class="bilingual-switch pointer js-toggle-children" data-target-selector="next" title="Change language direction"><i class="fcdo fcdo-exchange fcdo--nudge" aria-hidden="true"></i></span>
+<span>
+English–Polish</a>
+Polish–English</a>
+</span>
+</li>
+<li>
+<span class="bilingual-switch pointer js-toggle-children" data-target-selector="next" title="Change language direction"><i class="fcdo fcdo-exchange fcdo--nudge" aria-hidden="true"></i></span>
+<span>
+English–Portuguese</a>
+Portuguese–English</a>
+</span>
+</li>
+<li>
+<span class="bilingual-switch pointer js-toggle-children" data-target-selector="next" title="Change language direction"><i class="fcdo fcdo-exchange fcdo--nudge" aria-hidden="true"></i></span>
+<span>
+English–Japanese</a>
+Japanese–English</a>
+</span>
+</li>
+</ul>
+<div class="h3">Semi-bilingual Dictionaries</div>
+<ul>
+<li><a href="#" data-dictCode="english-arabic" title="Cambridge English-Arabic Dictionary">English–Arabic</a></li>
+<li><a href="#" data-dictCode="english-catalan" title="Cambridge English-Catalan Dictionary">English–Catalan</a></li>
+<li><a href="#" data-dictCode="english-chinese-simplified" title="Cambridge English-Chinese (Simplified) Dictionary">English–Chinese (Simplified)</a></li>
+<li><a href="#" data-dictCode="english-chinese-traditional" title="Cambridge English-Chinese (Traditional) Dictionary">English–Chinese (Traditional)</a></li>
+<li><a href="#" data-dictCode="english-korean" title="Cambridge English-Korean Dictionary">English–Korean</a></li>
+<li><a href="#" data-dictCode="english-malaysian" title="English-Malay Dictionary">English–Malay</a></li>
+<li><a href="#" data-dictCode="english-russian" title="Cambridge English-Russian Dictionary">English–Russian</a></li>
+<li><a href="#" data-dictCode="english-thai" title="English-Thai Dictionary">English–Thai</a></li>
+<li><a href="#" data-dictCode="turkish" title="English-Turkish Dictionary, İngilizce-Türkçe Çeviri">English–Turkish</a></li>
+<li><a href="#" data-dictCode="english-vietnamese" title="English-Vietnamese Dictionary">English–Vietnamese</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="cdo-search__mega-menu__foot"><span class="js-toggle pointer on" data-target-selector="#cdo-dataset"><i class="fcdo fcdo-close" title="Close" aria-hidden="true"></i></span></div>
+</div>
+</div>
+<div class="cdo-search__switches resp resp--sml"></div>
+</div>
+</div>
+</div>
+<div id="overlay"></div>
+<div id='ad_topslot_a' class='am-default '>
+</div>
+<div class="contain cdo-tpl cdo-tpl-alt cdo-tpl-grammar">
+<div id='ad_topslot_b' class='am-default '>
+</div>
+<div id="page-content" class="cdo-tpl__z cdo-tpl-alt__z1" role="main">
+<h1>Grammar - <i>be</i> and <i>be</i> expressions</h1>
+<div class="mod mod--border inter-toc">
+<div class="clrd">
+<div>
+<ul>
+<li><span class="prefix-item">
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/be-and-be-expressions/be"><i>Be</i></a>
+</span>
+</li>
+<li><span class="prefix-item">
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/be-and-be-expressions/be-expressions-be-able-to-be-due-to"><i>Be</i> expressions (  <i>be able to</i>, <i>be due to</i>)</a>
+</span>
+<ul>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/be-and-be-expressions/be-expressions-be-able-to-be-due-to#be-able-to"><i>Be able to</i></a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/be-and-be-expressions/be-expressions-be-able-to-be-due-to#be-about-to"><i>Be about to</i></a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/be-and-be-expressions/be-expressions-be-able-to-be-due-to#be-likely-to"><i>Be likely to</i></a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/be-and-be-expressions/be-expressions-be-able-to-be-due-to#be-meant-to"><i>Be meant to</i></a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/be-and-be-expressions/be-expressions-be-able-to-be-due-to#be-supposed-to"><i>Be supposed to</i></a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="mod mod--main mod--border trends--egt">
+<div class="pad clrd">
+<h2>Popular searches</h2>
+<div class="cols cols--half a--rev bigger prefix-float">
+<div class="cols__col">
+<ul class="unstyled divided flush">
+<li>
+<span class="prefix">1</span>
+<span class="prefix-item">
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/adverbs-types"><div class="title" tag="div" url="u92b9df159e5602a6.-57996681.141fd70d9ad.-680e">Adverbs: types</div></a>
+</span>
+</li>
+<li>
+<span class="prefix">2</span>
+<span class="prefix-item">
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/this-that-these-those"><div class="title" url="u92b9df159e5602a6.-57996681.141ff2f6710.-383f" tag="div"><i class="i" tag="i">This</i>, <i class="i" tag="i">that</i>, <i class="i" tag="i">these</i>, <i class="i" tag="i">those</i></div></a>
+</span>
+</li>
+<li>
+<span class="prefix">3</span>
+<span class="prefix-item">
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/especially-or-specially"><div class="title" tag="div" url="u92b9df159e5602a6.-57996681.141fd70d9ad.-9b8"><i class="i" tag="i">Especially</i> or <i class="i" tag="i">specially</i><span class="span pad">?</span></div></a>
+</span>
+</li>
+<li>
+<span class="prefix">4</span>
+<span class="prefix-item">
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/person-persons-or-people"><div class="title" url="u92b9df159e5602a6.-57996681.141fd70d9ad.715e" tag="div"><i class="i" tag="i">Person</i>, <i class="i" tag="i">persons</i> or <i class="i" tag="i">people</i><span class="span pad">?</span></div></a>
+</span>
+</li>
+<li>
+<span class="prefix">5</span>
+<span class="prefix-item">
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/future-be-going-to-i-am-going-to-work"><div class="title" url="u92b9df159e5602a6.-57996681.141fd70d9ad.250" tag="div">Future: <i class="i" tag="i">be going to</i> (<i class="i" tag="i">I am going to work</i>)</div></a>
+</span>
+</li>
+</ul>
+</div>
+<div class="cols__col">
+<ul class="unstyled divided divided--notfirst flush">
+<li>
+<span class="prefix">6</span>
+<span class="prefix-item">
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/beside-or-besides"><div class="title" tag="div" url="u92b9df159e5602a6.-57996681.141fd70d9ad.-42d7"><i class="i" tag="i">Beside</i> or <i class="i" tag="i">besides</i><span class="span pad">?</span></div></a>
+</span>
+</li>
+<li>
+<span class="prefix">7</span>
+<span class="prefix-item">
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/above-or-over"><div class="title" tag="div" url="u92b9df159e5602a6.-57996681.141fd70d9ad.-77c2"><i class="i" tag="i">Above</i> or <i class="i" tag="i">over</i><span class="span pad">?</span></div></a>
+</span>
+</li>
+<li>
+<span class="prefix">8</span>
+<span class="prefix-item">
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/lend-or-borrow"><div class="title" url="u92b9df159e5602a6.-57996681.141fd70d9ad.247a" tag="div"><i class="i" tag="i">Lend</i> or <i class="i" tag="i">borrow</i><span class="span pad">?</span></div></a>
+</span>
+</li>
+<li>
+<span class="prefix">9</span>
+<span class="prefix-item">
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/discourse-markers-so-right-okay"><div class="title" url="u92b9df159e5602a6.-57996681.141fd70d9ad.-18da" tag="div">Discourse markers (<i class="i" tag="i">so, right, okay</i>)</div></a>
+</span>
+</li>
+<li>
+<span class="prefix">10</span>
+<span class="prefix-item">
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/although-or-though"><div class="title" url="u92b9df159e5602a6.-57996681.141fd70d9ad.-5851" tag="div"><i class="i" tag="i">Although</i> or <i class="i" tag="i">though</i><span class="span pad">?</span></div></a>
+</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id='ad_btmslot_a' class='am-default '>
+</div>
+</div>
+<div class="cdo-tpl__z cdo-tpl-alt__z2 cdo-tpl-alt__z2--retract">
+<div class="mod mod--dark mod--style1">
+<div class="pad">
+<p class="leader">Create and share your own word lists and quizzes for free!</p>
+<p>
+<a class="btn btn--white btn--s13 registerBtn"><b>Sign up now</b></a>
+<a class="btn btn--impact2 btn--s13 loginBtn"><b>Log in</b></a>
+</p>
+</div>
+</div>
+<div id='ad_rightslot' class='am-default '>
+</div>
+<div class="mod mod--dark mod--style2 oflow-hide">
+<div class="pad">
+<p class="h2 semi-flush alt">Word of the Day</p>
+<p class="h4 feature-w-big wotd-hw">taro</p><p>a tropical plant that has a root that is cooked and eaten</p>
+</div>
+<div class="txt-block txt-block--alt with-icons js-eqh-sticky">
+<div class="with-icons__content">
+<a href="https://dictionary.cambridge.org/dictionary/english/taro" class="a--rev a--b">
+<span>About this</span> <i class="fcdo fcdo-angle-right" aria-hidden="true"></i>
+</a>
+</div>
+<div class="with-icons__icons">
+<a class="circle circle-btn socialShareLink" title="Share this entry on Facebook" href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fdictionary.cambridge.org%2Fdictionary%2Fenglish%2Ftaro&t=Word+of+the+Day' target='_blank' data-social='facebook' data-url='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fdictionary.cambridge.org%2Fdictionary%2Fenglish%2Ftaro&t=Word+of+the+Day' data-object='wotd'>
+<i class="fcdo fcdo-facebook" aria-hidden="true"></i>
+</a>
+<a class="circle circle-btn socialShareLink" title="Tweet this entry" href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fdictionary.cambridge.org%2Fdictionary%2Fenglish%2Ftaro' target='_blank' data-social='twitter' data-url='https://twitter.com/intent/tweet?url=https%3A%2F%2Fdictionary.cambridge.org%2Fdictionary%2Fenglish%2Ftaro' data-object='wotd'>
+<i class="fcdo fcdo-twitter" aria-hidden="true"></i>
+</a>
+<a class="circle circle-btn socialShareLink" title="Share this entry on Google+" href='https://plus.google.com/share?url=https%3A%2F%2Fdictionary.cambridge.org%2Fdictionary%2Fenglish%2Ftaro' target='_blank' data-social='google' data-url='https://plus.google.com/share?url=https%3A%2F%2Fdictionary.cambridge.org%2Fdictionary%2Fenglish%2Ftaro' data-object='wotd'>
+<i class="fcdo fcdo-google-plus" aria-hidden="true"></i>
+</a>
+<a class="circle circle-btn socialShareLink" title="Share this entry on StumbleUpon" href='https://www.stumbleupon.com/likecontent?url=https%3A%2F%2Fdictionary.cambridge.org%2Fdictionary%2Fenglish%2Ftaro' target='_blank' data-social='stumbleupon' data-url='https://www.stumbleupon.com/likecontent?url=https%3A%2F%2Fdictionary.cambridge.org%2Fdictionary%2Fenglish%2Ftaro' data-object='wotd'>
+<i class="fcdo fcdo-stumbleupon" aria-hidden="true"></i>
+</a>
+</div>
+</div>
+</div>
+<div class="cols cols--half">
+<div class=" 'cols__col' "  >
+<div class="mod mod--border">
+<a href="https://dictionaryblog.cambridge.org/2018/09/26/on-the-spur-of-the-moment-words-and-phrases-to-describe-sudden-actions/" target="_blank" class="img">
+<p class=box_img___><img alt="On the spur of the moment (Words and phrases to describe sudden actions)" src="/rss/images/applause.jpg" /></p>
+</a>
+<div class="pad">
+<p class="h2 semi-flush">Blog</p>
+<p class="leader semi-flush">
+<a href="https://dictionaryblog.cambridge.org/2018/09/26/on-the-spur-of-the-moment-words-and-phrases-to-describe-sudden-actions/" class="a--alt a--rev" target="_blank">On the spur of the moment (Words and phrases to describe sudden actions)</a>
+</p>
+<p class="meta">
+<small class="smaller">
+<time>September 26, 2018</time>
+</small>
+</p>
+</div>
+<a href="https://dictionaryblog.cambridge.org/2018/09/26/on-the-spur-of-the-moment-words-and-phrases-to-describe-sudden-actions/" target="_blank" class="txt-block a--alt"><span>Read More</span> <i class="fcdo fcdo-angle-right"></i></a>
+</div>
+</div>
+<div class=" 'cols__col' " >
+<div class="mod mod--dark mod--border mod--style3">
+<a href="https://dictionaryblog.cambridge.org/2018/09/24/new-words-24-september-2018/" target="_blank" class="img">
+<p class=box_img___><img alt="binge racing noun" src="/rss/images/binge-racing.jpg" /></p>
+</a>
+<div class="pad">
+<p class="h2 alt semi-flush">New Words</p>
+<p class="h4 feature-w semi-flush nw-hw">
+<a href="https://dictionaryblog.cambridge.org/2018/09/24/new-words-24-september-2018/" class="a--alt a--rev" target="_blank">binge racing noun</a>
+</p>
+<p>
+<small class="smaller"><time>September 24, 2018</time></small>
+</p>
+</div>
+<a href="https://dictionaryblog.cambridge.org/2018/09/24/new-words-24-september-2018/" target="_blank" class="txt-block txt-block--alt js-eqh-sticky">
+<span>More new words</span> <i class="fcdo fcdo-angle-right"></i>
+</a>
+</div>
+</div>
+</div>
+</div>        </div>
+<div class="cdo-promo">
+<div class="contain">
+<div class="cols">
+<div class="cols__col spr-b spr--promo-search">
+<a href="https://dictionary.cambridge.org/toolbardictionary.html" title="Search from your browser">
+<span class="h4">Search from your browser</span>
+<p>Add Cambridge Dictionary to your browser in a click!</p>
+</a>
+</div>
+<div class="cols__col spr-b spr--promo-widget">
+<a href="https://dictionary.cambridge.org/freesearch.html" title="Get our free widgets">
+<span class="h4">Get our free widgets</span>
+<p>Add the power of Cambridge Dictionary to your website using our free search box widgets.</p>
+</a>
+</div>
+<div class="cols__col spr-b spr--promo-apps">
+<a href="http://www.cambridgemobileapps.com/" rel="external" title="Dictionary apps">
+<span class="h4">Dictionary apps</span>
+<p>Browse our dictionary apps today and ensure you are never again lost for words.</p>
+</a>
+</div>
+</div>
+</div>
+</div>
+<footer id="footer" class="ftr clr">
+<div class="contain">
+<div class="ftr__nav">
+<ul class="cols unstyled unstyled-nest ftr__links">
+<li class="cols__col">
+<a href="https://dictionary.cambridge.org/learn.html" class="ico-bg-abs js-accord" data-js-maxwidth="600">Learn</a>
+<ul>
+<li class="resp-hide--sml"><a href="https://dictionary.cambridge.org/learn.html">Learn</a></li>
+<li><a href="https://dictionaryblog.cambridge.org/category/new-words/" target="_blank">New Words</a></li>
+<li><a href="https://dictionary.cambridge.org/help/">Help</a></li>
+<li><a href="http://www.cambridge.org/gb/cambridgeenglish/catalog/dictionaries" target="_blank">In Print</a></li>
+</ul>
+</li>
+<li class="cols__col">
+<a href="https://dictionary.cambridge.org/develop.html" class="ico-bg-abs js-accord" data-js-maxwidth="600">Develop</a>
+<ul>
+<li class="resp-hide--sml"><a href="https://dictionary.cambridge.org/develop.html">Develop</a></li>
+<li><a href="http://dictionary-api.cambridge.org/" target="_blank">Dictionary API</a></li>
+<li><a href="https://dictionary.cambridge.org/doubleclick.html">Double-Click Lookup</a></li>
+<li><a href="https://dictionary.cambridge.org/freesearch.html">Search Widgets</a></li>
+<li><a href="https://dictionary.cambridge.org/license.html">License Data</a></li>
+</ul>
+</li>
+<li class="cols__col">
+<a href="https://dictionary.cambridge.org/about.html" class="ico-bg-abs js-accord" data-js-maxwidth="600">About</a>
+<ul>
+<li class="resp-hide--sml"><a href="https://dictionary.cambridge.org/about.html">About</a></li>
+<li><a href="http://www.cambridge.org/policy/accessibility/" target="_blank">Accessibility</a></li>
+<li><a href="http://www.cambridge.org/us/cambridgeenglish" target="_blank">Cambridge English</a></li>
+<li><a href="http://www.cambridge.org/" target="_blank">Cambridge University Press</a></li>
+<li><a href="http://www.cambridge.org/policy/dictionary_privacy" target="_blank">Cookies and Privacy</a></li>
+<li><a href="http://www.cambridge.org/elt/corpus/" target="_blank">Corpus</a></li>
+<li><a href="http://www.cambridge.org/about-us/terms-use/" target="_blank">Terms of Use</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="ftr__follow">
+<a href="https://www.facebook.com/home.php?#!/pages/Cambridge-Dictionaries-Online/118775618133878" class="btnfeat btnfeat--fb" rel="external" target="_blank" title="Become our fan!">
+<i class="fcdo fcdo-facebook" aria-hidden="true"></i>
+<span>2.34 m</span>
+<em>Likes</em>
+<span class="point"></span>
+</a>
+<a href="https://twitter.com/CambridgeWords" class="btnfeat btnfeat--tw" rel="external" target="_blank" title="Follow us!">
+<i class="fcdo fcdo-twitter" aria-hidden="true"></i>
+<span>168 k</span>
+<em>Followers</em>
+<span class="point"></span>
+</a>
+<a href="https://plus.google.com/+cambridgedictionary" class="btnfeat btnfeat--gp" rel="external" target="_blank" title="Circle us!">
+<i class="fcdo fcdo-google-plus" aria-hidden="true"></i>
+<span>14.1 k</span>
+<em>Fans</em>
+<span class="point"></span>
+</a>
+</div>
+<div class="ftr__copy">
+<a class="spr spr--logo-ftr" href="http://www.cambridge.org" rel="external"></a>
+<p>© Cambridge University Press 2018</p>
+</div>
+</div>
+</footer>
+<div class="overlay js-overlay"></div>
+<ul class="unstyled notification banner"></ul>
+<ul class="unstyled notification popup"></ul>

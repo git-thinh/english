@@ -81,7 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
-    <Compile Include="apiJavascript.cs" />
+    <Compile Include="ApiJavascript.cs" />
     <Compile Include="CacheMemory.cs" />
     <Compile Include="LIB\HtmlAgilityPack\Core\crc32.cs" />
     <Compile Include="LIB\HtmlAgilityPack\Core\EncodingFoundException.cs" />

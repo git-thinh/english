@@ -1,4 +1,4 @@
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters
+﻿<!--https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters-->
 <h1>Rest parameters</h1>
 </div>
 <div class="document-actions">

@@ -1,4 +1,4 @@
-https://www.myenglishpages.com/site_php_files/grammar-lesson-tenses.php
+<!--https://www.myenglishpages.com/site_php_files/grammar-lesson-tenses.php-->
 <h1><p class=box_img___><img src="../images/icons/GRAMMAR BOOKS.gif" alt="books"></p>GRAMMAR</h1>
 <hr />
 </div>
@@ -685,7 +685,7 @@ I'm for truth, no matter who tells it. I'm for justice, no matter who it's for o
 </div>
 <div class="clear"></div>
 <div id="copyright">
-<div class="container"><a href="/cdn-cgi/l/email-protection#7e101719160a091f12151b0c3e13071b101912170d160e1f191b0d501d1113">Contact</a><br />
+<div class="container"><a href="/cdn-cgi/l/email-protection#f896919f908c8f9994939d8ab895819d969f94918b9088999f9d8bd69b9795">Contact</a><br />
 © Copyright 2018 myenglishpages.com </div>
 </div>
 </div>

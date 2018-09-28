@@ -3,12 +3,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
-    <script src="jquery.2.1.1.min.js"></script>
-    <link href="w2ui.min.css" rel="stylesheet" />
-    <script src="w2ui.min.js"></script>
     <style type="text/css">
         body {
-            padding: 0px;
+            padding: 10px;
             margin: 0px;
         }
 
@@ -39,40 +36,16 @@
     </style>
 </head>
 <body>
-    <div id="sidebar"></div>
-    <script type="text/javascript">
-        $(function () {
-            $('#sidebar').w2sidebar({
-                name: 'sidebar',
-                topHTML: '<div style="background-color: #eee; padding: 10px 5px; border-bottom: 1px solid silver">Learn English</div>',
-                bottomHTML: '<div style="background-color: #eee; padding: 10px 5px; border-top: 1px solid silver">//Bla bla bla ...</div>',
-                nodes: [
-                   {
-                       id: 'history', text: 'History', img: 'icon-folder', expanded: true, group: true,
-                       nodes: [
-                           { id: 'https://dictionary.cambridge.org/grammar/british-grammar/above-or-over', text: 'cambridge grammar' },
-                           { id: 'https://translate.google.com/#en/vi/hello', text: 'translate.google.com' },
-                               { id: 'http://w2ui.com/web/demos/#!layout/layout-1', text: 'w2ui.com' },
-                               { id: 'https://vnexpress.net', text: 'Test' },
-                               { id: 'https://vuejs.org/v2/guide/', text: 'Vue JS' },
-                               { id: 'https://msdn.microsoft.com/en-us/library/ff361664(v=vs.110).aspx', text: 'MSDN' },
-                               { id: 'https://developer.mozilla.org/en-US/docs/Web', text: 'mozilla Web technologies' },
-                               { id: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters', text: 'mozilla rest_parameters' },
-                               { id: 'https://www.myenglishpages.com/site_php_files/grammar-lesson-tenses.php', text: 'grammar-lesson-tenses' },
-                               { id: 'https://learnenglish.britishcouncil.org/en/english-grammar/pronouns', text: 'learnenglish.britishcouncil' },
-                       ]
-                   }
-                ]
-            });
-
-            w2ui.sidebar.on('*', function (event) {
-                if (event.type == 'click') {
-                    var cmd = JSON.stringify({ cmd: 'browser', url: event.node.id });
-                    console.log(cmd);
-                }
-            });
-        });
-    </script>
+    <a href="javascript:API.Go('https://dictionary.cambridge.org/grammar/british-grammar/above-or-over')">cambridge grammar</a><br />
+    <a href="javascript:API.Go('https://translate.google.com/#en/vi/hello')">translate.google.com</a><br />
+    <a href="javascript:API.Go('http://w2ui.com/web/demos/#!layout/layout-1')">w2ui.com</a><br />
+    <a href="javascript:API.Go('https://vnexpress.net')">Test</a><br />
+    <a href="javascript:API.Go('https://vuejs.org/v2/guide/')">Vue JS</a><br />
+    <a href="javascript:API.Go('https://msdn.microsoft.com/en-us/library/ff361664(v=vs.110).aspx')">MSDN</a><br />
+    <a href="javascript:API.Go('https://developer.mozilla.org/en-US/docs/Web')">mozilla Web technologies</a><br />
+    <a href="javascript:API.Go('https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters')">mozilla rest_parameters</a><br />
+    <a href="javascript:API.Go('https://www.myenglishpages.com/site_php_files/grammar-lesson-tenses.php')">grammar-lesson-tenses</a><br />
+    <a href="javascript:API.Go('https://learnenglish.britishcouncil.org/en/english-grammar/pronouns')">learnenglish.britishcouncil</a><br />
 
     <button onclick="location.reload()" style="position:fixed;z-index:999999;bottom:0px;right:0px;">Reload</button>
 </body>

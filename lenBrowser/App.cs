@@ -155,6 +155,8 @@ namespace lenBrowser
 
         static void f_app_Init()
         {
+            Console.Title = "BROWSER";
+
             f_http_Init();
 
             //string pathCache = Path.Combine(Path.GetDirectoryName(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)), "Cache");
@@ -169,18 +171,17 @@ namespace lenBrowser
             }
 
             CacheMemory cache = new CacheMemory();
+
             CEF.RegisterScheme("setting", new SettingSchemeHandlerFactory());
             CEF.RegisterScheme("cache", new CacheSchemeHandlerFactory());
+
             CEF.RegisterScheme("http", new HttpSchemeHandlerFactory());
             CEF.RegisterScheme("https", new HttpSchemeHandlerFactory());
 
+            CEF.RegisterJsObject("API", new ApiJavascript());
+
             main = new fBrowser(cache);
-
-            //CEF.RegisterScheme(CacheMemory.SCHEME, CacheMemory.HOST, new CacheSchemeHandlerFactory(cache));
-            //CEF.RegisterScheme("http", "test.local", new TestSchemeHandlerFactory());
-            //CEF.RegisterJsObject("___api", new apiJavascript());
-
-
+            
             Application.EnableVisualStyles();
             Application.Run(main);
         }

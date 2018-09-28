@@ -1,6 +1,9 @@
-﻿<!--https://dictionary.cambridge.org/grammar/british-grammar/above-or-over-->
-<h1><i class="i">Above</i> or <i class="i">over</i><span class="span pad">?</span></h1>            <div class="fcdo-s20">from <a href="https://dictionary.cambridge.org/grammar/english-grammar-today/" class="a--rev">English Grammar Today</a></div>
-</div><div class="content"><p class="p"><span class="target"/>When we use a<i class="i">bove</i> as a preposition, it means ‘higher than’. Its meaning is close to that of the preposition <i class="i">over</i>. In the following sentences, <i class="i">over</i> can be used instead of <i class="i">above</i>:</p><blockquote class="blockquote"><p class="p"><i class="i">The waves came up <b class="b">above</b> her head and she started screaming.</i> (or … <i class="i">came up</i> <b class="b"><i class="i">over</i></b> <i class="i">her head</i> …)</p></blockquote><blockquote class="blockquote"><p class="p"><i class="i">She is a nervous flier. But once the plane got <b class="b">above</b> the clouds, she started to relax.</i> (or … <i class="i">got</i> <b class="b"><i class="i">over</i></b> <i class="i">the clouds …</i>)</p></blockquote><p class="p">We use <i class="i">above</i>, but not <i class="i">over</i>, to refer to things that are at an upper or higher level:</p><p class="p">[a ‘chalet’ is a small wooden building usually found in mountainous areas]</p><blockquote class="blockquote"><p class="p"><i class="i">Do they live in that chalet <b class="b">above</b> the village?</i></p></blockquote><blockquote class="blockquote"><p class="p">Not: <s class="s">Do they live in that chalet over the village?</s></p></blockquote><p class="p">We usually use <i class="i">above</i>, but not <i class="i">over</i>, when there is no contact between the things referred to. <i class="i">Over</i> or <i class="i">on top of</i> have a more general meaning, and can be used when one thing touches or covers another:</p><blockquote class="blockquote"><p class="p"><i class="i">They made her comfortable and put a blanket <b class="b">over</b> her.</i></p></blockquote><blockquote class="blockquote"><p class="p">Not: <s class="s">They made her comfortable and put a blanket above her</s>.</p></blockquote><p class="p">We normally use <i class="i">over</i> not <i class="i">above</i> with numbers:</p><blockquote class="blockquote"><p class="p"><i class="i">I get <b class="b">over</b> sixty emails a day.</i></p></blockquote><blockquote class="blockquote"><p class="p">Not: <s class="s">I get above sixty emails a day</s>.</p></blockquote><blockquote class="blockquote"><p class="p"><i class="i">If you weigh <b class="b">over</b> 100 kilograms, then you may need to start a diet.</i></p></blockquote><blockquote class="blockquote"><p class="p">Not: <s class="s">If you weigh above 100 kilograms</s></p></blockquote><div class="panel pad-indent"><div class="panel-head"><span class="panel-title">Warning: </span></div><div class="panel-body pad-indent"><p class="p">When we talk about temperatures in relation to <i class="i">zero</i> or (<i class="i">the) average</i>, we use <i class="i">above</i> not <i class="i">over</i>:</p><blockquote class="blockquote"><p class="p"><i class="i">It was three degrees <b class="b">above</b> zero.</i></p></blockquote><blockquote class="blockquote"><p class="p">Not: <s class="s">It was three degrees over zero</s>.</p></blockquote></div></div><p class="p">When we refer to temperatures in other contexts, we can normally use <i class="i">above</i> or <i class="i">over</i>:</p><blockquote class="blockquote"><p class="p"><i class="i">The temperature is already <b class="b">above</b> 30 degrees.</i> (or … <b class="b"><i class="i">over</i></b> <i class="i">30 degrees</i>.)</p></blockquote><div class="section_anchor" id=""> </div><div class="section"><div class="header"><h2 class="title"/></div><div class="content"><div class="section"><div class="header"><h3 class="title">Typical errors</h3></div><div class="content"><ul class="ul"><li class="li"><p class="p">We don’t use <i class="i">over</i> to mean ‘higher level’.<span class="target"/></p></li></ul><blockquote class="blockquote"><p class="p"><i class="i">Most of the race is 500 metres <b class="b">above</b> sea level.</i></p></blockquote><blockquote class="blockquote"><p class="p">Not: <s class="s">Most of the race is 500 over sea level</s>.</p></blockquote><ul class="ul"><li class="li"><p class="p">We don’t use <i class="i">above</i> when one thing touches or covers another.</p></li></ul><blockquote class="blockquote"><p class="p"><i class="i">Pour some cream <b class="b"><span class="target"/>over</b> the tart and serve it warm.</i></p></blockquote><blockquote class="blockquote"><p class="p">Not: <s class="s">Pour some cream above the tart</s></p></blockquote><ul class="ul"><li class="li"><p class="p">We don’t use <i class="i">above</i> with numbers.</p></li></ul><blockquote class="blockquote"><p class="p"><i class="i"><b class="b">Over</b> 100 people complained about the programme.</i></p></blockquote><blockquote class="blockquote"><p class="p">Not: <s class="s">Above 100 people complained</s></p></blockquote><div class="nav"><p class="p">See also: </p><ul class="ul"><li class="li"><p class="p"> <a class="Ref" href="https://dictionary.cambridge.org/grammar/british-grammar/over"><i class="i">Over</i> </a> </p></li><li class="li"><p class="p"> <a class="Ref" href="https://dictionary.cambridge.org/grammar/british-grammar/beneath"><i class="i">Beneath</i> </a> </p></li><li class="li"><p class="p"> <a class="Ref" href="https://dictionary.cambridge.org/grammar/british-grammar/above"><i class="i">Above</i> </a> </p></li></ul></div></div></div></div></div></div></div></article>
+<!--https://dictionary.cambridge.org/grammar/british-grammar/future-be-going-to-i-am-going-to-work-->
+<h1>Future: <i class="i">be going to</i> (<i class="i">I am going to work</i>)</h1>            <div class="fcdo-s20">from <a href="https://dictionary.cambridge.org/grammar/english-grammar-today/" class="a--rev">English Grammar Today</a></div>
+</div><div class="content"><div class="section_anchor" id="be-going-to-form"> </div><div class="section"><div class="header"><h2 class="title"><i class="i">Be going to</i>: form</h2></div><div class="content"><p class="p"><span class="target"/>We use <i class="i">be going to</i> + the base form of the verb:</p><blockquote class="blockquote"><p class="p"><i class="i">I<b class="b">’m going to</b> take a few exams at the end of the year.</i></p></blockquote><blockquote class="blockquote"><p class="p"><i class="i">It<b class="b">’s going to</b> be difficult to get a job during the summer as the tourist industry is suffering from the economic downturn.</i></p></blockquote></div></div><div class="section_anchor" id="be-going-to-uses"> </div><div class="section"><div class="header"><h2 class="title"><i class="i">Be going to</i>: uses</h2></div><div class="content"><p class="p"><i class="i">Be going to</i> is commonly used in informal styles.</p><div class="section"><div class="header"><h3 class="title">Intentions</h3></div><div class="content"><p class="p">We use <i class="i">be going to</i> to talk about future plans and intentions. Usually the decision about the future plans has already been made:</p><blockquote class="blockquote"><p class="p"><i class="i">She’<b class="b">s going to</b> be a professional dancer when she grows up.</i></p></blockquote><blockquote class="blockquote"><p class="p"><i class="i">I’<b class="b">m going to</b> look for a new place to live next month.</i></p></blockquote></div></div>      <div class="section"><div class="header"><h3 class="title">Predictions</h3></div><div class="content"><p class="p">We use <i class="i">be going to</i> to predict something that we think is certain to happen or which we have evidence for now:</p><blockquote class="blockquote"><p class="p"><i class="i">It’s <b class="b">going to</b> snow again soon.</i> (The speaker can probably see dark snow clouds.)</p></blockquote><blockquote class="blockquote"><p class="p"><i class="i">Look out! He<b class="b">’s going to</b> break that glass.</i></p></blockquote></div></div><div class="section"><div class="header"><h3 class="title">Commands</h3></div><div class="content"><p class="p">We use <i class="i">be going to</i> when we give commands or state that something is obligatory:</p><p class="p">[parent to a child<span class="target"/>]</p><blockquote class="blockquote"><p class="p"><i class="i">You’<b class="b">re going to</b> pick up all of those toys right now. This room is a mess!</i></p></blockquote></div></div>
+<div id='ad_contentslot_1' class='am-default contentslot'>
+</div>
+</div></div><div class="section_anchor" id="gonna-informal-contexts"> </div><div class="section"><div class="header"><h2 class="title"><i class="i">Gonna</i> (informal contexts)</h2></div><div class="content"><div class="panel pad-indent"><div class="panel-head"><span class="panel-title">Spoken English: </span></div><div class="panel-body pad-indent"><p class="p"><span class="target"/>We use <i class="i">gonna</i> <i class="i"><span class="phonemic">/gənə</span></i>/ instead of <i class="i">going to</i> in informal contexts, especially in speaking and in song lyrics. We write <i class="i">gonna</i> to show how to pronounce it:</p><blockquote class="blockquote"><p class="p"><i class="i">Are you <b class="b">gonna</b> try and get stuff sorted as soon as you can then?</i> (Are you going to try and get things organised as soon as you can?)</p></blockquote><blockquote class="blockquote"><p class="p"><i class="i">One day I’m <b class="b">gonna</b> be a star.</i></p></blockquote></div></div></div></div><div class="section_anchor" id="be-going-to-or-will"> </div><div class="section"><div class="header"><h2 class="title"><i class="i">Be going to</i> or <i class="i">will</i><span class="span pad">?</span></h2></div><div class="content"><p class="p"><i class="i">Will</i> is often used in a similar way to <i class="i">be going to</i>. <i class="i">Will</i> is used when we are talking about something with absolute certainty. <i class="i">Be going to</i> is used when we want to emphasise our decision or the evidence in the present:<span class="target"/></p><p class="p">[An ‘A’ road is a main road. A ‘B’ road is a smaller road.]</p><blockquote class="blockquote"><p class="p"><i class="i">We are now very late so we<b class="b">’re going to</b> take the ‘B’ road.</i> (the speaker refers to the present and emphasises the decision)</p></blockquote><blockquote class="blockquote"><p class="p"><i class="i">I know the ‘B’ road <b class="b">will</b> be quicker at this time of day.</i> (the speaker states a fact)</p></blockquote><div class="nav"><p class="p">See also: </p><ul class="ul"><li class="li"><p class="p"> <a class="Ref" href="https://dictionary.cambridge.org/grammar/british-grammar/will"><i class="i">Will</i> </a> </p></li><li class="li"><p class="p"> <a class="Ref" href="https://dictionary.cambridge.org/grammar/british-grammar/future-will-and-shall">Future: <i class="i">will</i> and <i class="i">shall</i> </a> </p></li></ul></div></div></div></div></div></article>
 </div>
 </div>
 <div class="clrd">
@@ -61,7 +64,7 @@
 <li class="section">
 <a>Easily confused words</a>
 <ul>
-<li class="current">
+<li>
 <a href="https://dictionary.cambridge.org/grammar/british-grammar/above-or-over"><i>Above</i> or <i>over?</i></a>
 </li>
 <li>
@@ -638,8 +641,60 @@
 <li>
 <a href="https://dictionary.cambridge.org/grammar/british-grammar/common-verbs">common verbs</a>
 </li>
+<li class="section">
+<a>future</a>
+<ul>
 <li>
-<a href="https://dictionary.cambridge.org/grammar/british-grammar/future">future</a>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/future/future-other-expressions-to-talk-about-the-future">Future: other expressions to talk about the future</a>
+</li>
+<li class="section current">
+<a>Future: <i>be going to</i>(<i>I am going to work</i>)?</a>
+<ul>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/future/future-be-going-to-i-am-going-to-work#be-going-to-or-will"><i>Be going to</i> or <i>will</i>?</a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/future/future-be-going-to-i-am-going-to-work#be-going-to-form"><i>Be going to</i>: form</a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/future/future-be-going-to-i-am-going-to-work#be-going-to-uses"><i>Be going to</i>: uses</a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/future/future-be-going-to-i-am-going-to-work#gonna-informal-contexts"><i>Gonna</i> (informal contexts)</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/future/future">Future</a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/future/future-continuous-i-will-be-working">Future continuous (<i>I will be working</i>)</a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/future/future-in-the-past">Future in the past</a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/future/future-perfect-continuous-i-will-have-beenworking-here-ten-years">Future perfect continuous (<i>I will have beenworking here ten years</i>)</a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/future/future-perfect-simple-i-will-have-worked-eight-hours">Future perfect simple (<i>I will have worked eight hours</i>)</a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/future/future-present-continuous-to-talk-about-the-future-im-working-tomorrow">Future: present continuous to talk about the future (<i>I’m working tomorrow</i>)</a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/future/future-present-simple-to-talk-aboutthe-future-i-work-tomorrow">Future: present simple to talk aboutthe future (<i>I work tomorrow</i>)</a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/future/future-typical-errors">Future: typical errors</a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/future/future-will-and-shall">Future: <i>will</i> and <i>shall</i></a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/future/going-to"><i>Going to</i></a>
+</li>
+</ul>
 </li>
 <li>
 <a href="https://dictionary.cambridge.org/grammar/british-grammar/infinitives-and-imperatives">infinitives and imperatives</a>

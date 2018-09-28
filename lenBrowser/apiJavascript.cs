@@ -4,8 +4,12 @@ using System.Windows.Forms;
 
 namespace lenBrowser
 {
-    public class apiJavascript
-    {        
+    public class ApiJavascript
+    {
+        public void Go(string url) {
+            App.f_http_getSource(url);
+        }
+
         public void windowOpen(string str)
         {
             var f = new Form();

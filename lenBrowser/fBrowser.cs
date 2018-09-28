@@ -31,21 +31,20 @@ namespace lenBrowser
         //////☆★☐☑⧉✉⦿⦾⚠⚿⛑✕✓⥀✖↭☊⦧▷◻◼⟲≔☰⚒❯►❚❚❮⟳⚑⚐✎✛
         //////🕮🖎✍⦦☊🕭🔔🗣🗢🖳🎚🏷🖈🎗🏱🏲🗀🗁🕷🖒🖓👍👎♥♡♫♪♬♫🎙🎖🗝●◯⬤⚲☰⚒🕩🕪❯►❮⟳⚐🗑✎✛🗋🖫⛉ ⛊ ⛨⚏★☆
 
-        const int SETTING_WIDTH = 0;
+        const int SETTING_WIDTH = 299;
         //const string URL_SETTING = "about:blank";
         const string URL_SETTING = "setting://setting.html";
         //const string URL = "https://vnexpress.net";
         //const string URL_GOOGLE = "https://google.com.vn";
         //const string URL = "http://w2ui.com/web/demos/#!layout/layout-1";
-        const string URL = "about:blank";
+        //const string URL = "about:blank";
         //const string URL = "http://test.local/demo.html";
-
         //const string URL = "https://dictionary.cambridge.org/grammar/british-grammar/above-or-over";        
         //const string URL = "https://vuejs.org/v2/guide/";
         //const string URL = "https://msdn.microsoft.com/en-us/library/ff361664(v=vs.110).aspx";
         //const string URL = "https://developer.mozilla.org/en-US/docs/Web";
         //const string URL = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters";
-        //const string URL = "https://www.myenglishpages.com/site_php_files/grammar-lesson-tenses.php";
+        const string URL = "https://www.myenglishpages.com/site_php_files/grammar-lesson-tenses.php";
         //const string URL = "https://learnenglish.britishcouncil.org/en/english-grammar/pronouns";
 
         //const string URL = "https://translate.google.com/#en/vi/hello";

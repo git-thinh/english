@@ -10,6 +10,7 @@ using System.Net;
 using System.Net.Security;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Web;
@@ -64,6 +65,8 @@ namespace https
 
         static void f_app_Run(string[] args)
         {
+            Console.Title = "HTTPS";
+
             //f_console_Hide();
             f_app_checkToolRunning();
 
@@ -97,7 +100,8 @@ namespace https
 
         static void f_app_messageReceiver(object sender, IpcSignalEventArgs e)
         {
-            Console.WriteLine(string.Format("{0} -> REQUEST: {1}", EVENT_KEY, String.Join(",", e.Arguments)));
+            Console.WriteLine(string.Format("-> REQUEST: {0} => {1}", e.Arguments[0], e.Arguments[1] == "1" ? "FILE" : ""));
+
             if (e.Arguments.Length > 0)
             {
                 string url = e.Arguments[0];
@@ -107,7 +111,7 @@ namespace https
                     string file = f_html_getPathFileByUrl(url);
                     if (File.Exists(file))
                     {
-                        Console.WriteLine(EVENT_KEY + " -> CACHE: " + url);
+                        Console.WriteLine("-> CACHE: " + url);
                         //string data = File.ReadAllText(file);
                         f_app_sendMessageToUI(true, url, file);
                     }
@@ -205,8 +209,9 @@ namespace https
                             using (StreamReader sr = new StreamReader(rs.GetResponseStream(), System.Text.Encoding.UTF8))
                             {
                                 string data = sr.ReadToEnd();
-                                Console.WriteLine(EVENT_KEY + " -> OK: " + para.Item2.Url);
+                                Console.WriteLine("-> OK: " + para.Item2.Url);
                                 data = HttpUtility.HtmlDecode(data);
+
                                 // Fetch all url same domain in this page ...
                                 string[] urls = f_html_actractUrl(link.Url, data);
                                 data = f_html_Format(data);
@@ -214,7 +219,7 @@ namespace https
                                 int posH1 = data.ToLower().IndexOf("<h1");
                                 if (posH1 != -1) data = data.Substring(posH1, data.Length - posH1);
 
-                                data = _url + "\r\n" + data;
+                                data = "<!--" + _url + "-->\r\n" + data;
 
                                 string domain = f_html_getDomainByUrl(para.Item2.Url);
                                 string file = f_html_getPathFileByUrl(para.Item2.Url);
@@ -223,7 +228,15 @@ namespace https
                                 if (para.Item2.isWriteFileCache)
                                 {
                                     if (!Directory.Exists("cache/" + domain)) Directory.CreateDirectory("cache/" + domain);
-                                    if (!File.Exists(file)) File.WriteAllText(file, data);
+                                    if (!File.Exists(file))
+                                    {
+                                        using (FileStream writer = new FileStream(file, FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite))
+                                        {
+                                            byte[] buf = Encoding.UTF8.GetBytes(data);
+                                            writer.Write(buf, 0, buf.Length);
+                                            writer.Close();
+                                        }
+                                    }
                                 }
                             }
                             rs.Close();
@@ -244,15 +257,22 @@ namespace https
 
         static string f_html_getDomainByUrl(string url)
         {
-            return url.Split('/')[2].Replace(':', '-').ToLower();
+            string domain = url.Split('/')[2].Replace(':', '-').ToLower();
+            if (domain.StartsWith("www.")) domain = domain.Substring(4);
+            return domain;
         }
 
         static string f_html_getNameFileByUrl(string url)
         {
             string domain = f_html_getDomainByUrl(url);
             string fn = url.Substring(domain.Length + 8).Replace('/', '_');
+
+            if (fn.EndsWith(".php") || fn.EndsWith(".jsp")) fn = fn.Substring(0, fn.Length - 4);
+            else if(fn.EndsWith(".aspx") || fn.EndsWith(".html")) fn = fn.Substring(0, fn.Length - 5);
+
             if (fn[0] == '_') fn = fn.Substring(1);
             if (fn[fn.Length - 1] == '_') fn = fn.Substring(0, fn.Length - 1);
+
             fn = Regex.Replace(fn, @"[^A-Za-z0-9-_]+", string.Empty);
             return fn;
         }

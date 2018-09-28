@@ -1,6 +1,12 @@
-﻿<!--https://dictionary.cambridge.org/grammar/british-grammar/above-or-over-->
-<h1><i class="i">Above</i> or <i class="i">over</i><span class="span pad">?</span></h1>            <div class="fcdo-s20">from <a href="https://dictionary.cambridge.org/grammar/english-grammar-today/" class="a--rev">English Grammar Today</a></div>
-</div><div class="content"><p class="p"><span class="target"/>When we use a<i class="i">bove</i> as a preposition, it means ‘higher than’. Its meaning is close to that of the preposition <i class="i">over</i>. In the following sentences, <i class="i">over</i> can be used instead of <i class="i">above</i>:</p><blockquote class="blockquote"><p class="p"><i class="i">The waves came up <b class="b">above</b> her head and she started screaming.</i> (or … <i class="i">came up</i> <b class="b"><i class="i">over</i></b> <i class="i">her head</i> …)</p></blockquote><blockquote class="blockquote"><p class="p"><i class="i">She is a nervous flier. But once the plane got <b class="b">above</b> the clouds, she started to relax.</i> (or … <i class="i">got</i> <b class="b"><i class="i">over</i></b> <i class="i">the clouds …</i>)</p></blockquote><p class="p">We use <i class="i">above</i>, but not <i class="i">over</i>, to refer to things that are at an upper or higher level:</p><p class="p">[a ‘chalet’ is a small wooden building usually found in mountainous areas]</p><blockquote class="blockquote"><p class="p"><i class="i">Do they live in that chalet <b class="b">above</b> the village?</i></p></blockquote><blockquote class="blockquote"><p class="p">Not: <s class="s">Do they live in that chalet over the village?</s></p></blockquote><p class="p">We usually use <i class="i">above</i>, but not <i class="i">over</i>, when there is no contact between the things referred to. <i class="i">Over</i> or <i class="i">on top of</i> have a more general meaning, and can be used when one thing touches or covers another:</p><blockquote class="blockquote"><p class="p"><i class="i">They made her comfortable and put a blanket <b class="b">over</b> her.</i></p></blockquote><blockquote class="blockquote"><p class="p">Not: <s class="s">They made her comfortable and put a blanket above her</s>.</p></blockquote><p class="p">We normally use <i class="i">over</i> not <i class="i">above</i> with numbers:</p><blockquote class="blockquote"><p class="p"><i class="i">I get <b class="b">over</b> sixty emails a day.</i></p></blockquote><blockquote class="blockquote"><p class="p">Not: <s class="s">I get above sixty emails a day</s>.</p></blockquote><blockquote class="blockquote"><p class="p"><i class="i">If you weigh <b class="b">over</b> 100 kilograms, then you may need to start a diet.</i></p></blockquote><blockquote class="blockquote"><p class="p">Not: <s class="s">If you weigh above 100 kilograms</s></p></blockquote><div class="panel pad-indent"><div class="panel-head"><span class="panel-title">Warning: </span></div><div class="panel-body pad-indent"><p class="p">When we talk about temperatures in relation to <i class="i">zero</i> or (<i class="i">the) average</i>, we use <i class="i">above</i> not <i class="i">over</i>:</p><blockquote class="blockquote"><p class="p"><i class="i">It was three degrees <b class="b">above</b> zero.</i></p></blockquote><blockquote class="blockquote"><p class="p">Not: <s class="s">It was three degrees over zero</s>.</p></blockquote></div></div><p class="p">When we refer to temperatures in other contexts, we can normally use <i class="i">above</i> or <i class="i">over</i>:</p><blockquote class="blockquote"><p class="p"><i class="i">The temperature is already <b class="b">above</b> 30 degrees.</i> (or … <b class="b"><i class="i">over</i></b> <i class="i">30 degrees</i>.)</p></blockquote><div class="section_anchor" id=""> </div><div class="section"><div class="header"><h2 class="title"/></div><div class="content"><div class="section"><div class="header"><h3 class="title">Typical errors</h3></div><div class="content"><ul class="ul"><li class="li"><p class="p">We don’t use <i class="i">over</i> to mean ‘higher level’.<span class="target"/></p></li></ul><blockquote class="blockquote"><p class="p"><i class="i">Most of the race is 500 metres <b class="b">above</b> sea level.</i></p></blockquote><blockquote class="blockquote"><p class="p">Not: <s class="s">Most of the race is 500 over sea level</s>.</p></blockquote><ul class="ul"><li class="li"><p class="p">We don’t use <i class="i">above</i> when one thing touches or covers another.</p></li></ul><blockquote class="blockquote"><p class="p"><i class="i">Pour some cream <b class="b"><span class="target"/>over</b> the tart and serve it warm.</i></p></blockquote><blockquote class="blockquote"><p class="p">Not: <s class="s">Pour some cream above the tart</s></p></blockquote><ul class="ul"><li class="li"><p class="p">We don’t use <i class="i">above</i> with numbers.</p></li></ul><blockquote class="blockquote"><p class="p"><i class="i"><b class="b">Over</b> 100 people complained about the programme.</i></p></blockquote><blockquote class="blockquote"><p class="p">Not: <s class="s">Above 100 people complained</s></p></blockquote><div class="nav"><p class="p">See also: </p><ul class="ul"><li class="li"><p class="p"> <a class="Ref" href="https://dictionary.cambridge.org/grammar/british-grammar/over"><i class="i">Over</i> </a> </p></li><li class="li"><p class="p"> <a class="Ref" href="https://dictionary.cambridge.org/grammar/british-grammar/beneath"><i class="i">Beneath</i> </a> </p></li><li class="li"><p class="p"> <a class="Ref" href="https://dictionary.cambridge.org/grammar/british-grammar/above"><i class="i">Above</i> </a> </p></li></ul></div></div></div></div></div></div></div></article>
+<!--https://dictionary.cambridge.org/grammar/british-grammar/may-->
+<h1><i class="i">May</i></h1>            <div class="fcdo-s20">from <a href="https://dictionary.cambridge.org/grammar/english-grammar-today/" class="a--rev">English Grammar Today</a></div>
+</div><div class="content"><div class="section_anchor" id="may-forms"> </div><div class="section"><div class="header"><h2 class="title"><i class="i">May</i>: forms</h2></div><div class="content"><div class="section"><div class="header"><h3 class="title">Affirmative (+) form</h3></div><div class="content"><p class="p"><i class="i">May</i> comes first in the verb phrase (after the subject and before another verb):<span class="target"/></p><blockquote class="blockquote"><p class="p"><i class="i">It <b class="b">may</b> be possible for him to get home tonight.</i></p></blockquote><p class="p"><i class="i">May</i> can’t be used with another modal verb:</p><blockquote class="blockquote"><p class="p"><i class="i">This <b class="b">may</b> hurt you.</i></p></blockquote><blockquote class="blockquote"><p class="p">Not: <s class="s">This may could hurt you</s>. or <s class="s">This could may hurt you</s>.</p></blockquote></div></div>      <div class="section"><div class="header"><h3 class="title">Negative (−) form</h3></div><div class="content"><p class="p">The negative form of <i class="i">may</i> is <i class="i">may not</i>. We don’t use <i class="i">don’t</i>/<i class="i">doesn’t/didn’t</i> with <i class="i">may</i>:</p><blockquote class="blockquote"><p class="p"><i class="i">We <b class="b">may not</b> have enough information at the moment.</i></p></blockquote><blockquote class="blockquote"><p class="p">Not: <s class="s">We don’t may have enough information at the moment</s>.</p></blockquote><div class="panel pad-indent"><div class="panel-head"><span class="panel-title">Warning: </span></div><div class="panel-body pad-indent"><p class="p"><span class="target"/>We don’t use <i class="i">mayn’t</i> as the contracted form of <i class="i">may not</i>:</p><blockquote class="blockquote"><p class="p"><i class="i">We <b class="b">may not</b> yet know what is safe to eat.</i></p></blockquote><blockquote class="blockquote"><p class="p">Not: <s class="s">We mayn’t yet know what is safe to eat</s>.</p></blockquote></div></div><div class="nav"><p class="p">See also: </p><ul class="ul"><li class="li"><p class="p"> <a class="Ref" href="https://dictionary.cambridge.org/grammar/british-grammar/modality-forms#modality-forms__1">Modal verbs </a> </p></li></ul></div></div></div><div class="section"><div class="header"><h3 class="title">Question (?) form</h3></div><div class="content"><div class="panel pad-indent"><div class="panel-head"><span class="panel-title">Warning: </span></div><div class="panel-body pad-indent"><p class="p">The subject and <i class="i">may</i> change position to form questions. We don’t use <i class="i">do/does/did</i>:</p><blockquote class="blockquote"><p class="p"><i class="i"><b class="b">May</b> we drop you at your hotel?</i></p></blockquote><blockquote class="blockquote"><p class="p">Not: <s class="s">Do we may drop you at your hotel?</s></p></blockquote><blockquote class="blockquote"><p class="p"><i class="i"><b class="b">May</b> I leave the room, please?</i></p></blockquote><blockquote class="blockquote"><p class="p">Not: <s class="s">Do I may leave the room please?</s></p></blockquote></div></div></div></div>
+<div id='ad_contentslot_1' class='am-default contentslot'>
+</div>
+</div></div><div class="section_anchor" id="may-uses"> </div><div class="section"><div class="header"><h2 class="title"><i class="i">May</i>: uses</h2></div><div class="content"><div class="section"><div class="header"><h3 class="title">Permission</h3></div><div class="content"><p class="p"><span class="target"/>We use <i class="i">may</i> to ask for, give and refuse permission. It is quite formal.</p><div class="panel"><div class="panel-head"><span class="panel-title"/></div><div class="panel-body"><table class="table"><span class="colgroup"><col class="col"/><col class="col"/><col class="col"/></span><thead class="thead"><tr class="tr"><td class="td"><p class="p">asking for permission</p></td><td class="td"><p class="p">giving permission</p></td><td class="td"><p class="p">refusing permission</p></td></tr></thead><tbody class="tbody"><tr class="tr"><td class="td"><blockquote class="blockquote"><p class="p"><i class="i"><b class="b">May</b> I leave the room?</i></p></blockquote></td><td class="td"><blockquote class="blockquote"><p class="p"><i class="i">Yes, you <b class="b">may</b>.</i></p></blockquote></td><td class="td"><blockquote class="blockquote"><p class="p"><i class="i">No, you <b class="b">may</b> not.</i></p></blockquote></td></tr><tr class="tr"><td class="td"><blockquote class="blockquote"><p class="p"><i class="i"><b class="b">May</b> we use your phone?</i></p></blockquote></td><td class="td"><blockquote class="blockquote"><p class="p"><i class="i">Yes, you <b class="b">may</b>.</i></p></blockquote></td><td class="td"><blockquote class="blockquote"><p class="p"><i class="i">No, you <b class="b">may</b> not.</i></p></blockquote></td></tr></tbody></table></div></div><p class="p"><i class="i">Can, could</i> and <i class="i">may</i> are all used to ask for permission. <i class="i">May</i> is the most formal/polite and <i class="i">could</i> is more formal and polite than <i class="i">can</i>.</p><div class="nav"><p class="p">See also: </p><ul class="ul"><li class="li"><p class="p"> <a class="Ref" href="https://dictionary.cambridge.org/grammar/british-grammar/can-could-or-may"><i class="i">Can</i>, <i class="i">could</i> or <i class="i">may</i>? </a> </p></li><li class="li"><p class="p"> <a class="Ref" href="https://dictionary.cambridge.org/grammar/british-grammar/requests">Requests </a> </p></li></ul></div></div></div><div class="section"><div class="header"><h3 class="title">Possibility</h3></div><div class="content"><p class="p">We use <i class="i">may</i> to refer to weak possibility in the present and future:</p><blockquote class="blockquote"><p class="p"><i class="i">The economy <b class="b">may</b> go up or down in the next year.</i> (I think both are possible, the economy going up or the economy going down. I am not making either one a strong possibility.)</p></blockquote><blockquote class="blockquote"><p class="p"><i class="i">I think I <b class="b">may</b> go to the doctor today and try to get some antibiotics.</i> (I am not very sure yet if I will go to the doctor.)</p></blockquote></div></div>      <div class="section"><div class="header"><h3 class="title">General truths</h3></div><div class="content"><p class="p">We use <i class="i">may</i> in formal writing, especially academic English, to describe things which the speaker thinks are generally true or possible. In this case, it is a more formal equivalent of <i class="i">can</i>.<span class="target"/></p><div class="panel pad-indent"><div class="panel-head"><span class="panel-title">Compare</span></div><div class="panel-body pad-indent"><table class="table"><span class="colgroup"><col class="col"/><col class="col"/></span><tbody class="tbody"><tr class="tr"><td class="td"><blockquote class="blockquote"><p class="p"><i class="i">A typical farmer’s cottage <b class="b">can</b> be seen in the Ulster Folk Museum.</i></p></blockquote></td><td class="td"><p class="p">Both sentences express what the speaker believes to be a general truth about where the cottage is located. The speaker knows that there is a cottage in the museum and a visitor is able to see them there if they want to. <i class="i">May</i> is more formal.</p></td></tr><tr class="tr"><td class="td"><blockquote class="blockquote"><p class="p"><i class="i">A typical farmer’s cottage <b class="b">may</b> be seen in the Ulster Folk Museum.</i></p></blockquote></td></tr></tbody></table></div></div><div class="nav"><p class="p">See also: </p><ul class="ul"><li class="li"><p class="p"> <a class="Ref" href="https://dictionary.cambridge.org/grammar/british-grammar/hedges-just">Hedges (<i class="i">just</i>) </a> </p></li></ul></div></div></div>
+<div id='ad_contentslot_2' class='am-default contentslot'>
+</div>
+<div class="section"><div class="header"><h3 class="title">Accepting a different view or opinion</h3></div><div class="content"><p class="p">We often use <i class="i">may</i> to accept a different view or opinion, especially with <i class="i">well</i>, and/or followed by <i class="i">but</i>:</p><blockquote class="blockquote"><p class="p"><i class="i">One month <b class="b">may</b> well be too long to go away on holiday.</i></p></blockquote><blockquote class="blockquote"><p class="p"><i class="i">I <b class="b">may</b> be wrong but I am going to tell the police about it.</i></p></blockquote><blockquote class="blockquote"><p class="p"><i class="i">The couch <b class="b">may</b> well cost more but it’s going to be different.</i></p></blockquote></div></div></div></div></div></div></article>
 </div>
 </div>
 <div class="clrd">
@@ -61,7 +67,7 @@
 <li class="section">
 <a>Easily confused words</a>
 <ul>
-<li class="current">
+<li>
 <a href="https://dictionary.cambridge.org/grammar/british-grammar/above-or-over"><i>Above</i> or <i>over?</i></a>
 </li>
 <li>
@@ -644,8 +650,67 @@
 <li>
 <a href="https://dictionary.cambridge.org/grammar/british-grammar/infinitives-and-imperatives">infinitives and imperatives</a>
 </li>
+<li class="section">
+<a>modals and modality</a>
+<ul>
 <li>
-<a href="https://dictionary.cambridge.org/grammar/british-grammar/modals-and-modality">modals and modality</a>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/modals-and-modality/can"><i>Can</i></a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/modals-and-modality/could"><i>Could</i></a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/modals-and-modality/could-may-and-might"><i>Could</i>, <i>may</i> and <i>might</i></a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/modals-and-modality/dare"><i>Dare</i></a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/modals-and-modality/had-better"><i>Had better</i></a>
+</li>
+<li class="current">
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/modals-and-modality/may"><i>May</i></a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/modals-and-modality/might"><i>Might</i></a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/modals-and-modality/modality-forms">Modality: forms</a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/modals-and-modality/modality-introduction">Modality: introduction</a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/modals-and-modality/modality-meanings-and-uses">Modality: meanings and uses</a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/modals-and-modality/modality-other-modal-words-and-expressions">Modality: other modal words and expressions</a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/modals-and-modality/modality-other-verbs">Modality: other verbs</a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/modals-and-modality/modality-tense">Modality: tense</a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/modals-and-modality/must"><i>Must</i></a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/modals-and-modality/ought-to"><i>Ought to</i></a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/modals-and-modality/shall"><i>Shall</i></a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/modals-and-modality/should"><i>Should</i></a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/modals-and-modality/will"><i>Will</i></a>
+</li>
+<li>
+<a href="https://dictionary.cambridge.org/grammar/british-grammar/modals-and-modality/would"><i>Would</i></a>
+</li>
+</ul>
 </li>
 <li>
 <a href="https://dictionary.cambridge.org/grammar/british-grammar/passive">passive</a>
