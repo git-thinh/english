@@ -26,8 +26,8 @@ namespace lenBrowser
             {
                 FileName = "https.exe",
                 UseShellExecute = false,
-                RedirectStandardOutput = true,
                 CreateNoWindow = true,
+                RedirectStandardOutput = true,
                 StandardOutputEncoding = Encoding.UTF8
             }
         };

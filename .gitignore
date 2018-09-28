@@ -58,3 +58,7 @@ Run86/bin/Geckofx.pdb
 *.Cache
 Run86/browser/Browser.exe.config
 Run86/browser/Browser.pdb
+https/.vs/https/v15/Server/sqlite3/storage.ide-wal
+.vs/Browser/v15/Server/sqlite3/storage.ide-wal
+.vs/Browser/v15/Server/sqlite3/storage.ide-shm
+https/.vs/https/v15/Server/sqlite3/storage.ide-shm
