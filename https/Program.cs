@@ -58,7 +58,7 @@ namespace https
 
         static void f_app_Test()
         {
-            client.SendTo(EVENT_KEY, EVENT_NAME, "https://dictionary.cambridge.org/grammar/british-grammar/", "1");
+            //client.SendTo(EVENT_KEY, EVENT_NAME, "https://dictionary.cambridge.org/grammar/british-grammar/", "1");
         }
 
         #region [ APP ]

@@ -2,6 +2,7 @@ using CefSharp;
 using System;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace lenBrowser
 {
@@ -10,7 +11,7 @@ namespace lenBrowser
         public CacheSchemeHandler() : base()
         {
         }
-
+        
         static string view = File.ReadAllText("view/view.html");
         public bool ProcessRequest(IRequest request, ref string mimeType, ref Stream stream)
         {

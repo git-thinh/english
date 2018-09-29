@@ -26,8 +26,7 @@ namespace lenBrowser
         #region
         // This is where we create our message window. When this form is created it will create our hidden window.
         readonly MessageListener MSG_WINDOW;
-
-        readonly ICache CACHE;
+        
         //////☆★☐☑⧉✉⦿⦾⚠⚿⛑✕✓⥀✖↭☊⦧▷◻◼⟲≔☰⚒❯►❚❚❮⟳⚑⚐✎✛
         //////🕮🖎✍⦦☊🕭🔔🗣🗢🖳🎚🏷🖈🎗🏱🏲🗀🗁🕷🖒🖓👍👎♥♡♫♪♬♫🎙🎖🗝●◯⬤⚲☰⚒🕩🕪❯►❮⟳⚐🗑✎✛🗋🖫⛉ ⛊ ⛨⚏★☆
 
@@ -67,12 +66,11 @@ namespace lenBrowser
 
         #endregion
 
-        public fBrowser(ICache cache)
+        public fBrowser()
         {
             #region [ MAIN ]
 
             MSG_WINDOW = new MessageListener(this);
-            CACHE = cache;
 
             this.FormBorderStyle = FormBorderStyle.None;
             this.Text = "Browser";
@@ -88,6 +86,7 @@ namespace lenBrowser
 
             this.FormClosing += (se, ev) =>
             {
+                MSG_WINDOW.ReleaseHandle();
                 ui_setting.Dispose();
                 ui_browser.Dispose();
             };
@@ -270,18 +269,21 @@ namespace lenBrowser
 
         #region [ BROWSER ]
 
+        public void f_browserReload()
+        {
+            if (ui_browser.IsLoading)
+                ui_browser.Stop();
+            ui_browser.Reload();
+        }
+
         public void f_browserGoPage(string url)
         {
             if (ui_browser.IsLoading)
-            {
                 ui_browser.Stop();
-            }
-            else
-            {
-                ui_browser.Load(url);
-                ui_urlLabel.Text = url;
-                ui_urlTextBox.Text = url;
-            }
+
+            ui_browser.Load(url);
+            ui_urlLabel.Text = url;
+            ui_urlTextBox.Text = url;
         }
 
         void f_browserBackPage()

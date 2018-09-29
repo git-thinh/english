@@ -101,7 +101,7 @@ namespace lenBrowser
                 string[] arr = e.Arguments;
                 Console.WriteLine(string.Format("MSG <= {0}: {1}", 1, String.Join(",", arr)));
                 if (arr.Length > 3 && arr[0] == "OK")
-                    f_ui_browserGoUrl("cache://" + arr[3]);
+                    f_ui_browserGoUrl(arr[2]);
             }
         }
 
@@ -109,10 +109,16 @@ namespace lenBrowser
 
         #region [ UI ]
 
-        static void f_ui_browserGoUrl(string url)
+        public static void f_ui_browserGoUrl(string url)
         {
             if (main != null)
                 main.f_browserGoPage(url);
+        }
+
+        public static void f_ui_browserReload()
+        {
+            if (main != null)
+                main.f_browserReload();
         }
 
         #endregion
@@ -170,20 +176,18 @@ namespace lenBrowser
                 return;
             }
 
-            CacheMemory cache = new CacheMemory();
-
             CEF.RegisterScheme("setting", new SettingSchemeHandlerFactory());
-            CEF.RegisterScheme("cache", new CacheSchemeHandlerFactory());
-
             CEF.RegisterScheme("http", new HttpSchemeHandlerFactory());
             CEF.RegisterScheme("https", new HttpSchemeHandlerFactory());
 
             CEF.RegisterJsObject("API", new ApiJavascript());
 
-            main = new fBrowser(cache);
+            main = new fBrowser();
             
             Application.EnableVisualStyles();
             Application.Run(main);
+
+            f_app_Exit();
         }
 
         static void f_app_Exit()

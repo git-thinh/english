@@ -7,7 +7,7 @@ namespace lenBrowser
     public class ApiJavascript
     {
         public void Go(string url) {
-            App.f_http_getSource(url);
+            App.f_ui_browserGoUrl(url);
         }
 
         public void windowOpen(string str)

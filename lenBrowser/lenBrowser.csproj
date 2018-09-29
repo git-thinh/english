@@ -82,7 +82,6 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="ApiJavascript.cs" />
-    <Compile Include="CacheMemory.cs" />
     <Compile Include="LIB\HtmlAgilityPack\Core\crc32.cs" />
     <Compile Include="LIB\HtmlAgilityPack\Core\EncodingFoundException.cs" />
     <Compile Include="LIB\HtmlAgilityPack\Core\HtmlAttribute.cs" />
@@ -219,7 +218,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="CacheScheme.cs" />
     <Compile Include="HttpScheme.cs" />
     <Compile Include="TestScheme.cs" />
     <Compile Include="SettingScheme.cs" />
