@@ -24,7 +24,7 @@ namespace lenBrowser
             else if (fn.EndsWith(".aspx") || fn.EndsWith(".html")) fn = fn.Substring(0, fn.Length - 5);
 
             if (fn[0] == '_') fn = fn.Substring(1);
-            if (fn[fn.Length - 1] == '_') fn = fn.Substring(0, fn.Length - 1);
+            if (fn.Length > 0 && fn[fn.Length - 1] == '_') fn = fn.Substring(0, fn.Length - 1);
 
             fn = Regex.Replace(fn, @"[^A-Za-z0-9-_]+", string.Empty);
             return fn;
@@ -39,7 +39,6 @@ namespace lenBrowser
         }
 
         static string view = File.ReadAllText("view/view.html");
-
         public bool ProcessRequest(IRequest request, ref string mimeType, ref Stream stream)
         {
             string url = request.Url,
@@ -49,18 +48,7 @@ namespace lenBrowser
             if (File.Exists(path))
             {
                 mimeType = "text/html";
-                //string body = string.Empty;
-
-                //string view = File.ReadAllText("view/view.html");
                 string body = File.ReadAllText(path);
-                //using (FileStream reader = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-                //using (StreamReader sr = new StreamReader(reader, Encoding.UTF8))
-                //{
-                //    body = sr.ReadToEnd();
-                //    sr.Close();
-                //    reader.Close();
-                //}
-
                 string htm = view + body + "</body></html>";
                 byte[] bytes = Encoding.UTF8.GetBytes(htm);
                 stream = new MemoryStream(bytes);
@@ -70,9 +58,7 @@ namespace lenBrowser
             else
             {
                 string ext = url.ToLower().Substring(url.Length - 3, 3);
-                if (ext == "jpg" || ext == "gif" || ext == "png" || ext == "peg") {
-
-                }
+                if (ext == "jpg" || ext == "gif" || ext == "png" || ext == "peg" || ext == "svg") { }
                 else
                     App.f_http_getSource(url);
             }

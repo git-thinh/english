@@ -271,7 +271,7 @@ namespace https
             else if(fn.EndsWith(".aspx") || fn.EndsWith(".html")) fn = fn.Substring(0, fn.Length - 5);
 
             if (fn[0] == '_') fn = fn.Substring(1);
-            if (fn[fn.Length - 1] == '_') fn = fn.Substring(0, fn.Length - 1);
+            if (fn.Length > 0 && fn[fn.Length - 1] == '_') fn = fn.Substring(0, fn.Length - 1);
 
             fn = Regex.Replace(fn, @"[^A-Za-z0-9-_]+", string.Empty);
             return fn;
