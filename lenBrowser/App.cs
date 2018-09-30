@@ -1,6 +1,6 @@
 ﻿using CefSharp;
-using IpcChannel;
 using Microsoft.Win32;
+using Rpc;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,6 +9,7 @@ using System.IO.Pipes;
 using System.Net;
 using System.Net.Security;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
@@ -37,39 +38,27 @@ namespace lenBrowser
                 StandardOutputEncoding = Encoding.UTF8
             }
         };
-
-        const string EVENT_KEY_PATH = @"English\Browser";
-        static readonly string EVENT_CHANNEL = new Guid("{1B617C4B-BF68-4B8C-AE2B-A77E6A3ECEC5}").ToString();
-        static IIpcChannelRegistrar EVENT_REGISTRAR = new IpcChannelRegistrar(Registry.CurrentUser, EVENT_KEY_PATH);
-        static IpcEventChannel HTTPS_EVENT = new IpcEventChannel(EVENT_REGISTRAR, EVENT_CHANNEL);
-        static string EVENT_KEY = "UI";
-        static string EVENT_KEY_HTTPS = "EVENT_HTTPS";
-        static string EVENT_NAME = "MSG";
+        static RpcClientApi HTTPS_RPC;
 
         public static void f_http_getSource(string url)
         {
-            HTTPS_EVENT.ExecutionTimeout = 1000;
-            //HTTPS_EVENT.SendTo("CH1", "Message", "p1", "p2", "p3");
-            //HTTPS_EVENT.SendTo(new string[] { "CH2" }, "Message", "p1", "p2", "p3");
-            //HTTPS_EVENT.SendTo(1000, new string[] { "ch1", "ch2" }, "Message", "p1", "p2", "p3");
-
-            HTTPS_EVENT.SendTo(EVENT_KEY_HTTPS, EVENT_NAME, url, "1"); // [1] = "1" is write file cache
-
-            //HTTPS_EVENT.Broadcast(100, EVENT_NAME, url);
+            byte[] a = Encoding.UTF8.GetBytes(url);
+            List<byte> ls = new List<byte>(a.Length + 1);
+            ls.Add((byte)IpcMsgType.URL_REQUEST);
+            ls.AddRange(a);
+            HTTPS_RPC.Execute(ls.ToArray());
         }
 
         static void f_http_Exit()
         {
-            HTTPS_EVENT.StopListening();
-            HTTPS_EVENT.StopAsyncSending(true, -1);
+            HTTPS_RPC.Dispose();
             HTTPS.Close();
         }
 
         static void f_http_Init()
         {
-            HTTPS_EVENT.EnableAsyncSend();
-            HTTPS_EVENT.StartListening(EVENT_KEY);
-            HTTPS_EVENT[EVENT_NAME].OnEvent += f_http_messageReceiver;
+            HTTPS_RPC = new RpcClientApi(new Guid(_CONST.RPC_IID), RpcProtseq.ncalrpc, null, _CONST.RPC_NAME);
+            HTTPS_RPC.AuthenticateAs(RpcClientApi.Self);
 
             ////////////////HTTPS.StartInfo.Arguments = url;
             //////////////HTTPS.Start();
@@ -94,15 +83,14 @@ namespace lenBrowser
             ////////Thread.Sleep(1000);
         }
 
-        private static void f_http_messageReceiver(object sender, IpcSignalEventArgs e)
+        void f_app_sendNotification(string message)
         {
-            if (e.EventChannel.ChannelName != EVENT_KEY)
-            {
-                string[] arr = e.Arguments;
-                Console.WriteLine(string.Format("MSG <= {0}: {1}", 1, String.Join(",", arr)));
-                if (arr.Length > 3 && arr[0] == "OK")
-                    f_ui_browserGoUrl(arr[2]);
-            }
+            COPYDATASTRUCT cds;
+            cds.dwData = 0;
+            cds.lpData = (int)Marshal.StringToHGlobalAnsi(message);
+            cds.cbData = message.Length;
+            //SendMessage(MSG_WINDOW.MainWindowHandle, (int)WM_COPYDATA, 0, ref cds);
+            SendMessage(MSG_WINDOW.Handle, (int)WM_COPYDATA, 0, ref cds);
         }
 
         #endregion
@@ -183,7 +171,7 @@ namespace lenBrowser
             CEF.RegisterJsObject("API", new ApiJavascript());
 
             main = new fBrowser();
-            
+
             Application.EnableVisualStyles();
             Application.Run(main);
 
@@ -198,7 +186,10 @@ namespace lenBrowser
 
             CEF.Shutdown();
 
-            GC.Collect();
+            //GC.Collect();
+            //GC.WaitForPendingFinalizers();
+
+            GC.Collect(0, GCCollectionMode.Forced);
             GC.WaitForPendingFinalizers();
         }
 

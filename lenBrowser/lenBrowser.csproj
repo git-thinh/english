@@ -80,6 +80,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\https\_CONST.cs">
+      <Link>_CONST.cs</Link>
+    </Compile>
     <Compile Include="App.cs" />
     <Compile Include="ApiJavascript.cs" />
     <Compile Include="LIB\HtmlAgilityPack\Core\crc32.cs" />
@@ -142,20 +145,29 @@
     <Compile Include="LIB\HtmlAgilityPack\CssSelectors\Selectors\TagNameSelector.cs" />
     <Compile Include="LIB\HtmlAgilityPack\CssSelectors\Token.cs" />
     <Compile Include="LIB\HtmlAgilityPack\CssSelectors\Tokenizer.cs" />
-    <Compile Include="LIB\IpcChannel\base\Check.cs" />
-    <Compile Include="LIB\IpcChannel\base\IWaitAndContinue.cs" />
-    <Compile Include="LIB\IpcChannel\base\LListNode.cs" />
-    <Compile Include="LIB\IpcChannel\base\MutexLock.cs" />
-    <Compile Include="LIB\IpcChannel\base\WaitAndContinueList.cs" />
-    <Compile Include="LIB\IpcChannel\base\WaitAndContinueWorker.cs" />
-    <Compile Include="LIB\IpcChannel\IIpcChannelRegistrar.cs" />
-    <Compile Include="LIB\IpcChannel\IpcChannelRegistrar.cs" />
-    <Compile Include="LIB\IpcChannel\IpcEvent.cs" />
-    <Compile Include="LIB\IpcChannel\IpcEventChannel.cs" />
-    <Compile Include="LIB\IpcChannel\IpcEventListener.cs" />
-    <Compile Include="LIB\IpcChannel\IpcEventMessage.cs" />
-    <Compile Include="LIB\IpcChannel\IpcEventSender.cs" />
-    <Compile Include="LIB\IpcChannel\IpcSignalEventArgs.cs" />
+    <Compile Include="LIB\Rpc\Check.cs" />
+    <Compile Include="LIB\Rpc\Enums.cs" />
+    <Compile Include="LIB\Rpc\Interop\RpcApi.cs" />
+    <Compile Include="LIB\Rpc\Interop\RpcClientInfo.cs" />
+    <Compile Include="LIB\Rpc\Interop\RpcHandle.cs" />
+    <Compile Include="LIB\Rpc\Interop\StructPtr.cs" />
+    <Compile Include="LIB\Rpc\Interop\Structs\COMM_FAULT_OFFSETS.cs" />
+    <Compile Include="LIB\Rpc\Interop\Structs\MIDL_SERVER_INFO.cs" />
+    <Compile Include="LIB\Rpc\Interop\Structs\MIDL_STUB_DESC.cs" />
+    <Compile Include="LIB\Rpc\Interop\Structs\RPC_CALL_ATTRIBUTES_V2.cs" />
+    <Compile Include="LIB\Rpc\Interop\Structs\RPC_CLIENT_INTERFACE.cs" />
+    <Compile Include="LIB\Rpc\Interop\Structs\RPC_DISPATCH_TABLE.cs" />
+    <Compile Include="LIB\Rpc\Interop\Structs\RPC_PROTSEQ_ENDPOINT.cs" />
+    <Compile Include="LIB\Rpc\Interop\Structs\RPC_SERVER_INTERFACE.cs" />
+    <Compile Include="LIB\Rpc\Interop\Structs\RPC_SYNTAX_IDENTIFIER.cs" />
+    <Compile Include="LIB\Rpc\Interop\Structs\RPC_VERSION.cs" />
+    <Compile Include="LIB\Rpc\Interop\Structs\SEC_WINNT_AUTH_IDENTITY.cs" />
+    <Compile Include="LIB\Rpc\Interop\UsageCounter.cs" />
+    <Compile Include="LIB\Rpc\IRpcClientInfo.cs" />
+    <Compile Include="LIB\Rpc\RpcClientApi.cs" />
+    <Compile Include="LIB\Rpc\RpcException.cs" />
+    <Compile Include="LIB\Rpc\RpcServerApi.cs" />
+    <Compile Include="LIB\Rpc\TraceLog.cs" />
     <Compile Include="MessageListener.cs" />
     <Compile Include="fBrowser.cs">
       <SubType>Form</SubType>
@@ -225,7 +237,7 @@
   <ItemGroup>
     <Content Include="icon.ico" />
     <Content Include="LIB\Gma.System.MouseKeyHook\HotKeys\ReadMe.txt" />
-    <Content Include="LIB\IpcChannel\ReadMe.txt" />
+    <Content Include="LIB\Rpc\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources.resx">

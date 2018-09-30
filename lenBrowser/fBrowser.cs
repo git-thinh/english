@@ -26,7 +26,7 @@ namespace lenBrowser
         #region
         // This is where we create our message window. When this form is created it will create our hidden window.
         readonly MessageListener MSG_WINDOW;
-        
+
         //////☆★☐☑⧉✉⦿⦾⚠⚿⛑✕✓⥀✖↭☊⦧▷◻◼⟲≔☰⚒❯►❚❚❮⟳⚑⚐✎✛
         //////🕮🖎✍⦦☊🕭🔔🗣🗢🖳🎚🏷🖈🎗🏱🏲🗀🗁🕷🖒🖓👍👎♥♡♫♪♬♫🎙🎖🗝●◯⬤⚲☰⚒🕩🕪❯►❮⟳⚐🗑✎✛🗋🖫⛉ ⛊ ⛨⚏★☆
 
@@ -48,23 +48,25 @@ namespace lenBrowser
 
         //const string URL = "https://translate.google.com/#en/vi/hello";
 
-        readonly CefWebBrowser ui_browser;
-        readonly CefWebBrowser ui_setting;
+        private CefWebBrowser ui_browser;
+        private CefWebBrowser ui_setting;
 
-        readonly Panel ui_header;
-        readonly Panel ui_footer;
-        readonly Label ui_urlLabel;
-        readonly TextBox ui_urlTextBox;
-        readonly Label ui_statusLabel;
-        readonly Label ui_backLabel;
-        readonly Label ui_nextLabel;
+        private Panel ui_header;
+        private Panel ui_footer;
+        private Label ui_urlLabel;
+        private TextBox ui_urlTextBox;
+        private Label ui_statusLabel;
+        private Label ui_backLabel;
+        private Label ui_nextLabel;
 
-        readonly Label ui_resize;
+        private Label ui_resize;
         private bool m_resizing = false;
         const bool m_hook_MouseMove = true;
 
 
         #endregion
+        
+        #region [ MAIN ]
 
         public fBrowser()
         {
@@ -82,6 +84,8 @@ namespace lenBrowser
                 this.Height = Screen.PrimaryScreen.WorkingArea.Height - 200;
                 this.Top = 100;
                 this.Left = Screen.PrimaryScreen.WorkingArea.Width - this.Width;
+
+                f_main_Init();
             };
 
             this.FormClosing += (se, ev) =>
@@ -91,7 +95,12 @@ namespace lenBrowser
                 ui_browser.Dispose();
             };
 
+
             #endregion
+        }
+
+        void f_main_Init()
+        {
 
             #region [ BROWSER ]
 
@@ -243,7 +252,14 @@ namespace lenBrowser
             menu.Click += (se, ev) => f_settingToggle();
 
             #endregion
+
         }
+
+        public int f_main_msgHandleID() {
+            return (int)MSG_WINDOW.Handle;
+        }
+
+        #endregion
 
         #region [ SETTING ]
 
@@ -748,6 +764,7 @@ namespace lenBrowser
 
             return u_html;
         }
+
         #endregion
     }
 }
