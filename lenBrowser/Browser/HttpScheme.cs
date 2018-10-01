@@ -13,7 +13,7 @@ namespace lenBrowser
         {
             string url = request.Url;
             Console.WriteLine("-> " + url);
-            byte[] buf = App.f_api_sendMessage(IpcMsgType.GET_HTML_SOURCE, url);
+            byte[] buf = App.f_api_sendMessage(IpcMsgType.URL_GET_SOURCE_FROM_CACHE, url);
             if (buf.Length > 0)
             {
                 mimeType = "text/html";

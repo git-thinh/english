@@ -41,7 +41,7 @@ namespace lenBrowser
         
         public static byte[] f_api_sendMessage(IpcMsgType type, string data)
         {
-            return m_api.f_sendApi(IpcMsgType.URL_REQUEST, data);
+            return m_api.f_sendApi(type, data);
         }
 
         static void f_api_Exit()

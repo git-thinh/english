@@ -16,12 +16,31 @@ namespace System
     public enum IpcMsgType
     {
         NONE = 0,
-        URL_REQUEST = 1,
-        URL_REQUEST_FAIL = 2,
-        URL_REQUEST_SUCCESS = 3,
-        GET_HTML_SOURCE = 4,
-        NOTIFICATION_REG_HANDLE = 5,
-        NOTIFICATION_REMOVE_HANDLE = 6,
+        URL_REQUEST = 10,
+        URL_REQUEST_FAIL = 11,
+        URL_REQUEST_SUCCESS = 12,
+        URL_CACHE_FOR_SEARCH = 13,
+        URL_GET_SOURCE_FROM_CACHE = 14,
+        NOTIFICATION_REG_HANDLE = 100,
+        NOTIFICATION_REMOVE_HANDLE = 101,
+    }
+
+    public class oPage
+    {
+        public string Title { set; get; }
+        public string Url { set; get; }
+        public string Source { set; get; }
+        public string[] Urls { set; get; }
+    }
+
+    public class oLink
+    {
+        public string Text { set; get; }
+        public string Url { set; get; }
+        public override string ToString()
+        {
+            return string.Format("{0} -> {1}", Text, Url);
+        }
     }
 
     [StructLayout(LayoutKind.Sequential)]

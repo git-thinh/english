@@ -9,13 +9,6 @@ using System.Web;
 
 namespace System
 {
-    public class oPage
-    {
-        public string Url { set; get; }
-        public string Source { set; get; }
-        public string[] Urls { set; get; }
-    }
-
     static class Html
     {
        public static void f_html_getSourceByUrl(string url, Action<string, string> f_callback_fail, Action<string, oPage> f_callback_success)
@@ -51,7 +44,7 @@ namespace System
 
                                 // Fetch all url same domain in this page ...
                                 string[] urls = f_html_actractUrl(_url, data);                               
-                                data = f_html_Format(data);
+                                data = f_html_Format(_url, data);
 
                                 int posH1 = data.ToLower().IndexOf("<h1");
                                 if (posH1 != -1) data = data.Substring(posH1, data.Length - posH1);
@@ -93,6 +86,13 @@ namespace System
             }
         }
 
+        public static string f_html_getDomainMainByUrl(string url)
+        {
+            string[] a = f_html_getDomainByUrl(url).Split('.');
+            if (a.Length > 1) return a[a.Length - 2] + "." + a[a.Length - 1];
+            return a[0];
+        }
+
         public static string f_html_getDomainByUrl(string url)
         {
             string domain = url.Split('/')[2].Replace(':', '-').ToLower();
@@ -123,7 +123,7 @@ namespace System
             return file;
         }
 
-        public static string f_html_Format(string s)
+        public static string f_html_Format(string url, string s)
         {
             string si = string.Empty;
             s = Regex.Replace(s, @"<script[^>]*>[\s\S]*?</script>", string.Empty);
@@ -157,8 +157,14 @@ namespace System
 
             var mts = Regex.Matches(s, "<img.+?src=[\"'](.+?)[\"'].*?>", RegexOptions.IgnoreCase);
             if (mts.Count > 0)
+            {
                 foreach (Match mt in mts)
-                    s = s.Replace(mt.ToString(), string.Format("{0}{1}{2}", "<p class=box_img___>", mt.ToString(), "</p>"));
+                {
+                    string src = mt.Groups[1].Value;
+                    //s = s.Replace(mt.ToString(), string.Format("{0}{1}{2}", "<p class=box_img___>", mt.ToString(), "</p>"));
+                    s = s.Replace(mt.ToString(), @"<p class=___box_img><input class=""___img_src"" value=""" + src + @""" type=""hidden"" /></p>");
+                }
+            }
             s = s.Replace("</body>", string.Empty).Replace("</html>", string.Empty).Trim();
 
             return s;

@@ -33,12 +33,12 @@ namespace lenBrowser
         const int SETTING_WIDTH = 299;
         //const string URL_SETTING = "about:blank";
         const string URL_SETTING = "setting://setting.html";
-        //const string URL = "https://vnexpress.net";
+        const string URL = "https://vnexpress.net";
         //const string URL_GOOGLE = "https://google.com.vn";
         //const string URL = "http://w2ui.com/web/demos/#!layout/layout-1";
         //const string URL = "about:blank";
         //const string URL = "http://test.local/demo.html";
-        const string URL = "https://dictionary.cambridge.org/grammar/british-grammar/above-or-over";
+        //const string URL = "https://dictionary.cambridge.org/grammar/british-grammar/above-or-over";
         //const string URL = "https://vuejs.org/v2/guide/";
         //const string URL = "https://msdn.microsoft.com/en-us/library/ff361664(v=vs.110).aspx";
         //const string URL = "https://developer.mozilla.org/en-US/docs/Web";
@@ -327,7 +327,7 @@ namespace lenBrowser
         private void f_browserConsoleMessage(object sender, ConsoleMessageEventArgs e)
         {
             //Console.WriteLine("MAIN.LOG = " + e.Source + ":" + e.Line + " " + e.Message);
-            Console.WriteLine("MAIN.LOG." + e.Line + ": " + e.Message);
+            Console.WriteLine("" + e.Line + ": " + e.Message);
         }
 
         private void f_browserPropertyChangeUpdate(string propertyName)
@@ -586,20 +586,20 @@ namespace lenBrowser
             }
         };
         
-        oCmd f_api_jsonCmdParser(string s)
-        {
-            if (string.IsNullOrEmpty(s)) return null;
-            s = s.Trim();
-            if ((s[0] == '{' || s[0] == '[') && (s[s.Length - 1] == '}' || s[s.Length - 1] == ']'))
-            {
-                try
-                {
-                    return JsonConvert.DeserializeObject<oCmd>(s);
-                }
-                catch { }
-            }
-            return null;
-        }
+        //oCmd f_api_jsonCmdParser(string s)
+        //{
+        //    if (string.IsNullOrEmpty(s)) return null;
+        //    s = s.Trim();
+        //    if ((s[0] == '{' || s[0] == '[') && (s[s.Length - 1] == '}' || s[s.Length - 1] == ']'))
+        //    {
+        //        try
+        //        {
+        //            return JsonConvert.DeserializeObject<oCmd>(s);
+        //        }
+        //        catch { }
+        //    }
+        //    return null;
+        //}
 
         static string format_HTML(string s)
         {

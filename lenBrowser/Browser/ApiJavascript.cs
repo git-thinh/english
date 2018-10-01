@@ -1,14 +1,27 @@
 using CefSharp;
+using Newtonsoft.Json;
 using System;
 using System.Windows.Forms;
 
 namespace lenBrowser
 {
+    
     public class ApiJavascript
     {
-        public void Go(string url) {
+        // API.Go(...)
+        public void Go(string url)
+        {
             App.f_ui_browserGoUrl(url);
         }
+
+        // API.UpdateLinks([{Text:"", Link: "http..."}])
+        public void UpdateLinks(string jsonLinks)
+        {
+            //oLink[] links = JsonConvert.DeserializeObject<oLink[]>(jsonLinks);
+            App.f_api_sendMessage(IpcMsgType.URL_CACHE_FOR_SEARCH, jsonLinks);
+        }
+
+        /*****************************************************************/
 
         public void windowOpen(string str)
         {
