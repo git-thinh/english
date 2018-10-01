@@ -21,44 +21,49 @@ namespace lenBrowser
     {
         [STAThread]
         static void Main(string[] args) => f_app_Run();
+        static int m_msgHandleID;
+        static fBrowser m_main;
 
-        static fBrowser main;
-
-        #region [ HTTPS ]
+        #region [ API ]
 
         /* https://stackoverflow.com/questions/4291912/process-start-how-to-get-the-output */
-        static Process HTTPS = new Process
+        static Process m_api_process;
+        static RpcClientApi m_api;
+
+        public static void f_api_Register(int handleID)
         {
-            StartInfo = new ProcessStartInfo
+            m_api.f_sendApi(IpcMsgType.NOTIFICATION_REG_HANDLE, handleID);
+        }
+        public static void f_api_UnRegister(int handleID)
+        {
+            m_api.f_sendApi(IpcMsgType.NOTIFICATION_REMOVE_HANDLE, handleID);
+        }
+        
+        public static byte[] f_api_sendMessage(IpcMsgType type, string data)
+        {
+            return m_api.f_sendApi(IpcMsgType.URL_REQUEST, data);
+        }
+
+        static void f_api_Exit()
+        {
+            m_api.Dispose();
+            m_api_process.Close();
+        }
+
+        static void f_api_Init()
+        {
+            m_api_process = new Process
             {
-                FileName = "https.exe",
-                UseShellExecute = false,
-                CreateNoWindow = true,
-                RedirectStandardOutput = true,
-                StandardOutputEncoding = Encoding.UTF8
-            }
-        };
-        static RpcClientApi HTTPS_RPC;
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = "https.exe",
+                    UseShellExecute = false,
+                    CreateNoWindow = true
+                }
+            };
 
-        public static void f_http_getSource(string url)
-        {
-            byte[] a = Encoding.UTF8.GetBytes(url);
-            List<byte> ls = new List<byte>(a.Length + 1);
-            ls.Add((byte)IpcMsgType.URL_REQUEST);
-            ls.AddRange(a);
-            HTTPS_RPC.Execute(ls.ToArray());
-        }
-
-        static void f_http_Exit()
-        {
-            HTTPS_RPC.Dispose();
-            HTTPS.Close();
-        }
-
-        static void f_http_Init()
-        {
-            HTTPS_RPC = new RpcClientApi(new Guid(_CONST.RPC_IID), RpcProtseq.ncalrpc, null, _CONST.RPC_NAME);
-            HTTPS_RPC.AuthenticateAs(RpcClientApi.Self);
+            m_api = new RpcClientApi(new Guid(_CONST.RPC_IID), RpcProtseq.ncalrpc, null, _CONST.RPC_NAME);
+            m_api.AuthenticateAs(RpcClientApi.Self);
 
             ////////////////HTTPS.StartInfo.Arguments = url;
             //////////////HTTPS.Start();
@@ -83,30 +88,20 @@ namespace lenBrowser
             ////////Thread.Sleep(1000);
         }
 
-        void f_app_sendNotification(string message)
-        {
-            COPYDATASTRUCT cds;
-            cds.dwData = 0;
-            cds.lpData = (int)Marshal.StringToHGlobalAnsi(message);
-            cds.cbData = message.Length;
-            //SendMessage(MSG_WINDOW.MainWindowHandle, (int)WM_COPYDATA, 0, ref cds);
-            SendMessage(MSG_WINDOW.Handle, (int)WM_COPYDATA, 0, ref cds);
-        }
-
         #endregion
 
         #region [ UI ]
 
         public static void f_ui_browserGoUrl(string url)
         {
-            if (main != null)
-                main.f_browserGoPage(url);
+            if (m_main != null)
+                m_main.f_browserGoPage(url);
         }
 
         public static void f_ui_browserReload()
         {
-            if (main != null)
-                main.f_browserReload();
+            if (m_main != null)
+                m_main.f_browserReload();
         }
 
         #endregion
@@ -151,7 +146,7 @@ namespace lenBrowser
         {
             Console.Title = "BROWSER";
 
-            f_http_Init();
+            f_api_Init();
 
             //string pathCache = Path.Combine(Path.GetDirectoryName(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)), "Cache");
             //if (!Directory.Exists(pathCache)) Directory.CreateDirectory(pathCache);
@@ -170,17 +165,24 @@ namespace lenBrowser
 
             CEF.RegisterJsObject("API", new ApiJavascript());
 
-            main = new fBrowser();
+            m_main = new fBrowser();
+            m_main.Shown += (se, ev) =>
+            {
+                m_msgHandleID = m_main.f_main_msgHandleID();
+                f_api_Register(m_msgHandleID);
+            };
 
+            Application.ApplicationExit += (se, ev) => {
+                f_api_UnRegister(m_msgHandleID);
+                f_app_Exit();
+            };
             Application.EnableVisualStyles();
-            Application.Run(main);
-
-            f_app_Exit();
+            Application.Run(m_main);
         }
 
         static void f_app_Exit()
         {
-            f_http_Exit();
+            f_api_Exit();
             //Console.WriteLine("Enter to EXIT...");
             //Console.ReadLine();
 
@@ -196,7 +198,7 @@ namespace lenBrowser
         static void f_app_Run()
         {
             f_app_Init();
-            f_http_Init();
+            f_api_Init();
             f_app_Exit();
         }
 

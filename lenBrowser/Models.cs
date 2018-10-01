@@ -16,13 +16,6 @@ namespace lenBrowser
         string getKeyByUrl(string url);
     }
 
-    [StructLayout(LayoutKind.Sequential)]
-    struct COPYDATASTRUCT
-    {
-        public int dwData;
-        public int cbData;
-        public int lpData;
-    }
 
     public class oCmd
     {

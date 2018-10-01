@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Pipes;
+using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Permissions;
 using System.Text;
@@ -45,18 +46,21 @@ namespace System
         {
             IpcMsgType type = (IpcMsgType)input[0];
             string url;
+            int value;
 
             switch (type)
             {
-                case IpcMsgType.FORM_REG_NOTIFICATION:
-                    int formHandle = BitConverter.ToInt32(input, 1);
-                    if (formHandle > 0 && LIST_UI_NOTI.FindIndex(x => x == formHandle) == -1)
-                        LIST_UI_NOTI.Add(formHandle); 
+                case IpcMsgType.NOTIFICATION_REG_HANDLE:
+                    value = BitConverter.ToInt32(input, 1);
+                    if (value > 0 && LIST_UI_NOTI.FindIndex(x => x == value) == -1)
+                        LIST_UI_NOTI.Add(value);
                     break;
-                case IpcMsgType.URL_REQUEST:
-                    url = Encoding.UTF8.GetString(input, 1, input.Length - 1);
-                    f_requestUrl(url);
+                case IpcMsgType.NOTIFICATION_REMOVE_HANDLE:
+                    value = BitConverter.ToInt32(input, 1);
+                    if (value > 0 && LIST_UI_NOTI.FindIndex(x => x == value) != -1)
+                        LIST_UI_NOTI.Remove(value);
                     break;
+                case IpcMsgType.URL_REQUEST: 
                 case IpcMsgType.GET_HTML_SOURCE:
                     url = Encoding.UTF8.GetString(input, 1, input.Length - 1);
                     if (CACHE.ContainsKey(url))
@@ -79,6 +83,10 @@ namespace System
 
         private void f_requestUrl(string url)
         {
+            string ext = url.ToLower().Substring(url.Length - 3, 3);
+            if (ext == "jpg" || ext == "gif" || ext == "png" || ext == "peg" || ext == "svg")
+                return;
+
             Html.f_html_getSourceByUrl(url, (_url, err) =>
             {
                 f_sendNotification(IpcMsgType.URL_REQUEST_FAIL, _url);
@@ -93,6 +101,8 @@ namespace System
         {
             byte[] buf = System.Text.Encoding.UTF8.GetBytes(message);
             byte _type = (byte)type;
+            foreach (int id in LIST_UI_NOTI)
+                MessageHelper.f_sendMessage(id, type, message);
         }
     }
 }

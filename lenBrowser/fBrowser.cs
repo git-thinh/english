@@ -38,12 +38,12 @@ namespace lenBrowser
         //const string URL = "http://w2ui.com/web/demos/#!layout/layout-1";
         //const string URL = "about:blank";
         //const string URL = "http://test.local/demo.html";
-        //const string URL = "https://dictionary.cambridge.org/grammar/british-grammar/above-or-over";        
+        const string URL = "https://dictionary.cambridge.org/grammar/british-grammar/above-or-over";
         //const string URL = "https://vuejs.org/v2/guide/";
         //const string URL = "https://msdn.microsoft.com/en-us/library/ff361664(v=vs.110).aspx";
         //const string URL = "https://developer.mozilla.org/en-US/docs/Web";
         //const string URL = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters";
-        const string URL = "https://www.myenglishpages.com/site_php_files/grammar-lesson-tenses.php";
+        //const string URL = "https://www.myenglishpages.com/site_php_files/grammar-lesson-tenses.php";
         //const string URL = "https://learnenglish.britishcouncil.org/en/english-grammar/pronouns";
 
         //const string URL = "https://translate.google.com/#en/vi/hello";
@@ -65,7 +65,7 @@ namespace lenBrowser
 
 
         #endregion
-        
+
         #region [ MAIN ]
 
         public fBrowser()
@@ -255,7 +255,8 @@ namespace lenBrowser
 
         }
 
-        public int f_main_msgHandleID() {
+        public int f_main_msgHandleID()
+        {
             return (int)MSG_WINDOW.Handle;
         }
 
@@ -278,7 +279,7 @@ namespace lenBrowser
         private void f_settingConsoleMessage(object sender, ConsoleMessageEventArgs e)
         {
             //Console.WriteLine("SETTING.LOG = " + e.Source + ":" + e.Line + " " + e.Message);
-            f_api_processMessage(e.Message);
+            //f_api_processMessage(e.Message);
         }
 
         #endregion
@@ -558,23 +559,18 @@ namespace lenBrowser
 
         #region [ API ]
 
-        [DllImport("user32.dll", CharSet = CharSet.Auto)]
-        static extern int SendMessage(IntPtr hwnd, int wMsg, int wParam, ref COPYDATASTRUCT lParam);
-        const int WM_COPYDATA = 0x4A;
-
         void f_api_sendNotification(string message)
         {
-            COPYDATASTRUCT cds;
-            cds.dwData = 0;
-            cds.lpData = (int)Marshal.StringToHGlobalAnsi(message);
-            cds.cbData = message.Length;
-            //SendMessage(MSG_WINDOW.MainWindowHandle, (int)WM_COPYDATA, 0, ref cds);
-            SendMessage(MSG_WINDOW.Handle, (int)WM_COPYDATA, 0, ref cds);
+            //MsgUI.f_sendMessage((int)MSG_WINDOW.Handle, message);
         }
 
-        public void f_api_messageReceiver(string data)
+        public void f_api_messageReceiver(IpcMsgType type, string data)
         {
-            ui_browser.Load(data);
+            switch (type) {
+                case IpcMsgType.URL_REQUEST_SUCCESS:
+                    ui_browser.Load(data);
+                    break;
+            }
         }
 
         /* https://stackoverflow.com/questions/4291912/process-start-how-to-get-the-output */
@@ -589,29 +585,7 @@ namespace lenBrowser
                 CreateNoWindow = true
             }
         };
-
-        void f_api_processMessage(string message)
-        {
-            oCmd cmd = f_api_jsonCmdParser(message);
-            if (cmd != null)
-            {
-                switch (cmd.cmd)
-                {
-                    case "browser":
-                        #region
-                        string url = cmd.url;
-                        if (!string.IsNullOrEmpty(url))
-                        {
-                            Console.WriteLine("GO: " + url);
-                            App.f_http_getSource(url);
-                            //Invoke(new MethodInvoker(() => { if (!IsDisposed) f_browserGoPage(cmd.url); }));                            
-                        }
-                        #endregion
-                        break;
-                }
-            }
-        }
-
+        
         oCmd f_api_jsonCmdParser(string s)
         {
             if (string.IsNullOrEmpty(s)) return null;

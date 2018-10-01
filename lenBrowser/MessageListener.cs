@@ -56,10 +56,11 @@ namespace lenBrowser
                 case WM_COPYDATA:
                     COPYDATASTRUCT CD = (COPYDATASTRUCT)m.GetLParam(typeof(COPYDATASTRUCT));
                     byte[] B = new byte[CD.cbData];
+                    IpcMsgType type = (IpcMsgType)(new IntPtr(CD.dwData));
                     IntPtr lpData = new IntPtr(CD.lpData);
                     Marshal.Copy(lpData, B, 0, CD.cbData);
                     string strData = Encoding.Default.GetString(B);
-                    parent.f_api_messageReceiver(strData);
+                    parent.f_api_messageReceiver(type, strData);
                     break;
 
                 default:
