@@ -15,10 +15,11 @@ namespace System
         readonly ConcurrentDictionary<string, string> CACHE;
         readonly ConcurrentDictionary<string, string> LINK;
         readonly ConcurrentDictionary<int, int> LINK_LEVEL;
-        readonly ConcurrentDictionary<int, string> ID_LINK;
+        readonly ConcurrentDictionary<string, int> LINK_ID;
         readonly ConcurrentDictionary<int, int> TIME_VIEW_LINK;
         readonly ConcurrentDictionary<string, List<int>> INDEX;
         readonly ConcurrentDictionary<string, List<int>> DOMAIN_LINK;
+        readonly ConcurrentDictionary<string, List<int>> KEY_INDEX;
 
         readonly RpcServerApi SERVER_RPC;
 
@@ -41,10 +42,11 @@ namespace System
             CACHE = new ConcurrentDictionary<string, string>();
             LINK = new ConcurrentDictionary<string, string>();
             LINK_LEVEL = new ConcurrentDictionary<int, int>();
-            ID_LINK = new ConcurrentDictionary<int, string>();
+            LINK_ID = new ConcurrentDictionary<string, int>();
             INDEX = new ConcurrentDictionary<string, List<int>>();
             DOMAIN_LINK = new ConcurrentDictionary<string, List<int>>();
             TIME_VIEW_LINK = new ConcurrentDictionary<int, int>();
+            KEY_INDEX = new ConcurrentDictionary<string, List<int>>();
 
             SERVER_RPC = new RpcServerApi(new Guid(_CONST.RPC_IID), 100, ushort.MaxValue, allowAnonTcp: false);
             SERVER_RPC.AddProtocol(RpcProtseq.ncalrpc, _CONST.RPC_NAME, 100);
@@ -97,13 +99,13 @@ namespace System
                         return Encoding.UTF8.GetBytes(CACHE[text]);
                     else
                     {
-                        if (text.Contains('?') && text.Contains("___id=")) { } else {
-                            int id = 0;
-                            if (text.Contains('?')) text = text + "&___id=" + id.ToString();
-                            else text = text + "?___id=" + id.ToString();
-                        }
+                        //if (text.Contains('?') && text.Contains("___id=")) { } else {
+                        //    int id = 0;
+                        //    if (text.Contains('?')) text = text + "&___id=" + id.ToString();
+                        //    else text = text + "?___id=" + id.ToString();
+                        //}
                         f_requestUrl(text);
-                        return Encoding.UTF8.GetBytes(text);
+                        //return Encoding.UTF8.GetBytes(text);
                     }
                     break;
                 default:
@@ -123,20 +125,21 @@ namespace System
         {
             if (string.IsNullOrEmpty(url) || string.IsNullOrEmpty(title)) return;
 
-            if (LINK.ContainsKey(url)) {
+            if (LINK.ContainsKey(url))
+            {
                 int time_view = int.Parse(DateTime.Now.ToString("yMMddHHmmss")) + indexForEach;
-
-            } else
+            }
+            else
             {
                 if (domain == "") domain = Html.f_html_getDomainMainByUrl(url);
 
                 LINK.TryAdd(url, title);
 
-                int id = LINK.Count, level = url.Split('/').Length - 3, time_view = int.Parse(DateTime.Now.ToString("yMMddHHmmss")) + indexForEach;
+                int id = LINK.Count, time_view = int.Parse(DateTime.Now.ToString("yMMddHHmmss")) + indexForEach;
 
                 TIME_VIEW_LINK.TryAdd(id, time_view);
-                ID_LINK.TryAdd(id, url);
-                LINK_LEVEL.TryAdd(id, level);
+                LINK_ID.TryAdd(url, id);
+                LINK_LEVEL.TryAdd(id, url.Split('/').Length - 3);
                 if (DOMAIN_LINK.ContainsKey(domain))
                     DOMAIN_LINK[domain].Add(id);
                 else
@@ -156,6 +159,13 @@ namespace System
             }, (_url, _page) =>
             {
                 CACHE.TryAdd(_url, _page.Source);
+
+                int id = LINK.Count,
+                    time_view = int.Parse(DateTime.Now.ToString("yMMddHHmmss"));
+                if (LINK_ID.ContainsKey(_url)) id = LINK_ID[_url]; else LINK_ID.TryAdd(_url, id);
+                if (TIME_VIEW_LINK.ContainsKey(id)) TIME_VIEW_LINK[id] = time_view; else TIME_VIEW_LINK.TryAdd(id, time_view);
+                if(!LINK_LEVEL.ContainsKey(id)) LINK_LEVEL.TryAdd(id, _url.Split('/').Length - 3);
+
                 f_sendNotification(IpcMsgType.URL_REQUEST_SUCCESS, _url);
             });
         }

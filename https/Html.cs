@@ -38,6 +38,7 @@ namespace System
                             using (StreamReader sr = new StreamReader(rs.GetResponseStream(), System.Text.Encoding.UTF8))
                             {
                                 string data = sr.ReadToEnd();
+                                string title = Regex.Match(data, @"\<title\b[^>]*\>\s*(?<Title>[\s\S]*?)\</title\>", RegexOptions.IgnoreCase).Groups["Title"].Value;
                                 
                                 Console.WriteLine("-> OK: " + _url);
                                 data = HttpUtility.HtmlDecode(data);
@@ -54,7 +55,7 @@ namespace System
                                 //string domain = f_html_getDomainByUrl(para.Item2.Url);
                                 //string file = f_html_getPathFileByUrl(para.Item2.Url);
                                 
-                                f_callback_success(_url, new oPage() { Url = _url, Source = data, Urls = urls });
+                                f_callback_success(_url, new oPage() { Url = _url, Source = data, Urls = urls, Title = title });
 
                                 //if (para.Item2.isWriteFileCache)
                                 //{
