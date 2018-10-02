@@ -1,6 +1,7 @@
 using CefSharp;
 using Newtonsoft.Json;
 using System;
+using System.Text;
 using System.Windows.Forms;
 
 namespace lenBrowser
@@ -27,6 +28,12 @@ namespace lenBrowser
             App.f_api_sendMessage(IpcMsgType.URL_CACHE_FOR_SEARCH, jsonLinks);
         }
 
+        // API.GetDataDomain(...)
+        public string GetDataDomain()
+        {
+            byte[] buf = App.f_api_sendMessage(IpcMsgType.URL_GET_ALL_DOMAIN);
+            return Encoding.UTF8.GetString(buf);
+        }
         /*****************************************************************/
 
         public void windowOpen(string str)

@@ -88,6 +88,7 @@
     </Compile>
     <Compile Include="App.cs" />
     <Compile Include="Browser\ApiJavascript.cs" />
+    <Compile Include="Browser\LocalScheme.cs" />
     <Compile Include="LIB\HtmlAgilityPack\Core\crc32.cs" />
     <Compile Include="LIB\HtmlAgilityPack\Core\EncodingFoundException.cs" />
     <Compile Include="LIB\HtmlAgilityPack\Core\HtmlAttribute.cs" />
@@ -233,8 +234,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Browser\HttpScheme.cs" />
-    <Compile Include="Browser\TestScheme.cs" />
-    <Compile Include="Browser\SettingScheme.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\Run86\browser\view\view.html">

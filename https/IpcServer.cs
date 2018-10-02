@@ -5,11 +5,13 @@ using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Linq;
+using System.IO;
 
 namespace System
 {
     public class IpcServer
     {
+        readonly List<string> DOMAIN_LIST;
         readonly List<int> LIST_UI_NOTI;
         readonly BinaryFormatter BINARY_FORMATTER;
         readonly ConcurrentDictionary<string, string> CACHE;
@@ -36,6 +38,7 @@ namespace System
 
         public IpcServer()
         {
+            DOMAIN_LIST = Directory.GetDirectories("cache").Select(x => x.Substring(6)).ToList();
             LIST_UI_NOTI = new List<int>();
             BINARY_FORMATTER = new BinaryFormatter();
 
@@ -66,13 +69,11 @@ namespace System
             {
                 case IpcMsgType.NOTIFICATION_REG_HANDLE:
                     value = BitConverter.ToInt32(input, 1);
-                    if (value > 0 && LIST_UI_NOTI.FindIndex(x => x == value) == -1)
-                        LIST_UI_NOTI.Add(value);
+                    if (value > 0 && LIST_UI_NOTI.FindIndex(x => x == value) == -1) LIST_UI_NOTI.Add(value);
                     break;
                 case IpcMsgType.NOTIFICATION_REMOVE_HANDLE:
                     value = BitConverter.ToInt32(input, 1);
-                    if (value > 0 && LIST_UI_NOTI.FindIndex(x => x == value) != -1)
-                        LIST_UI_NOTI.Remove(value);
+                    if (value > 0 && LIST_UI_NOTI.FindIndex(x => x == value) != -1) LIST_UI_NOTI.Remove(value);
                     break;
                 case IpcMsgType.URL_CACHE_FOR_SEARCH:
                     #region
@@ -94,20 +95,27 @@ namespace System
                     break;
                 case IpcMsgType.URL_REQUEST:
                 case IpcMsgType.URL_GET_SOURCE_FROM_CACHE:
+                    #region
+
                     text = Encoding.UTF8.GetString(input, 1, input.Length - 1);
+
+                    f_cacheUrl(text);
+
                     if (CACHE.ContainsKey(text))
                         return Encoding.UTF8.GetBytes(CACHE[text]);
                     else
-                    {
-                        //if (text.Contains('?') && text.Contains("___id=")) { } else {
-                        //    int id = 0;
-                        //    if (text.Contains('?')) text = text + "&___id=" + id.ToString();
-                        //    else text = text + "?___id=" + id.ToString();
-                        //}
                         f_requestUrl(text);
-                        //return Encoding.UTF8.GetBytes(text);
-                    }
+
                     break;
+                #endregion
+                case IpcMsgType.URL_GET_ALL_DOMAIN:
+                    #region
+
+                    lock (DOMAIN_LIST)
+                        text = string.Join(";", DOMAIN_LIST);
+                    return Encoding.UTF8.GetBytes(text);
+
+                #endregion
                 default:
                     //using (var memoryStream = new MemoryStream(input, 1, input.Length - 1, false, false))
                     //obj = BINARY_FORMATTER.Deserialize(memoryStream);
@@ -121,48 +129,39 @@ namespace System
             return new byte[0];
         }
 
-        private void f_cacheUrl(string url, string title, string domain = "", int indexForEach = 0)
+        private void f_cacheUrl(string url, string title = "", string domain = "", int indexForEach = 0)
         {
             if (string.IsNullOrEmpty(url) || string.IsNullOrEmpty(title)) return;
 
-            if (LINK.ContainsKey(url))
-            {
-                int time_view = int.Parse(DateTime.Now.ToString("1ddHHmmss")) + indexForEach;
-            }
-            else
-            {
-                if (domain == "") domain = Html.f_html_getDomainMainByUrl(url);
+            if (domain == "") domain = Html.f_html_getDomainMainByUrl(url);
+            int id = LINK.Count + 1, time_view = int.Parse(DateTime.Now.ToString("1ddHHmmss")) + indexForEach;
 
+            if (!LINK.ContainsKey(url))
+            {
                 LINK.TryAdd(url, title);
-
-                int id = LINK.Count + 1,
-                    time_view = int.Parse(DateTime.Now.ToString("1ddHHmmss")) + indexForEach;
-
-                TIME_VIEW_LINK.TryAdd(id, time_view);
                 LINK_ID.TryAdd(url, id);
+                TIME_VIEW_LINK.TryAdd(id, time_view);
                 LINK_LEVEL.TryAdd(id, url.Split('/').Length - 3);
-                if (DOMAIN_LINK.ContainsKey(domain))
-                    DOMAIN_LINK[domain].Add(id);
-                else
-                    DOMAIN_LINK.TryAdd(domain, new List<int>() { id });
+            }
 
-                if (!string.IsNullOrEmpty(title))
+            lock (DOMAIN_LIST) if (!DOMAIN_LIST.Contains(domain)) DOMAIN_LIST.Add(domain);
+            if (DOMAIN_LINK.ContainsKey(domain)) DOMAIN_LINK[domain].Add(id); else DOMAIN_LINK.TryAdd(domain, new List<int>() { id });
+
+            if (!string.IsNullOrEmpty(title))
+            {
+                string s = f_text_convert_UTF8_ACSII(title).ToLower().ToLower();
+                string[] words = s.Split(' ').Where(x => x.Length > 2).ToArray();
+                for (int i = 0; i < words.Length; i++)
                 {
-                    string s = f_text_convert_UTF8_ACSII(title).ToLower().ToLower();
-                    string[] words = s.Split(' ').Where(x => x.Length > 2).ToArray();
-                    for (int i = 0; i < words.Length; i++)
+                    if (KEY_INDEX.ContainsKey(words[i]))
                     {
-                        if (KEY_INDEX.ContainsKey(words[i]))
-                        {
-                            if (KEY_INDEX[words[i]].IndexOf(id) == -1)
-                                KEY_INDEX[words[i]].Add(id);
-                        }
-                        else
-                            KEY_INDEX.TryAdd(words[i], new List<int>() { id });
+                        if (KEY_INDEX[words[i]].IndexOf(id) == -1)
+                            KEY_INDEX[words[i]].Add(id);
                     }
-
-                    //Console.WriteLine(string.Format(" INDEX: {0}", KEY_INDEX.Count));
+                    else
+                        KEY_INDEX.TryAdd(words[i], new List<int>() { id });
                 }
+                //Console.WriteLine(string.Format(" INDEX: {0}", KEY_INDEX.Count));
             }
         }
 
@@ -194,30 +193,7 @@ namespace System
                 f_sendNotification(IpcMsgType.URL_REQUEST_FAIL, _url);
             }, (_url, _page) =>
             {
-                CACHE.TryAdd(_url, _page.Source);
-
-                f_cacheUrl(_url, _page.Title);
-
-                //int id = LINK.Count + 1,
-                //    time_view = int.Parse(DateTime.Now.ToString("1ddHHmmss"));
-                //if (LINK_ID.ContainsKey(_url)) id = LINK_ID[_url]; else LINK_ID.TryAdd(_url, id);
-                //if (TIME_VIEW_LINK.ContainsKey(id)) TIME_VIEW_LINK[id] = time_view; else TIME_VIEW_LINK.TryAdd(id, time_view);
-                //if(!LINK_LEVEL.ContainsKey(id)) LINK_LEVEL.TryAdd(id, _url.Split('/').Length - 3);
-
-                //if (!string.IsNullOrEmpty(_page.Title)) {
-                //    string s = f_text_convert_UTF8_ACSII(_page.Title).ToLower().ToLower();
-                //    string[] words = s.Split(' ').Where(x=>x.Length > 2).ToArray();
-                //    for (int i = 0; i < words.Length; i++) {
-                //        if (KEY_INDEX.ContainsKey(words[i]))
-                //        {
-                //            if (KEY_INDEX[words[i]].IndexOf(id) == -1)
-                //                KEY_INDEX[words[i]].Add(id);
-                //        }
-                //        else
-                //            KEY_INDEX.TryAdd(words[i], new List<int>() { id });
-                //    }
-                //}
-
+                CACHE.TryAdd(_url, _page.Source);                
                 f_sendNotification(IpcMsgType.URL_REQUEST_SUCCESS, _url);
             });
         }

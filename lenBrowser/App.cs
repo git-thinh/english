@@ -39,7 +39,7 @@ namespace lenBrowser
             m_api.f_sendApi(IpcMsgType.NOTIFICATION_REMOVE_HANDLE, handleID);
         }
         
-        public static byte[] f_api_sendMessage(IpcMsgType type, string data)
+        public static byte[] f_api_sendMessage(IpcMsgType type, string data = "")
         {
             return m_api.f_sendApi(type, data);
         }
@@ -159,7 +159,7 @@ namespace lenBrowser
                 return;
             }
 
-            CEF.RegisterScheme("setting", new SettingSchemeHandlerFactory());
+            CEF.RegisterScheme("local", new LocalSchemeHandlerFactory());
             CEF.RegisterScheme("http", new HttpSchemeHandlerFactory());
             CEF.RegisterScheme("https", new HttpSchemeHandlerFactory());
 
