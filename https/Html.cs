@@ -39,7 +39,8 @@ namespace System
                             {
                                 string data = sr.ReadToEnd();
                                 string title = Regex.Match(data, @"\<title\b[^>]*\>\s*(?<Title>[\s\S]*?)\</title\>", RegexOptions.IgnoreCase).Groups["Title"].Value;
-                                
+                                if (title != null) title = title.Trim(); else title = string.Empty;
+
                                 Console.WriteLine("-> OK: " + _url);
                                 data = HttpUtility.HtmlDecode(data);
 
@@ -50,7 +51,7 @@ namespace System
                                 int posH1 = data.ToLower().IndexOf("<h1");
                                 if (posH1 != -1) data = data.Substring(posH1, data.Length - posH1);
 
-                                data = "<!--" + _url + "-->\r\n" + data;
+                                data = "<!--" + _url + @"--><input id=""___title"" value=""" + title + @""" type=""hidden"">" + data;
 
                                 //string domain = f_html_getDomainByUrl(para.Item2.Url);
                                 //string file = f_html_getPathFileByUrl(para.Item2.Url);

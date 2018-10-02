@@ -8,6 +8,11 @@
             text-decoration: none;
         }
 
+        h1 {
+            margin: 0px 0 10px 0;
+            text-align: center;
+        }
+
         .___box_img {
             display: none;
         }
@@ -35,22 +40,86 @@
     </style>
     <script type="text/javascript">
 
+        function f_go(url, title) {
+            document.body.innerHTML = '<h1>' + title + '<br><br><br><br><br><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjAiIHdpZHRoPSI2NHB4IiBoZWlnaHQ9IjY0cHgiIHZpZXdCb3g9IjAgMCAxMjggMTI4IiB4bWw6c3BhY2U9InByZXNlcnZlIj48Zz48cGF0aCBkPSJNNzEgMzkuMlYuNGE2My42IDYzLjYgMCAwIDEgMzMuOTYgMTQuNTdMNzcuNjggNDIuMjRhMjUuNTMgMjUuNTMgMCAwIDAtNi43LTMuMDN6IiBmaWxsPSIjMDAwIi8+PHBhdGggZD0iTTcxIDM5LjJWLjRhNjMuNiA2My42IDAgMCAxIDMzLjk2IDE0LjU3TDc3LjY4IDQyLjI0YTI1LjUzIDI1LjUzIDAgMCAwLTYuNy0zLjAzeiIgZmlsbD0iI2UxZTFlMSIgdHJhbnNmb3JtPSJyb3RhdGUoNDUgNjQgNjQpIi8+PHBhdGggZD0iTTcxIDM5LjJWLjRhNjMuNiA2My42IDAgMCAxIDMzLjk2IDE0LjU3TDc3LjY4IDQyLjI0YTI1LjUzIDI1LjUzIDAgMCAwLTYuNy0zLjAzeiIgZmlsbD0iI2UxZTFlMSIgdHJhbnNmb3JtPSJyb3RhdGUoOTAgNjQgNjQpIi8+PHBhdGggZD0iTTcxIDM5LjJWLjRhNjMuNiA2My42IDAgMCAxIDMzLjk2IDE0LjU3TDc3LjY4IDQyLjI0YTI1LjUzIDI1LjUzIDAgMCAwLTYuNy0zLjAzeiIgZmlsbD0iI2UxZTFlMSIgdHJhbnNmb3JtPSJyb3RhdGUoMTM1IDY0IDY0KSIvPjxwYXRoIGQ9Ik03MSAzOS4yVi40YTYzLjYgNjMuNiAwIDAgMSAzMy45NiAxNC41N0w3Ny42OCA0Mi4yNGEyNS41MyAyNS41MyAwIDAgMC02LjctMy4wM3oiIGZpbGw9IiNiZWJlYmUiIHRyYW5zZm9ybT0icm90YXRlKDE4MCA2NCA2NCkiLz48cGF0aCBkPSJNNzEgMzkuMlYuNGE2My42IDYzLjYgMCAwIDEgMzMuOTYgMTQuNTdMNzcuNjggNDIuMjRhMjUuNTMgMjUuNTMgMCAwIDAtNi43LTMuMDN6IiBmaWxsPSIjOTc5Nzk3IiB0cmFuc2Zvcm09InJvdGF0ZSgyMjUgNjQgNjQpIi8+PHBhdGggZD0iTTcxIDM5LjJWLjRhNjMuNiA2My42IDAgMCAxIDMzLjk2IDE0LjU3TDc3LjY4IDQyLjI0YTI1LjUzIDI1LjUzIDAgMCAwLTYuNy0zLjAzeiIgZmlsbD0iIzZlNmU2ZSIgdHJhbnNmb3JtPSJyb3RhdGUoMjcwIDY0IDY0KSIvPjxwYXRoIGQ9Ik03MSAzOS4yVi40YTYzLjYgNjMuNiAwIDAgMSAzMy45NiAxNC41N0w3Ny42OCA0Mi4yNGEyNS41MyAyNS41MyAwIDAgMC02LjctMy4wM3oiIGZpbGw9IiMzYzNjM2MiIHRyYW5zZm9ybT0icm90YXRlKDMxNSA2NCA2NCkiLz48YW5pbWF0ZVRyYW5zZm9ybSBhdHRyaWJ1dGVOYW1lPSJ0cmFuc2Zvcm0iIHR5cGU9InJvdGF0ZSIgdmFsdWVzPSIwIDY0IDY0OzQ1IDY0IDY0OzkwIDY0IDY0OzEzNSA2NCA2NDsxODAgNjQgNjQ7MjI1IDY0IDY0OzI3MCA2NCA2NDszMTUgNjQgNjQiIGNhbGNNb2RlPSJkaXNjcmV0ZSIgZHVyPSI3MjBtcyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiPjwvYW5pbWF0ZVRyYW5zZm9ybT48L2c+PGc+PGNpcmNsZSBmaWxsPSIjMDAwIiBjeD0iNjMuNjYiIGN5PSI2My4xNiIgcj0iMTIiLz48YW5pbWF0ZSBhdHRyaWJ1dGVOYW1lPSJvcGFjaXR5IiBkdXI9IjcyMG1zIiBiZWdpbj0iMHMiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBrZXlUaW1lcz0iMDswLjU7MSIgdmFsdWVzPSIxOzA7MSIvPjwvZz48L3N2Zz4="/></h1>';
+            //setTimeout(function () { API.GoTitle(url, title); }, 3000);
+            API.GoTitle(url, title);
+        }
+
         function f_domLoaded() {
+            var elTitle = document.getElementById('___title');
+            if (elTitle) document.title = elTitle.value;
+
+            console.info("JS-> " + location.href);
             var URL = location.href,
                 aHost = location.hostname.split('.'),
                 DOMAIN_MAIN = aHost.length > 1 ? (aHost[aHost.length - 2] + '.' + aHost[aHost.length - 1]) : aHost[0];
             aHost = URL.split('/');
-            var URL_SCHEME = aHost[0].substring(0,aHost[0].length - 1),
+            var URL_SCHEME = aHost[0].substring(0, aHost[0].length - 1),
                 HTTP_ROOT = URL_SCHEME + '://' + aHost[2] + '/',
                 URL_DIR = URL;
             if (URL[URL.length - 1] != '/')
-                URL_DIR = URL.substring(0, URL.length - URL[RUL.length - 1].length);
+                URL_DIR = URL.substring(0, URL.length - URL[URL.length - 1].length);
 
-            console.info("----> DOM loaded: URL = " + URL);
-            console.info("----> DOM loaded: URL_SCHEME = " + URL_SCHEME);
-            console.info("----> DOM loaded: DOMAIN_MAIN = " + DOMAIN_MAIN);
-            console.info("----> DOM loaded: URL_DIR = " + URL_DIR);
-            console.info("----> DOM loaded: HTTP_ROOT = " + HTTP_ROOT);
+            //console.info("----> DOM loaded: URL_SCHEME = " + URL_SCHEME);
+            //console.info("----> DOM loaded: DOMAIN_MAIN = " + DOMAIN_MAIN);
+            //console.info("----> DOM loaded: URL_DIR = " + URL_DIR);
+            //console.info("----> DOM loaded: HTTP_ROOT = " + HTTP_ROOT);
+
+            var links = document.querySelectorAll('a'),
+                aLink = [];
+            for (var i = 0; i < links.length; i++) {
+                var el = links[i], text = el.innerText;
+                if (text != null && text.length > 0 && el.hasAttribute('href') == true) {
+                    text = text.trim();
+                    if (text.length == 0 || text[0] == '#') { el.parentElement.removeChild(el); continue; }
+                    var link = el.getAttribute('href').trim();
+                    if (link.length == 0 || link[0] == '#') { el.parentElement.removeChild(el); continue; }
+
+                    if (link.indexOf(DOMAIN_MAIN) != -1 || link.indexOf('http') != 0) {
+                        text = text.split("'").join('').split('"').join('');
+
+                        var link_full = '';
+                        if (link.indexOf('//') == 0)
+                            link_full = URL_SCHEME + ':' + link;
+                        else {
+                            if (link.indexOf('http') != 0) {
+                                if (link[0] == '/') link_full = HTTP_ROOT + link.substr(1);
+                                else if (link.indexOf('../') == 0) { }
+                                else {
+                                    link_full = URL_DIR + link;
+                                }
+                            }
+                        }
+
+                        if (link_full.length > 0) {
+                            //console.log('A = ' + link + ' -> ' + link_full);
+                            link = link_full;
+                        }
+
+                        if (URL == link || URL == link + '/' || link.indexOf('javascript:') != -1) continue;
+
+                        //el.parentElement.removeChild(el);
+                        el.setAttribute("href", "javascript:void(-1);");
+                        el.setAttribute("onclick", "f_go('" + link + "','" + text + "');");
+
+                        aLink.push({ Text: text, Url: link });
+                    } else { el.parentElement.removeChild(el); continue; }
+                } else { el.parentElement.removeChild(el); continue; }
+            }
+
+            if (aLink.length > 0) {
+                var json = JSON.stringify(aLink);
+                setTimeout(function (_json) { API.UpdateLinks(_json); }, 100, json);
+            }
+
+            var imgs = document.querySelectorAll('.___img_src');
+            for (var i = 0; i < imgs.length; i++) {
+                var el = imgs[i], s = el.value;
+                if (s != null && s.length > 0) {
+                    //console.log('IMG = ' + s);
+                }
+            }
 
             var els = document.querySelectorAll('*');
             for (var i = 0; i < els.length; i++) {
@@ -61,59 +130,8 @@
                 }
             }
 
-            var links = document.querySelectorAll('a'),
-                aLink = [];
-            for (var i = 0; i < links.length; i++) {
-                var el = links[i], text = el.innerText;
-                if (text != null && text.length > 0 && el.hasAttribute('href') == true) {
-                    text = text.trim();
-                    if (text.length == 0 || text[0] == '#') continue;
-                    var link = el.getAttribute('href').trim();
-                    if (link.length == 0 || link[0] == '#') continue;
-
-                    if (link.indexOf(DOMAIN_MAIN) != -1 || link.indexOf('http') != 0) {
-                        var link_full = '';
-                        if (link.indexOf('//') == 0)
-                            link_full = URL_SCHEME + ':' + link;
-                        else {
-                            if (link.indexOf('http') != 0) {
-                                if (link[0] == '/') link_full = HTTP_ROOT + link.substr(1);
-                                else if (link.indexOf('../') == 0) { }
-                                else {
-                                    link_full = URL_DIR + link;
-                                }                                
-                            }
-                        }
-
-                        if (link_full.length > 0) {
-                            //console.log('A = ' + link + ' -> ' + link_full);
-                            link = link_full;
-                        }
-
-                        if (URL == link || URL == link + '/' || link.indexOf('javascript:') != -1) continue;
-                        aLink.push({ Text: text, Url: link });
-                    }
-                }
-            }
-            if (aLink.length > 0) {
-                var json = JSON.stringify(aLink);
-                API.UpdateLinks(json);
-            }
-
-            var imgs = document.querySelectorAll('.___img_src');
-            for (var i = 0; i < imgs.length; i++) {
-                var el = imgs[i], s = el.value;
-                if (s != null && s.length > 0) {
-                    //console.log('IMG = ' + s);
-                }
-            }
         }
 
-        if (document.readyState === "loading") {
-            document.addEventListener("DOMContentLoaded", f_domLoaded);
-        } else {
-            f_domLoaded();
-        }
     </script>
 </head>
 <body>

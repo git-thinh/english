@@ -92,10 +92,10 @@ namespace lenBrowser
 
         #region [ UI ]
 
-        public static void f_ui_browserGoUrl(string url)
+        public static void f_ui_browserGoUrl(string url, string title = "")
         {
             if (m_main != null)
-                m_main.f_browserGoPage(url);
+                m_main.f_browserGoPage(url, title);
         }
 
         public static void f_ui_browserReload()

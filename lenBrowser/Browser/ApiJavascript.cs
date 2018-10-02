@@ -11,7 +11,13 @@ namespace lenBrowser
         // API.Go(...)
         public void Go(string url)
         {
-            App.f_ui_browserGoUrl(url);
+            App.f_ui_browserGoUrl(url, string.Empty);
+        }
+
+        // API.GoTitle(...)
+        public void GoTitle(string url, string title)
+        {
+            App.f_ui_browserGoUrl(url, title);
         }
 
         // API.UpdateLinks([{Text:"", Link: "http..."}])

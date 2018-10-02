@@ -127,7 +127,7 @@ namespace System
 
             if (LINK.ContainsKey(url))
             {
-                int time_view = int.Parse(DateTime.Now.ToString("yMMddHHmmss")) + indexForEach;
+                int time_view = int.Parse(DateTime.Now.ToString("1ddHHmmss")) + indexForEach;
             }
             else
             {
@@ -135,7 +135,8 @@ namespace System
 
                 LINK.TryAdd(url, title);
 
-                int id = LINK.Count, time_view = int.Parse(DateTime.Now.ToString("yMMddHHmmss")) + indexForEach;
+                int id = LINK.Count + 1,
+                    time_view = int.Parse(DateTime.Now.ToString("1ddHHmmss")) + indexForEach;
 
                 TIME_VIEW_LINK.TryAdd(id, time_view);
                 LINK_ID.TryAdd(url, id);
@@ -144,7 +145,42 @@ namespace System
                     DOMAIN_LINK[domain].Add(id);
                 else
                     DOMAIN_LINK.TryAdd(domain, new List<int>() { id });
+
+                if (!string.IsNullOrEmpty(title))
+                {
+                    string s = f_text_convert_UTF8_ACSII(title).ToLower().ToLower();
+                    string[] words = s.Split(' ').Where(x => x.Length > 2).ToArray();
+                    for (int i = 0; i < words.Length; i++)
+                    {
+                        if (KEY_INDEX.ContainsKey(words[i]))
+                        {
+                            if (KEY_INDEX[words[i]].IndexOf(id) == -1)
+                                KEY_INDEX[words[i]].Add(id);
+                        }
+                        else
+                            KEY_INDEX.TryAdd(words[i], new List<int>() { id });
+                    }
+
+                    //Console.WriteLine(string.Format(" INDEX: {0}", KEY_INDEX.Count));
+                }
             }
+        }
+
+        public string f_text_convert_UTF8_ACSII(string utf8)
+        {
+            string stFormD = utf8.Normalize(NormalizationForm.FormD);
+            StringBuilder sb = new StringBuilder();
+            for (int ich = 0; ich < stFormD.Length; ich++)
+            {
+                System.Globalization.UnicodeCategory uc = System.Globalization.CharUnicodeInfo.GetUnicodeCategory(stFormD[ich]);
+                if (uc != System.Globalization.UnicodeCategory.NonSpacingMark)
+                {
+                    sb.Append(stFormD[ich]);
+                }
+            }
+            sb = sb.Replace('Đ', 'D');
+            sb = sb.Replace('đ', 'd');
+            return (sb.ToString().Normalize(NormalizationForm.FormD));
         }
 
         private void f_requestUrl(string url)
@@ -160,11 +196,27 @@ namespace System
             {
                 CACHE.TryAdd(_url, _page.Source);
 
-                int id = LINK.Count,
-                    time_view = int.Parse(DateTime.Now.ToString("yMMddHHmmss"));
-                if (LINK_ID.ContainsKey(_url)) id = LINK_ID[_url]; else LINK_ID.TryAdd(_url, id);
-                if (TIME_VIEW_LINK.ContainsKey(id)) TIME_VIEW_LINK[id] = time_view; else TIME_VIEW_LINK.TryAdd(id, time_view);
-                if(!LINK_LEVEL.ContainsKey(id)) LINK_LEVEL.TryAdd(id, _url.Split('/').Length - 3);
+                f_cacheUrl(_url, _page.Title);
+
+                //int id = LINK.Count + 1,
+                //    time_view = int.Parse(DateTime.Now.ToString("1ddHHmmss"));
+                //if (LINK_ID.ContainsKey(_url)) id = LINK_ID[_url]; else LINK_ID.TryAdd(_url, id);
+                //if (TIME_VIEW_LINK.ContainsKey(id)) TIME_VIEW_LINK[id] = time_view; else TIME_VIEW_LINK.TryAdd(id, time_view);
+                //if(!LINK_LEVEL.ContainsKey(id)) LINK_LEVEL.TryAdd(id, _url.Split('/').Length - 3);
+
+                //if (!string.IsNullOrEmpty(_page.Title)) {
+                //    string s = f_text_convert_UTF8_ACSII(_page.Title).ToLower().ToLower();
+                //    string[] words = s.Split(' ').Where(x=>x.Length > 2).ToArray();
+                //    for (int i = 0; i < words.Length; i++) {
+                //        if (KEY_INDEX.ContainsKey(words[i]))
+                //        {
+                //            if (KEY_INDEX[words[i]].IndexOf(id) == -1)
+                //                KEY_INDEX[words[i]].Add(id);
+                //        }
+                //        else
+                //            KEY_INDEX.TryAdd(words[i], new List<int>() { id });
+                //    }
+                //}
 
                 f_sendNotification(IpcMsgType.URL_REQUEST_SUCCESS, _url);
             });

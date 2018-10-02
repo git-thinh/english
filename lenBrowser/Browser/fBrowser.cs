@@ -101,7 +101,6 @@ namespace lenBrowser
 
         void f_main_Init()
         {
-
             #region [ BROWSER ]
 
             ui_browser = new CefWebBrowser(URL);
@@ -173,32 +172,21 @@ namespace lenBrowser
             {
                 Dock = DockStyle.Fill,
                 Text = URL,
+                //BackColor = Color.OrangeRed,
+                TextAlign = ContentAlignment.TopLeft,
+                ForeColor = Color.Gray,
             };
             ui_urlLabel.MouseMove += f_form_move_MouseDown;
 
-            ui_urlTextBox = new TextBox()
-            {
-                Dock = DockStyle.Fill,
-                //BackColor = Color.Blue,
-                Text = URL,
-                Visible = false,
-                BorderStyle = BorderStyle.None,
-                BackColor = SystemColors.ControlLight,
-            };
 
             ui_urlLabel.Click += (se, ev) =>
             {
-                ui_urlLabel.Visible = false;
-                ui_urlTextBox.Visible = true;
                 ui_urlTextBox.Focus();
                 ui_urlTextBox.Select(ui_urlTextBox.TextLength, 0);
             };
-            ui_urlTextBox.DoubleClick += (se, ev) => { ui_urlTextBox.Text = ""; };
 
             ui_header.Controls.AddRange(new Control[] {
-                ui_urlTextBox, ui_urlLabel
-            });
-            ui_header.Controls.AddRange(new Control[] {
+                ui_urlLabel,
                 new Label() { Text = "", Dock = DockStyle.Left, Width = 5 },
                 ui_backLabel, ui_nextLabel,  lblMin, lblExit
             });
@@ -228,10 +216,25 @@ namespace lenBrowser
 
             ui_statusLabel = new Label()
             {
-                Dock = DockStyle.Fill,
+                Dock = DockStyle.Left,
                 Text = string.Empty,
+                //BackColor = Color.DodgerBlue,
+                Width = 200,
             };
             ui_statusLabel.MouseMove += f_form_move_MouseDown;
+
+
+            ui_urlTextBox = new TextBox()
+            {
+                Dock = DockStyle.Fill,
+                //BackColor = Color.Blue,
+                Text = URL,
+                BorderStyle = BorderStyle.None,
+                BackColor = SystemColors.ControlLight,
+                TextAlign = HorizontalAlignment.Right,
+                ForeColor = Color.Gray,
+            };
+            ui_urlTextBox.DoubleClick += (se, ev) => { ui_urlTextBox.Text = ""; };
 
             ui_resize = new Label()
             {
@@ -239,7 +242,11 @@ namespace lenBrowser
                 Text = string.Empty,
                 Width = 14,
             };
-            ui_footer.Controls.AddRange(new Control[] { ui_statusLabel, menu, ui_resize });
+            ui_footer.Controls.AddRange(new Control[] {
+                ui_urlTextBox,
+                ui_statusLabel,
+                menu,
+                ui_resize });
 
             ui_resize.MouseDown += (se, ev) => { f_hook_mouse_Open(); m_resizing = true; };
             ui_resize.MouseUp += (se, ev) =>
@@ -293,14 +300,20 @@ namespace lenBrowser
             ui_browser.Reload();
         }
 
-        public void f_browserGoPage(string url)
+        public void f_browserGoPage(string url, string title = "")
         {
             if (ui_browser.IsLoading)
                 ui_browser.Stop();
 
-            ui_browser.Load(url);
-            ui_urlLabel.Text = url;
-            ui_urlTextBox.Text = url;
+            Invoke(new MethodInvoker(() =>
+            {
+                if (!IsDisposed)
+                {
+                    ui_browser.Load(url);
+                    ui_urlLabel.Text = url;
+                    ui_urlTextBox.Text = url;
+                }
+            }));
         }
 
         void f_browserBackPage()
@@ -335,10 +348,22 @@ namespace lenBrowser
             switch (propertyName)
             {
                 case "Title":
-                    this.Text = ui_browser.Title;
-                    ui_urlTextBox.Visible = false;
-                    ui_urlLabel.Text = ui_browser.Title;
-                    ui_urlLabel.Visible = true;
+                    Invoke(new MethodInvoker(() =>
+                    {
+                        if (!IsDisposed)
+                        {
+                            if (string.IsNullOrEmpty(ui_browser.Title))
+                            {
+                                this.Text = ui_browser.Address;
+                                ui_urlLabel.Text = ui_browser.Address;
+                            }
+                            else
+                            {
+                                this.Text = ui_browser.Title;
+                                ui_urlLabel.Text = ui_browser.Title;
+                            }
+                        }
+                    }));
                     break;
                 case "Address":
                     //urlTextBox.Text = ui_browser.Address;
@@ -566,7 +591,8 @@ namespace lenBrowser
 
         public void f_api_messageReceiver(IpcMsgType type, string data)
         {
-            switch (type) {
+            switch (type)
+            {
                 case IpcMsgType.URL_REQUEST_SUCCESS:
                     ui_browser.Load(data);
                     break;
@@ -585,7 +611,7 @@ namespace lenBrowser
                 CreateNoWindow = true
             }
         };
-        
+
         //oCmd f_api_jsonCmdParser(string s)
         //{
         //    if (string.IsNullOrEmpty(s)) return null;
