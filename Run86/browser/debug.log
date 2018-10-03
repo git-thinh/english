@@ -8935,3 +8935,29 @@
 [1002/234225:INFO:CONSOLE(0)] "JS-> https://developer.mozilla.org/en-US/docs/Web/JavaScript," source: https://developer.mozilla.org/en-US/docs/Web/JavaScript(53)
 [1002/234230:INFO:CONSOLE(0)] "JS-> https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps," source: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps(53)
 [1002/234235:INFO:CONSOLE(0)] "JS-> https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML," source: https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML(53)
+[1003/204818:INFO:CONSOLE(0)] "all:," source: local://view/setting.html(219)
+[1003/204820:INFO:CONSOLE(0)] "star:," source: local://view/setting.html(219)
+[1003/204821:INFO:CONSOLE(0)] "tag:," source: local://view/setting.html(219)
+[1003/204822:INFO:CONSOLE(0)] "domain:," source: local://view/setting.html(219)
+[1003/204827:INFO:CONSOLE(0)] "all:," source: local://view/setting.html(219)
+[1003/204828:INFO:CONSOLE(0)] "star:," source: local://view/setting.html(219)
+[1003/204945:INFO:CONSOLE(0)] "all:," source: local://view/setting.html(219)
+[1003/204945:INFO:CONSOLE(0)] "star:," source: local://view/setting.html(219)
+[1003/204946:INFO:CONSOLE(0)] "tag:," source: local://view/setting.html(219)
+[1003/204947:INFO:CONSOLE(0)] "domain:," source: local://view/setting.html(219)
+[1003/204947:INFO:CONSOLE(0)] "tag:," source: local://view/setting.html(219)
+[1003/204948:INFO:CONSOLE(0)] "star:," source: local://view/setting.html(219)
+[1003/204948:INFO:CONSOLE(0)] "all:," source: local://view/setting.html(219)
+[1003/210420:INFO:CONSOLE(0)] "{
+  "Ok": true,
+  "Keyword": "Learn English",
+  "Total": 123,
+  "Count": 99,
+  "pageNumber": 1,
+  "pageSize": 10,
+  "Result": [
+    { "Url": "", "Tag": "", "Title": "","Text": "" }
+  ]
+}
+," source: local://view/setting.html(196)
+[1003/211930:INFO:CONSOLE(0)] "[object Object]," source: local://view/setting.html(244)

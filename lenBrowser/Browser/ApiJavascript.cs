@@ -43,6 +43,13 @@ namespace lenBrowser
             return JsonConvert.SerializeObject(new { Ok = false, Message = "Cannot find the file: " + file });
         }
 
+        // API.WeadFile(...)
+        public void WriteFile(string file, string data)
+        {
+            if (File.Exists(file))
+                File.WriteAllText(file, data);
+        }
+
         /*****************************************************************/
 
         public void windowOpen(string str)

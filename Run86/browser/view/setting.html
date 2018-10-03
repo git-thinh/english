@@ -61,6 +61,7 @@
                 remove: removeClass,
                 toggle: toggleClass
             };
+
             // transport
             if (typeof define === 'function' && define.amd) {
                 // AMD
@@ -73,9 +74,36 @@
                 window.classie = classie;
             }
         })(window);
+
+        Object.prototype.toggleClass = function (_className) {
+            var el = this;
+            classie.toggleClass(el, _className);
+        };
+
+        Object.prototype.addClass = function (_className) {
+            var el = this;
+            classie.addClass(el, _className);
+        };
+
+        Object.prototype.removeClass = function (_className) {
+            var el = this;
+            classie.removeClass(el, _className);
+        };
+
+        function f_getJson(key) {
+            var url = 'view/' + key + '.json';
+            var json = API.ReadFile(url);
+            if (json.Ok == false && json.Message) {
+                alert('Cannot find file: ' + url);
+                return null;
+            }
+            //console.log(json);
+            return JSON.parse(json);
+        }
     </script>
     <style type="text/css">
-
+        
+        
         body {
             padding: 0;
             margin: 0;
@@ -110,38 +138,43 @@
 
             table tr td {
                 border: none;
+                padding: 0px;
+                margin: 0;
+                border-spacing: 0 0;
             }
 
         #header {
-            height: 69px;
-            background-color: dodgerblue;
+            height: 55px;
+            background-color: #fff;
             text-align: center;
+            padding: 5px 0 0 0;
         }
 
             #header input[type="text"] {
-                width: 90%;
+                width: 50%;
                 border: 1px solid #ccc;
                 height: 19px;
                 background-color: #fafafa;
+                padding: 2px 10px;
             }
 
             #header button {
-                border: 1px solid #ccc;
+                border: none;
                 margin-top: 9px;
-                width: 63px;
+                width: 55px;
                 color: gray;
+                background-color: #fff;
             }
 
                 #header button.active {
-                    border: 1px solid #808080;
-                    color: #333;
-                    background-color:orange;
+                    border: none;
+                    color: #333;                    
+                    border-bottom: 3px solid orange;
                 }
 
         #main {
             width: 100%;
             height: 100%;
-            background-color: gray;
             min-height: 99px;
         }
 
@@ -150,10 +183,32 @@
             background-color: orange;
         }
 
+        #items {
+        }
+
+            #items li:first-child {
+                border-top: none;
+            }
+
+            #items li {
+                border-top: 1px solid #ccc;
+            }
+
+                #items li label {
+                }
+
+                #items li p {
+                }
+
+                #items li a {
+                }
+    
+    
+    
     </style>
 </head>
-<body>
-    <table>
+<body onload="f_ready()">
+    <table cellspacing="0" cellpadding="0">
         <tr>
             <td id="header">
                 <input id="txt_search" type="text" placeholder="Search ..." /><br />
@@ -164,7 +219,9 @@
             </td>
         </tr>
         <tr>
-            <td id="main"></td>
+            <td id="main">
+                <ul id="items"></ul>
+            </td>
         </tr>
         <tr>
             <td id="footer">
@@ -174,16 +231,55 @@
     </table>
     <script type="text/javascript">
 
+
+        function f_ready() {
+            var res1;
+
+            //res1 = f_getJson('search');
+            res1 = {
+                "Ok": true,
+                "Keyword": "Learn English",
+                "Total": 123,
+                "Count": 99,
+                "pageNumber": 1,
+                "pageSize": 10,
+                "Result": []
+            };
+            for (var i = 0; i < res1.pageSize; i++) res1.Result.push({ "Url": "https://dictionary.cambridge.org/grammar/british-grammar/above-or-over", "Tags": "grammar, above, over", "Title": "Above or over?", "Text": "When we use above as a preposition, it means ‘higher than’. Its meaning is close to that of the preposition over. In the following sentences, over can be used instead of above" });
+
+            if (res1 && res1.Ok) {
+                console.log(res1);
+
+                var _openUrl = function (url) {
+                    console.log('-> ' + url);
+                };
+                var items = document.getElementById('items');
+                for (var i = 0; i < res1.pageSize; i++) {
+                    var it = res1.Result[i],
+                        li = document.createElement('li'),
+                        tags = '';
+                    console.log(it);
+                    if(it.Tags.length > 0) tags = '<em>' + it.Tags.split(',').join('</em><em>') + '</em>';
+                    li.onclick = function () { _openUrl(it.Url); };
+                    li.innerHTML = '<label>' + it.Title + '</label><p>' + it.Text + '</p>' + tags;
+                    
+                    items.appendChild(li);
+                }
+
+                //console.log(json);
+            }
+        }
+
         function f_search(type, event) {
             var el = event.target;
 
             var bs = document.querySelectorAll('#header button');
-            for (var i = 0; i < bs.length; i++) 
-                bs[i].className = '';
-            classie.toggle(el, 'active');
+            for (var i = 0; i < bs.length; i++) bs[i].className = '';
+            el.toggleClass('active');
 
             var elKey = document.getElementById('txt_search');
             var keyword = elKey.value;
+
             ////$('#header button').removeClass('active');
             ////$('#header button.' + type.toLowerCase()).addClass('active');
 
@@ -200,7 +296,7 @@
             //        break;
             //}
 
-            alert(type + ':' + keyword);
+            console.log(type + ':' + keyword);
         }
 
 
