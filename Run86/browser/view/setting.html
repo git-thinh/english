@@ -4,14 +4,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <script type="text/javascript">
-        /*!
-* https://github.com/ded/bonzo
-* classie.has( elem, 'my-class' ) -> true/false
-* classie.add( elem, 'my-new-class' )
-* classie.remove( elem, 'my-unwanted-class' )
-* classie.toggle( elem, 'my-class' )
-*/
         (function (window) {
+            /*!
+    * https://github.com/ded/bonzo
+    * classie.has( elem, 'my-class' ) -> true/false
+    * classie.add( elem, 'my-new-class' )
+    * classie.remove( elem, 'my-unwanted-class' )
+    * classie.toggle( elem, 'my-class' )
+    */
             'use strict';
             // class helper functions from bonzo https://github.com/ded/bonzo
             function classReg(className) {
@@ -101,8 +101,172 @@
             return JSON.parse(json);
         }
     </script>
+</head>
+<body onload="f_ready()">
+    <div id="header">
+        <input id="txt_search" type="text" placeholder="Search ..." />
+        <button onclick="location.reload()">Reload</button>
+        <br />
+        <button onclick="f_search('star', event)">Star</button>
+        <button onclick="f_search('link', event)">Link</button>
+        <button onclick="f_search('english', event)" class="active">English</button>
+        <button onclick="f_search('tag', event)">Tags</button>
+        <button onclick="f_search('doc', event)">Doc</button>
+        <button onclick="f_search('domain', event)">Media</button>
+    </div>
+    <div id="main">
+        <ul id="items-link" class="items"></ul>
+        <ul id="items-star" class="items"></ul>
+        <ul id="items-english" class="items"></ul>
+        <ul id="items-tag" class="items"></ul>
+        <ul id="items-doc" class="items"></ul>
+        <ul id="items-media" class="items"></ul>
+    </div>
+    <div id="footer">
+        <button> < </button>
+        <p id="pager">
+            Items 123-123 | 1-35
+        </p>
+        <button> > </button>
+    </div>
+    <script type="text/javascript">
+        var _TAB_SELECT = 'english';
+
+        var _openUrl = function (url) {
+            //console.log('-> ' + url);
+            API.Go(url);
+        };
+
+        function f_ready() {
+            var data;
+
+            //data = f_getJson('search');
+            data = {
+                "Ok": true,
+                "Keyword": "Learn English",
+                "Link": {
+                    "Total": 123,
+                    "Count": 99,
+                    "pageNumber": 1,
+                    "pageSize": 10,
+                    "Result": []
+                },
+                "English": {
+                    "Total": 123,
+                    "Count": 99,
+                    "pageNumber": 1,
+                    "pageSize": 10,
+                    "Result": []
+                },
+                "Media": {
+                    "Total": 123,
+                    "Count": 99,
+                    "pageNumber": 1,
+                    "pageSize": 10,
+                    "Result": []
+                }
+            };
+
+            // #region [LINK]
+
+            var rs_link = data.Link;
+            for (var i = 0; i < rs_link.pageSize; i++) rs_link.Result.push({ "Type": "link", "Url": "https://dictionary.cambridge.org/grammar/british-grammar/above-or-over", "Tags": "grammar, above, over", "Title": "Above or over?", "Text": "When we use above as a preposition, it means ‘higher than’. Its meaning is close to that of the preposition over. In the following sentences, over can be used instead of above" });
+            if (rs_link) {
+                var items = document.getElementById('items-link');
+                for (var i = 0; i < rs_link.pageSize; i++) {
+                    var it = rs_link.Result[i],
+                        li = document.createElement('li'),
+                        domain = '<em>' + it.Url.split('/')[2] + '</em>',
+                        tags = '';
+                    li.className = it.Type;
+                    //li.onclick = function () { _openUrl(it.Url); };
+                    if (it.Tags.length > 0) tags = '<span><i>' + it.Tags.split(',').join('</i><i>') + '</i></span>';
+                    li.innerHTML = '<label onclick="_openUrl(\'' + it.Url + '\')">' + it.Title + '</label>' + domain + '<p>' + it.Text + '</p>' + tags;
+
+                    items.appendChild(li);
+                }
+            }
+
+            // #endregion
+
+            // #region [ENGLISH]
+
+            var rs_english = data.English;
+            for (var i = 0; i < rs_english.pageSize; i++) rs_english.Result.push({ "Type": "english", "Url": "https://dictionary.cambridge.org/grammar/british-grammar/above-or-over", "Tags": "grammar, above, over", "Title": "Above or over?", "Text": "When we use above as a preposition, it means ‘higher than’. Its meaning is close to that of the preposition over. In the following sentences, over can be used instead of above" });
+            if (rs_english) {
+                var items = document.getElementById('items-english');
+                for (var i = 0; i < rs_english.pageSize; i++) {
+                    var it = rs_english.Result[i],
+                        li = document.createElement('li'),
+                        domain = '<em>' + it.Url.split('/')[2] + '</em>',
+                        tags = '';
+                    li.className = it.Type;
+                    //li.onclick = function () { _openUrl(it.Url); };
+                    if (it.Tags.length > 0) tags = '<span><i>' + it.Tags.split(',').join('</i><i>') + '</i></span>';
+                    li.innerHTML = '<label onclick="_openUrl(\'' + it.Url + '\')">' + it.Title + '</label>' + domain + '<p>' + it.Text + '</p>' + tags;
+                    items.appendChild(li);
+                }
+            }
+
+            // #endregion
+
+            // #region [MEDIA]
+
+            var rs_media = data.Media;
+            for (var i = 0; i < rs_media.pageSize; i++) rs_media.Result.push({ "Type": "media", "Url": "https://dictionary.cambridge.org/grammar/british-grammar/above-or-over", "Tags": "grammar, above, over", "Title": "Above or over?", "Text": "When we use above as a preposition, it means ‘higher than’. Its meaning is close to that of the preposition over. In the following sentences, over can be used instead of above" });
+            if (rs_media) {
+                var items = document.getElementById('items-media');
+                for (var i = 0; i < rs_media.pageSize; i++) {
+                    var it = rs_media.Result[i],
+                        li = document.createElement('li'),
+                        domain = '<em>' + it.Url.split('/')[2] + '</em>',
+                        tags = '';
+                    li.className = it.Type;
+                    //li.onclick = function () { _openUrl(it.Url); };
+                    if (it.Tags.length > 0) tags = '<span><i>' + it.Tags.split(',').join('</i><i>') + '</i></span>';
+                    li.innerHTML = '<label onclick="_openUrl(\'' + it.Url + '\')">' + it.Title + '</label>' + domain + '<p>' + it.Text + '</p>' + tags;
+                    items.appendChild(li);
+                }
+            }
+
+            // #endregion
+
+            var tab = document.getElementById('items-' + _TAB_SELECT);
+            if (tab) tab.style.display = 'block';
+        }
+
+        function f_search(type, event) {
+            var el = event.target;
+
+            var bs = document.querySelectorAll('#header button');
+            for (var i = 0; i < bs.length; i++) bs[i].className = '';
+            el.toggleClass('active');
+
+            var elKey = document.getElementById('txt_search');
+            var keyword = elKey.value;
+
+            ////$('#header button').removeClass('active');
+            ////$('#header button.' + type.toLowerCase()).addClass('active');
+
+            //switch (type) {
+            //    case 'all':
+            //        break;
+            //    case 'domain':
+            //        break;
+            //    case 'tag':
+            //        break;
+            //    case 'star':
+            //        break;
+            //    default:
+            //        break;
+            //}
+
+            console.log(type + ':' + keyword);
+        }
+
+
+    </script>
     <style type="text/css">
-        
         *, html {
             padding: 0;
             margin: 0;
@@ -148,7 +312,7 @@
             #header button {
                 border: none;
                 margin-top: 9px;
-                width: 55px;
+                width: 44px;
                 color: gray;
                 padding-bottom: 3px;
                 background-color: #fff;
@@ -191,50 +355,61 @@
 
         #pager {
             width: 55%;
-            font-size: 0.9em;
+            font-size: 0.8em;
             display: inline-block;
             text-align: center;
             color: #444;
         }
-         
 
-        #items {
+
+        ul.items {
             list-style: none;
-            display: inline-block;
+            display: none;
             width: 100%;
         }
 
-            #items li:first-child {
+            ul.items li:first-child {
                 border-top: none;
             }
 
-            #items li {
+            ul.items li {
                 border-top: 1px solid #ddd;
                 list-style: none;
                 padding-top: 10px;
                 padding-bottom: 10px;
             }
 
-                #items li label,
-                #items li span,
-                #items li p,
-                #items li em {
+                /************************************/
+                /*LINK*/
+
+                ul.items li.link label:hover,
+                ul.items li.link em:hover,
+                ul.items li.link span i:hover {
+                    color: dodgerblue;
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
+
+                ul.items li.link label,
+                ul.items li.link em,
+                ul.items li.link p,
+                ul.items li.link span {
                     display: inline-block;
                     width: 94%;
                     padding-left: 3%;
                     padding-right: 3%;
                 }
 
-                #items li label {
+                ul.items li.link label {
                     font-weight: bold;
                     font-size: 1em;
                 }
 
-                #items li span {
+                ul.items li.link span {
                     text-align: right;
                 }
 
-                    #items li span i {
+                    ul.items li.link span i {
                         border-right: 1px solid #ddd;
                         font-style: normal;
                         line-height: 0px;
@@ -243,114 +418,78 @@
                         font-size: 0.9em;
                     }
 
-                        #items li span i:last-of-type {
+                        ul.items li.link span i:last-of-type {
                             border-right: none;
                         }
 
-                #items li p {
+                ul.items li.link p {
                     font-size: 0.9em;
                     line-height: 1.5em;
                 }
 
-                #items li em {
+                ul.items li.link em {
                     text-align: right;
                     color: #999;
                     font-size: 0.8em;
                 }
-    
-    </style>
-</head>
-<body onload="f_ready()">
-    <div id="header">
-        <input id="txt_search" type="text" placeholder="Search ..." />
-        <button onclick="location.reload()">Reload</button>
-        <br />
-        <button onclick="f_search('all', event)" class="active">All</button>
-        <button onclick="f_search('star', event)">Star</button>
-        <button onclick="f_search('tag', event)">Tag</button>
-        <button onclick="f_search('domain', event)">Domain</button>
-    </div>
-    <div id="main">
-        <ul id="items"></ul>
-    </div>
-    <div id="footer">
-        <button> < </button>
-        <p id="pager">
-            Items 123-123 | 1-35
-        </p>
-        <button> > </button>
-    </div>
-    <script type="text/javascript">
 
+                /************************************/
+                /*ENGLISH*/
 
-        function f_ready() {
-            var res1;
-
-            //res1 = f_getJson('search');
-            res1 = {
-                "Ok": true,
-                "Keyword": "Learn English",
-                "Total": 123,
-                "Count": 99,
-                "pageNumber": 1,
-                "pageSize": 10,
-                "Result": []
-            };
-            for (var i = 0; i < res1.pageSize; i++) res1.Result.push({ "Url": "https://dictionary.cambridge.org/grammar/british-grammar/above-or-over", "Tags": "grammar, above, over", "Title": "Above or over?", "Text": "When we use above as a preposition, it means ‘higher than’. Its meaning is close to that of the preposition over. In the following sentences, over can be used instead of above" });
-
-            if (res1 && res1.Ok) {
-                console.log(res1);
-
-                var _openUrl = function (url) {
-                    console.log('-> ' + url);
-                };
-                var items = document.getElementById('items');
-                for (var i = 0; i < res1.pageSize; i++) {
-                    var it = res1.Result[i],
-                        li = document.createElement('li'),
-                        domain = '<em>' + it.Url.split('/')[2] + '</em>',
-                        tags = '';
-                    if (it.Tags.length > 0) tags = '<span><i>' + it.Tags.split(',').join('</i><i>') + '</i></span>';
-                    li.onclick = function () { _openUrl(it.Url); };
-                    li.innerHTML = '<label>' + it.Title + '</label>' + domain + '<p>' + it.Text + '</p>' + tags;
-
-                    items.appendChild(li);
+                ul.items li.english label:hover,
+                ul.items li.english em:hover,
+                ul.items li.english span i:hover {
+                    color: dodgerblue;
+                    text-decoration: underline;
+                    cursor: pointer;
                 }
 
-                //console.log(json);
-            }
-        }
+                ul.items li.english label,
+                ul.items li.english em,
+                ul.items li.english p,
+                ul.items li.english span {
+                    display: inline-block;
+                    width: 94%;
+                    padding-left: 3%;
+                    padding-right: 3%;
+                }
 
-        function f_search(type, event) {
-            var el = event.target;
+                ul.items li.english label {
+                    font-weight: bold;
+                    font-size: 1em;
+                }
 
-            var bs = document.querySelectorAll('#header button');
-            for (var i = 0; i < bs.length; i++) bs[i].className = '';
-            el.toggleClass('active');
+                ul.items li.english span {
+                    text-align: right;
+                }
 
-            var elKey = document.getElementById('txt_search');
-            var keyword = elKey.value;
+                    ul.items li.english span i {
+                        border-right: 1px solid #ddd;
+                        font-style: normal;
+                        line-height: 0px;
+                        padding: 0 3px 0 0;
+                        color: #999;
+                        font-size: 0.9em;
+                    }
 
-            ////$('#header button').removeClass('active');
-            ////$('#header button.' + type.toLowerCase()).addClass('active');
+                        ul.items li.english span i:last-of-type {
+                            border-right: none;
+                        }
 
-            //switch (type) {
-            //    case 'all':
-            //        break;
-            //    case 'domain':
-            //        break;
-            //    case 'tag':
-            //        break;
-            //    case 'star':
-            //        break;
-            //    default:
-            //        break;
-            //}
+                ul.items li.english p {
+                    font-size: 0.9em;
+                    line-height: 1.5em;
+                }
 
-            console.log(type + ':' + keyword);
-        }
+                ul.items li.english em {
+                    text-align: right;
+                    color: #999;
+                    font-size: 0.8em;
+                }
 
+        /************************************/
+        /*LINK*/
+    </style>
 
-    </script>
 </body>
 </html>
