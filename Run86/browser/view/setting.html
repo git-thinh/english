@@ -2,16 +2,165 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>    
+    <title></title>
+    <script type="text/javascript">
+        /*!
+* https://github.com/ded/bonzo
+* classie.has( elem, 'my-class' ) -> true/false
+* classie.add( elem, 'my-new-class' )
+* classie.remove( elem, 'my-unwanted-class' )
+* classie.toggle( elem, 'my-class' )
+*/
+        (function (window) {
+            'use strict';
+            // class helper functions from bonzo https://github.com/ded/bonzo
+            function classReg(className) {
+                return new RegExp("(^|\\s+)" + className + "(\\s+|$)");
+            }
+
+            // classList support for class management altho to be fair, the api sucks because it won't accept multiple classes at once
+            var hasClass, addClass, removeClass;
+
+            if ('classList' in document.documentElement) {
+                hasClass = function (elem, c) {
+                    return elem.classList.contains(c);
+                };
+                addClass = function (elem, c) {
+                    elem.classList.add(c);
+                };
+                removeClass = function (elem, c) {
+                    elem.classList.remove(c);
+                };
+            }
+            else {
+                hasClass = function (elem, c) {
+                    return classReg(c).test(elem.className);
+                };
+                addClass = function (elem, c) {
+                    if (!hasClass(elem, c)) {
+                        elem.className = elem.className + ' ' + c;
+                    }
+                };
+                removeClass = function (elem, c) {
+                    elem.className = elem.className.replace(classReg(c), ' ');
+                };
+            }
+            function toggleClass(elem, c) {
+                var fn = hasClass(elem, c) ? removeClass : addClass;
+                fn(elem, c);
+            }
+            var classie = {
+                // full names
+                hasClass: hasClass,
+                addClass: addClass,
+                removeClass: removeClass,
+                toggleClass: toggleClass,
+                // short names
+                has: hasClass,
+                add: addClass,
+                remove: removeClass,
+                toggle: toggleClass
+            };
+            // transport
+            if (typeof define === 'function' && define.amd) {
+                // AMD
+                define(classie);
+            } else if (typeof exports === 'object') {
+                // CommonJS
+                module.exports = classie;
+            } else {
+                // browser global
+                window.classie = classie;
+            }
+        })(window);
+    </script>
+    <style type="text/css">
+
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            -webkit-box-shadow: none;
+            border-radius: 0px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            border-radius: 0px;
+            -webkit-box-shadow: none;
+            background-color: dimgray;
+        }
+
+        table {
+            width: 100%;
+            height: 100%;
+            padding: 0px;
+            border: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+            table tr td {
+                border: none;
+            }
+
+        #header {
+            height: 69px;
+            background-color: dodgerblue;
+            text-align: center;
+        }
+
+            #header input[type="text"] {
+                width: 90%;
+                border: 1px solid #ccc;
+                height: 19px;
+                background-color: #fafafa;
+            }
+
+            #header button {
+                border: 1px solid #ccc;
+                margin-top: 9px;
+                width: 63px;
+                color: gray;
+            }
+
+                #header button.active {
+                    border: 1px solid #808080;
+                    color: #333;
+                    background-color:orange;
+                }
+
+        #main {
+            width: 100%;
+            height: 100%;
+            background-color: gray;
+            min-height: 99px;
+        }
+
+        #footer {
+            height: 45px;
+            background-color: orange;
+        }
+
+    </style>
 </head>
 <body>
     <table>
         <tr>
             <td id="header">
                 <input id="txt_search" type="text" placeholder="Search ..." /><br />
-                <button>All</button>
-                <button>Star</button>
-                <button>Domain</button>
+                <button onclick="f_search('all', event)">All</button>
+                <button onclick="f_search('star', event)">Star</button>
+                <button onclick="f_search('tag', event)">Tag</button>
+                <button onclick="f_search('domain', event)">Domain</button>
             </td>
         </tr>
         <tr>
@@ -25,23 +174,31 @@
     </table>
     <script type="text/javascript">
 
-        function f_search(type, keyword) {
+        function f_search(type, event) {
+            var el = event.target;
 
-            $('#header button').removeClass('active');
-            $('#header button.' + type.toLowerCase()).addClass('active');
-            
-            switch (type) {
-                case 'ALL':
-                    break;
-                case 'DOMAIN':
-                    break;
-                case 'TAG':
-                    break;
-                case 'STAR':
-                    break;
-                default:
-                    break;
-            }
+            var bs = document.querySelectorAll('#header button');
+            for (var i = 0; i < bs.length; i++) 
+                bs[i].className = '';
+            classie.toggle(el, 'active');
+
+            var elKey = document.getElementById('txt_search');
+            var keyword = elKey.value;
+            ////$('#header button').removeClass('active');
+            ////$('#header button.' + type.toLowerCase()).addClass('active');
+
+            //switch (type) {
+            //    case 'all':
+            //        break;
+            //    case 'domain':
+            //        break;
+            //    case 'tag':
+            //        break;
+            //    case 'star':
+            //        break;
+            //    default:
+            //        break;
+            //}
 
             alert(type + ':' + keyword);
         }

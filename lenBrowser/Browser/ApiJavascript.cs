@@ -1,6 +1,7 @@
 using CefSharp;
 using Newtonsoft.Json;
 using System;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
@@ -34,6 +35,14 @@ namespace lenBrowser
             byte[] buf = App.f_api_sendMessage(IpcMsgType.URL_GET_ALL_DOMAIN);
             return Encoding.UTF8.GetString(buf);
         }
+
+        // API.ReadFile(...)
+        public string ReadFile(string file)
+        {
+            if (File.Exists(file)) return File.ReadAllText(file);
+            return JsonConvert.SerializeObject(new { Ok = false, Message = "Cannot find the file: " + file });
+        }
+
         /*****************************************************************/
 
         public void windowOpen(string str)

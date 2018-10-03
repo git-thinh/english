@@ -4,7 +4,6 @@ G:\english\lenBrowser\obj\x86\Debug\lenBrowser.Resources.resources
 G:\english\lenBrowser\obj\x86\Debug\lenBrowser.csproj.GenerateResource.Cache
 G:\english\lenBrowser\obj\x86\Debug\Browser.exe
 G:\english\lenBrowser\obj\x86\Debug\Browser.pdb
-C:\english\Run86\browser\Browser.exe.config
 C:\english\Run86\browser\Browser.exe
 C:\english\Run86\browser\Browser.pdb
 C:\english\lenBrowser\obj\x86\Debug\lenBrowser.Resources.resources
