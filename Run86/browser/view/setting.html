@@ -103,51 +103,38 @@
     </script>
     <style type="text/css">
         
-        
-        body {
+        *, html {
             padding: 0;
             margin: 0;
+            font-family: arial;
         }
 
-        ::-webkit-scrollbar {
-            width: 12px;
+        body {
         }
 
-        ::-webkit-scrollbar-track {
+        #main::-webkit-scrollbar {
+            width: 7px;
+        }
+
+        #main::-webkit-scrollbar-track {
             -webkit-box-shadow: none;
             border-radius: 0px;
         }
 
-        ::-webkit-scrollbar-thumb {
+        #main::-webkit-scrollbar-thumb {
             border-radius: 0px;
             -webkit-box-shadow: none;
-            background-color: dimgray;
+            background-color: #ddd;
         }
-
-        table {
-            width: 100%;
-            height: 100%;
-            padding: 0px;
-            border: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-        }
-
-            table tr td {
-                border: none;
-                padding: 0px;
-                margin: 0;
-                border-spacing: 0 0;
-            }
 
         #header {
-            height: 55px;
+            height: 63px;
             background-color: #fff;
             text-align: center;
-            padding: 5px 0 0 0;
+            padding: 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1;
         }
 
             #header input[type="text"] {
@@ -163,27 +150,58 @@
                 margin-top: 9px;
                 width: 55px;
                 color: gray;
+                padding-bottom: 3px;
                 background-color: #fff;
+                height: 22px;
             }
 
                 #header button.active {
                     border: none;
-                    color: #333;                    
-                    border-bottom: 3px solid orange;
+                    color: #333;
+                    border-bottom: 1px solid orange;
                 }
 
         #main {
             width: 100%;
-            height: 100%;
-            min-height: 99px;
+            top: 63px;
+            position: fixed;
+            bottom: 30px;
+            display: inline-block;
+            z-index: 0;
+            overflow: auto;
+            padding-top: 10px;
         }
 
         #footer {
-            height: 45px;
-            background-color: orange;
+            height: 25px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 5px 0 0 0;
         }
 
+            #footer button {
+                width: 20%;
+                border: none;
+                background-color: transparent;
+                font-weight: bold;
+                font-size: 0.7em;
+                color: #777;
+            }
+
+        #pager {
+            width: 55%;
+            font-size: 0.9em;
+            display: inline-block;
+            text-align: center;
+            color: #444;
+        }
+         
+
         #items {
+            list-style: none;
+            display: inline-block;
+            width: 100%;
         }
 
             #items li:first-child {
@@ -191,44 +209,77 @@
             }
 
             #items li {
-                border-top: 1px solid #ccc;
+                border-top: 1px solid #ddd;
+                list-style: none;
+                padding-top: 10px;
+                padding-bottom: 10px;
             }
 
-                #items li label {
+                #items li label,
+                #items li span,
+                #items li p,
+                #items li em {
+                    display: inline-block;
+                    width: 94%;
+                    padding-left: 3%;
+                    padding-right: 3%;
                 }
+
+                #items li label {
+                    font-weight: bold;
+                    font-size: 1em;
+                }
+
+                #items li span {
+                    text-align: right;
+                }
+
+                    #items li span i {
+                        border-right: 1px solid #ddd;
+                        font-style: normal;
+                        line-height: 0px;
+                        padding: 0 3px 0 0;
+                        color: #999;
+                        font-size: 0.9em;
+                    }
+
+                        #items li span i:last-of-type {
+                            border-right: none;
+                        }
 
                 #items li p {
+                    font-size: 0.9em;
+                    line-height: 1.5em;
                 }
 
-                #items li a {
+                #items li em {
+                    text-align: right;
+                    color: #999;
+                    font-size: 0.8em;
                 }
-    
-    
     
     </style>
 </head>
 <body onload="f_ready()">
-    <table cellspacing="0" cellpadding="0">
-        <tr>
-            <td id="header">
-                <input id="txt_search" type="text" placeholder="Search ..." /><br />
-                <button onclick="f_search('all', event)">All</button>
-                <button onclick="f_search('star', event)">Star</button>
-                <button onclick="f_search('tag', event)">Tag</button>
-                <button onclick="f_search('domain', event)">Domain</button>
-            </td>
-        </tr>
-        <tr>
-            <td id="main">
-                <ul id="items"></ul>
-            </td>
-        </tr>
-        <tr>
-            <td id="footer">
-                <button onclick="location.reload()">Reload</button>
-            </td>
-        </tr>
-    </table>
+    <div id="header">
+        <input id="txt_search" type="text" placeholder="Search ..." />
+        <button onclick="location.reload()">Reload</button>
+        <br />
+        <button onclick="f_search('all', event)" class="active">All</button>
+        <button onclick="f_search('star', event)">Star</button>
+        <button onclick="f_search('tag', event)">Tag</button>
+        <button onclick="f_search('domain', event)">Domain</button>
+    </div>
+    <div id="main">
+        <ul id="items"></ul>
+    </div>
+    <div id="footer">
+        <button> < </button>
+        <p id="pager">
+            Items 123-123 | 1-35
+        </p>
+        <button> > </button>
+    </div>
     <script type="text/javascript">
 
 
@@ -257,12 +308,12 @@
                 for (var i = 0; i < res1.pageSize; i++) {
                     var it = res1.Result[i],
                         li = document.createElement('li'),
+                        domain = '<em>' + it.Url.split('/')[2] + '</em>',
                         tags = '';
-                    console.log(it);
-                    if(it.Tags.length > 0) tags = '<em>' + it.Tags.split(',').join('</em><em>') + '</em>';
+                    if (it.Tags.length > 0) tags = '<span><i>' + it.Tags.split(',').join('</i><i>') + '</i></span>';
                     li.onclick = function () { _openUrl(it.Url); };
-                    li.innerHTML = '<label>' + it.Title + '</label><p>' + it.Text + '</p>' + tags;
-                    
+                    li.innerHTML = '<label>' + it.Title + '</label>' + domain + '<p>' + it.Text + '</p>' + tags;
+
                     items.appendChild(li);
                 }
 
