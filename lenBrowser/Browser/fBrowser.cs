@@ -23,7 +23,7 @@ namespace lenBrowser
 {
     public class fBrowser : Form, IBeforeResourceLoad
     {
-        #region
+        #region [ VAR ]
         // This is where we create our message window. When this form is created it will create our hidden window.
         readonly MessageListener MSG_WINDOW;
 
@@ -177,7 +177,21 @@ namespace lenBrowser
                 ForeColor = Color.Gray,
             };
             ui_urlLabel.MouseMove += f_form_move_MouseDown;
-
+            ui_urlLabel.DoubleClick += (se, ev) => {
+                if (this.Width == Screen.PrimaryScreen.WorkingArea.Width)
+                {
+                    this.Width = 1024;
+                    this.Height = 768;
+                    this.Left = (Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2;
+                    this.Top = (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2;
+                }
+                else {
+                    this.Left = 0;
+                    this.Top = 0;
+                    this.Width = Screen.PrimaryScreen.WorkingArea.Width;
+                    this.Height = Screen.PrimaryScreen.WorkingArea.Height;
+                }
+            };
 
             ui_urlLabel.Click += (se, ev) =>
             {

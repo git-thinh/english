@@ -69,11 +69,11 @@ namespace System
             {
                 case IpcMsgType.NOTIFICATION_REG_HANDLE:
                     value = BitConverter.ToInt32(input, 1);
-                    if (value > 0 && LIST_UI_NOTI.FindIndex(x => x == value) == -1) LIST_UI_NOTI.Add(value);
+                    lock (LIST_UI_NOTI) if (value > 0 && LIST_UI_NOTI.FindIndex(x => x == value) == -1) LIST_UI_NOTI.Add(value);
                     break;
                 case IpcMsgType.NOTIFICATION_REMOVE_HANDLE:
                     value = BitConverter.ToInt32(input, 1);
-                    if (value > 0 && LIST_UI_NOTI.FindIndex(x => x == value) != -1) LIST_UI_NOTI.Remove(value);
+                    lock (LIST_UI_NOTI) if (value > 0 && LIST_UI_NOTI.FindIndex(x => x == value) != -1) LIST_UI_NOTI.Remove(value);
                     break;
                 case IpcMsgType.URL_CACHE_FOR_SEARCH:
                     #region
@@ -193,7 +193,7 @@ namespace System
                 f_sendNotification(IpcMsgType.URL_REQUEST_FAIL, _url);
             }, (_url, _page) =>
             {
-                CACHE.TryAdd(_url, _page.Source);                
+                CACHE.TryAdd(_url, _page.Source);
                 f_sendNotification(IpcMsgType.URL_REQUEST_SUCCESS, _url);
             });
         }
@@ -202,8 +202,12 @@ namespace System
         {
             byte[] buf = System.Text.Encoding.UTF8.GetBytes(message);
             byte _type = (byte)type;
-            foreach (int id in LIST_UI_NOTI)
-                MessageHelper.f_sendMessage(id, type, message);
+
+            lock (LIST_UI_NOTI)
+            {
+                foreach (int id in LIST_UI_NOTI)
+                    MessageHelper.f_sendMessage(id, type, message);
+            }
         }
     }
 }
