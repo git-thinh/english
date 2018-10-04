@@ -36,7 +36,8 @@ namespace lenBrowser
         //const string URL = "https://vnexpress.net";
         //const string URL_GOOGLE = "https://google.com.vn";
         //const string URL = "http://w2ui.com/web/demos/#!layout/layout-1";
-        const string URL = "about:blank";
+        //const string URL = "about:blank";
+        const string URL = "local://view/ws.html";
         //const string URL = "http://test.local/demo.html";
         //const string URL = "https://dictionary.cambridge.org/grammar/british-grammar/above-or-over";
         //const string URL = "https://vuejs.org/v2/guide/";

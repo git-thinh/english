@@ -81,6 +81,7 @@ namespace https
 
             if (!Directory.Exists("cache")) Directory.CreateDirectory("cache");
             server = new IpcServer();
+            server.Start();
             f_app_keepRunning();
             server.Stop();
             Process.GetCurrentProcess().Kill();

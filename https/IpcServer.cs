@@ -6,6 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Linq;
 using System.IO;
+using Fleck;
 
 namespace System
 {
@@ -24,6 +25,37 @@ namespace System
         readonly ConcurrentDictionary<string, List<int>> KEY_INDEX;
 
         readonly RpcServerApi SERVER_RPC;
+        readonly WebSocketServer NOTI;
+        readonly List<IWebSocketConnection> CLIENTS;
+
+        public void Start()
+        {
+            SERVER_RPC.StartListening();
+
+            NOTI.Start(socket =>
+            {
+                socket.OnOpen = () =>
+                {
+                    Console.WriteLine("Open!");
+                    CLIENTS.Add(socket);
+                    socket.Send(Guid.NewGuid().ToString());
+                };
+
+                socket.OnClose = () =>
+                {
+                    Console.WriteLine("Close!");
+                    CLIENTS.Remove(socket);
+                };
+
+                socket.OnMessage = message =>
+                {
+                    Console.WriteLine("<<<: " + message);
+                    //socket.Send(message);
+                    CLIENTS.ForEach(s => s.Send(message));
+                };
+            });
+
+        }
 
         public void Stop()
         {
@@ -55,8 +87,13 @@ namespace System
             SERVER_RPC.AddProtocol(RpcProtseq.ncalrpc, _CONST.RPC_NAME, 100);
             SERVER_RPC.AddAuthentication(RpcAuthentication.RPC_C_AUTHN_NONE);
             SERVER_RPC.OnExecute += f_executeMessageReceiver;
-            SERVER_RPC.StartListening();
+
+            NOTI = new WebSocketServer("ws://0.0.0.0:56789");
+            CLIENTS = new List<IWebSocketConnection>();
         }
+
+
+
 
         private byte[] f_executeMessageReceiver(IRpcClientInfo client, byte[] input)
         {
@@ -107,7 +144,8 @@ namespace System
                         f_requestUrl(text);
 
                     break;
-                #endregion
+
+                    #endregion
                 case IpcMsgType.URL_GET_ALL_DOMAIN:
                     #region
 
@@ -121,11 +159,13 @@ namespace System
                     //obj = BINARY_FORMATTER.Deserialize(memoryStream);
                     break;
             }
+
             //using (var memoryStream = new MemoryStream())
             //{
             //    BINARY_FORMATTER.Serialize(memoryStream, obj);
             //    return memoryStream.ToArray();
             //} 
+
             return new byte[0];
         }
 
