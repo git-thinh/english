@@ -111,10 +111,16 @@ namespace System
                             GooTranslateService_v1.TranslateAsync(otran, text, "en", "vi", string.Empty, (_otran) =>
                             {
                                 Console.WriteLine("\r\n -> V1: " + text + " (" + _otran.type + "): " + _otran.mean_vi);
-                                if (_otran.socket.IsAvailable) {
-                                    string _dataText = JsonConvert.SerializeObject(_otran);
-                                    _dataText = _dataText.Replace('"', '¦');
-
+                                if (_otran.socket.IsAvailable)
+                                {
+                                    if (_otran.success)
+                                    {
+                                        string _dataText = JsonConvert.SerializeObject(new oMsgSocketReply(true, MSG_TYPE.EN_TRANSLATE_GOOGLE_RESPONSE, msg.MsgId, "", JsonConvert.SerializeObject(_otran)));
+                                        string _msgResponse = JsonConvert.SerializeObject(_dataText);
+                                        _otran.socket.Send(_msgResponse);
+                                    }
+                                    else
+                                        _otran.socket.Send(JsonConvert.SerializeObject(new oMsgSocketReply(false, MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST, msg.MsgId, _otran.mean_vi)));
                                 }
                             });
                         }
@@ -125,7 +131,14 @@ namespace System
                                 Console.WriteLine("\r\n -> V1: " + text + " (" + _otran.type + "): " + _otran.mean_vi);
                                 if (_otran.socket.IsAvailable)
                                 {
-
+                                    if (_otran.success)
+                                    {
+                                        string _dataText = JsonConvert.SerializeObject(new oMsgSocketReply(true, MSG_TYPE.EN_TRANSLATE_GOOGLE_RESPONSE, msg.MsgId, "", JsonConvert.SerializeObject(_otran)));
+                                        string _msgResponse = JsonConvert.SerializeObject(_dataText);
+                                        _otran.socket.Send(_msgResponse);
+                                    }
+                                    else
+                                        _otran.socket.Send(JsonConvert.SerializeObject(new oMsgSocketReply(false, MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST, msg.MsgId, _otran.mean_vi)));
                                 }
                             });
                         }

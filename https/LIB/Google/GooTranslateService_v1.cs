@@ -72,9 +72,11 @@ namespace System
             string textTranslatorUrlKey,
             TranslateCallBack callBack)
         {
-            oTranslateObject.translateCallBack = callBack;  
-                      
             var request = CreateWebRequest(text, sourceLng, destLng, textTranslatorUrlKey);
+
+            oTranslateObject.translateCallBack = callBack;
+            oTranslateObject.webRequest = request;
+
             request.BeginGetResponse(TranslateRequestCallBack, oTranslateObject);
         }
 

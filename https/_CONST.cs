@@ -1,4 +1,5 @@
 ﻿using Fleck;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -90,6 +91,7 @@ namespace System
             this.MsgType = msgType;
             this.MsgId = msgId;
             this.Message = message;
+            if (!string.IsNullOrEmpty(data)) data = data.Replace('"', '¦');
             this.Data = data;
         }
     }
@@ -199,13 +201,13 @@ namespace System
         public int x { set; get; }
         public int y { set; get; }
 
-        [ScriptIgnore]
+        [JsonIgnore]
         public IWebSocketConnection socket { set; get; }
 
-        [ScriptIgnore]
+        [JsonIgnore]
         public WebRequest webRequest { set; get; }
 
-        [ScriptIgnore]
+        [JsonIgnore]
         public TranslateCallBack translateCallBack { set; get; }
         
         public oEN_TRANSLATE_GOOGLE_MESSAGE() {
