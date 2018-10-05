@@ -12,6 +12,8 @@ namespace System
 {
     public class IpcServer
     {
+        #region [VAR]
+
         readonly List<string> DOMAIN_LIST;
         readonly List<int> LIST_UI_NOTI;
         readonly BinaryFormatter BINARY_FORMATTER;
@@ -27,6 +29,11 @@ namespace System
         readonly RpcServerApi SERVER_RPC;
         readonly WebSocketServer NOTI;
         readonly List<IWebSocketConnection> CLIENTS;
+        private IWebSocketConnection CLIENT_SETTING = null;
+        private IWebSocketConnection CLIENT_PLAYER = null;
+        private IWebSocketConnection CLIENT_BROWSER = null;
+
+        #endregion
 
         public void Start()
         {
@@ -38,7 +45,7 @@ namespace System
                 {
                     Console.WriteLine("Open!");
                     CLIENTS.Add(socket);
-                    socket.Send(Guid.NewGuid().ToString());
+                    //socket.Send(Guid.NewGuid().ToString());
                 };
 
                 socket.OnClose = () =>
@@ -47,12 +54,10 @@ namespace System
                     CLIENTS.Remove(socket);
                 };
 
-                socket.OnMessage = message =>
-                {
-                    Console.WriteLine("<<<: " + message);
-                    //socket.Send(message);
-                    CLIENTS.ForEach(s => s.Send(message));
-                };
+                socket.OnMessage += (msg) => f_websocket_onMessage(socket, msg);
+
+                //{
+                //};
             });
 
         }
@@ -92,27 +97,47 @@ namespace System
             CLIENTS = new List<IWebSocketConnection>();
         }
 
+        private void f_websocket_onMessage(IWebSocketConnection socket, string message)
+        {
+            switch (message) {
+                case "_BROWSER_":
+                    CLIENT_BROWSER = socket;
+                    break;
+                case "_SETTING_":
+                    CLIENT_SETTING = socket;
+                    break;
+                case "_PLAYER_":
+                    CLIENT_PLAYER = socket;
+                    break;
+                default:
+                    oMsgSocket m = JsonConvert.DeserializeObject<oMsgSocket>(message);
+                    
+                    break;
+            }
 
-
+            //Console.WriteLine("<<<: " + message);
+            ////socket.Send(message);
+            //CLIENTS.ForEach(s => s.Send(message));
+        }
 
         private byte[] f_executeMessageReceiver(IRpcClientInfo client, byte[] input)
         {
-            IpcMsgType type = (IpcMsgType)input[0];
+            MSG_TYPE type = (MSG_TYPE)input[0];
             string text, domain;
             int value;
             oLink[] links;
 
             switch (type)
             {
-                case IpcMsgType.NOTIFICATION_REG_HANDLE:
+                case MSG_TYPE.NOTIFICATION_REG_HANDLE:
                     value = BitConverter.ToInt32(input, 1);
                     lock (LIST_UI_NOTI) if (value > 0 && LIST_UI_NOTI.FindIndex(x => x == value) == -1) LIST_UI_NOTI.Add(value);
                     break;
-                case IpcMsgType.NOTIFICATION_REMOVE_HANDLE:
+                case MSG_TYPE.NOTIFICATION_REMOVE_HANDLE:
                     value = BitConverter.ToInt32(input, 1);
                     lock (LIST_UI_NOTI) if (value > 0 && LIST_UI_NOTI.FindIndex(x => x == value) != -1) LIST_UI_NOTI.Remove(value);
                     break;
-                case IpcMsgType.URL_CACHE_FOR_SEARCH:
+                case MSG_TYPE.URL_CACHE_FOR_SEARCH:
                     #region
                     text = Encoding.UTF8.GetString(input, 1, input.Length - 1);
                     links = JsonConvert.DeserializeObject<oLink[]>(text);
@@ -130,8 +155,8 @@ namespace System
                     }
                     #endregion
                     break;
-                case IpcMsgType.URL_REQUEST:
-                case IpcMsgType.URL_GET_SOURCE_FROM_CACHE:
+                case MSG_TYPE.URL_REQUEST:
+                case MSG_TYPE.URL_GET_SOURCE_FROM_CACHE:
                     #region
 
                     text = Encoding.UTF8.GetString(input, 1, input.Length - 1);
@@ -146,7 +171,7 @@ namespace System
                     break;
 
                     #endregion
-                case IpcMsgType.URL_GET_ALL_DOMAIN:
+                case MSG_TYPE.URL_GET_ALL_DOMAIN:
                     #region
 
                     lock (DOMAIN_LIST)
@@ -230,15 +255,15 @@ namespace System
 
             Html.f_html_getSourceByUrl(url, (_url, err) =>
             {
-                f_sendNotification(IpcMsgType.URL_REQUEST_FAIL, _url);
+                f_sendNotification(MSG_TYPE.URL_REQUEST_FAIL, _url);
             }, (_url, _page) =>
             {
                 CACHE.TryAdd(_url, _page.Source);
-                f_sendNotification(IpcMsgType.URL_REQUEST_SUCCESS, _url);
+                f_sendNotification(MSG_TYPE.URL_REQUEST_SUCCESS, _url);
             });
         }
 
-        public void f_sendNotification(IpcMsgType type, string message)
+        public void f_sendNotification(MSG_TYPE type, string message)
         {
             byte[] buf = System.Text.Encoding.UTF8.GetBytes(message);
             byte _type = (byte)type;

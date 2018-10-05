@@ -4,6 +4,27 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <script type="text/javascript">
+
+        var _WEBSOCKET, _WEBSOCKET_OPEN = false;
+
+        if ("WebSocket" in window) {
+            _WEBSOCKET = new WebSocket("ws://127.0.0.1:56789");
+            _WEBSOCKET.onopen = function () {
+                _WEBSOCKET_OPEN = true;
+                _WEBSOCKET.send('_SETTING_');
+            };
+            _WEBSOCKET.onmessage = function (evt) {
+                var data = evt.data;
+                console.log("Message is received: " + data);
+            };
+            _WEBSOCKET.onclose = function () {
+                _WEBSOCKET_OPEN = false;
+            };
+            _WEBSOCKET.onerror = function () {
+                _WEBSOCKET_OPEN = false;
+            };
+        }
+
         (function (window) {
             /*!
     * https://github.com/ded/bonzo

@@ -18,6 +18,7 @@ using System.Text.RegularExpressions;
 using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
 using System.Diagnostics;
+using lenBrowser.Properties;
 
 namespace lenBrowser
 {
@@ -26,6 +27,7 @@ namespace lenBrowser
         #region [ VAR ]
         // This is where we create our message window. When this form is created it will create our hidden window.
         readonly MessageListener MSG_WINDOW;
+        readonly oAppInfo APP_INFO;
 
         //////☆★☐☑⧉✉⦿⦾⚠⚿⛑✕✓⥀✖↭☊⦧▷◻◼⟲≔☰⚒❯►❚❚❮⟳⚑⚐✎✛
         //////🕮🖎✍⦦☊🕭🔔🗣🗢🖳🎚🏷🖈🎗🏱🏲🗀🗁🕷🖒🖓👍👎♥♡♫♪♬♫🎙🎖🗝●◯⬤⚲☰⚒🕩🕪❯►❮⟳⚐🗑✎✛🗋🖫⛉ ⛊ ⛨⚏★☆
@@ -37,9 +39,9 @@ namespace lenBrowser
         //const string URL_GOOGLE = "https://google.com.vn";
         //const string URL = "http://w2ui.com/web/demos/#!layout/layout-1";
         //const string URL = "about:blank";
-        const string URL = "local://view/ws.html";
+        //const string URL = "local://view/ws.html";
         //const string URL = "http://test.local/demo.html";
-        //const string URL = "https://dictionary.cambridge.org/grammar/british-grammar/above-or-over";
+        const string URL = "https://dictionary.cambridge.org/grammar/british-grammar/above-or-over";
         //const string URL = "https://vuejs.org/v2/guide/";
         //const string URL = "https://msdn.microsoft.com/en-us/library/ff361664(v=vs.110).aspx";
         //const string URL = "https://developer.mozilla.org/en-US/docs/Web";
@@ -69,11 +71,28 @@ namespace lenBrowser
 
         #region [ MAIN ]
 
+        void f_main_updateAppInfo()
+        {
+
+            APP_INFO.Width = this.Width;
+            APP_INFO.Height = this.Height;
+            APP_INFO.Left = this.Left;
+            APP_INFO.Top = this.Top;
+
+            APP_INFO.AreaLeft.Width = ui_setting.Width + _CONST.APP_SPLITER_WIDTH;
+        }
+
+        public oAppInfo f_main_getAppInfo()
+        {
+            return APP_INFO;
+        }
+
         public fBrowser()
         {
             #region [ MAIN ]
 
             MSG_WINDOW = new MessageListener(this);
+            APP_INFO = new oAppInfo();
 
             this.FormBorderStyle = FormBorderStyle.None;
             this.Text = "Browser";
@@ -87,6 +106,11 @@ namespace lenBrowser
                 this.Left = Screen.PrimaryScreen.WorkingArea.Width - this.Width;
 
                 f_main_Init();
+
+                APP_INFO.HandleID = (int)this.Handle;
+                APP_INFO.HandleMessageID = (int)MSG_WINDOW.Handle;
+
+                f_main_updateAppInfo();
             };
 
             this.FormClosing += (se, ev) =>
@@ -126,6 +150,10 @@ namespace lenBrowser
                 Dock = DockStyle.Left,
                 MinExtra = 0,
                 MinSize = 0,
+                Width = _CONST.APP_SPLITER_WIDTH,
+            };
+            spliter.SplitterMoved += (se, ev) => {
+                f_main_updateAppInfo();
             };
 
             this.Controls.AddRange(new Control[] { spliter, ui_setting });
@@ -192,6 +220,8 @@ namespace lenBrowser
                     this.Width = Screen.PrimaryScreen.WorkingArea.Width;
                     this.Height = Screen.PrimaryScreen.WorkingArea.Height;
                 }
+
+                f_main_updateAppInfo();
             };
 
             ui_urlLabel.Click += (se, ev) =>
@@ -605,11 +635,11 @@ namespace lenBrowser
             //MsgUI.f_sendMessage((int)MSG_WINDOW.Handle, message);
         }
 
-        public void f_api_messageReceiver(IpcMsgType type, string data)
+        public void f_api_messageReceiver(MSG_TYPE type, string data)
         {
             switch (type)
             {
-                case IpcMsgType.URL_REQUEST_SUCCESS:
+                case MSG_TYPE.URL_REQUEST_SUCCESS:
                     ui_browser.Load(data);
                     break;
             }

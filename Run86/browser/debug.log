@@ -11540,3 +11540,388 @@ TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/need(9
 SELECT=  
 TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/need(92)
 [1005/053923:INFO:CONSOLE(0)] "JS-> https://dictionary.cambridge.org/grammar/british-grammar/how-is-or-what-is-like," source: https://dictionary.cambridge.org/grammar/british-grammar/how-is-or-what-is-like(110)
+[1005/085916:INFO:CONSOLE(0)] "Uncaught ReferenceError: ws is not defined," source: local://view/setting.html(14)
+[1005/085916:INFO:CONSOLE(0)] "Message is received: fafcc297-9aaf-4a3f-9f22-a5379629b780," source: local://view/setting.html(18)
+[1005/085916:INFO:CONSOLE(0)] "JS-> https://dictionary.cambridge.org/grammar/british-grammar/above-or-over," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(110)
+[1005/092940:INFO:CONSOLE(0)] "JS-> https://dictionary.cambridge.org/grammar/british-grammar/above-or-over," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(110)
+[1005/092947:INFO:CONSOLE(0)] "I.mousedown:  
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(92)
+[1005/092947:INFO:CONSOLE(0)] "I.mouseup:  
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(92)
+[1005/092947:INFO:CONSOLE(0)] "I.click:  
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(92)
+[1005/092951:INFO:CONSOLE(0)] "JS-> https://dictionary.cambridge.org/grammar/british-grammar/over," source: https://dictionary.cambridge.org/grammar/british-grammar/over(110)
+[1005/093015:INFO:CONSOLE(0)] "SPAN.mousedown:  
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/over(92)
+[1005/093015:INFO:CONSOLE(0)] "SPAN.mouseup:  
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/over(92)
+[1005/093015:INFO:CONSOLE(0)] "SPAN.click:  
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/over(92)
+[1005/093026:INFO:CONSOLE(0)] "A.mousedown:  
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/over(92)
+[1005/093026:INFO:CONSOLE(0)] "A.mouseup:  
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/over(92)
+[1005/093026:INFO:CONSOLE(0)] "A.click:  
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/over(92)
+[1005/093027:INFO:CONSOLE(0)] "JS-> https://dictionary.cambridge.org/grammar/british-grammar/comparatives-and-superlatives," source: https://dictionary.cambridge.org/grammar/british-grammar/comparatives-and-superlatives(110)
+[1005/093107:INFO:CONSOLE(0)] "I.mousedown:  
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/comparatives-and-superlatives(92)
+[1005/093107:INFO:CONSOLE(0)] "I.mouseup:  
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/comparatives-and-superlatives(92)
+[1005/093107:INFO:CONSOLE(0)] "I.click:  
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/comparatives-and-superlatives(92)
+[1005/093111:INFO:CONSOLE(0)] "JS-> https://dictionary.cambridge.org/grammar/british-grammar/either-or," source: https://dictionary.cambridge.org/grammar/british-grammar/either-or(110)
+[1005/100006:INFO:CONSOLE(0)] "P.mousedown:  
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/either-or(92)
+[1005/100007:INFO:CONSOLE(0)] "P.mouseup:  
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/either-or(92)
+[1005/100007:INFO:CONSOLE(0)] "P.click:  
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/either-or(92)
+[1005/100014:INFO:CONSOLE(0)] "I.mousedown:  
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/either-or(92)
+[1005/100014:INFO:CONSOLE(0)] "I.mouseup:  
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/either-or(92)
+[1005/100014:INFO:CONSOLE(0)] "I.click:  
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/either-or(92)
+[1005/100015:INFO:CONSOLE(0)] "JS-> https://dictionary.cambridge.org/grammar/british-grammar/anyone-anybody-or-anything," source: https://dictionary.cambridge.org/grammar/british-grammar/anyone-anybody-or-anything(110)
+[1005/100132:INFO:CONSOLE(0)] "JS-> https://dictionary.cambridge.org/grammar/british-grammar/above-or-over," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(110)
+[1005/100145:INFO:CONSOLE(0)] "I.mousedown:  
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(92)
+[1005/100145:INFO:CONSOLE(0)] "I.mouseup:  
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(92)
+[1005/100145:INFO:CONSOLE(0)] "I.click:  
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(92)
+[1005/100146:INFO:CONSOLE(0)] "JS-> https://dictionary.cambridge.org/grammar/british-grammar/over," source: https://dictionary.cambridge.org/grammar/british-grammar/over(110)
+[1005/101010:INFO:CONSOLE(0)] "I.mousedown:  
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/over(92)
+[1005/101011:INFO:CONSOLE(0)] "I.mouseup:  
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/over(92)
+[1005/101011:INFO:CONSOLE(0)] "I.click:  
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/over(92)
+[1005/101012:INFO:CONSOLE(0)] "JS-> https://dictionary.cambridge.org/grammar/british-grammar/between-or-among," source: https://dictionary.cambridge.org/grammar/british-grammar/between-or-among(110)
+[1005/101652:INFO:CONSOLE(0)] "JS-> https://dictionary.cambridge.org/grammar/british-grammar/above-or-over," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(110)
+[1005/101958:INFO:CONSOLE(0)] "JS-> https://dictionary.cambridge.org/grammar/british-grammar/above-or-over," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(110)
+[1005/102539:INFO:CONSOLE(0)] "JS-> https://dictionary.cambridge.org/grammar/british-grammar/above-or-over," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(110)
+[1005/102656:INFO:CONSOLE(0)] "JS-> https://dictionary.cambridge.org/grammar/british-grammar/above-or-over," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(110)
+[1005/102705:INFO:CONSOLE(0)] "I.mousedown:  
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(92)
+[1005/102705:INFO:CONSOLE(0)] "I.mouseup:  
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(92)
+[1005/102705:INFO:CONSOLE(0)] "I.click:  
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(92)
+[1005/102705:INFO:CONSOLE(0)] "JS-> https://dictionary.cambridge.org/grammar/british-grammar/apart-from-or-except-for," source: https://dictionary.cambridge.org/grammar/british-grammar/apart-from-or-except-for(110)
+[1005/104649:INFO:CONSOLE(0)] "Uncaught TypeError: Object #<a Console> has no method 'clear'," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(90)
+[1005/104650:INFO:CONSOLE(0)] "SPAN.mouseup: event_938c290-46c3-8de3-615ed5a87a7f 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104650:INFO:CONSOLE(0)] "," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(101)
+[1005/104650:INFO:CONSOLE(0)] "," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(102)
+[1005/104650:INFO:CONSOLE(0)] "[object ClientRect]," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(103)
+[1005/104650:INFO:CONSOLE(0)] "SPAN.click: event_938c290-46c3-8de3-615ed5a87a7f 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104720:INFO:CONSOLE(0)] "Uncaught TypeError: Object #<a Console> has no method 'clear'," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(90)
+[1005/104720:INFO:CONSOLE(0)] "SPAN.mouseup: event_adb3de9-4824-af15-630f44794a30 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104720:INFO:CONSOLE(0)] "{"top":0,"height":0,"width":0,"bottom":0,"left":0,"right":0}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(103)
+[1005/104720:INFO:CONSOLE(0)] "SPAN.click: event_adb3de9-4824-af15-630f44794a30 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104725:INFO:CONSOLE(0)] "Uncaught TypeError: Object #<a Console> has no method 'clear'," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(90)
+[1005/104725:INFO:CONSOLE(0)] "SPAN.mouseup: event_adb3de9-4824-af15-630f44794a30 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104725:INFO:CONSOLE(0)] "{"top":0,"height":0,"width":0,"bottom":0,"left":0,"right":0}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(103)
+[1005/104725:INFO:CONSOLE(0)] "SPAN.click: event_adb3de9-4824-af15-630f44794a30 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104730:INFO:CONSOLE(0)] "Uncaught TypeError: Object #<a Console> has no method 'clear'," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(90)
+[1005/104730:INFO:CONSOLE(0)] "SPAN.mouseup: event_adb3de9-4824-af15-630f44794a30 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104730:INFO:CONSOLE(0)] "{"top":0,"height":0,"width":0,"bottom":0,"left":0,"right":0}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(103)
+[1005/104730:INFO:CONSOLE(0)] "SPAN.click: event_adb3de9-4824-af15-630f44794a30 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104733:INFO:CONSOLE(0)] "Uncaught TypeError: Object #<a Console> has no method 'clear'," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(90)
+[1005/104735:INFO:CONSOLE(0)] "SPAN.mouseup: event_adb3de9-4824-af15-630f44794a30 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104735:INFO:CONSOLE(0)] "{"top":195,"height":27,"width":93,"bottom":222,"left":10,"right":103}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(103)
+[1005/104735:INFO:CONSOLE(0)] "SPAN.click: event_adb3de9-4824-af15-630f44794a30 
+SELECT= sentences 
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104747:INFO:CONSOLE(0)] "Uncaught TypeError: Object #<a Console> has no method 'clear'," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(90)
+[1005/104748:INFO:CONSOLE(0)] "H1.mouseup: event_4de204e-43bc-ba9b-682bca58e551 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104821:INFO:CONSOLE(0)] "H1.mousedown: event_9265f8b-4419-9a39-86f60d8ca751 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104822:INFO:CONSOLE(0)] "BODY.mouseup: event_d1a1aaf-4a52-b9c5-13363dcc9b63 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104825:INFO:CONSOLE(0)] "P.mousedown: event_4c8ff21-469b-ba54-f9bd98edf70a 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104825:INFO:CONSOLE(0)] "P.mouseup: event_4c8ff21-469b-ba54-f9bd98edf70a 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104825:INFO:CONSOLE(0)] "{"top":0,"height":0,"width":0,"bottom":0,"left":0,"right":0}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(103)
+[1005/104825:INFO:CONSOLE(0)] "P.click: event_4c8ff21-469b-ba54-f9bd98edf70a 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104828:INFO:CONSOLE(0)] "I.mousedown: event_58650ff-41eb-9122-b8209c31926e 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104829:INFO:CONSOLE(0)] "H1.mouseup: event_9265f8b-4419-9a39-86f60d8ca751 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104831:INFO:CONSOLE(0)] "I.mousedown: event_58650ff-41eb-9122-b8209c31926e 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104831:INFO:CONSOLE(0)] "I.mouseup: event_58650ff-41eb-9122-b8209c31926e 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104831:INFO:CONSOLE(0)] "{"top":21,"height":55,"width":134,"bottom":76,"left":205,"right":339}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(103)
+[1005/104831:INFO:CONSOLE(0)] "I.click: event_58650ff-41eb-9122-b8209c31926e 
+SELECT= Above  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104832:INFO:CONSOLE(0)] "I.mousedown: event_58650ff-41eb-9122-b8209c31926e 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104832:INFO:CONSOLE(0)] "I.mouseup: event_58650ff-41eb-9122-b8209c31926e 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104832:INFO:CONSOLE(0)] "{"top":21,"height":55,"width":134,"bottom":76,"left":205,"right":339}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(103)
+[1005/104832:INFO:CONSOLE(0)] "I.click: event_58650ff-41eb-9122-b8209c31926e 
+SELECT= Above  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104832:INFO:CONSOLE(0)] "I.dblclick: event_58650ff-41eb-9122-b8209c31926e 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104837:INFO:CONSOLE(0)] "SPAN.mousedown: event_1c2b08f-4d1f-87f3-e745e12770bf 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104837:INFO:CONSOLE(0)] "SPAN.mouseup: event_1c2b08f-4d1f-87f3-e745e12770bf 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104837:INFO:CONSOLE(0)] "{"top":0,"height":0,"width":0,"bottom":0,"left":0,"right":0}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(103)
+[1005/104837:INFO:CONSOLE(0)] "SPAN.click: event_1c2b08f-4d1f-87f3-e745e12770bf 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104837:INFO:CONSOLE(0)] "SPAN.mousedown: event_1c2b08f-4d1f-87f3-e745e12770bf 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104837:INFO:CONSOLE(0)] "SPAN.mouseup: event_1c2b08f-4d1f-87f3-e745e12770bf 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104837:INFO:CONSOLE(0)] "{"top":139,"height":27,"width":64,"bottom":166,"left":10,"right":74}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(103)
+[1005/104837:INFO:CONSOLE(0)] "SPAN.click: event_1c2b08f-4d1f-87f3-e745e12770bf 
+SELECT= When  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104837:INFO:CONSOLE(0)] "SPAN.dblclick: event_1c2b08f-4d1f-87f3-e745e12770bf 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104842:INFO:CONSOLE(0)] "SPAN.mousedown: event_1c2b08f-4d1f-87f3-e745e12770bf 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104842:INFO:CONSOLE(0)] "SPAN.mouseup: event_1c2b08f-4d1f-87f3-e745e12770bf 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104842:INFO:CONSOLE(0)] "{"top":0,"height":0,"width":0,"bottom":0,"left":0,"right":0}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(103)
+[1005/104842:INFO:CONSOLE(0)] "SPAN.click: event_1c2b08f-4d1f-87f3-e745e12770bf 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104842:INFO:CONSOLE(0)] "SPAN.mousedown: event_1c2b08f-4d1f-87f3-e745e12770bf 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104843:INFO:CONSOLE(0)] "SPAN.mouseup: event_1c2b08f-4d1f-87f3-e745e12770bf 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104843:INFO:CONSOLE(0)] "{"top":195,"height":27,"width":93,"bottom":222,"left":10,"right":103}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(103)
+[1005/104843:INFO:CONSOLE(0)] "SPAN.click: event_1c2b08f-4d1f-87f3-e745e12770bf 
+SELECT= sentences 
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104843:INFO:CONSOLE(0)] "SPAN.dblclick: event_1c2b08f-4d1f-87f3-e745e12770bf 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104849:INFO:CONSOLE(0)] "I.mousedown: event_58650ff-41eb-9122-b8209c31926e 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104849:INFO:CONSOLE(0)] "I.mouseup: event_58650ff-41eb-9122-b8209c31926e 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104849:INFO:CONSOLE(0)] "{"top":0,"height":0,"width":0,"bottom":0,"left":0,"right":0}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(103)
+[1005/104849:INFO:CONSOLE(0)] "I.click: event_58650ff-41eb-9122-b8209c31926e 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104849:INFO:CONSOLE(0)] "I.mousedown: event_58650ff-41eb-9122-b8209c31926e 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104849:INFO:CONSOLE(0)] "I.mouseup: event_58650ff-41eb-9122-b8209c31926e 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104849:INFO:CONSOLE(0)] "{"top":21,"height":55,"width":134,"bottom":76,"left":205,"right":339}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(103)
+[1005/104849:INFO:CONSOLE(0)] "I.click: event_58650ff-41eb-9122-b8209c31926e 
+SELECT= Above  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104849:INFO:CONSOLE(0)] "I.dblclick: event_58650ff-41eb-9122-b8209c31926e 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104852:INFO:CONSOLE(0)] "I.mousedown: event_58650ff-41eb-9122-b8209c31926e 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104852:INFO:CONSOLE(0)] "I.mouseup: event_58650ff-41eb-9122-b8209c31926e 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104852:INFO:CONSOLE(0)] "{"top":21,"height":55,"width":134,"bottom":76,"left":205,"right":339}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(103)
+[1005/104852:INFO:CONSOLE(0)] "I.click: event_58650ff-41eb-9122-b8209c31926e 
+SELECT= Above  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104855:INFO:CONSOLE(0)] "I.mousedown: event_58650ff-41eb-9122-b8209c31926e 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104855:INFO:CONSOLE(0)] "I.mouseup: event_58650ff-41eb-9122-b8209c31926e 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104855:INFO:CONSOLE(0)] "{"top":0,"height":0,"width":0,"bottom":0,"left":0,"right":0}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(103)
+[1005/104855:INFO:CONSOLE(0)] "I.click: event_58650ff-41eb-9122-b8209c31926e 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104859:INFO:CONSOLE(0)] "I.mousedown: event_58650ff-41eb-9122-b8209c31926e 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104901:INFO:CONSOLE(0)] "SPAN.mouseup: event_9cd4a25-4d6f-84bd-1ebe0d121314 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104911:INFO:CONSOLE(0)] "SPAN.mousedown: event_1c2b08f-4d1f-87f3-e745e12770bf 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/104912:INFO:CONSOLE(0)] "SPAN.mouseup: event_1c2b08f-4d1f-87f3-e745e12770bf 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(109)
+[1005/105059:INFO:CONSOLE(0)] "SPAN.mousedown: event_d57fea0-4e2f-ba23-c0f689f1ccbe 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(111)
+[1005/105059:INFO:CONSOLE(0)] "{"x":281,"y":155}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(94)
+[1005/105059:INFO:CONSOLE(0)] "SPAN.mouseup: event_d57fea0-4e2f-ba23-c0f689f1ccbe 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(111)
+[1005/105059:INFO:CONSOLE(0)] "{"top":0,"height":0,"width":0,"bottom":0,"left":0,"right":0}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(105)
+[1005/105059:INFO:CONSOLE(0)] "SPAN.click: event_d57fea0-4e2f-ba23-c0f689f1ccbe 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(111)
+[1005/105104:INFO:CONSOLE(0)] "B.mousedown: event_08e30aa-45ad-9492-61856f6a7efc 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(111)
+[1005/105104:INFO:CONSOLE(0)] "{"x":277,"y":262}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(94)
+[1005/105104:INFO:CONSOLE(0)] "B.mouseup: event_08e30aa-45ad-9492-61856f6a7efc 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(111)
+[1005/105104:INFO:CONSOLE(0)] "{"top":0,"height":0,"width":0,"bottom":0,"left":0,"right":0}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(105)
+[1005/105104:INFO:CONSOLE(0)] "B.click: event_08e30aa-45ad-9492-61856f6a7efc 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(111)
+[1005/105110:INFO:CONSOLE(0)] "I.mousedown: event_d1f0fb4-42fb-b61e-a8ceec00416a 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(111)
+[1005/105110:INFO:CONSOLE(0)] "{"x":104,"y":424}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(94)
+[1005/105110:INFO:CONSOLE(0)] "I.mouseup: event_d1f0fb4-42fb-b61e-a8ceec00416a 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(111)
+[1005/105110:INFO:CONSOLE(0)] "{"top":0,"height":0,"width":0,"bottom":0,"left":0,"right":0}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(105)
+[1005/105110:INFO:CONSOLE(0)] "I.click: event_d1f0fb4-42fb-b61e-a8ceec00416a 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(111)
+[1005/105116:INFO:CONSOLE(0)] "I.mousedown: event_d1f0fb4-42fb-b61e-a8ceec00416a 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(111)
+[1005/105116:INFO:CONSOLE(0)] "{"x":109,"y":429}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(94)
+[1005/105116:INFO:CONSOLE(0)] "I.mouseup: event_d1f0fb4-42fb-b61e-a8ceec00416a 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(111)
+[1005/105116:INFO:CONSOLE(0)] "{"top":0,"height":0,"width":0,"bottom":0,"left":0,"right":0}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(105)
+[1005/105116:INFO:CONSOLE(0)] "I.click: event_d1f0fb4-42fb-b61e-a8ceec00416a 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(111)
+[1005/105127:INFO:CONSOLE(0)] "P.mousedown: event_a04205b-46c8-8e27-d31aff116ea6 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(111)
+[1005/105127:INFO:CONSOLE(0)] "{"x":567,"y":512}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(94)
+[1005/105127:INFO:CONSOLE(0)] "P.mouseup: event_a04205b-46c8-8e27-d31aff116ea6 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(111)
+[1005/105127:INFO:CONSOLE(0)] "{"top":0,"height":0,"width":0,"bottom":0,"left":0,"right":0}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(105)
+[1005/105127:INFO:CONSOLE(0)] "P.click: event_a04205b-46c8-8e27-d31aff116ea6 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(111)
+[1005/105136:INFO:CONSOLE(0)] "I.mousedown: event_addbedb-47fb-99e6-c09798a9b78c 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(111)
+[1005/105137:INFO:CONSOLE(0)] "{"x":510,"y":58}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(94)
+[1005/105137:INFO:CONSOLE(0)] "H1.mouseup: event_11db3e4-4250-9d69-a4b2843f54c4 
+SELECT=  
+TEXT= ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(111)
+[1005/110042:INFO:CONSOLE(0)] "I.mousedown= {"id":"event_059ad39-4984-ab6a-ebb41b4c2485"}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(93)
+[1005/110042:INFO:CONSOLE(0)] "I.mouseup= {"id":"event_059ad39-4984-ab6a-ebb41b4c2485","x":172,"y":156}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(93)
+[1005/110042:INFO:CONSOLE(0)] "I.click= {"id":"event_059ad39-4984-ab6a-ebb41b4c2485","x":172,"y":156}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(93)
+[1005/110051:INFO:CONSOLE(0)] "I.mousedown= {"id":"event_059ad39-4984-ab6a-ebb41b4c2485"}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(93)
+[1005/110052:INFO:CONSOLE(0)] "I.mouseup= {"id":"event_059ad39-4984-ab6a-ebb41b4c2485","x":172,"y":156}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(93)
+[1005/110052:INFO:CONSOLE(0)] "I.click= {"id":"event_059ad39-4984-ab6a-ebb41b4c2485","x":172,"y":156}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(93)
+[1005/110052:INFO:CONSOLE(0)] "I.mousedown= {"id":"event_059ad39-4984-ab6a-ebb41b4c2485"}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(93)
+[1005/110052:INFO:CONSOLE(0)] "I.mouseup= {"id":"event_059ad39-4984-ab6a-ebb41b4c2485","x":172,"y":156,"text":"above "}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(93)
+[1005/110052:INFO:CONSOLE(0)] "I.click= {"id":"event_059ad39-4984-ab6a-ebb41b4c2485","x":172,"y":156,"text":"above "}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(93)
+[1005/110052:INFO:CONSOLE(0)] "I.dblclick= {"id":"event_059ad39-4984-ab6a-ebb41b4c2485","x":172,"y":156,"text":"above "}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(93)
+[1005/110107:INFO:CONSOLE(0)] "SPAN.mousedown= {"id":"event_9ee847b-4599-b60b-a5bce24f282b"}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(93)
+[1005/110111:INFO:CONSOLE(0)] "SPAN.mouseup= {"id":"event_9ee847b-4599-b60b-a5bce24f282b","x":470,"y":178,"text":"close to that of the preposition over. "}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(93)
+[1005/110347:INFO:CONSOLE(0)] "SPAN.mouseup= {"id":"event_d85f252-42cd-bdf4-32512a894743","x":69,"y":212,"text":"sentences"}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(97)
+[1005/110347:INFO:CONSOLE(0)] "SPAN.click= {"text":"sentences"}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(97)
+[1005/110347:INFO:CONSOLE(0)] "SPAN.dblclick= {"text":"sentences"}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(97)
+[1005/110606:INFO:CONSOLE(0)] "Uncaught TypeError: Cannot read property 'length' of undefined," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(100)
+[1005/110609:INFO:CONSOLE(0)] "SPAN.mouseup= {"id":"event_6dcce12-4ce2-bd60-1286aec1a7f1","x":203,"y":155,"text":"When we use above"}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(103)
+[1005/110628:INFO:CONSOLE(0)] "SPAN.mouseup= {"id":"event_42326da-426d-a219-241ba553209f","x":356,"y":152,"text":"When we use above as a preposition"}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(103)
+[1005/110637:INFO:CONSOLE(0)] "SPAN.mouseup= {"id":"event_42326da-426d-a219-241ba553209f","x":298,"y":208,"text":"instead "}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(103)
+[1005/110641:INFO:CONSOLE(0)] "SPAN.mouseup= {"id":"event_42326da-426d-a219-241ba553209f","x":66,"y":212,"text":"sentences"}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(103)
+[1005/110649:INFO:CONSOLE(0)] "I.mouseup= {"id":"event_025a4a4-46f9-a654-f575d6a46fcd","x":192,"y":369,"text":"started "}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(103)
+[1005/110653:INFO:CONSOLE(0)] "I.mouseup= {"id":"event_f6e3a10-4988-a8cf-68d09e5d1b38","x":108,"y":423,"text":"above"}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(103)
+[1005/110657:INFO:CONSOLE(0)] "P.mouseup= {"id":"event_129e178-4706-90dd-a6e9d299d16e","x":254,"y":505,"text":"wooden "}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(103)
+[1005/110703:INFO:CONSOLE(0)] "SPAN.mouseup= {"id":"event_42326da-426d-a219-241ba553209f","x":368,"y":149,"text":"When we use above as a preposition,"}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(103)
+[1005/114611:INFO:CONSOLE(0)] "APP_INFO = ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(66)
+[1005/114634:INFO:CONSOLE(0)] "APP_INFO = ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(66)
+[1005/114750:INFO:CONSOLE(0)] "APP_INFO = ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(66)
+[1005/114826:INFO:CONSOLE(0)] "APP_INFO = ," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(66)
+[1005/114836:INFO:CONSOLE(0)] "APP_INFO = {"HandleID":10617554,"HandleMessageID":10617554,"Width":1024,"Height":850,"Top":100,"Left":896,"Url":null,"AreaLeft":{"Width":304,"Url":null}}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(66)
+[1005/115022:INFO:CONSOLE(0)] "APP_INFO = {"HandleID":1509230,"HandleMessageID":1509230,"Width":1024,"Height":850,"Top":100,"Left":896,"Url":null,"AreaLeft":{"Width":304,"Url":null}}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(56)
+[1005/115049:INFO:CONSOLE(0)] "APP_INFO = {"HandleID":1311820,"HandleMessageID":1311820,"Width":1024,"Height":850,"Top":100,"Left":896,"Url":null,"AreaLeft":{"Width":304,"Url":null}}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(56)
+[1005/115102:INFO:CONSOLE(0)] "APP_INFO = {"HandleID":1573998,"HandleMessageID":1573998,"Width":1024,"Height":850,"Top":100,"Left":896,"Url":null,"AreaLeft":{"Width":304,"Url":null}}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(56)
+[1005/115117:INFO:CONSOLE(0)] "APP_INFO = {"HandleID":1442910,"HandleMessageID":1442910,"Width":1024,"Height":850,"Top":100,"Left":896,"Url":null,"AreaLeft":{"Width":304,"Url":null}}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(56)
+[1005/115124:INFO:CONSOLE(0)] "APP_INFO = {"HandleID":1901906,"HandleMessageID":1901906,"Width":1024,"Height":850,"Top":100,"Left":896,"Url":null,"AreaLeft":{"Width":304,"Url":null}}," source: https://dictionary.cambridge.org/grammar/british-grammar/above-or-over(56)

@@ -80,7 +80,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\https\Html.cs">
+    <Compile Include="..\https\LIB\Html.cs">
       <Link>Browser\Html.cs</Link>
     </Compile>
     <Compile Include="..\https\_CONST.cs">
@@ -228,12 +228,12 @@
     <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\Point.cs" />
     <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\ThreadNativeMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources.Designer.cs">
+    <Compile Include="Browser\HttpScheme.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Browser\HttpScheme.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\Run86\browser\view\view.html">
@@ -244,7 +244,7 @@
     <Content Include="LIB\Rpc\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources.resx">
+    <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>

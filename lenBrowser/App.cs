@@ -32,14 +32,14 @@ namespace lenBrowser
 
         public static void f_api_Register(int handleID)
         {
-            m_api.f_sendApi(IpcMsgType.NOTIFICATION_REG_HANDLE, handleID);
+            m_api.f_sendApi(MSG_TYPE.NOTIFICATION_REG_HANDLE, handleID);
         }
         public static void f_api_UnRegister(int handleID)
         {
-            m_api.f_sendApi(IpcMsgType.NOTIFICATION_REMOVE_HANDLE, handleID);
+            m_api.f_sendApi(MSG_TYPE.NOTIFICATION_REMOVE_HANDLE, handleID);
         }
         
-        public static byte[] f_api_sendMessage(IpcMsgType type, string data = "")
+        public static byte[] f_api_sendMessage(MSG_TYPE type, string data = "")
         {
             return m_api.f_sendApi(type, data);
         }
@@ -200,6 +200,11 @@ namespace lenBrowser
             f_app_Init();
             f_api_Init();
             f_app_Exit();
+        }
+
+        public static oAppInfo f_app_getInfo() {
+            if (m_main != null) return m_main.f_main_getAppInfo();
+            return null;
         }
 
         #endregion
