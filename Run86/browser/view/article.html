@@ -61,19 +61,64 @@
             window.API.UpdateLinks = function () { };
         }
         ////////////////////////////////////////////////////////////
-        var _WEBSOCKET, _WEBSOCKET_OPEN = false, _WEBSOCKET_FROM = 'BROWSER';
+        var _WS_NAME = {
+            ALL: "*",
+            BOX_ENGLISH: "BOX_ENGLISH",
+            BROWSER: "BROWSER",
+            SETTING: "SETTING",
+            PLAYER: "PLAYER",
+            HTTPS: "HTTPS",
+        };
+        var _MSG_TYPE = {
+            NONE: 0,
+            APP_INFO: 1,
+
+            NOTIFICATION_REG_HANDLE: 5,
+            NOTIFICATION_REMOVE_HANDLE: 6,
+
+            URL_REQUEST: 10,
+            URL_REQUEST_FAIL: 11,
+            URL_REQUEST_SUCCESS: 12,
+
+            URL_CACHE_FOR_SEARCH: 13,
+            URL_GET_SOURCE_FROM_CACHE: 14,
+            URL_GET_ALL_DOMAIN: 15,
+
+            EN_TRANSLATE_GOOGLE_REQUEST: 20,
+            EN_TRANSLATE_GOOGLE_RESPONSE: 21,
+            EN_TRANSLATE_SAVE: 22,
+            EN_TRANSLATE_REMOVE: 23,
+
+            EN_DEFINE_WORD_REQUEST: 30,
+            EN_DEFINE_WORD_RESPONSE: 31,
+            EN_DEFINE_WORD_SAVE: 32,
+            EN_DEFINE_WORD_REMOVE: 32
+        };
+        ////////////////////////////////////////////////////////////
+        var _WEBSOCKET, _WEBSOCKET_OPEN = false, _WEBSOCKET_FROM = _WS_NAME.BROWSER;
         if ("WebSocket" in window) {
             _WEBSOCKET = new WebSocket("ws://127.0.0.1:56789");
-            _WEBSOCKET.onopen = function () { _WEBSOCKET_OPEN = true; _WEBSOCKET.send('_BROWSER_'); };
+            _WEBSOCKET.onopen = function () { _WEBSOCKET_OPEN = true; _WEBSOCKET.send(_WS_NAME.BROWSER); };
             _WEBSOCKET.onmessage = function (evt) { f_socket_processMessage(evt.data); };
             _WEBSOCKET.onclose = function () { _WEBSOCKET_OPEN = false; };
             _WEBSOCKET.onerror = function () { _WEBSOCKET_OPEN = false; };
         }
-        var f_sendALL = function (msg_type, textMessage) { if (_WEBSOCKET_OPEN && _WEBSOCKET) _WEBSOCKET.send(JSON.stringify({ From: _WEBSOCKET_FROM, To: '*', MsgType: msg_type, MsgText: textMessage })); }
-        var f_sendSETTING = function (msg_type, textMessage) { if (_WEBSOCKET_OPEN && _WEBSOCKET) _WEBSOCKET.send(JSON.stringify({ From: _WEBSOCKET_FROM, To: 'SETTING', MsgType: msg_type, MsgText: textMessage })); }
-        var f_sendPLAYER = function (msg_type, textMessage) { if (_WEBSOCKET_OPEN && _WEBSOCKET) _WEBSOCKET.send(JSON.stringify({ From: _WEBSOCKET_FROM, To: 'PLAYER', MsgType: msg_type, MsgText: textMessage })); }
-        var f_sendHTTPS = function (msg_type, textMessage) { if (_WEBSOCKET_OPEN && _WEBSOCKET) _WEBSOCKET.send(JSON.stringify({ From: _WEBSOCKET_FROM, To: 'HTTPS', MsgType: msg_type, MsgText: textMessage })); }
-        
+        var f_createMsg = function (sendTo, msgType, textMessage) {
+            return JSON.stringify({ From: _WEBSOCKET_FROM, To: sendTo, MsgType: msgType, MsgText: textMessage });
+        }
+        var f_sendALL = function (msg_type, textMessage) { if (_WEBSOCKET_OPEN && _WEBSOCKET) _WEBSOCKET.send(JSON.stringify({ From: _WEBSOCKET_FROM, To: _WS_NAME.ALL, MsgType: msg_type, MsgText: textMessage })); }
+        var f_sendSETTING = function (msg_type, textMessage) { if (_WEBSOCKET_OPEN && _WEBSOCKET) _WEBSOCKET.send(JSON.stringify({ From: _WEBSOCKET_FROM, To: _WS_NAME.SETTING, MsgType: msg_type, MsgText: textMessage })); }
+        var f_sendPLAYER = function (msg_type, textMessage) { if (_WEBSOCKET_OPEN && _WEBSOCKET) _WEBSOCKET.send(JSON.stringify({ From: _WEBSOCKET_FROM, To: _WS_NAME.PLAYER, MsgType: msg_type, MsgText: textMessage })); }
+
+        var f_sendHTTPS = function (msg_type, textMessage) {
+            alert(1);
+            if (_WEBSOCKET_OPEN && _WEBSOCKET) {
+                var text = f_createMsg(_WS_NAME.HTTPS, msg_type, textMessage);
+                alert(text);
+                _WEBSOCKET.send(text);
+            }
+        }
+
         function f_socket_processMessage(data) {
             f_log('WS <- ' + data);
         }
@@ -130,13 +175,12 @@
 
             if (_SELECT_OBJ != null && _SELECT_OBJ.text && _SELECT_OBJ.text.length > 0) {
                 _SELECT_TEXT = JSON.stringify(_SELECT_OBJ);
+                alert(tagName + '.' + type + ' = ' + _SELECT_TEXT);
+                f_sendHTTPS(_MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST, _SELECT_OBJ);
                 _SELECT_OBJ = null;
-                f_log(tagName + '.' + type + '= ' + _SELECT_TEXT);
             }
 
             //f_log(tagName + '.' + type + ': ' + id + ' \r\nSELECT= ' + textSelect + ' \r\nTEXT= ', text);
-
-
             //event.preventDefault();
             //event.stopPropagation();
         }

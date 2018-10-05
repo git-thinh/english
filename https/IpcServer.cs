@@ -84,7 +84,10 @@ namespace System
         }
 
         private void f_process_messageTo_HTTPS(IWebSocketConnection socket, oMsgSocket msg) {
-
+            string data = msg.MsgText;
+            if (string.IsNullOrWhiteSpace(data)) return;
+            data = data.Trim();
+            Console.WriteLine(string.Format("{0} -> {1}", msg.From, data));
         }
 
         private void f_websocket_onMessage(IWebSocketConnection socket, string message)
@@ -106,27 +109,33 @@ namespace System
                     break;
                 #endregion
                 default:
-                    oMsgSocket m = JsonConvert.DeserializeObject<oMsgSocket>(message);
-                    switch (m.To)
+                    try
                     {
-                        case _WS_NAME.ALL:
-                            lock (CLIENTS) { CLIENTS.ForEach((ws) => { if (ws.IsAvailable) ws.Send(message); }); }
-                            break;
-                        case _WS_NAME.BOX_ENGLISH:
-                            if (CLIENT_BOX_ENGLISH.IsAvailable) CLIENT_BOX_ENGLISH.Send(message);
-                            break;
-                        case _WS_NAME.BROWSER:
-                            if (CLIENT_BROWSER.IsAvailable) CLIENT_BROWSER.Send(message);
-                            break;
-                        case _WS_NAME.SETTING:
-                            if (CLIENT_SETTING.IsAvailable) CLIENT_SETTING.Send(message);
-                            break;
-                        case _WS_NAME.PLAYER:
-                            if (CLIENT_PLAYER.IsAvailable) CLIENT_PLAYER.Send(message);
-                            break;
-                        case _WS_NAME.HTTPS:
-                            f_process_messageTo_HTTPS(socket, m);
-                            break;
+                        oMsgSocket m = JsonConvert.DeserializeObject<oMsgSocket>(message);
+                        switch (m.To)
+                        {
+                            case _WS_NAME.ALL:
+                                lock (CLIENTS) { CLIENTS.ForEach((ws) => { if (ws.IsAvailable) ws.Send(message); }); }
+                                break;
+                            case _WS_NAME.BOX_ENGLISH:
+                                if (CLIENT_BOX_ENGLISH.IsAvailable) CLIENT_BOX_ENGLISH.Send(message);
+                                break;
+                            case _WS_NAME.BROWSER:
+                                if (CLIENT_BROWSER.IsAvailable) CLIENT_BROWSER.Send(message);
+                                break;
+                            case _WS_NAME.SETTING:
+                                if (CLIENT_SETTING.IsAvailable) CLIENT_SETTING.Send(message);
+                                break;
+                            case _WS_NAME.PLAYER:
+                                if (CLIENT_PLAYER.IsAvailable) CLIENT_PLAYER.Send(message);
+                                break;
+                            case _WS_NAME.HTTPS:
+                                f_process_messageTo_HTTPS(socket, m);
+                                break;
+                        }
+                    }
+                    catch (Exception ex) {
+
                     }
                     break;
             }
