@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Fleck;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -81,6 +83,15 @@ namespace System
         public string MsgId { set; get; }
         public string Data { set; get; }
         public string Message { set; get; }
+        public MSG_TYPE MsgType { set; get; }
+
+        public oMsgSocketReply(bool ok, MSG_TYPE msgType, string msgId = "", string message = "", string data = "") {
+            this.Ok = ok;
+            this.MsgType = msgType;
+            this.MsgId = msgId;
+            this.Message = message;
+            this.Data = data;
+        }
     }
 
     public class oMsgSocket
@@ -170,16 +181,53 @@ namespace System
         }
     }
 
+    /////////////////////////////////////////////////
+
+    public delegate void TranslateCallBack(oEN_TRANSLATE_GOOGLE_MESSAGE otran);
+
     //{"id":"event_855075b-4935-baa8-685e95443949","x":283,"y":263,"text":"above "}
-    public class oEN_TRANSLATE_GOOGLE_REQUEST
+    public class oEN_TRANSLATE_GOOGLE_MESSAGE
     {
+        public bool success { set; get; }
+
         public string id { set; get; }
 
         public string text { set; get; }
+        public string type { set; get; }
         public string mean_vi { set; get; }
 
         public int x { set; get; }
         public int y { set; get; }
+
+        [ScriptIgnore]
+        public IWebSocketConnection socket { set; get; }
+
+        [ScriptIgnore]
+        public WebRequest webRequest { set; get; }
+
+        [ScriptIgnore]
+        public TranslateCallBack translateCallBack { set; get; }
+        
+        public oEN_TRANSLATE_GOOGLE_MESSAGE() {
+            this.success = false;
+            this.socket = null;
+            this.webRequest = null;
+            this.translateCallBack = null;
+
+            this.mean_vi = string.Empty;
+            this.type = string.Empty;
+        }
+
+        public oEN_TRANSLATE_GOOGLE_MESSAGE(WebRequest _webRequest, TranslateCallBack _translateCallBack, IWebSocketConnection _socket)
+        {
+            this.success = false;
+            this.webRequest = _webRequest;
+            this.translateCallBack = _translateCallBack;
+            this.socket = _socket;
+
+            this.mean_vi = string.Empty;
+            this.type = string.Empty;
+        }
 
         public override string ToString()
         {

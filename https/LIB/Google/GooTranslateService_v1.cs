@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Fleck;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -57,25 +58,24 @@ GTranslateService.TranslateAsync(
 
  */
 namespace System
-{
+{    
     public class GooTranslateService_v1
     {
         private const string RequestUserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:55.0) Gecko/20100101 Firefox/55.0";
         private const string RequestGoogleTranslatorUrl = "http://www.google.com/translate_t?hl=en&ie=UTF8&langpair={0}|{1}&text={2}";
-
-
-        public delegate void TranslateCallBack(bool succeed, string result, string type);
+        
         public static void TranslateAsync(
+            oEN_TRANSLATE_GOOGLE_MESSAGE oTranslateObject,
             string text,
             string sourceLng,
             string destLng,
             string textTranslatorUrlKey,
             TranslateCallBack callBack)
         {
+            oTranslateObject.translateCallBack = callBack;  
+                      
             var request = CreateWebRequest(text, sourceLng, destLng, textTranslatorUrlKey);
-            request.BeginGetResponse(
-                TranslateRequestCallBack,
-                new KeyValuePair<WebRequest, TranslateCallBack>(request, callBack));
+            request.BeginGetResponse(TranslateRequestCallBack, oTranslateObject);
         }
 
         public static bool Translate(
@@ -115,7 +115,7 @@ namespace System
             }
         }
 
-        static WebRequest CreateWebRequest(
+        static WebRequest CreateWebRequest( 
             string text,
             string lngSourceCode,
             string lngDestinationCode,
@@ -137,16 +137,18 @@ namespace System
 
         private static void TranslateRequestCallBack(IAsyncResult ar)
         {
-            var pair = (KeyValuePair<WebRequest, TranslateCallBack>)ar.AsyncState;
-            var request = pair.Key;
-            var callback = pair.Value;
+            var otran = (oEN_TRANSLATE_GOOGLE_MESSAGE)ar.AsyncState;
+            var request = otran.webRequest;
+            var callback = otran.translateCallBack;
             HttpWebResponse response = null;
             try
             {
                 response = (HttpWebResponse)request.EndGetResponse(ar);
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
-                    callback(false, "Response is failed with code: " + response.StatusCode, string.Empty);
+                    otran.success = false;
+                    otran.mean_vi = "Response is failed with code: " + response.StatusCode;
+                    callback(otran);
                     return;
                 }
 
@@ -155,12 +157,17 @@ namespace System
                     string output, type;
                     var succeed = ReadGoogleTranslatedResult(stream, out output, out type);
 
-                    callback(succeed, output, type);
+                    otran.success = true;
+                    otran.type = type;
+                    otran.mean_vi = output;
+                    callback(otran);
                 }
             }
             catch (Exception ex)
             {
-                callback(false, "Request failed.\r\n" + ex.Message, string.Empty);
+                otran.success = false;
+                otran.mean_vi = "Request failed.\r\n" + ex.Message;
+                callback(otran);
             }
             finally
             {
@@ -188,7 +195,7 @@ namespace System
                 type = string.Empty;
 
                 string s = HttpUtility.HtmlDecode(text);
-                
+
                 int p = s.IndexOf("id=result_box");
                 if (p > 0)
                     s = "<span " + s.Substring(p, s.Length - p);
@@ -202,8 +209,8 @@ namespace System
                 }
                 if (result != string.Empty)
                 {
-                    string[] rs = result.Split('¦').Select(x => x.Trim()).ToArray(); 
-                } 
+                    string[] rs = result.Split('¦').Select(x => x.Trim()).ToArray();
+                }
                 return true;
             }
             catch (Exception ex)
@@ -213,7 +220,6 @@ namespace System
                 return false;
             }
         }
-
     }
-    
+
 }

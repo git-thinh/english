@@ -101,21 +101,32 @@ namespace System
                 {
                     case MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST:
                         #region
-                        var otran = JsonConvert.DeserializeObject<oEN_TRANSLATE_GOOGLE_REQUEST>(data);
+                        var otran = JsonConvert.DeserializeObject<oEN_TRANSLATE_GOOGLE_MESSAGE>(data);
+                        otran.socket = socket;
+
                         text = otran.text.Trim();
 
                         if (text.Contains(' '))
                         {
-                            GooTranslateService_v1.TranslateAsync(text, "en", "vi", string.Empty, (success, result, type) =>
+                            GooTranslateService_v1.TranslateAsync(otran, text, "en", "vi", string.Empty, (_otran) =>
                             {
-                                Console.WriteLine("\r\n -> V1: " + text + " (" + type + "): " + result);
+                                Console.WriteLine("\r\n -> V1: " + text + " (" + _otran.type + "): " + _otran.mean_vi);
+                                if (_otran.socket.IsAvailable) {
+                                    string _dataText = JsonConvert.SerializeObject(_otran);
+                                    _dataText = _dataText.Replace('"', '¦');
+
+                                }
                             });
                         }
                         else
                         {
-                            GooTranslateService_v2.TranslateAsync(text, "en", "vi", string.Empty, (success, result, type) =>
+                            GooTranslateService_v2.TranslateAsync(otran, text, "en", "vi", string.Empty, (_otran) =>
                             {
-                                Console.WriteLine("\r\n -> V2: " + text + " (" + type + "): " + result);
+                                Console.WriteLine("\r\n -> V1: " + text + " (" + _otran.type + "): " + _otran.mean_vi);
+                                if (_otran.socket.IsAvailable)
+                                {
+
+                                }
                             });
                         }
 
@@ -125,7 +136,7 @@ namespace System
             }
             catch (Exception ex)
             {
-                socket.Send(JsonConvert.SerializeObject(new oMsgSocketReply() { Ok = false, Message = ex.Message, MsgId = msg.MsgId }));
+                socket.Send(JsonConvert.SerializeObject(new oMsgSocketReply(false, MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST, msg.MsgId, ex.Message)));
             }
         }
 
@@ -176,7 +187,7 @@ namespace System
                     }
                     catch (Exception ex)
                     {
-                        socket.Send(JsonConvert.SerializeObject(new oMsgSocketReply() { Ok = false, Message = ex.Message, Data = message }));
+                        socket.Send(JsonConvert.SerializeObject(new oMsgSocketReply(false, MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST, "", ex.Message)));
                     }
                     break;
             }
