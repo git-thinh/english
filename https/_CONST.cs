@@ -75,8 +75,17 @@ namespace System
         public string Url { set; get; }
     }
 
+    public class oMsgSocketReply
+    {
+        public bool Ok { set; get; }
+        public string MsgId { set; get; }
+        public string Data { set; get; }
+        public string Message { set; get; }
+    }
+
     public class oMsgSocket
     {
+        public string MsgId { set; get; }
         public string From { set; get; }
         public string To { set; get; }
         public string MsgText { set; get; }
@@ -160,4 +169,23 @@ namespace System
             SendMessage((IntPtr)handle, (int)WM_COPYDATA, 0, ref cds);
         }
     }
+
+    //{"id":"event_855075b-4935-baa8-685e95443949","x":283,"y":263,"text":"above "}
+    public class oEN_TRANSLATE_GOOGLE_REQUEST
+    {
+        public string id { set; get; }
+
+        public string text { set; get; }
+        public string mean_vi { set; get; }
+
+        public int x { set; get; }
+        public int y { set; get; }
+
+        public override string ToString()
+        {
+            return string.Format("{0}: {1}", text, mean_vi);
+        }
+    }
 }
+
+

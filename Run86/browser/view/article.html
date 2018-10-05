@@ -104,19 +104,24 @@
             _WEBSOCKET.onerror = function () { _WEBSOCKET_OPEN = false; };
         }
         var f_createMsg = function (sendTo, msgType, textMessage) {
-            return JSON.stringify({ From: _WEBSOCKET_FROM, To: sendTo, MsgType: msgType, MsgText: textMessage });
+            var id = _WEBSOCKET_FROM.toLowerCase() + '-4xxx-yxxx-xxxxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            }).substring(0, 32);
+            var s = ''; if (typeof textMessage == 'string') s = textMessage.split('"').join('¦'); else s = JSON.stringify(textMessage).split('"').join('¦');
+            return { MsgId: id, From: _WEBSOCKET_FROM, To: sendTo, MsgType: msgType, MsgText: s };
         }
         var f_sendALL = function (msg_type, textMessage) { if (_WEBSOCKET_OPEN && _WEBSOCKET) _WEBSOCKET.send(JSON.stringify({ From: _WEBSOCKET_FROM, To: _WS_NAME.ALL, MsgType: msg_type, MsgText: textMessage })); }
         var f_sendSETTING = function (msg_type, textMessage) { if (_WEBSOCKET_OPEN && _WEBSOCKET) _WEBSOCKET.send(JSON.stringify({ From: _WEBSOCKET_FROM, To: _WS_NAME.SETTING, MsgType: msg_type, MsgText: textMessage })); }
         var f_sendPLAYER = function (msg_type, textMessage) { if (_WEBSOCKET_OPEN && _WEBSOCKET) _WEBSOCKET.send(JSON.stringify({ From: _WEBSOCKET_FROM, To: _WS_NAME.PLAYER, MsgType: msg_type, MsgText: textMessage })); }
 
         var f_sendHTTPS = function (msg_type, textMessage) {
-            alert(1);
             if (_WEBSOCKET_OPEN && _WEBSOCKET) {
-                var text = f_createMsg(_WS_NAME.HTTPS, msg_type, textMessage);
-                alert(text);
-                _WEBSOCKET.send(text);
+                var m = f_createMsg(_WS_NAME.HTTPS, msg_type, textMessage);
+                _WEBSOCKET.send(JSON.stringify(m));
+                return m.MsgId;
             }
+            return null;
         }
 
         function f_socket_processMessage(data) {
@@ -130,7 +135,6 @@
         ////////////////////////////////////////////////////////////
 
         var _SELECT_OBJ = { x: 0, y: 0, text: '', id: '' };
-        var _SELECT_TEXT = '';
 
         function f_event_processCenter(event) {
             var type = event.type,
@@ -174,8 +178,6 @@
             }
 
             if (_SELECT_OBJ != null && _SELECT_OBJ.text && _SELECT_OBJ.text.length > 0) {
-                _SELECT_TEXT = JSON.stringify(_SELECT_OBJ);
-                alert(tagName + '.' + type + ' = ' + _SELECT_TEXT);
                 f_sendHTTPS(_MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST, _SELECT_OBJ);
                 _SELECT_OBJ = null;
             }

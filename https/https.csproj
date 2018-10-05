@@ -77,6 +77,8 @@
     <Compile Include="LIB\Fleck\WebSocketHttpRequest.cs" />
     <Compile Include="LIB\Fleck\WebSocketServer.cs" />
     <Compile Include="LIB\Fleck\WebSocketStatusCodes.cs" />
+    <Compile Include="LIB\Google\GooTranslateService_v1.cs" />
+    <Compile Include="LIB\Google\GooTranslateService_v2.cs" />
     <Compile Include="LIB\Html.cs" />
     <Compile Include="LIB\HtmlAgilityPack\Core\crc32.cs" />
     <Compile Include="LIB\HtmlAgilityPack\Core\EncodingFoundException.cs" />

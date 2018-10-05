@@ -36,6 +36,8 @@ namespace System
 
         #endregion
 
+        #region [ CONTRACTOR - START - STOP ]
+
         public void Start()
         {
             SERVER_RPC.StartListening();
@@ -83,11 +85,48 @@ namespace System
             CLIENTS = new List<IWebSocketConnection>();
         }
 
-        private void f_process_messageTo_HTTPS(IWebSocketConnection socket, oMsgSocket msg) {
-            string data = msg.MsgText;
-            if (string.IsNullOrWhiteSpace(data)) return;
-            data = data.Trim();
-            Console.WriteLine(string.Format("{0} -> {1}", msg.From, data));
+        #endregion
+
+        #region [ PROCESS MESSAGE ]
+
+        private void f_process_messageTo_HTTPS(IWebSocketConnection socket, oMsgSocket msg)
+        {
+            try
+            {
+                string data = msg.MsgText, text = string.Empty;
+                if (string.IsNullOrWhiteSpace(data)) return;
+                data = data.Trim();
+                Console.WriteLine(string.Format("{0} -> {1}", msg.From, data));
+                switch (msg.MsgType)
+                {
+                    case MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST:
+                        #region
+                        var otran = JsonConvert.DeserializeObject<oEN_TRANSLATE_GOOGLE_REQUEST>(data);
+                        text = otran.text.Trim();
+
+                        if (text.Contains(' '))
+                        {
+                            GooTranslateService_v1.TranslateAsync(text, "en", "vi", string.Empty, (success, result, type) =>
+                            {
+                                Console.WriteLine("\r\n -> V1: " + text + " (" + type + "): " + result);
+                            });
+                        }
+                        else
+                        {
+                            GooTranslateService_v2.TranslateAsync(text, "en", "vi", string.Empty, (success, result, type) =>
+                            {
+                                Console.WriteLine("\r\n -> V2: " + text + " (" + type + "): " + result);
+                            });
+                        }
+
+                        #endregion
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                socket.Send(JsonConvert.SerializeObject(new oMsgSocketReply() { Ok = false, Message = ex.Message, MsgId = msg.MsgId }));
+            }
         }
 
         private void f_websocket_onMessage(IWebSocketConnection socket, string message)
@@ -112,6 +151,7 @@ namespace System
                     try
                     {
                         oMsgSocket m = JsonConvert.DeserializeObject<oMsgSocket>(message);
+                        m.MsgText = m.MsgText.Replace('¦', '"');
                         switch (m.To)
                         {
                             case _WS_NAME.ALL:
@@ -134,8 +174,9 @@ namespace System
                                 break;
                         }
                     }
-                    catch (Exception ex) {
-
+                    catch (Exception ex)
+                    {
+                        socket.Send(JsonConvert.SerializeObject(new oMsgSocketReply() { Ok = false, Message = ex.Message, Data = message }));
                     }
                     break;
             }
@@ -295,5 +336,8 @@ namespace System
                     MessageHelper.f_sendMessage(id, type, message);
             }
         }
+
+        #endregion
+
     }
 }

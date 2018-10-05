@@ -53,6 +53,12 @@ namespace https
             while (cmd != "exit")
             {
                 cmd = Console.ReadLine();
+                switch (cmd) {
+                    case "cls":
+                    case "clear":
+                        Console.Clear();
+                        break;
+                }
             }
         }
 

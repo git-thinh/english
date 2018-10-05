@@ -25,6 +25,7 @@ namespace lenBrowser
     public class fBrowser : Form, IBeforeResourceLoad
     {
         #region [ VAR ]
+
         // This is where we create our message window. When this form is created it will create our hidden window.
         readonly MessageListener MSG_WINDOW;
         readonly oAppInfo APP_INFO;
@@ -65,15 +66,13 @@ namespace lenBrowser
         private Label ui_resize;
         private bool m_resizing = false;
         const bool m_hook_MouseMove = true;
-
-
+        
         #endregion
 
         #region [ MAIN ]
 
         void f_main_updateAppInfo()
         {
-
             APP_INFO.Width = this.Width;
             APP_INFO.Height = this.Height;
             APP_INFO.Left = this.Left;
@@ -304,7 +303,6 @@ namespace lenBrowser
             menu.Click += (se, ev) => f_settingToggle();
 
             #endregion
-
         }
 
         public int f_main_msgHandleID()
