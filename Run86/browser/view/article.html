@@ -104,25 +104,15 @@
             _WEBSOCKET.onerror = function () { _WEBSOCKET_OPEN = false; };
         }
         var f_createMsg = function (sendTo, msgType, textMessage) {
-            var id = _WEBSOCKET_FROM.toLowerCase() + '-4xxx-yxxx-xxxxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-                return v.toString(16);
-            }).substring(0, 32);
+            var id = _WEBSOCKET_FROM.toLowerCase() + '-4xxx-yxxx-xxxxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) { var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8); return v.toString(16); }).substring(0, 32);
             var s = ''; if (typeof textMessage == 'string') s = textMessage.split('"').join('¦'); else s = JSON.stringify(textMessage).split('"').join('¦');
             return { MsgId: id, From: _WEBSOCKET_FROM, To: sendTo, MsgType: msgType, MsgText: s };
         }
-        var f_sendALL = function (msg_type, textMessage) { if (_WEBSOCKET_OPEN && _WEBSOCKET) _WEBSOCKET.send(JSON.stringify({ From: _WEBSOCKET_FROM, To: _WS_NAME.ALL, MsgType: msg_type, MsgText: textMessage })); }
-        var f_sendSETTING = function (msg_type, textMessage) { if (_WEBSOCKET_OPEN && _WEBSOCKET) _WEBSOCKET.send(JSON.stringify({ From: _WEBSOCKET_FROM, To: _WS_NAME.SETTING, MsgType: msg_type, MsgText: textMessage })); }
-        var f_sendPLAYER = function (msg_type, textMessage) { if (_WEBSOCKET_OPEN && _WEBSOCKET) _WEBSOCKET.send(JSON.stringify({ From: _WEBSOCKET_FROM, To: _WS_NAME.PLAYER, MsgType: msg_type, MsgText: textMessage })); }
-
-        var f_sendHTTPS = function (msg_type, textMessage) {
-            if (_WEBSOCKET_OPEN && _WEBSOCKET) {
-                var m = f_createMsg(_WS_NAME.HTTPS, msg_type, textMessage);
-                _WEBSOCKET.send(JSON.stringify(m));
-                return m.MsgId;
-            }
-            return null;
-        }
+        var f_sendMsg = function (nameReceiver, msg_type, textMessage) { if (_WEBSOCKET_OPEN && _WEBSOCKET) { var m = f_createMsg(nameReceiver, msg_type, textMessage); _WEBSOCKET.send(JSON.stringify(m)); return m.MsgId; } return null; }
+        var f_sendHTTPS = function (msg_type, textMessage) { return f_sendMsg(_WS_NAME.HTTPS, msg_type, textMessage); };
+        var f_sendALL = function (msg_type, textMessage) { return f_sendMsg(_WS_NAME.ALL, msg_type, textMessage); };
+        var f_sendSETTING = function (msg_type, textMessage) { return f_sendMsg(_WS_NAME.SETTING, msg_type, textMessage); };
+        var f_sendPLAYER = function (msg_type, textMessage) { return f_sendMsg(_WS_NAME.PLAYER, msg_type, textMessage); };
 
         function f_socket_processMessage(data) {
             f_log('WS <- ' + data);
