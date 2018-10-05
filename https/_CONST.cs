@@ -14,6 +14,16 @@ namespace System
         public const string RPC_IID = "{1B617C4B-BF68-4B8C-AE2B-A77E6A3ECEC5}";
     }
 
+    static class _WS_NAME
+    {
+        public const string ALL = "*";
+        public const string BOX_ENGLISH = "BOX_ENGLISH";
+        public const string BROWSER = "BROWSER";
+        public const string SETTING = "SETTING";
+        public const string PLAYER = "PLAYER";
+        public const string HTTPS = "HTTPS";
+    }    
+
     public enum MSG_TYPE
     {
         NONE = 0,

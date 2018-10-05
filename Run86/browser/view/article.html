@@ -61,7 +61,7 @@
             window.API.UpdateLinks = function () { };
         }
         ////////////////////////////////////////////////////////////
-        var _WEBSOCKET, _WEBSOCKET_OPEN = false;
+        var _WEBSOCKET, _WEBSOCKET_OPEN = false, _WEBSOCKET_FROM = 'BROWSER';
         if ("WebSocket" in window) {
             _WEBSOCKET = new WebSocket("ws://127.0.0.1:56789");
             _WEBSOCKET.onopen = function () { _WEBSOCKET_OPEN = true; _WEBSOCKET.send('_BROWSER_'); };
@@ -69,18 +69,14 @@
             _WEBSOCKET.onclose = function () { _WEBSOCKET_OPEN = false; };
             _WEBSOCKET.onerror = function () { _WEBSOCKET_OPEN = false; };
         }
-
+        var f_sendALL = function (msg_type, textMessage) { if (_WEBSOCKET_OPEN && _WEBSOCKET) _WEBSOCKET.send(JSON.stringify({ From: _WEBSOCKET_FROM, To: '*', MsgType: msg_type, MsgText: textMessage })); }
+        var f_sendSETTING = function (msg_type, textMessage) { if (_WEBSOCKET_OPEN && _WEBSOCKET) _WEBSOCKET.send(JSON.stringify({ From: _WEBSOCKET_FROM, To: 'SETTING', MsgType: msg_type, MsgText: textMessage })); }
+        var f_sendPLAYER = function (msg_type, textMessage) { if (_WEBSOCKET_OPEN && _WEBSOCKET) _WEBSOCKET.send(JSON.stringify({ From: _WEBSOCKET_FROM, To: 'PLAYER', MsgType: msg_type, MsgText: textMessage })); }
+        var f_sendHTTPS = function (msg_type, textMessage) { if (_WEBSOCKET_OPEN && _WEBSOCKET) _WEBSOCKET.send(JSON.stringify({ From: _WEBSOCKET_FROM, To: 'HTTPS', MsgType: msg_type, MsgText: textMessage })); }
+        
         function f_socket_processMessage(data) {
             f_log('WS <- ' + data);
         }
-
-        function f_sendMessage(receiver, msg_type, textMessage) {
-            if (_WEBSOCKET_OPEN && _WEBSOCKET) {
-                var m = JSON.parse({ From: 'BROWSER', To: receiver, MsgType: msg_type, MsgText: textMessage });
-                _WEBSOCKET.send(m);
-            }
-        }
-
         ////////////////////////////////////////////////////////////
         var APP_INFO;
         var _appInfo = API.GetAppInfo();

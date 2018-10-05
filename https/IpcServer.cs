@@ -32,6 +32,7 @@ namespace System
         private IWebSocketConnection CLIENT_SETTING = null;
         private IWebSocketConnection CLIENT_PLAYER = null;
         private IWebSocketConnection CLIENT_BROWSER = null;
+        private IWebSocketConnection CLIENT_BOX_ENGLISH = null;
 
         #endregion
 
@@ -41,25 +42,10 @@ namespace System
 
             NOTI.Start(socket =>
             {
-                socket.OnOpen = () =>
-                {
-                    Console.WriteLine("Open!");
-                    CLIENTS.Add(socket);
-                    //socket.Send(Guid.NewGuid().ToString());
-                };
-
-                socket.OnClose = () =>
-                {
-                    Console.WriteLine("Close!");
-                    CLIENTS.Remove(socket);
-                };
-
+                socket.OnOpen = () => CLIENTS.Add(socket);
+                socket.OnClose = () => CLIENTS.Remove(socket);
                 socket.OnMessage += (msg) => f_websocket_onMessage(socket, msg);
-
-                //{
-                //};
             });
-
         }
 
         public void Stop()
@@ -97,27 +83,53 @@ namespace System
             CLIENTS = new List<IWebSocketConnection>();
         }
 
+        private void f_process_messageTo_HTTPS(IWebSocketConnection socket, oMsgSocket msg) {
+
+        }
+
         private void f_websocket_onMessage(IWebSocketConnection socket, string message)
         {
-            switch (message) {
-                case "_BROWSER_":
+            switch (message)
+            {
+                #region
+                case _WS_NAME.BROWSER:
                     CLIENT_BROWSER = socket;
                     break;
-                case "_SETTING_":
+                case _WS_NAME.SETTING:
                     CLIENT_SETTING = socket;
                     break;
-                case "_PLAYER_":
+                case _WS_NAME.PLAYER:
                     CLIENT_PLAYER = socket;
                     break;
+                case _WS_NAME.BOX_ENGLISH:
+                    CLIENT_BOX_ENGLISH = socket;
+                    break;
+                #endregion
                 default:
                     oMsgSocket m = JsonConvert.DeserializeObject<oMsgSocket>(message);
-                    
+                    switch (m.To)
+                    {
+                        case _WS_NAME.ALL:
+                            lock (CLIENTS) { CLIENTS.ForEach((ws) => { if (ws.IsAvailable) ws.Send(message); }); }
+                            break;
+                        case _WS_NAME.BOX_ENGLISH:
+                            if (CLIENT_BOX_ENGLISH.IsAvailable) CLIENT_BOX_ENGLISH.Send(message);
+                            break;
+                        case _WS_NAME.BROWSER:
+                            if (CLIENT_BROWSER.IsAvailable) CLIENT_BROWSER.Send(message);
+                            break;
+                        case _WS_NAME.SETTING:
+                            if (CLIENT_SETTING.IsAvailable) CLIENT_SETTING.Send(message);
+                            break;
+                        case _WS_NAME.PLAYER:
+                            if (CLIENT_PLAYER.IsAvailable) CLIENT_PLAYER.Send(message);
+                            break;
+                        case _WS_NAME.HTTPS:
+                            f_process_messageTo_HTTPS(socket, m);
+                            break;
+                    }
                     break;
             }
-
-            //Console.WriteLine("<<<: " + message);
-            ////socket.Send(message);
-            //CLIENTS.ForEach(s => s.Send(message));
         }
 
         private byte[] f_executeMessageReceiver(IRpcClientInfo client, byte[] input)
@@ -170,7 +182,7 @@ namespace System
 
                     break;
 
-                    #endregion
+                #endregion
                 case MSG_TYPE.URL_GET_ALL_DOMAIN:
                     #region
 
