@@ -106,8 +106,6 @@ namespace System
 
                         text = otran.text.Trim().Replace(':','-');
 
-                        //if (text.Contains(' '))
-                        //{
                         GooTranslateService_v1.TranslateAsync(otran, text, "en", "vi", string.Empty, (_otran) =>
                         {
                             if (_otran.mean_vi.Contains(':')) { f_process_messageTo_HTTPS(socket, msg); return; }
@@ -124,24 +122,6 @@ namespace System
                                     _otran.socket.Send(JsonConvert.SerializeObject(new oMsgSocketReply(false, MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST, msg.MsgId, _otran.mean_vi)));
                             }
                         });
-                        //}
-                        //else
-                        //{
-                        //    GooTranslateService_v2.TranslateAsync(otran, text, "en", "vi", string.Empty, (_otran) =>
-                        //    {
-                        //        Console.WriteLine("\r\n -> V1: " + text + " (" + _otran.type + "): " + _otran.mean_vi);
-                        //        if (_otran.socket.IsAvailable)
-                        //        {
-                        //            if (_otran.success)
-                        //            {
-                        //                string _msgResponse = JsonConvert.SerializeObject(new oMsgSocketReply(true, MSG_TYPE.EN_TRANSLATE_GOOGLE_RESPONSE, msg.MsgId, "", JsonConvert.SerializeObject(_otran)));
-                        //                _otran.socket.Send(_msgResponse);
-                        //            }
-                        //            else
-                        //                _otran.socket.Send(JsonConvert.SerializeObject(new oMsgSocketReply(false, MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST, msg.MsgId, _otran.mean_vi)));
-                        //        }
-                        //    });
-                        //}
 
                         #endregion
                         break;
