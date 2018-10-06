@@ -12,3 +12,4 @@ C:\english\lenBrowser\obj\x86\Debug\Browser.exe
 C:\english\lenBrowser\obj\x86\Debug\Browser.pdb
 C:\english\lenBrowser\obj\x86\Debug\lenBrowser.csprojResolveAssemblyReference.cache
 G:\english\lenBrowser\obj\x86\Debug\lenBrowser.Properties.Resources.resources
+G:\english\lenBrowser\obj\x86\Debug\lenBrowser.csprojResolveAssemblyReference.cache

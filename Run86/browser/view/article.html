@@ -12,6 +12,8 @@
 
         body {
             font-size: 1.5em;
+            overflow-x: hidden;
+            overflow-y: auto;
         }
 
         ul {
@@ -50,6 +52,25 @@
             border-radius: 0px;
             -webkit-box-shadow: none;
             background-color: #ccc;
+        }
+
+        /***************************************/
+
+        #___box_tran {
+            position: absolute;
+            background-color: #ddd;
+            top: 0px;
+            right: 0px;
+            max-width: 299px;
+            width: auto;
+            height: auto;
+            display: inline-block;
+            z-index: 9999999;
+            border: 1px solid orangered;
+            overflow: hidden;
+                    font-family: Arial;
+                    font-size: 0.7em;
+                    padding: 5px 0 5px 7px;
         }
     </style>
     <script type="text/javascript">
@@ -115,7 +136,21 @@
         var f_sendPLAYER = function (msg_type, textMessage) { return f_sendMsg(_WS_NAME.PLAYER, msg_type, textMessage); };
 
         function f_socket_processMessage(data) {
-            f_log('WS <- ' + data);
+            //f_log('WS <- ' + data);
+            //{"Ok":true,"MsgId":"browser-4414-befb-cf1e00-5bbcf7aebe90","Data":"{¦success¦:true,¦id¦:¦event_52f087c-4250-a23f-364ec41a2de8¦,¦text¦:¦came ¦,¦type¦:¦verb¦,¦mean_vi¦:¦đã đến; đến; đi đến; đi lại; đi tới; lên đến; lên tới; xảy đến; xảy ra¦,¦x¦:175,¦y¦:262}","Message":"","MsgType":21}
+            //alert(data);
+            var m = JSON.parse(data);
+            if (m.Ok) {
+                var s = m.Data;
+                if (s && s.length > 0) s = s.split('¦').join('"');
+                switch (m.MsgType) {
+                    case _MSG_TYPE.EN_TRANSLATE_GOOGLE_RESPONSE:
+                        var otran = JSON.parse(s);
+                        f_displayTranslate(otran);
+                        break;
+                }
+            } else
+                alert('ERROR: ' + m.Message);
         }
         ////////////////////////////////////////////////////////////
         var APP_INFO;
@@ -123,7 +158,6 @@
         if (_appInfo && _appInfo.length > 0) APP_INFO = JSON.parse(_appInfo);
         f_log('APP_INFO = ' + JSON.stringify(APP_INFO));
         ////////////////////////////////////////////////////////////
-
         var _SELECT_OBJ = { x: 0, y: 0, text: '', id: '' };
 
         function f_event_processCenter(event) {
@@ -146,6 +180,10 @@
             switch (type) {
                 case 'mousedown':
                     if (console.clear) console.clear();
+
+                    var el = document.getElementById('___box_tran');
+                    if (el) el.style.display = 'none';
+
                     _SELECT_OBJ = { id: id };
                     break;
                 case 'mouseup':
@@ -277,6 +315,19 @@
 
         }
 
+        function f_displayTranslate(oTran) {
+            var el = document.getElementById('___box_tran');
+            if (el && oTran) {
+                var s = oTran.mean_vi;
+                el.innerHTML = s;// '<ul><li>+ ' + s.split(';').join('</li><li>+ ') + '</li></ul>';
+                //el.style.top = (oTran.y + 15) + 'px';
+                el.style.top = (oTran.y + 15 + window.pageYOffset) + 'px';
+                var wi = APP_INFO.Width - APP_INFO.AreaLeft.Width;
+                if (oTran.x + 300 > wi) oTran.x = wi - 350;
+                el.style.left = oTran.x + 'px';
+                el.style.display = 'inline-block';
+            }
+        }
     </script>
 </head>
 <body>
@@ -1109,5 +1160,6 @@
     <ul class="unstyled notification banner"></ul>
     <ul class="unstyled notification popup"></ul>
     <script>    f_domLoaded();</script>
+    <div id="___box_tran"></div>
 </body>
 </html>
