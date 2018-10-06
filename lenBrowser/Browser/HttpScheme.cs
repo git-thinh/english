@@ -28,7 +28,7 @@ namespace lenBrowser
             ////{
             ////    mimeType = "text/html";
             ////    string body = Encoding.UTF8.GetString(buf);
-            ////    string htm = view + body + " <script> f_domLoaded(); </script></body></html>";
+            ////    string htm = view + body + " <div id=___box_tran></div><script> f_domLoaded(); </script></body></html>";
             ////    File.WriteAllText("view/article.html", htm);
             ////    byte[] bytes = Encoding.UTF8.GetBytes(htm);
             ////    stream = new MemoryStream(bytes);

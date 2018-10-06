@@ -12,8 +12,10 @@
 
         body {
             font-size: 1.5em;
+            overflow-x: hidden;
+            overflow-y: auto;
         }
-        
+
         ul {
             list-style: none;
         }
@@ -51,15 +53,119 @@
             -webkit-box-shadow: none;
             background-color: #ccc;
         }
+
+        /***************************************/
+
+        #___box_tran {
+            position: absolute;
+            background-color: #ddd;
+            top: 0px;
+            right: 0px;
+            width: auto;
+            height: auto;
+            display: inline-block;
+            z-index: 9999999;
+            border: 1px solid orangered;
+            overflow: hidden;
+            font-family: Arial;
+            font-size: 0.7em;
+            padding: 5px 0 5px 7px;
+            text-align: center;
+            border-radius: 4px;
+            line-height: 27px;
+        }
+
+        .___translated {
+            border-bottom: 1px dotted red;
+            font-style: inherit;
+        }
     </style>
     <script type="text/javascript">
-
-        if (window.addEventListener) {
-            window.addEventListener("mouseup", f_event_processCenter, true);
-            window.addEventListener("mousedown", f_event_processCenter, true);
-            window.addEventListener("click", f_event_processCenter, true);
-            window.addEventListener("dblclick", f_event_processCenter, true);
+        var f_log = 1 ? function (text) { console.log(text); } : function () { };
+        if (window.API == null) {
+            window.API = {};
+            window.API.Go = function () { };
+            window.API.GoTitle = function () { };
+            window.API.UpdateLinks = function () { };
         }
+        ////////////////////////////////////////////////////////////
+        var _WS_NAME = {
+            ALL: "*",
+            BOX_ENGLISH: "BOX_ENGLISH",
+            BROWSER: "BROWSER",
+            SETTING: "SETTING",
+            PLAYER: "PLAYER",
+            HTTPS: "HTTPS",
+        };
+        var _MSG_TYPE = {
+            NONE: 0,
+            APP_INFO: 1,
+
+            NOTIFICATION_REG_HANDLE: 5,
+            NOTIFICATION_REMOVE_HANDLE: 6,
+
+            URL_REQUEST: 10,
+            URL_REQUEST_FAIL: 11,
+            URL_REQUEST_SUCCESS: 12,
+
+            URL_CACHE_FOR_SEARCH: 13,
+            URL_GET_SOURCE_FROM_CACHE: 14,
+            URL_GET_ALL_DOMAIN: 15,
+
+            EN_TRANSLATE_GOOGLE_REQUEST: 20,
+            EN_TRANSLATE_GOOGLE_RESPONSE: 21,
+            EN_TRANSLATE_SAVE: 22,
+            EN_TRANSLATE_REMOVE: 23,
+
+            EN_DEFINE_WORD_REQUEST: 30,
+            EN_DEFINE_WORD_RESPONSE: 31,
+            EN_DEFINE_WORD_SAVE: 32,
+            EN_DEFINE_WORD_REMOVE: 32
+        };
+        ////////////////////////////////////////////////////////////
+        var _WEBSOCKET, _WEBSOCKET_OPEN = false, _WEBSOCKET_FROM = _WS_NAME.BROWSER;
+        if ("WebSocket" in window) {
+            _WEBSOCKET = new WebSocket("ws://127.0.0.1:56789");
+            _WEBSOCKET.onopen = function () { _WEBSOCKET_OPEN = true; _WEBSOCKET.send(_WS_NAME.BROWSER); };
+            _WEBSOCKET.onmessage = function (evt) { f_socket_processMessage(evt.data); };
+            _WEBSOCKET.onclose = function () { _WEBSOCKET_OPEN = false; };
+            _WEBSOCKET.onerror = function () { _WEBSOCKET_OPEN = false; };
+        }
+        var f_createMsg = function (sendTo, msgType, textMessage) {
+            var id = _WEBSOCKET_FROM.toLowerCase() + '-4xxx-yxxx-xxxxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) { var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8); return v.toString(16); }).substring(0, 32);
+            var s = ''; if (typeof textMessage == 'string') s = textMessage.split('"').join('¦'); else s = JSON.stringify(textMessage).split('"').join('¦');
+            return { MsgId: id, From: _WEBSOCKET_FROM, To: sendTo, MsgType: msgType, MsgText: s };
+        }
+        var f_sendMsg = function (nameReceiver, msg_type, textMessage) { if (_WEBSOCKET_OPEN && _WEBSOCKET) { var m = f_createMsg(nameReceiver, msg_type, textMessage); _WEBSOCKET.send(JSON.stringify(m)); return m.MsgId; } return null; }
+        var f_sendHTTPS = function (msg_type, textMessage) { return f_sendMsg(_WS_NAME.HTTPS, msg_type, textMessage); };
+        var f_sendALL = function (msg_type, textMessage) { return f_sendMsg(_WS_NAME.ALL, msg_type, textMessage); };
+        var f_sendSETTING = function (msg_type, textMessage) { return f_sendMsg(_WS_NAME.SETTING, msg_type, textMessage); };
+        var f_sendPLAYER = function (msg_type, textMessage) { return f_sendMsg(_WS_NAME.PLAYER, msg_type, textMessage); };
+
+        function f_socket_processMessage(data) {
+            //f_log('WS <- ' + data);
+            //{"Ok":true,"MsgId":"browser-4414-befb-cf1e00-5bbcf7aebe90","Data":"{¦success¦:true,¦id¦:¦event_52f087c-4250-a23f-364ec41a2de8¦,¦text¦:¦came ¦,¦type¦:¦verb¦,¦mean_vi¦:¦đã đến; đến; đi đến; đi lại; đi tới; lên đến; lên tới; xảy đến; xảy ra¦,¦x¦:175,¦y¦:262}","Message":"","MsgType":21}
+            //alert(data);
+            var m = JSON.parse(data);
+            if (m.Ok) {
+                var s = m.Data;
+                if (s && s.length > 0) s = s.split('¦').join('"');
+                switch (m.MsgType) {
+                    case _MSG_TYPE.EN_TRANSLATE_GOOGLE_RESPONSE:
+                        var otran = JSON.parse(s);
+                        f_displayTranslate(otran);
+                        break;
+                }
+            } else
+                alert('ERROR: ' + m.Message);
+        }
+        ////////////////////////////////////////////////////////////
+        var APP_INFO;
+        var _appInfo = API.GetAppInfo();
+        if (_appInfo && _appInfo.length > 0) APP_INFO = JSON.parse(_appInfo);
+        f_log('APP_INFO = ' + JSON.stringify(APP_INFO));
+        ////////////////////////////////////////////////////////////
+        var _SELECT_OBJ = { x: 0, y: 0, text: '', id: '' };
 
         function f_event_processCenter(event) {
             var type = event.type,
@@ -69,7 +175,7 @@
                 text = el.innerText,
                 textSelect = '';
 
-            if (id == null) {
+            if (id == null || id.trim().length == 0) {
                 id = 'event_xxxxxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
                     var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
                     return v.toString(16);
@@ -79,23 +185,49 @@
 
             textSelect = window.getSelection().toString();
             switch (type) {
-                case 'mouseup':
-                    break;
                 case 'mousedown':
+                    if (console.clear) console.clear();
+
+                    var el = document.getElementById('___box_tran');
+                    if (el) el.style.display = 'none';
+
+                    _SELECT_OBJ = { id: id };
+                    break;
+                case 'mouseup':
+                    if (_SELECT_OBJ != null) {
+                        _SELECT_OBJ.x = event.x;
+                        _SELECT_OBJ.y = event.y;
+                        if (textSelect && textSelect.trim().length > 0) _SELECT_OBJ.text = textSelect;
+                    }
                     break;
                 case 'click':
+                    if (_SELECT_OBJ != null) {
+                        if (textSelect && textSelect.trim().length > 0) _SELECT_OBJ.text = textSelect;
+                    }
                     break;
                 case 'dblclick':
+                    if (_SELECT_OBJ != null) {
+                        if (textSelect && textSelect.trim().length > 0) _SELECT_OBJ.text = textSelect;
+                    }
                     break;
             }
 
-            console.log(tagName + '.' + type + ': ' + id + ' \r\nSELECT= ' + textSelect + ' \r\nTEXT= ', text);
+            if (_SELECT_OBJ != null && _SELECT_OBJ.text && _SELECT_OBJ.text.length > 0) {
+                f_sendHTTPS(_MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST, _SELECT_OBJ);
+                _SELECT_OBJ = null;
+            }
 
-
+            //f_log(tagName + '.' + type + ': ' + id + ' \r\nSELECT= ' + textSelect + ' \r\nTEXT= ', text);
             //event.preventDefault();
             //event.stopPropagation();
         }
 
+        if (window.addEventListener) {
+            window.addEventListener("mouseup", f_event_processCenter, true);
+            window.addEventListener("mousedown", f_event_processCenter, true);
+            window.addEventListener("click", f_event_processCenter, true);
+            window.addEventListener("dblclick", f_event_processCenter, true);
+        }
 
         function f_go(url, title) {
             document.body.innerHTML = '<h1>' + title + '<br><br><br><br><br><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjAiIHdpZHRoPSI2NHB4IiBoZWlnaHQ9IjY0cHgiIHZpZXdCb3g9IjAgMCAxMjggMTI4IiB4bWw6c3BhY2U9InByZXNlcnZlIj48Zz48cGF0aCBkPSJNNzEgMzkuMlYuNGE2My42IDYzLjYgMCAwIDEgMzMuOTYgMTQuNTdMNzcuNjggNDIuMjRhMjUuNTMgMjUuNTMgMCAwIDAtNi43LTMuMDN6IiBmaWxsPSIjMDAwIi8+PHBhdGggZD0iTTcxIDM5LjJWLjRhNjMuNiA2My42IDAgMCAxIDMzLjk2IDE0LjU3TDc3LjY4IDQyLjI0YTI1LjUzIDI1LjUzIDAgMCAwLTYuNy0zLjAzeiIgZmlsbD0iI2UxZTFlMSIgdHJhbnNmb3JtPSJyb3RhdGUoNDUgNjQgNjQpIi8+PHBhdGggZD0iTTcxIDM5LjJWLjRhNjMuNiA2My42IDAgMCAxIDMzLjk2IDE0LjU3TDc3LjY4IDQyLjI0YTI1LjUzIDI1LjUzIDAgMCAwLTYuNy0zLjAzeiIgZmlsbD0iI2UxZTFlMSIgdHJhbnNmb3JtPSJyb3RhdGUoOTAgNjQgNjQpIi8+PHBhdGggZD0iTTcxIDM5LjJWLjRhNjMuNiA2My42IDAgMCAxIDMzLjk2IDE0LjU3TDc3LjY4IDQyLjI0YTI1LjUzIDI1LjUzIDAgMCAwLTYuNy0zLjAzeiIgZmlsbD0iI2UxZTFlMSIgdHJhbnNmb3JtPSJyb3RhdGUoMTM1IDY0IDY0KSIvPjxwYXRoIGQ9Ik03MSAzOS4yVi40YTYzLjYgNjMuNiAwIDAgMSAzMy45NiAxNC41N0w3Ny42OCA0Mi4yNGEyNS41MyAyNS41MyAwIDAgMC02LjctMy4wM3oiIGZpbGw9IiNiZWJlYmUiIHRyYW5zZm9ybT0icm90YXRlKDE4MCA2NCA2NCkiLz48cGF0aCBkPSJNNzEgMzkuMlYuNGE2My42IDYzLjYgMCAwIDEgMzMuOTYgMTQuNTdMNzcuNjggNDIuMjRhMjUuNTMgMjUuNTMgMCAwIDAtNi43LTMuMDN6IiBmaWxsPSIjOTc5Nzk3IiB0cmFuc2Zvcm09InJvdGF0ZSgyMjUgNjQgNjQpIi8+PHBhdGggZD0iTTcxIDM5LjJWLjRhNjMuNiA2My42IDAgMCAxIDMzLjk2IDE0LjU3TDc3LjY4IDQyLjI0YTI1LjUzIDI1LjUzIDAgMCAwLTYuNy0zLjAzeiIgZmlsbD0iIzZlNmU2ZSIgdHJhbnNmb3JtPSJyb3RhdGUoMjcwIDY0IDY0KSIvPjxwYXRoIGQ9Ik03MSAzOS4yVi40YTYzLjYgNjMuNiAwIDAgMSAzMy45NiAxNC41N0w3Ny42OCA0Mi4yNGEyNS41MyAyNS41MyAwIDAgMC02LjctMy4wM3oiIGZpbGw9IiMzYzNjM2MiIHRyYW5zZm9ybT0icm90YXRlKDMxNSA2NCA2NCkiLz48YW5pbWF0ZVRyYW5zZm9ybSBhdHRyaWJ1dGVOYW1lPSJ0cmFuc2Zvcm0iIHR5cGU9InJvdGF0ZSIgdmFsdWVzPSIwIDY0IDY0OzQ1IDY0IDY0OzkwIDY0IDY0OzEzNSA2NCA2NDsxODAgNjQgNjQ7MjI1IDY0IDY0OzI3MCA2NCA2NDszMTUgNjQgNjQiIGNhbGNNb2RlPSJkaXNjcmV0ZSIgZHVyPSI3MjBtcyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiPjwvYW5pbWF0ZVRyYW5zZm9ybT48L2c+PGc+PGNpcmNsZSBmaWxsPSIjMDAwIiBjeD0iNjMuNjYiIGN5PSI2My4xNiIgcj0iMTIiLz48YW5pbWF0ZSBhdHRyaWJ1dGVOYW1lPSJvcGFjaXR5IiBkdXI9IjcyMG1zIiBiZWdpbj0iMHMiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBrZXlUaW1lcz0iMDswLjU7MSIgdmFsdWVzPSIxOzA7MSIvPjwvZz48L3N2Zz4="/></h1>';
@@ -107,7 +239,8 @@
             var elTitle = document.getElementById('___title');
             if (elTitle) document.title = elTitle.value;
 
-            console.info("JS-> " + location.href);
+            //console.info("JS-> " + location.href);
+
             var URL = location.href,
                 aHost = location.hostname.split('.'),
                 DOMAIN_MAIN = aHost.length > 1 ? (aHost[aHost.length - 2] + '.' + aHost[aHost.length - 1]) : aHost[0];
@@ -150,7 +283,7 @@
                         }
 
                         if (link_full.length > 0) {
-                            //console.log('A = ' + link + ' -> ' + link_full);
+                            //f_log('A = ' + link + ' -> ' + link_full);
                             link = link_full;
                         }
 
@@ -174,7 +307,7 @@
             for (var i = 0; i < imgs.length; i++) {
                 var el = imgs[i], s = el.value;
                 if (s != null && s.length > 0) {
-                    //console.log('IMG = ' + s);
+                    //f_log('IMG = ' + s);
                 }
             }
 
@@ -182,14 +315,65 @@
             for (var i = 0; i < els.length; i++) {
                 var el = els[i], s = el.innerText;
                 if (s == null || s == undefined || s.length == 0) {
-                    //console.log('type = ' + el.type + '; name = ' + el.name + '; text = ' + s);
+                    //f_log('type = ' + el.type + '; name = ' + el.name + '; text = ' + s);
                     el.style.display = 'none';
                 }
             }
 
         }
 
+        function f_getTextWidth(text, font) {
+            var c = document.getElementById("___canvas");
+            var ctx = c.getContext("2d");
+            ctx.font = font;
+            return ctx.measureText(text).width;
+        }
+
+        function f_displayTranslate(oTran) {
+            var el = document.getElementById('___box_tran');
+            if (el && oTran) {
+                var s = oTran.mean_vi;
+                if (s == null || s.length == 0) {
+                    window.getSelection().empty();
+                    return;
+                }
+
+                s = s[0].toUpperCase() + s.substr(1);
+                var wiBrowser = APP_INFO.Width - APP_INFO.AreaLeft.Width;
+                var wiText = f_getTextWidth(s, '0.7em Arial') + 25;
+
+                if (wiText > wiBrowser) {
+                    oTran.x = 40;
+                    el.style.width = (wiBrowser - 99) + 'px';
+                    el.style.top = (oTran.y + 19 + window.pageYOffset) + 'px';
+                }
+                else {
+                    el.style.width = wiText + 'px';
+                    el.style.top = (oTran.y + 21 + window.pageYOffset) + 'px';
+                    if (oTran.x + wiText > wiBrowser) oTran.x = wiBrowser - (wiText + 50);
+                }
+
+                el.innerHTML = s;
+                el.style.left = oTran.x + 'px';
+                el.style.display = 'inline-block';
+
+                var sel = window.getSelection();
+                if (sel.rangeCount) {
+                    range = sel.getRangeAt(0);
+                    range.deleteContents();
+                    var node = document.createElement('i');
+                    node.className = '___translated';
+                    node.setAttribute('title', s);
+                    node.innerHTML = oTran.text;
+                    //range.insertNode(document.createTextNode('[' + s + ']'));
+                    range.insertNode(node);
+                }
+                window.getSelection().empty();
+            }
+        }
     </script>
 </head>
 <body>
+    <canvas id="___canvas" style="display:none;"></canvas>
     <button onclick="location.reload()" style="position:fixed;z-index:999999;bottom:0px;right:0px;">Reload</button>
+

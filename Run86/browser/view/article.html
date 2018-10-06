@@ -72,7 +72,6 @@
             padding: 5px 0 5px 7px;
             text-align: center;
             border-radius: 4px;
-            text-transform: capitalize;
             line-height: 27px;
         }
 
@@ -334,6 +333,12 @@
             var el = document.getElementById('___box_tran');
             if (el && oTran) {
                 var s = oTran.mean_vi;
+                if (s == null || s.length == 0) {
+                    window.getSelection().empty();
+                    return;
+                }
+
+                s = s[0].toUpperCase() + s.substr(1);
                 var wiBrowser = APP_INFO.Width - APP_INFO.AreaLeft.Width;
                 var wiText = f_getTextWidth(s, '0.7em Arial') + 25;
 
@@ -1198,7 +1203,6 @@
     <div class="overlay js-overlay"></div>
     <ul class="unstyled notification banner"></ul>
     <ul class="unstyled notification popup"></ul>
-    <script>    f_domLoaded();</script>
-    <div id="___box_tran"></div>
+    <div id="___box_tran"></div><script> f_domLoaded(); </script>
 </body>
 </html>
