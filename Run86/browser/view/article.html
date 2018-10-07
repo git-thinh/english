@@ -191,13 +191,9 @@
                     var elbox = document.getElementById('___box_tran');
                     if (elbox) elbox.style.display = 'none';
 
-                    if (el.className == '___translated') {
-                        _SELECT_OBJ = null;
-                        f_displayTranslateCache({ id: id, text: textSelect, x: event.x, y: event.y });
-                    } else {                        
-                        _SELECT_OBJ = { id: id };
-                    }
-                    
+                    _SELECT_OBJ = { id: id, cached: false };
+                    if (el.className == '___translated') _SELECT_OBJ.cached = true;
+
                     break;
                 case 'mouseup':
                     if (_SELECT_OBJ != null) {
@@ -220,9 +216,16 @@
 
             //f_log(tagName + '.' + type + ': ' + JSON.stringify(_SELECT_OBJ));
 
-            if (_SELECT_OBJ != null && (_SELECT_OBJ.text && _SELECT_OBJ.text.length > 0)) {
-                f_sendHTTPS(_MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST, _SELECT_OBJ);
-                _SELECT_OBJ = null;
+            if (_SELECT_OBJ != null) {
+                if (_SELECT_OBJ.cached == true) {
+                    f_displayTranslateCache(_SELECT_OBJ);
+                    _SELECT_OBJ = null;
+                } else {
+                    if (_SELECT_OBJ.text && _SELECT_OBJ.text.length > 0) {
+                        f_sendHTTPS(_MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST, _SELECT_OBJ);
+                        _SELECT_OBJ = null;
+                    }
+                }
             }
 
             //f_log(tagName + '.' + type + ': ' + id + ' \r\nSELECT= ' + textSelect + ' \r\nTEXT= ', text);
@@ -338,9 +341,15 @@
         }
 
         function f_displayTranslateCache(oTran) {
-            alert(JSON.stringify(oTran));
-
-
+            //alert(JSON.stringify(oTran));
+            if (oTran && oTran.id) {
+                var el = document.getElementById(oTran.id);
+                if (el) {
+                    var text = el.innerText, mean_vi = '';
+                    if (el.hasAttribute('title')) mean_vi = el.getAttribute('title');
+                    alert(text + ': ' + mean_vi);
+                }
+            }
         }
 
         function f_displayTranslate(oTran) {
@@ -1222,6 +1231,7 @@
     <div class="overlay js-overlay"></div>
     <ul class="unstyled notification banner"></ul>
     <ul class="unstyled notification popup"></ul>
-    <div id="___box_tran"></div><script> f_domLoaded(); </script>
+    <div id="___box_tran"></div>
+    <script> f_domLoaded(); </script>
 </body>
 </html>
