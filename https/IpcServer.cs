@@ -25,6 +25,7 @@ namespace System
         readonly ConcurrentDictionary<string, List<int>> INDEX;
         readonly ConcurrentDictionary<string, List<int>> DOMAIN_LINK;
         readonly ConcurrentDictionary<string, List<int>> KEY_INDEX;
+        readonly ConcurrentDictionary<string, string> TRANSLATE;
 
         readonly RpcServerApi SERVER_RPC;
         readonly WebSocketServer NOTI;
@@ -67,6 +68,7 @@ namespace System
             LIST_UI_NOTI = new List<int>();
             BINARY_FORMATTER = new BinaryFormatter();
 
+            TRANSLATE = new ConcurrentDictionary<string, string>();
             CACHE = new ConcurrentDictionary<string, string>();
             LINK = new ConcurrentDictionary<string, string>();
             LINK_LEVEL = new ConcurrentDictionary<int, int>();
@@ -101,27 +103,42 @@ namespace System
                 {
                     case MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST:
                         #region
+
                         var otran = JsonConvert.DeserializeObject<oEN_TRANSLATE_GOOGLE_MESSAGE>(data);
                         otran.socket = socket;
 
-                        text = otran.text.Trim().Replace(':','-');
-
-                        GooTranslateService_v1.TranslateAsync(otran, text, "en", "vi", string.Empty, (_otran) =>
+                        text = otran.text.Trim().Replace(':', '-');
+                        if (TRANSLATE.ContainsKey(text))
                         {
-                            if (_otran.mean_vi.Contains(':')) { f_process_messageTo_HTTPS(socket, msg); return; }
+                            otran.mean_vi = TRANSLATE[text];
+                            otran.success = true;
+                            Console.WriteLine("-> TRANSLATE.CACHE: {0} = {1}", text, otran.mean_vi);
 
-                            Console.WriteLine("\r\n -> V1: " + text + " (" + _otran.type + "): " + _otran.mean_vi);
-                            if (_otran.socket.IsAvailable)
+                            string _msgResponse = JsonConvert.SerializeObject(new oMsgSocketReply(true, MSG_TYPE.EN_TRANSLATE_GOOGLE_RESPONSE, msg.MsgId, "", JsonConvert.SerializeObject(otran)));
+                            if (CLIENT_BROWSER != null && CLIENT_BROWSER.IsAvailable) CLIENT_BROWSER.Send(_msgResponse);
+                            if (CLIENT_SETTING != null && CLIENT_SETTING.IsAvailable) CLIENT_SETTING.Send(_msgResponse);
+                            if (CLIENT_PLAYER != null && CLIENT_PLAYER.IsAvailable) CLIENT_PLAYER.Send(_msgResponse);
+                        }
+                        else
+                        {
+                            GooTranslateService_v1.TranslateAsync(otran, text, "en", "vi", string.Empty, (_otran) =>
                             {
+                                if (_otran.mean_vi.Contains(':')) { f_process_messageTo_HTTPS(socket, msg); return; }
+                                //Console.WriteLine("\r\n -> V1: " + text + " (" + _otran.type + "): " + _otran.mean_vi);
+                                if (!TRANSLATE.ContainsKey(text)) TRANSLATE.TryAdd(text, _otran.mean_vi);
+                                Console.WriteLine("-> TRANSLATE.ONLINE: {0} = {1}", text, otran.mean_vi);
+
                                 if (_otran.success)
                                 {
                                     string _msgResponse = JsonConvert.SerializeObject(new oMsgSocketReply(true, MSG_TYPE.EN_TRANSLATE_GOOGLE_RESPONSE, msg.MsgId, "", JsonConvert.SerializeObject(_otran)));
-                                    _otran.socket.Send(_msgResponse);
+                                    if (CLIENT_BROWSER != null && CLIENT_BROWSER.IsAvailable) CLIENT_BROWSER.Send(_msgResponse);
+                                    if (CLIENT_SETTING != null && CLIENT_SETTING.IsAvailable) CLIENT_SETTING.Send(_msgResponse);
+                                    if (CLIENT_PLAYER != null && CLIENT_PLAYER.IsAvailable) CLIENT_PLAYER.Send(_msgResponse);
                                 }
                                 else
-                                    _otran.socket.Send(JsonConvert.SerializeObject(new oMsgSocketReply(false, MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST, msg.MsgId, _otran.mean_vi)));
-                            }
-                        });
+                                    if (CLIENT_BROWSER.IsAvailable) CLIENT_BROWSER.Send(JsonConvert.SerializeObject(new oMsgSocketReply(false, MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST, msg.MsgId, _otran.mean_vi)));
+                            });
+                        }
 
                         #endregion
                         break;

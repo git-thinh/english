@@ -190,8 +190,9 @@
 
                     var el = document.getElementById('___box_tran');
                     if (el) el.style.display = 'none';
-
-                    _SELECT_OBJ = { id: id };
+                    
+                    _SELECT_OBJ = { id: id, cached: false };
+                    if (el.className == '___translated') _SELECT_OBJ.cached = true;
                     break;
                 case 'mouseup':
                     if (_SELECT_OBJ != null) {
@@ -212,8 +213,10 @@
                     break;
             }
 
-            if (_SELECT_OBJ != null && _SELECT_OBJ.text && _SELECT_OBJ.text.length > 0) {
-                f_sendHTTPS(_MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST, _SELECT_OBJ);
+            if (_SELECT_OBJ != null){
+                if (_SELECT_OBJ.cached == true) f_displayTranslateCache(_SELECT_OBJ);
+                else if (_SELECT_OBJ.text && _SELECT_OBJ.text.length > 0)
+                    f_sendHTTPS(_MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST, _SELECT_OBJ);                
                 _SELECT_OBJ = null;
             }
 
@@ -329,6 +332,10 @@
             return ctx.measureText(text).width;
         }
 
+        function f_displayTranslateCache(oTran) {
+
+        }
+
         function f_displayTranslate(oTran) {
             var el = document.getElementById('___box_tran');
             if (el && oTran) {
@@ -364,6 +371,11 @@
                     var node = document.createElement('i');
                     node.className = '___translated';
                     node.setAttribute('title', s);
+                    var id = 'trans_xxxxxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                        return v.toString(16);
+                    });
+                    node.setAttribute('id', id);
                     node.innerHTML = oTran.text;
                     //range.insertNode(document.createTextNode('[' + s + ']'));
                     range.insertNode(node);
