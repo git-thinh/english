@@ -25,7 +25,7 @@ namespace System
         public const string SETTING = "SETTING";
         public const string PLAYER = "PLAYER";
         public const string HTTPS = "HTTPS";
-    }    
+    }
 
     public enum MSG_TYPE
     {
@@ -42,7 +42,7 @@ namespace System
         URL_CACHE_FOR_SEARCH = 13,
         URL_GET_SOURCE_FROM_CACHE = 14,
         URL_GET_ALL_DOMAIN = 15,
-        
+
         EN_TRANSLATE_GOOGLE_REQUEST = 20,
         EN_TRANSLATE_GOOGLE_RESPONSE = 21,
         EN_TRANSLATE_SAVE = 22,
@@ -67,7 +67,8 @@ namespace System
         public string Url { set; get; }
         public oAppAreaLeftInfo AreaLeft { set; get; }
 
-        public oAppInfo() {
+        public oAppInfo()
+        {
             AreaLeft = new oAppAreaLeftInfo();
         }
     }
@@ -78,35 +79,78 @@ namespace System
         public string Url { set; get; }
     }
 
-    public class oMsgSocketReply
-    {
-        public bool Ok { set; get; }
-        public string MsgId { set; get; }
-        public string Data { set; get; }
-        public string Message { set; get; }
-        public MSG_TYPE MsgType { set; get; }
+    //public class oMsgSocketReply
+    //{
+    //    public bool Ok { set; get; }
+    //    public string MsgId { set; get; }
+    //    public string Data { set; get; }
+    //    public string Message { set; get; }
+    //    public MSG_TYPE MsgType { set; get; }
 
-        public oMsgSocketReply(bool ok, MSG_TYPE msgType, string msgId = "", string message = "", string data = "") {
-            this.Ok = ok;
-            this.MsgType = msgType;
-            this.MsgId = msgId;
-            this.Message = message;
-            if (!string.IsNullOrEmpty(data)) data = data.Replace('"', '¦');
-            this.Data = data;
-        }
-    }
+    //    public oMsgSocketReply(bool ok, MSG_TYPE msgType, string msgId = "", string message = "", string data = "") {
+    //        this.Ok = ok;
+    //        this.MsgType = msgType;
+    //        this.MsgId = msgId;
+    //        this.Message = message;
+    //        if (!string.IsNullOrEmpty(data)) data = data.Replace('"', '¦');
+    //        this.Data = data;
+    //    }
+    //}
 
     public class oMsgSocket
     {
+        public bool Ok { set; get; }
         public string MsgId { set; get; }
         public string From { set; get; }
         public string To { set; get; }
-        public string MsgText { set; get; }
+        
+        private string _msgRequest = string.Empty;
+        public string MsgRequest
+        {
+            set
+            {
+                _msgRequest = value;
+                if (_msgRequest == null) _msgRequest = string.Empty;
+                _msgRequest.Replace('"', '¦');
+            }
+            get
+            {
+                return _msgRequest.Replace('¦', '"');
+            }
+        }
+
+        private string _msgResponse = string.Empty;
+        public string MsgResponse
+        {
+            set
+            {
+                _msgResponse = value;
+                if (_msgResponse == null) _msgResponse = string.Empty;
+                _msgResponse.Replace('"', '¦');
+            }
+            get
+            {
+                return _msgResponse.Replace('¦', '"');
+            }
+        }
+        
+
         public MSG_TYPE MsgType { set; get; }
+
+
+        public oMsgSocket(bool ok, MSG_TYPE msgType, string msgId = "", string msgRequest = "", string msgResponse = "")
+        {
+            this.Ok = ok;
+            this.MsgType = msgType;
+            this.MsgId = msgId;
+
+            this.MsgRequest = msgRequest;
+            this.MsgResponse = msgResponse;
+        }
 
         public override string ToString()
         {
-            return string.Format("{0} {1}-{2}: {3}", this.MsgType, this.From, this.To, this.MsgText);
+            return string.Format("{0} {1}-{2}: {3}", this.MsgType, this.From, this.To, this.MsgRequest);
         }
     }
 
@@ -209,8 +253,9 @@ namespace System
 
         [JsonIgnore]
         public TranslateCallBack translateCallBack { set; get; }
-        
-        public oEN_TRANSLATE_GOOGLE_MESSAGE() {
+
+        public oEN_TRANSLATE_GOOGLE_MESSAGE()
+        {
             this.success = false;
             this.socket = null;
             this.webRequest = null;

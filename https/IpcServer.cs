@@ -104,16 +104,16 @@ namespace System
         {
             try
             {
-                string data = msg.MsgText, text = string.Empty;
-                if (string.IsNullOrWhiteSpace(data)) return;
-                data = data.Trim();
-                Console.WriteLine(string.Format("{0} -> {1}", msg.From, data));
+                string msgRequest = msg.MsgRequest, text = string.Empty;
+                if (string.IsNullOrWhiteSpace(msgRequest)) return;
+                msgRequest = msgRequest.Trim();
+                Console.WriteLine(string.Format("{0} -> {1}", msg.From, msgRequest));
                 switch (msg.MsgType)
                 {
                     case MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST:
                         #region
 
-                        var otran = JsonConvert.DeserializeObject<oEN_TRANSLATE_GOOGLE_MESSAGE>(data);
+                        var otran = JsonConvert.DeserializeObject<oEN_TRANSLATE_GOOGLE_MESSAGE>(msgRequest);
                         otran.socket = socket;
 
                         text = otran.text.Trim().Replace(':', '-');
@@ -123,7 +123,10 @@ namespace System
                             otran.success = true;
                             Console.WriteLine("-> TRANSLATE.CACHE: {0} = {1}", text, otran.mean_vi);
 
-                            string _msgResponse = JsonConvert.SerializeObject(new oMsgSocketReply(true, MSG_TYPE.EN_TRANSLATE_GOOGLE_RESPONSE, msg.MsgId, "", JsonConvert.SerializeObject(otran)));
+                            msg.Ok = true;
+                            msg.MsgResponse = JsonConvert.SerializeObject(otran);
+                            msg.MsgType = MSG_TYPE.EN_DEFINE_WORD_RESPONSE;
+                            string _msgResponse = JsonConvert.SerializeObject(msg);
                             f_broadCastMessage(_msgResponse);
                         }
                         else
@@ -137,11 +140,18 @@ namespace System
 
                                 if (_otran.success)
                                 {
-                                    string _msgResponse = JsonConvert.SerializeObject(new oMsgSocketReply(true, MSG_TYPE.EN_TRANSLATE_GOOGLE_RESPONSE, msg.MsgId, "", JsonConvert.SerializeObject(_otran)));
-                                    f_broadCastMessage(_msgResponse);
+                                    msg.Ok = true;
+                                    msg.MsgResponse = JsonConvert.SerializeObject(otran);
+                                    string _msgWs = JsonConvert.SerializeObject(msg);
+                                    f_broadCastMessage(_msgWs);
                                 }
-                                else
-                                    if (CLIENT_BROWSER.IsAvailable) CLIENT_BROWSER.Send(JsonConvert.SerializeObject(new oMsgSocketReply(false, MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST, msg.MsgId, _otran.mean_vi)));
+                                else {
+                                    msg.Ok = false;
+                                    msg.MsgType = MSG_TYPE.EN_DEFINE_WORD_REQUEST;
+                                    msg.MsgResponse = _otran.mean_vi;
+                                    string _msgWs = JsonConvert.SerializeObject(msg);
+                                    f_broadCastMessage(_msgWs);
+                                }
                             });
                         }
 
@@ -151,7 +161,9 @@ namespace System
             }
             catch (Exception ex)
             {
-                socket.Send(JsonConvert.SerializeObject(new oMsgSocketReply(false, MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST, msg.MsgId, ex.Message)));
+                msg.Ok = false;
+                msg.MsgResponse = ex.Message;
+                socket.Send(JsonConvert.SerializeObject(msg));
             }
         }
 
@@ -177,7 +189,7 @@ namespace System
                     try
                     {
                         oMsgSocket m = JsonConvert.DeserializeObject<oMsgSocket>(message);
-                        m.MsgText = m.MsgText.Replace('¦', '"');
+                        //m.MsgText = m.MsgText.Replace('¦', '"');
                         switch (m.To)
                         {
                             case _WS_NAME.ALL:
@@ -202,7 +214,7 @@ namespace System
                     }
                     catch (Exception ex)
                     {
-                        socket.Send(JsonConvert.SerializeObject(new oMsgSocketReply(false, MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST, "", ex.Message)));
+                        socket.Send(JsonConvert.SerializeObject(new oMsgSocket(false, MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST, message, ex.Message)));
                     }
                     break;
             }

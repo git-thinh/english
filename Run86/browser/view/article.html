@@ -146,7 +146,7 @@
         var f_createMsg = function (sendTo, msgType, textMessage) {
             var id = _WEBSOCKET_FROM.toLowerCase() + '-4xxx-yxxx-xxxxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) { var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8); return v.toString(16); }).substring(0, 32);
             var s = ''; if (typeof textMessage == 'string') s = textMessage.split('"').join('¦'); else s = JSON.stringify(textMessage).split('"').join('¦');
-            return { MsgId: id, From: _WEBSOCKET_FROM, To: sendTo, MsgType: msgType, MsgText: s };
+            return { MsgId: id, From: _WEBSOCKET_FROM, To: sendTo, MsgType: msgType, MsgRequest: s };
         }
         var f_sendMsg = function (nameReceiver, msg_type, textMessage) { if (_WEBSOCKET_OPEN && _WEBSOCKET) { var m = f_createMsg(nameReceiver, msg_type, textMessage); _WEBSOCKET.send(JSON.stringify(m)); return m.MsgId; } return null; }
         var f_sendHTTPS = function (msg_type, textMessage) { return f_sendMsg(_WS_NAME.HTTPS, msg_type, textMessage); };
@@ -155,12 +155,12 @@
         var f_sendPLAYER = function (msg_type, textMessage) { return f_sendMsg(_WS_NAME.PLAYER, msg_type, textMessage); };
 
         function f_socket_processMessage(data) {
-            //f_log('WS <- ' + data);
+            f_log('WS.' + _CLIENT_NAME + ' <- ' + data);
             //{"Ok":true,"MsgId":"browser-4414-befb-cf1e00-5bbcf7aebe90","Data":"{¦success¦:true,¦id¦:¦event_52f087c-4250-a23f-364ec41a2de8¦,¦text¦:¦came ¦,¦type¦:¦verb¦,¦mean_vi¦:¦đã đến; đến; đi đến; đi lại; đi tới; lên đến; lên tới; xảy đến; xảy ra¦,¦x¦:175,¦y¦:262}","Message":"","MsgType":21}
             //alert(data);
             var m = JSON.parse(data);
             if (m.Ok) {
-                var s = m.Data;
+                var s = m.MsgResponse;
                 if (s && s.length > 0) s = s.split('¦').join('"');
                 switch (m.MsgType) {
                     case _MSG_TYPE.EN_TRANSLATE_GOOGLE_RESPONSE:
@@ -169,7 +169,7 @@
                         break;
                 }
             } else
-                alert('ERROR: ' + m.Message);
+                alert('ERROR: ' + m.MsgResponse);
         }
         ////////////////////////////////////////////////////////////
         var APP_INFO;
@@ -359,9 +359,12 @@
                 if (el) {
                     var text = el.innerText, s = '';
                     if (el.hasAttribute('title')) s = el.getAttribute('title');
+                    oTran.success = true;
                     oTran.text = text;
                     oTran.mean_vi = s;
                     f_displayTranslate(oTran);
+
+                    f_sendSETTING(_MSG_TYPE.EN_TRANSLATE_GOOGLE_RESPONSE, oTran);
                 }
             }
         }
