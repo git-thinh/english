@@ -331,6 +331,7 @@ namespace lenBrowser
             //Console.WriteLine("SETTING.LOG = " + e.Source + ":" + e.Line + " " + e.Message);
             //f_api_processMessage(e.Message);
             Console.WriteLine(e.Line + ": " + e.Message);
+            Debug.WriteLine(e.Message);
         }
 
         #endregion
@@ -384,7 +385,8 @@ namespace lenBrowser
         private void f_browserConsoleMessage(object sender, ConsoleMessageEventArgs e)
         {
             //Console.WriteLine("MAIN.LOG = " + e.Source + ":" + e.Line + " " + e.Message);
-            Console.WriteLine(e.Line + ": " + e.Message);
+            //Console.WriteLine(e.Line + ": " + e.Message);
+            Debug.WriteLine(e.Message);
         }
 
         private void f_browserPropertyChangeUpdate(string propertyName)

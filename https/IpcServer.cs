@@ -7,6 +7,7 @@ using System.Text;
 using System.Linq;
 using System.IO;
 using Fleck;
+using System.Diagnostics;
 
 namespace System
 {
@@ -91,8 +92,10 @@ namespace System
 
         #region [ PROCESS MESSAGE ]
 
-        private void f_broadCastMessage(string msg) {
-            lock (CLIENTS) {
+        private void f_broadCastMessage(string msg)
+        {
+            lock (CLIENTS)
+            {
                 CLIENTS.ForEach(socket =>
                 {
                     if (socket.IsAvailable) socket.Send(msg);
@@ -104,7 +107,7 @@ namespace System
         {
             try
             {
-                string msgRequest = msg.MsgRequest, text = string.Empty;
+                string msgRequest = msg.MsgRequestJson, text = string.Empty;
                 if (string.IsNullOrWhiteSpace(msgRequest)) return;
                 msgRequest = msgRequest.Trim();
                 Console.WriteLine(string.Format("{0} -> {1}", msg.From, msgRequest));
@@ -125,7 +128,7 @@ namespace System
 
                             msg.Ok = true;
                             msg.MsgResponse = JsonConvert.SerializeObject(otran);
-                            msg.MsgType = MSG_TYPE.EN_DEFINE_WORD_RESPONSE;
+                            msg.MsgType = MSG_TYPE.EN_TRANSLATE_GOOGLE_RESPONSE;
                             string _msgResponse = JsonConvert.SerializeObject(msg);
                             f_broadCastMessage(_msgResponse);
                         }
@@ -141,13 +144,15 @@ namespace System
                                 if (_otran.success)
                                 {
                                     msg.Ok = true;
+                                    msg.MsgType = MSG_TYPE.EN_TRANSLATE_GOOGLE_RESPONSE;
                                     msg.MsgResponse = JsonConvert.SerializeObject(otran);
                                     string _msgWs = JsonConvert.SerializeObject(msg);
                                     f_broadCastMessage(_msgWs);
                                 }
-                                else {
+                                else
+                                {
                                     msg.Ok = false;
-                                    msg.MsgType = MSG_TYPE.EN_DEFINE_WORD_REQUEST;
+                                    msg.MsgType = MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST;
                                     msg.MsgResponse = _otran.mean_vi;
                                     string _msgWs = JsonConvert.SerializeObject(msg);
                                     f_broadCastMessage(_msgWs);
@@ -162,6 +167,7 @@ namespace System
             catch (Exception ex)
             {
                 msg.Ok = false;
+                msg.MsgType = MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST;
                 msg.MsgResponse = ex.Message;
                 socket.Send(JsonConvert.SerializeObject(msg));
             }
@@ -169,6 +175,8 @@ namespace System
 
         private void f_websocket_onMessage(IWebSocketConnection socket, string message)
         {
+            Debug.WriteLine(message);
+
             switch (message)
             {
                 #region

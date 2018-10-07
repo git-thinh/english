@@ -111,11 +111,11 @@ namespace System
             {
                 _msgRequest = value;
                 if (_msgRequest == null) _msgRequest = string.Empty;
-                _msgRequest.Replace('"', '¦');
+                _msgRequest = _msgRequest.Replace('"', '¦');
             }
             get
             {
-                return _msgRequest.Replace('¦', '"');
+                return _msgRequest;
             }
         }
 
@@ -126,14 +126,31 @@ namespace System
             {
                 _msgResponse = value;
                 if (_msgResponse == null) _msgResponse = string.Empty;
-                _msgResponse.Replace('"', '¦');
+                _msgResponse = _msgResponse.Replace('"', '¦');
             }
+            get
+            {
+                return _msgResponse;
+            }
+        }
+
+        [JsonIgnore]
+        public string MsgRequestJson
+        {
+            get
+            {
+                return _msgRequest.Replace('¦', '"');
+            }
+        }
+
+        [JsonIgnore]
+        public string MsgResponseJson
+        {
             get
             {
                 return _msgResponse.Replace('¦', '"');
             }
         }
-        
 
         public MSG_TYPE MsgType { set; get; }
 
