@@ -267,10 +267,36 @@
         }
 
         function f_displayTranslate(oTran) {
-            alert('SETTING_TRANS: ' + JSON.stringify(oTran));
-            //if (oTran && oTran.success == true) {
+            f_log('SETTING_TRANS: ' + JSON.stringify(oTran));
+            if (oTran && oTran.success == true) {
+                var it = { "Type": "link", "Url": "https://dictionary.cambridge.org/grammar/british-grammar/above-or-over", "Tags": "grammar, above, over", "Title": oTran.text, "Text": oTran.mean_vi };
 
-            //}
+                var items = document.getElementById('items-english-dictinary');
+                var fs = document.querySelectorAll('#items-english-dictinary li');
+                for (var i = 0; i < fs.length; i++)
+                    fs[i].removeClass('active');
+
+                var li = document.getElementById(oTran.id);
+                if (li) {
+                    li.addClass('active');
+                } else {
+                    li = document.createElement('li');
+                    li.id = oTran.id;
+                    li.className = it.Type + ' active';
+
+                    var _label = '<label onclick="_openUrl(\'' + it.Url + '\')">' + it.Title + '</label>',
+                        _em = '<em>' + it.Text + '</em>',
+                        _p = '';//'<p>' + it.Text + '</p>',
+                    _span_i = ''; // it.Tags.length > 0 ? ('<span><i>' + it.Tags.split(',').join('</i><i>') + '</i></span>') : '';
+
+                    li.innerHTML = _label + _em + _p + _span_i;
+
+                    if (items) {
+                        items.style.display = 'inline-block';
+                        items.appendChild(li);
+                    }
+                }
+            }
         }
 
         ////////////////////////////////////////////////////////////
@@ -547,12 +573,20 @@
             ul.items li:first-child {
                 border-top: none;
             }
-
+        
             ul.items li {
                 border-top: 1px solid #ddd;
                 list-style: none;
                 padding-top: 10px;
                 padding-bottom: 10px;
+            }
+
+                ul.items li:hover {
+                    background-color:orange;
+                }
+
+            ul.items li.active {
+                background-color: #ddd;
             }
 
                 /************************************/
