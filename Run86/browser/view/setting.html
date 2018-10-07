@@ -45,44 +45,52 @@
             EN_DEFINE_WORD_SAVE: 32,
             EN_DEFINE_WORD_REMOVE: 32
         };
+        var _CLIENT_NAME = _WS_NAME.SETTING;
         ////////////////////////////////////////////////////////////
-        var _WEBSOCKET, _WEBSOCKET_OPEN = false, _WEBSOCKET_FROM = _WS_NAME.BROWSER;
+        var _WEBSOCKET, _WEBSOCKET_OPEN = false, _WEBSOCKET_FROM = _CLIENT_NAME;
         if ("WebSocket" in window) {
             _WEBSOCKET = new WebSocket("ws://127.0.0.1:56789");
-            _WEBSOCKET.onopen = function () { _WEBSOCKET_OPEN = true; _WEBSOCKET.send(_WS_NAME.BROWSER); };
+            _WEBSOCKET.onopen = function () { _WEBSOCKET_OPEN = true; _WEBSOCKET.send(_CLIENT_NAME); };
             _WEBSOCKET.onmessage = function (evt) { f_socket_processMessage(evt.data); };
             _WEBSOCKET.onclose = function () { _WEBSOCKET_OPEN = false; };
             _WEBSOCKET.onerror = function () { _WEBSOCKET_OPEN = false; };
         }
         var f_createMsg = function (sendTo, msgType, textMessage) {
-            return JSON.stringify({ From: _WEBSOCKET_FROM, To: sendTo, MsgType: msgType, MsgText: textMessage });
+            var id = _WEBSOCKET_FROM.toLowerCase() + '-4xxx-yxxx-xxxxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) { var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8); return v.toString(16); }).substring(0, 32);
+            var s = ''; if (typeof textMessage == 'string') s = textMessage.split('"').join('¦'); else s = JSON.stringify(textMessage).split('"').join('¦');
+            return { MsgId: id, From: _WEBSOCKET_FROM, To: sendTo, MsgType: msgType, MsgText: s };
         }
-        var f_sendALL = function (msg_type, textMessage) {
-            if (_WEBSOCKET_OPEN && _WEBSOCKET)
-                _WEBSOCKET.send(JSON.stringify({ From: _WEBSOCKET_FROM, To: _WS_NAME.ALL, MsgType: msg_type, MsgText: textMessage }));
-        }
-        var f_sendSETTING = function (msg_type, textMessage) {
-            if (_WEBSOCKET_OPEN && _WEBSOCKET)
-                _WEBSOCKET.send(JSON.stringify({ From: _WEBSOCKET_FROM, To: _WS_NAME.SETTING, MsgType: msg_type, MsgText: textMessage }));
-        }
-        var f_sendPLAYER = function (msg_type, textMessage) {
-            if (_WEBSOCKET_OPEN && _WEBSOCKET)
-                _WEBSOCKET.send(JSON.stringify({ From: _WEBSOCKET_FROM, To: _WS_NAME.PLAYER, MsgType: msg_type, MsgText: textMessage }));
-        }
-        var f_sendHTTPS = function (msg_type, textMessage) {
-            alert(1);
-            if (_WEBSOCKET_OPEN && _WEBSOCKET) {
-                var text = f_createMsg(_WS_NAME.HTTPS, msg_type, textMessage);
-                alert(text);
-                _WEBSOCKET.send(text);
-            }
-        }
+        var f_sendMsg = function (nameReceiver, msg_type, textMessage) { if (_WEBSOCKET_OPEN && _WEBSOCKET) { var m = f_createMsg(nameReceiver, msg_type, textMessage); _WEBSOCKET.send(JSON.stringify(m)); return m.MsgId; } return null; }
+        var f_sendHTTPS = function (msg_type, textMessage) { return f_sendMsg(_WS_NAME.HTTPS, msg_type, textMessage); };
+        var f_sendALL = function (msg_type, textMessage) { return f_sendMsg(_WS_NAME.ALL, msg_type, textMessage); };
+        var f_sendSETTING = function (msg_type, textMessage) { return f_sendMsg(_WS_NAME.SETTING, msg_type, textMessage); };
+        var f_sendPLAYER = function (msg_type, textMessage) { return f_sendMsg(_WS_NAME.PLAYER, msg_type, textMessage); };
 
         function f_socket_processMessage(data) {
-            f_log('WS <- ' + data);
+            f_log('WS.SETTING <- ' + data);
+            //{"Ok":true,"MsgId":"browser-4414-befb-cf1e00-5bbcf7aebe90","Data":"{¦success¦:true,¦id¦:¦event_52f087c-4250-a23f-364ec41a2de8¦,¦text¦:¦came ¦,¦type¦:¦verb¦,¦mean_vi¦:¦đã đến; đến; đi đến; đi lại; đi tới; lên đến; lên tới; xảy đến; xảy ra¦,¦x¦:175,¦y¦:262}","Message":"","MsgType":21}
+            //alert(data);
+            var m = JSON.parse(data);
+            if (m.Ok) {
+                var s = m.Data;
+                if (s && s.length > 0) s = s.split('¦').join('"');
+                switch (m.MsgType) {
+                    case _MSG_TYPE.EN_TRANSLATE_GOOGLE_RESPONSE:
+                        var otran = JSON.parse(s);
+                        f_displayTranslate(otran);
+                        break;
+                }
+            } else
+                alert('ERROR: ' + m.Message);
         }
         ////////////////////////////////////////////////////////////
+        var APP_INFO;
+        var _appInfo = API.GetAppInfo();
+        if (_appInfo && _appInfo.length > 0) APP_INFO = JSON.parse(_appInfo);
+        //f_log('APP_INFO = ' + JSON.stringify(APP_INFO));
+        ////////////////////////////////////////////////////////////
 
+        ////////////////////////////////////////////////////////////
         (function (window) {
             /*!
     * https://github.com/ded/bonzo
@@ -152,23 +160,20 @@
                 // browser global
                 window.classie = classie;
             }
-        })(window);
 
+        })(window);
         Object.prototype.toggleClass = function (_className) {
             var el = this;
             classie.toggleClass(el, _className);
         };
-
         Object.prototype.addClass = function (_className) {
             var el = this;
             classie.addClass(el, _className);
         };
-
         Object.prototype.removeClass = function (_className) {
             var el = this;
             classie.removeClass(el, _className);
         };
-
         function f_getJson(key) {
             var url = 'view/' + key + '.json';
             var json = API.ReadFile(url);
@@ -178,6 +183,13 @@
             }
             //console.log(json);
             return JSON.parse(json);
+        }
+        ////////////////////////////////////////////////////////////
+        function f_displayTranslate(oTran) {
+            alert(JSON.stringify(oTran));
+            if (oTran && oTran.success == true) {
+
+            }
         }
     </script>
 </head>

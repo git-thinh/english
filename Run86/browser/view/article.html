@@ -10,6 +10,17 @@
             /*font-family: arial;*/
         }
 
+        #___canvas {
+            display: none;
+        }
+
+        #___reload {
+            position: fixed;
+            z-index: 999999;
+            bottom: 0px;
+            right: 0px;
+        }
+
         body {
             font-size: 1.5em;
             overflow-x: hidden;
@@ -122,11 +133,12 @@
             EN_DEFINE_WORD_SAVE: 32,
             EN_DEFINE_WORD_REMOVE: 32
         };
+        var _CLIENT_NAME = _WS_NAME.BROWSER;
         ////////////////////////////////////////////////////////////
-        var _WEBSOCKET, _WEBSOCKET_OPEN = false, _WEBSOCKET_FROM = _WS_NAME.BROWSER;
+        var _WEBSOCKET, _WEBSOCKET_OPEN = false, _WEBSOCKET_FROM = _CLIENT_NAME;        
         if ("WebSocket" in window) {
             _WEBSOCKET = new WebSocket("ws://127.0.0.1:56789");
-            _WEBSOCKET.onopen = function () { _WEBSOCKET_OPEN = true; _WEBSOCKET.send(_WS_NAME.BROWSER); };
+            _WEBSOCKET.onopen = function () { _WEBSOCKET_OPEN = true; _WEBSOCKET.send(_CLIENT_NAME); };
             _WEBSOCKET.onmessage = function (evt) { f_socket_processMessage(evt.data); };
             _WEBSOCKET.onclose = function () { _WEBSOCKET_OPEN = false; };
             _WEBSOCKET.onerror = function () { _WEBSOCKET_OPEN = false; };
@@ -1236,7 +1248,7 @@
     <ul class="unstyled notification popup"></ul>
 </body>
 </html>
-<canvas id="___canvas" style="display:none;"></canvas>
-<button onclick="location.reload()" style="position:fixed;z-index:999999;bottom:0px;right:0px;">Reload</button>
-<div id="___box_tran"></div>
+<canvas id=___canvas></canvas>
+<button id=___reload onclick='location.reload()'>Reload</button>
+<div id=___box_tran></div>
 <script> f_domLoaded(); </script>

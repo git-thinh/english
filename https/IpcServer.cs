@@ -91,6 +91,15 @@ namespace System
 
         #region [ PROCESS MESSAGE ]
 
+        private void f_broadCastMessage(string msg) {
+            lock (CLIENTS) {
+                CLIENTS.ForEach(socket =>
+                {
+                    if (socket.IsAvailable) socket.Send(msg);
+                });
+            }
+        }
+
         private void f_process_messageTo_HTTPS(IWebSocketConnection socket, oMsgSocket msg)
         {
             try
@@ -115,9 +124,7 @@ namespace System
                             Console.WriteLine("-> TRANSLATE.CACHE: {0} = {1}", text, otran.mean_vi);
 
                             string _msgResponse = JsonConvert.SerializeObject(new oMsgSocketReply(true, MSG_TYPE.EN_TRANSLATE_GOOGLE_RESPONSE, msg.MsgId, "", JsonConvert.SerializeObject(otran)));
-                            if (CLIENT_BROWSER != null && CLIENT_BROWSER.IsAvailable) CLIENT_BROWSER.Send(_msgResponse);
-                            if (CLIENT_SETTING != null && CLIENT_SETTING.IsAvailable) CLIENT_SETTING.Send(_msgResponse);
-                            if (CLIENT_PLAYER != null && CLIENT_PLAYER.IsAvailable) CLIENT_PLAYER.Send(_msgResponse);
+                            f_broadCastMessage(_msgResponse);
                         }
                         else
                         {
@@ -131,9 +138,7 @@ namespace System
                                 if (_otran.success)
                                 {
                                     string _msgResponse = JsonConvert.SerializeObject(new oMsgSocketReply(true, MSG_TYPE.EN_TRANSLATE_GOOGLE_RESPONSE, msg.MsgId, "", JsonConvert.SerializeObject(_otran)));
-                                    if (CLIENT_BROWSER != null && CLIENT_BROWSER.IsAvailable) CLIENT_BROWSER.Send(_msgResponse);
-                                    if (CLIENT_SETTING != null && CLIENT_SETTING.IsAvailable) CLIENT_SETTING.Send(_msgResponse);
-                                    if (CLIENT_PLAYER != null && CLIENT_PLAYER.IsAvailable) CLIENT_PLAYER.Send(_msgResponse);
+                                    f_broadCastMessage(_msgResponse);
                                 }
                                 else
                                     if (CLIENT_BROWSER.IsAvailable) CLIENT_BROWSER.Send(JsonConvert.SerializeObject(new oMsgSocketReply(false, MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST, msg.MsgId, _otran.mean_vi)));
