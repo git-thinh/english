@@ -163,7 +163,7 @@
         var APP_INFO;
         var _appInfo = API.GetAppInfo();
         if (_appInfo && _appInfo.length > 0) APP_INFO = JSON.parse(_appInfo);
-        f_log('APP_INFO = ' + JSON.stringify(APP_INFO));
+        //f_log('APP_INFO = ' + JSON.stringify(APP_INFO));
         ////////////////////////////////////////////////////////////
         var _SELECT_OBJ = { x: 0, y: 0, text: '', id: '' };
 
@@ -191,7 +191,7 @@
                     var elbox = document.getElementById('___box_tran');
                     if (elbox) elbox.style.display = 'none';
 
-                    _SELECT_OBJ = { id: id, cached: false };
+                    _SELECT_OBJ = { id: id, cached: false, x: event.x, y: event.y };
                     if (el.className == '___translated') _SELECT_OBJ.cached = true;
 
                     break;
@@ -345,14 +345,17 @@
             if (oTran && oTran.id) {
                 var el = document.getElementById(oTran.id);
                 if (el) {
-                    var text = el.innerText, mean_vi = '';
-                    if (el.hasAttribute('title')) mean_vi = el.getAttribute('title');
-                    alert(text + ': ' + mean_vi);
+                    var text = el.innerText, s = '';
+                    if (el.hasAttribute('title')) s = el.getAttribute('title');
+                    oTran.text = text;
+                    oTran.mean_vi = s;
+                    f_displayTranslate(oTran);
                 }
             }
         }
 
         function f_displayTranslate(oTran) {
+            //alert(JSON.stringify(oTran));
             var el = document.getElementById('___box_tran');
             if (el && oTran) {
                 var s = oTran.mean_vi;
@@ -368,7 +371,7 @@
                 if (wiText > wiBrowser) {
                     oTran.x = 40;
                     el.style.width = (wiBrowser - 99) + 'px';
-                    el.style.top = (oTran.y + 19 + window.pageYOffset) + 'px';
+                    el.style.top = (oTran.y + 25 + window.pageYOffset) + 'px';
                 }
                 else {
                     el.style.width = wiText + 'px';
@@ -380,30 +383,30 @@
                 el.style.left = oTran.x + 'px';
                 el.style.display = 'inline-block';
 
-                var sel = window.getSelection();
-                if (sel.rangeCount) {
-                    range = sel.getRangeAt(0);
-                    range.deleteContents();
-                    var node = document.createElement('i');
-                    node.className = '___translated';
-                    node.setAttribute('title', s);
-                    var id = 'trans_xxxxxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-                        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-                        return v.toString(16);
-                    });
-                    node.setAttribute('id', id);
-                    node.innerHTML = oTran.text;
-                    //range.insertNode(document.createTextNode('[' + s + ']'));
-                    range.insertNode(node);
+                if (oTran.cached == null || oTran.cached == false) {
+                    var sel = window.getSelection();
+                    if (sel.rangeCount) {
+                        range = sel.getRangeAt(0);
+                        range.deleteContents();
+                        var node = document.createElement('i');
+                        node.className = '___translated';
+                        node.setAttribute('title', s);
+                        var id = 'trans_xxxxxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                            return v.toString(16);
+                        });
+                        node.setAttribute('id', id);
+                        node.innerHTML = oTran.text;
+                        //range.insertNode(document.createTextNode('[' + s + ']'));
+                        range.insertNode(node);
+                    }
+                    window.getSelection().empty();
                 }
-                window.getSelection().empty();
             }
         }
     </script>
 </head>
 <body>
-    <canvas id="___canvas" style="display:none;"></canvas>
-    <button onclick="location.reload()" style="position:fixed;z-index:999999;bottom:0px;right:0px;">Reload</button>
     <!--https://dictionary.cambridge.org/grammar/british-grammar/above-or-over--><input id="___title" value="Above or over ? - English Grammar Today - Cambridge Dictionary" type="hidden"><h1><i class="i">Above</i> or <i class="i">over</i><span class="span pad">?</span></h1>            <div class="fcdo-s20">from <a href="https://dictionary.cambridge.org/grammar/english-grammar-today/" class="a--rev">English Grammar Today</a></div>
     </div><div class="content"><p class="p"><span class="target" />When we use a<i class="i">bove</i> as a preposition, it means ‘higher than’. Its meaning is close to that of the preposition <i class="i">over</i>. In the following sentences, <i class="i">over</i> can be used instead of <i class="i">above</i>:</p><blockquote class="blockquote"><p class="p"><i class="i">The waves came up <b class="b">above</b> her head and she started screaming.</i> (or … <i class="i">came up</i> <b class="b"><i class="i">over</i></b> <i class="i">her head</i> …)</p></blockquote><blockquote class="blockquote"><p class="p"><i class="i">She is a nervous flier. But once the plane got <b class="b">above</b> the clouds, she started to relax.</i> (or … <i class="i">got</i> <b class="b"><i class="i">over</i></b> <i class="i">the clouds …</i>)</p></blockquote><p class="p">We use <i class="i">above</i>, but not <i class="i">over</i>, to refer to things that are at an upper or higher level:</p><p class="p">[a ‘chalet’ is a small wooden building usually found in mountainous areas]</p><blockquote class="blockquote"><p class="p"><i class="i">Do they live in that chalet <b class="b">above</b> the village?</i></p></blockquote><blockquote class="blockquote"><p class="p">Not: <s class="s">Do they live in that chalet over the village?</s></p></blockquote><p class="p">We usually use <i class="i">above</i>, but not <i class="i">over</i>, when there is no contact between the things referred to. <i class="i">Over</i> or <i class="i">on top of</i> have a more general meaning, and can be used when one thing touches or covers another:</p><blockquote class="blockquote"><p class="p"><i class="i">They made her comfortable and put a blanket <b class="b">over</b> her.</i></p></blockquote><blockquote class="blockquote"><p class="p">Not: <s class="s">They made her comfortable and put a blanket above her</s>.</p></blockquote><p class="p">We normally use <i class="i">over</i> not <i class="i">above</i> with numbers:</p><blockquote class="blockquote"><p class="p"><i class="i">I get <b class="b">over</b> sixty emails a day.</i></p></blockquote><blockquote class="blockquote"><p class="p">Not: <s class="s">I get above sixty emails a day</s>.</p></blockquote><blockquote class="blockquote"><p class="p"><i class="i">If you weigh <b class="b">over</b> 100 kilograms, then you may need to start a diet.</i></p></blockquote><blockquote class="blockquote"><p class="p">Not: <s class="s">If you weigh above 100 kilograms</s></p></blockquote><div class="panel pad-indent"><div class="panel-head"><span class="panel-title">Warning: </span></div><div class="panel-body pad-indent"><p class="p">When we talk about temperatures in relation to <i class="i">zero</i> or (<i class="i">the) average</i>, we use <i class="i">above</i> not <i class="i">over</i>:</p><blockquote class="blockquote"><p class="p"><i class="i">It was three degrees <b class="b">above</b> zero.</i></p></blockquote><blockquote class="blockquote"><p class="p">Not: <s class="s">It was three degrees over zero</s>.</p></blockquote></div></div><p class="p">When we refer to temperatures in other contexts, we can normally use <i class="i">above</i> or <i class="i">over</i>:</p><blockquote class="blockquote"><p class="p"><i class="i">The temperature is already <b class="b">above</b> 30 degrees.</i> (or … <b class="b"><i class="i">over</i></b> <i class="i">30 degrees</i>.)</p></blockquote><div class="section_anchor" id=""> </div><div class="section"><div class="header"><h2 class="title" /></div><div class="content"><div class="section"><div class="header"><h3 class="title">Typical errors</h3></div><div class="content"><ul class="ul"><li class="li"><p class="p">We don’t use <i class="i">over</i> to mean ‘higher level’.<span class="target" /></p></li></ul><blockquote class="blockquote"><p class="p"><i class="i">Most of the race is 500 metres <b class="b">above</b> sea level.</i></p></blockquote><blockquote class="blockquote"><p class="p">Not: <s class="s">Most of the race is 500 over sea level</s>.</p></blockquote><ul class="ul"><li class="li"><p class="p">We don’t use <i class="i">above</i> when one thing touches or covers another.</p></li></ul><blockquote class="blockquote"><p class="p"><i class="i">Pour some cream <b class="b"><span class="target" />over</b> the tart and serve it warm.</i></p></blockquote><blockquote class="blockquote"><p class="p">Not: <s class="s">Pour some cream above the tart</s></p></blockquote><ul class="ul"><li class="li"><p class="p">We don’t use <i class="i">above</i> with numbers.</p></li></ul><blockquote class="blockquote"><p class="p"><i class="i"><b class="b">Over</b> 100 people complained about the programme.</i></p></blockquote><blockquote class="blockquote"><p class="p">Not: <s class="s">Above 100 people complained</s></p></blockquote><div class="nav"><p class="p">See also: </p><ul class="ul"><li class="li"><p class="p"> <a class="Ref" href="https://dictionary.cambridge.org/grammar/british-grammar/over"><i class="i">Over</i> </a> </p></li><li class="li"><p class="p"> <a class="Ref" href="https://dictionary.cambridge.org/grammar/british-grammar/beneath"><i class="i">Beneath</i> </a> </p></li><li class="li"><p class="p"> <a class="Ref" href="https://dictionary.cambridge.org/grammar/british-grammar/above"><i class="i">Above</i> </a> </p></li></ul></div></div></div></div></div></div></div></article>
     </div>
@@ -1231,7 +1234,9 @@
     <div class="overlay js-overlay"></div>
     <ul class="unstyled notification banner"></ul>
     <ul class="unstyled notification popup"></ul>
-    <div id="___box_tran"></div>
-    <script> f_domLoaded(); </script>
 </body>
 </html>
+<canvas id="___canvas" style="display:none;"></canvas>
+<button onclick="location.reload()" style="position:fixed;z-index:999999;bottom:0px;right:0px;">Reload</button>
+<div id="___box_tran"></div>
+<script> f_domLoaded(); </script>
