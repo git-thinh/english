@@ -1,0 +1,7 @@
+G:\english\OpenSources\c33\CefSharp.WinForms.Example\obj\Debug\CefSharp.WinForms.Example.csprojResolveAssemblyReference.cache
+G:\english\OpenSources\c33\CefSharp.WinForms.Example\obj\Debug\CefSharp.WinForms.Example.AboutBox.resources
+G:\english\OpenSources\c33\CefSharp.WinForms.Example\obj\Debug\CefSharp.WinForms.Example.BrowserForm.resources
+G:\english\OpenSources\c33\CefSharp.WinForms.Example\obj\Debug\CefSharp.WinForms.Example.BrowserTabUserControl.resources
+G:\english\OpenSources\c33\CefSharp.WinForms.Example\obj\Debug\CefSharp.WinForms.Example.Minimal.SimpleBrowserForm.resources
+G:\english\OpenSources\c33\CefSharp.WinForms.Example\obj\Debug\CefSharp.WinForms.Example.Properties.Resources.resources
+G:\english\OpenSources\c33\CefSharp.WinForms.Example\obj\Debug\CefSharp.WinForms.Example.csproj.GenerateResource.Cache

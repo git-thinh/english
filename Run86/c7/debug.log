@@ -131,3 +131,8 @@
 [0925/183135:INFO:CONSOLE(0)] "MAIN: 111," source: test://test/modalmain.html(50)
 [0925/183135:INFO:CONSOLE(0)] "MAIN: 111," source: test://test/modalmain.html(50)
 [0925/183137:INFO:CONSOLE(0)] "MAIN: 111," source: test://test/modalmain.html(50)
+[1008/205105:INFO:CONSOLE(0)] "POPUP: asdasdsa," source: test://test/modaldialog.html(57)
+[1008/205106:INFO:CONSOLE(0)] "POPUP: asdasdsa," source: test://test/modaldialog.html(57)
+[1008/205106:INFO:CONSOLE(0)] "POPUP: asdasdsa," source: test://test/modaldialog.html(57)
+[1008/205106:INFO:CONSOLE(0)] "POPUP: asdasdsa," source: test://test/modaldialog.html(57)
+[1008/205107:INFO:CONSOLE(0)] "POPUP: asdasdsa," source: test://test/modaldialog.html(57)

@@ -26,7 +26,9 @@ namespace CefSharp.Example
             _browserControl.PropertyChanged += HandleBrowserPropertyChanged;
             _browserControl.ConsoleMessage += HandleConsoleMessage;
             _browserControl.BeforeResourceLoadHandler = this; 
-            toolStripContainer.ContentPanel.Controls.Add(_browserControl);            
+            toolStripContainer.ContentPanel.Controls.Add(_browserControl);
+             
+
         }
 
         private string RunScript(string script, int timeout)
