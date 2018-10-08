@@ -1,0 +1,12 @@
+G:\cef\CefSharp.Example\bin\x86\Debug\CefSharp.Example.dll
+G:\cef\CefSharp.Example\bin\x86\Debug\CefSharp.Example.pdb
+G:\cef\CefSharp.Example\bin\x86\Debug\CefSharp.Core.dll
+G:\cef\CefSharp.Example\bin\x86\Debug\CefSharp.dll
+G:\cef\CefSharp.Example\bin\x86\Debug\CefSharp.pdb
+G:\cef\CefSharp.Example\bin\x86\Debug\CefSharp.xml
+G:\cef\CefSharp.Example\bin\x86\Debug\CefSharp.Core.pdb
+G:\cef\CefSharp.Example\bin\x86\Debug\CefSharp.Core.xml
+G:\cef\CefSharp.Example\obj\x86\Debug\CefSharp.Example.Properties.Resources.resources
+G:\cef\CefSharp.Example\obj\x86\Debug\CefSharp.Example.csproj.GenerateResource.Cache
+G:\cef\CefSharp.Example\obj\x86\Debug\CefSharp.Example.dll
+G:\cef\CefSharp.Example\obj\x86\Debug\CefSharp.Example.pdb
