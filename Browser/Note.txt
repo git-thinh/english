@@ -126,3 +126,13 @@ https://cs.chromium.org/chromium/src/components/spellcheck/browser/pref_names.cc
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////
+
+CefSettings settings = new CefSettings();
+settings.CachePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "CefSharp\\Cache");
+string rootPath = FileUtility.GetAssemblyPath();
+settings.BrowserSubprocessPath = Path.Combine(rootPath, "CefSharp.BrowserSubprocess.exe");
+settings.LocalesDirPath = Path.Combine(rootPath, "locales");
+settings.ResourcesDirPath = Path.Combine(rootPath);
+Cef.EnableHighDPISupport();
+//settings.CefCommandLineArgs.Add("disable-gpu", "1");
+Cef.Initialize(settings, performDependencyCheck: true, browserProcessHandler: null);
