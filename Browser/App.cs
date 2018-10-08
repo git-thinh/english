@@ -8,66 +8,81 @@ using System.Threading.Tasks;
 using CefSharp;
 using CefSharp.WinForms;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace Browser
 {
     class App
     {
-        static App()
-        {
-            AppDomain.CurrentDomain.AssemblyResolve += (se, ev) =>
-            {
-                Assembly asm = null;
-                string comName = ev.Name.Split(',')[0];
+        //static App()
+        //{
+        //    AppDomain.CurrentDomain.AssemblyResolve += (se, ev) =>
+        //    {
+        //        Assembly asm = null;
+        //        string comName = ev.Name.Split(',')[0];
 
-                ////string resourceName = @"DLL\" + comName + ".dll";
-                ////var assembly = Assembly.GetExecutingAssembly();
-                ////resourceName = typeof(App).Namespace + "." + resourceName.Replace(" ", "_").Replace("\\", ".").Replace("/", ".");
-                ////using (Stream stream = assembly.GetManifestResourceStream(resourceName))
-                using (Stream stream = File.OpenRead("bin/" + comName + ".dll"))
-                {
-                    if (stream == null)
-                    {
-                        //Debug.WriteLine(resourceName);
-                    }
-                    else
-                    {
-                        byte[] buffer = new byte[stream.Length];
-                        using (MemoryStream ms = new MemoryStream())
-                        {
-                            int read;
-                            while ((read = stream.Read(buffer, 0, buffer.Length)) > 0)
-                                ms.Write(buffer, 0, read);
-                            buffer = ms.ToArray();
-                        }
-                        asm = Assembly.Load(buffer);
-                    }
-                }
-                return asm;
-            };
-        }
+        //        string execDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        //        execDir = Path.Combine(execDir, "bin");
+        //        string file = Path.Combine(execDir, comName + ".dll");
+        //        Debug.WriteLine("<----" + file);
 
+        //        //string resourceName = @"DLL\" + comName + ".dll";
+        //        //var assembly = Assembly.GetExecutingAssembly();
+        //        //resourceName = typeof(Program).Namespace + "." + resourceName.Replace(" ", "_").Replace("\\", ".").Replace("/", ".");
+        //        //using (Stream stream = assembly.GetManifestResourceStream(resourceName))
 
+        //        using (Stream stream = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.None))
+        //        {
+        //            if (stream == null)
+        //            {
+        //            }
+        //            else
+        //            {
+        //                byte[] buffer = new byte[stream.Length];
+        //                using (MemoryStream ms = new MemoryStream())
+        //                {
+        //                    int read;
+        //                    while ((read = stream.Read(buffer, 0, buffer.Length)) > 0)
+        //                        ms.Write(buffer, 0, read);
+        //                    buffer = ms.ToArray();
+        //                }
+        //                asm = Assembly.Load(buffer);
+        //            }
+        //        }
+        //        return asm;
+        //    };
+        //}
+
+        [STAThread]
         static void Main(string[] args)
         {
-            string pathCache = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "Cache");
+            string pathRoot = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string pathCache = Path.Combine(pathRoot, "Cache");
             if (!Directory.Exists(pathCache)) Directory.CreateDirectory(pathCache);
 
-            CefSettings settings = new CefSettings() { CachePath = pathCache };
-            BrowserSettings browserSettings = new BrowserSettings() { };
+            //string pathBin = Path.Combine(pathRoot, "bin") + @"\";
+            //CefRuntime.Load(pathBin);
 
-            if (!Cef.Initialize(settings))
-            {
-                Console.WriteLine("Couldn't initialise CEF");
-                return;
-            }
+            CefSettings settings = new CefSettings() {
+                CachePath = pathCache,
+                //LocalesDirPath = pathBin,
+                //BrowserSubprocessPath = pathBin,
+                //ResourcesDirPath = pathBin
+            };
 
-            //CEF.RegisterScheme("test", new TestSchemeHandlerFactory());
-            //CEF.RegisterJsObject("bound", new BoundObject());
+            //For Windows 7 and above, best to include relevant app.manifest entries as well
+            Cef.EnableHighDPISupport();
 
-            //Application.Run(new TabulationDemoForm());
-            Application.Run(new fBrowser());
+            //We're going to manually call Cef.Shutdown below, this maybe required in some complex scenarios
+            CefSharpSettings.ShutdownOnExit = false;
 
+            //Perform dependency check to make sure all relevant resources are in our output directory.
+            Cef.Initialize(settings, performDependencyCheck: true, browserProcessHandler: null);
+
+            var browser = new fBrowser();
+            Application.Run(browser);
+
+            //Shutdown before your application exists or it will hang.
             Cef.Shutdown();
         }
     }

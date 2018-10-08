@@ -19,6 +19,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
 using System.Diagnostics;
 using CefSharp.WinForms;
+using System.Threading.Tasks;
 
 namespace Browser
 {
@@ -37,9 +38,9 @@ namespace Browser
         const string URL_SETTING = "about:blank";
         //const string URL_SETTING = "local://view/setting.html";
         //const string URL = "https://vnexpress.net";
-        //const string URL_GOOGLE = "https://google.com.vn";
+        const string URL = "https://google.com.vn";
         //const string URL = "http://w2ui.com/web/demos/#!layout/layout-1";
-        const string URL = "about:blank";
+        //const string URL = "about:blank";
         //const string URL = "local://view/ws.html";
         //const string URL = "http://test.local/demo.html";
         //const string URL = "https://dictionary.cambridge.org/grammar/british-grammar/above-or-over";
@@ -66,7 +67,7 @@ namespace Browser
         private Label ui_resize;
         private bool m_resizing = false;
         const bool m_hook_MouseMove = true;
-        
+
         #endregion
 
         #region [ MAIN ]
@@ -128,11 +129,12 @@ namespace Browser
             #region [ BROWSER ]
 
             ui_browser = new ChromiumWebBrowser(URL);
+
             ui_browser.Dock = DockStyle.Fill;
             //ui_browser.PropertyChanged += f_browserPropertyChanged;
             //ui_browser.ConsoleMessage += f_browserConsoleMessage;
             //ui_browser.BeforeResourceLoadHandler = this;
-            
+            ui_browser.RenderProcessMessageHandler = new RenderProcessMessageHandler();
             this.Controls.Add(ui_browser);
 
             #endregion
@@ -152,7 +154,8 @@ namespace Browser
                 MinSize = 0,
                 Width = _CONST.APP_SPLITER_WIDTH,
             };
-            spliter.SplitterMoved += (se, ev) => {
+            spliter.SplitterMoved += (se, ev) =>
+            {
                 f_main_updateAppInfo();
             };
 
@@ -206,7 +209,8 @@ namespace Browser
                 ForeColor = Color.Gray,
             };
             ui_urlLabel.MouseMove += f_form_move_MouseDown;
-            ui_urlLabel.DoubleClick += (se, ev) => {
+            ui_urlLabel.DoubleClick += (se, ev) =>
+            {
                 if (this.Width == Screen.PrimaryScreen.WorkingArea.Width)
                 {
                     this.Width = 1024;
@@ -214,7 +218,8 @@ namespace Browser
                     this.Left = (Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2;
                     this.Top = (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2;
                 }
-                else {
+                else
+                {
                     this.Left = 0;
                     this.Top = 0;
                     this.Width = Screen.PrimaryScreen.WorkingArea.Width;
@@ -435,8 +440,27 @@ namespace Browser
 
         private string f_browser_runScript(string script, int timeout)
         {
+            var js = string.Format("document.body.style.background = '{0}'", "red");
+            ui_browser.GetMainFrame().ExecuteJavaScriptAsync(js);
+
             //var result = ui_browser.RunScript("function(){ " + script + " }()", "CefSharp.Tests", 1, timeout);
             //return result;
+
+
+            // Get Document Height
+            var task = ui_browser.GetMainFrame().EvaluateScriptAsync("(function() { var body = document.body, html = document.documentElement; return  Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight ); })();", null);
+
+            task.ContinueWith(t =>
+            {
+                if (!t.IsFaulted)
+                {
+                    var response = t.Result;
+                    var EvaluateJavaScriptResult = response.Success ? (response.Result ?? "null") : response.Message;
+                    //return EvaluateJavaScriptResult;
+                }
+            }, TaskScheduler.FromCurrentSynchronizationContext());
+
+
             return string.Empty;
         }
 
@@ -641,7 +665,7 @@ namespace Browser
         }
 
         #region [ IRequestHandler ]
-                 
+
         public bool OnBeforeBrowse(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, bool userGesture, bool isRedirect)
         {
             return false;
@@ -677,7 +701,7 @@ namespace Browser
         }
 
         public void OnRenderProcessTerminated(IWebBrowser chromiumWebBrowser, IBrowser browser, CefTerminationStatus status)
-        {            
+        {
         }
 
         public bool CanGetCookies(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request)
@@ -724,4 +748,48 @@ namespace Browser
 
         #endregion
     }
+
+    /* browser.RenderProcessMessageHandler = new RenderProcessMessageHandler(); */
+    public class RenderProcessMessageHandler : IRenderProcessMessageHandler
+    {
+        public void OnContextReleased(IWebBrowser browserControl, IBrowser browser, IFrame frame)
+        {
+        }
+
+        public void OnFocusedNodeChanged(IWebBrowser browserControl, IBrowser browser, IFrame frame, IDomNode node)
+        {
+        }
+
+        public void OnUncaughtException(IWebBrowser browserControl, IBrowser browser, IFrame frame, JavascriptException exception)
+        {
+        }
+
+        // Wait for the underlying JavaScript Context to be created. This is only called for the main frame.
+        // If the page has no JavaScript, no context will be created.
+        public void OnContextCreated(IWebBrowser browserControl, IBrowser browser, IFrame frame)
+        {
+            const string script = "document.addEventListener('DOMContentLoaded', function(){ alert('DomLoaded'); });";
+            frame.ExecuteJavaScriptAsync(script);
+        }
+    }
+
+    //    //Wait for the page to finish loading (all resources will have been loaded, rendering is likely still happening)
+    //    browser.LoadingStateChanged += (sender, args) =>
+    //{
+    //  //Wait for the Page to finish loading
+    //  if (args.IsLoading == false)
+    //  {
+    //    browser.ExecuteJavaScriptAsync("alert('All Resources Have Loaded');");
+    //  }
+    //}
+
+    ////Wait for the MainFrame to finish loading
+    //browser.FrameLoadEnd += (sender, args) =>
+    //{
+    //  //Wait for the MainFrame to finish loading
+    //  if(args.Frame.IsMain)
+    //  {
+    //    args.Frame.ExecuteJavaScriptAsync("alert('MainFrame finished loading');");
+    //  }
+    //};
 }

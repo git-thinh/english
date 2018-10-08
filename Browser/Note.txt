@@ -1,0 +1,128 @@
+﻿
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+browser.LoadingStateChanged += OnLoadingStateChanged;
+
+//A slightly more complicated example
+private void OnLoadingStateChanged(object sender, LoadingStateChangedEventArgs args)
+{
+	//Wait for the Page to finish loading
+	if (args.IsLoading == false)
+	{
+		const string script = @"(function()
+    					{
+	    					var linksArray = new Array();
+	    					for (var i = 0; i < document.links.length; i++)
+	    					{
+	    						linksArray[i] = [String(document.links[i].innerHTML),
+	    								String(document.links[i].innerText),
+	    								String(document.links[i].href)];
+	    					}
+	    					return linksArray;
+    					})();";
+
+		browser.EvaluateScriptAsync(script).ContinueWith(x =>
+		{
+			var response = x.Result;
+
+			if (response.Success && response.Result != null)
+			{
+				var list = (List<object>)response.Result;
+				//Do something here (To interact with the UI you must call BeginInvoke)
+			}      
+		});
+	}
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+browser.LoadingStateChanged += OnLoadingStateChanged;
+
+//A very basic example
+private void OnLoadingStateChanged(object sender, LoadingStateChangedEventArgs args)
+{
+	//Wait for the Page to finish loading
+	if (args.IsLoading == false)
+	{
+		//Reccomended to use an anon closure
+		const string script = @"(function()
+    					{
+	    					return 1 + 1;
+    					})();";
+
+		browser.EvaluateScriptAsync(script).ContinueWith(x =>
+		{
+			var response = x.Result;
+
+			if (response.Success && response.Result != null)
+			{
+				var onePlusOne = (int)response.Result;
+				//Do something here (To interact with the UI you must call BeginInvoke)
+			}      
+		});
+	}
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Load the pepper flash player that comes with Google Chrome - may be possible to load these values from the registry and query the DLL for it's version info (Step 2 not strictly required it seems)
+var cefSettings = new CefSettings();
+cefSettings.CefCommandLineArgs.Add("ppapi-flash-path", @"C:\Program Files (x86)\Google\Chrome\Application\47.0.2526.106\PepperFlash\pepflashplayer.dll"); //Load a specific pepper flash version (Step 1 of 2)
+cefSettings.CefCommandLineArgs.Add("ppapi-flash-version", "20.0.0.228"); //Load a specific pepper flash version (Step 2 of 2)
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+browser.ShowDevTools();
+
+var settings = new CefSettings();
+settings.RemoteDebuggingPort = 8088;
+Cef.Initialize(settings);
+
+Open http://localhost:8088 in Chrome.
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+Load URL with PostData
+Use IFrame.LoadRequest, here is a basic example
+public void LoadCustomRequestExample()
+{
+	var frame = WebBrowser.GetMainFrame();
+
+	//Create a new request knowing we'd like to use PostData
+	var request = frame.CreateRequest(initializePostData:true);
+	request.Method = "POST";
+	request.Url = "custom://cefsharp/PostDataTest.html";
+	request.PostData.AddData("test=123&data=456");
+
+	frame.LoadRequest(request);
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+SPELL_CHECKING
+
+By default CefSettings.Locale will dictate which dictionary is used, the default being en-US. It is possible to configure many aspects of spell checking enable/disable on the fly, change dictionary on the fly, even enable multiple dictionaries. Use RequestContext.SetPreference (See the RequestContext section of this document for details on how to set a preference).
+
+Spellcheck can only be changed dynamically using spellcheck.dictionaries preference (important to use the plural version) 
+
+https://bitbucket.org/chromiumembedded/cef/issues/2222/spell-checking-language-cannot-be-changed#comment-38338016
+
+Here are some userful links
+
+http://magpcss.org/ceforum/viewtopic.php?f=6&t=14911&p=33882&hilit=spellcheck#p33882 
+https://cs.chromium.org/chromium/src/components/spellcheck/browser/pref_names.cc?type=cs&q=%22spellcheck.dictionary%22&l=11 
+https://cs.chromium.org/chromium/src/components/spellcheck/browser/pref_names.cc?type=cs&q=%22spellcheck.dictionary%22&l=15
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////

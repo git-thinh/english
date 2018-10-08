@@ -258,6 +258,7 @@
     <Content Include="LIB\Fleck\ReadMe.txt" />
     <Content Include="LIB\Gma.System.MouseKeyHook\HotKeys\ReadMe.txt" />
     <Content Include="LIB\Rpc\ReadMe.txt" />
+    <Content Include="Note.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
