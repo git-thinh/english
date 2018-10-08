@@ -2960,3 +2960,410 @@ Histogram: appcache.TaskRunTime recorded 1 samples, average = 0.0 (flags = 0x1)
 1  ... 
 
 
+[1008/231447:VERBOSE1:pref_proxy_config_tracker_impl.cc(148)] 0566EF00: set chrome proxy config service to 0566EC30
+[1008/231447:VERBOSE1:pref_proxy_config_tracker_impl.cc(274)] 0566EF00: Done pushing proxy to UpdateProxyConfig
+[1008/231447:ERROR:child_process_launcher.cc(332)] Failed to launch child process
+[1008/231447:ERROR:child_process_launcher.cc(332)] Failed to launch child process
+[1008/231450:VERBOSE1:statistics_recorder.cc(295)] Collections of all histograms
+Histogram: AsyncDNS.ConfigChange recorded 1 samples, average = 1.0 (flags = 0x1)
+0  O                                                                         (0 = 0.0%)
+1  ------------------------------------------------------------------------O (1 = 100.0%) {0.0%}
+2  O                                                                         (0 = 0.0%) {100.0%}
+
+Histogram: AsyncDNS.ConfigParseDuration recorded 1 samples, average = 0.0 (flags = 0x1)
+0  ------------------------------------------------------------------------O (1 = 100.0%)
+1  ... 
+
+Histogram: AsyncDNS.ConfigParseResult recorded 1 samples, average = 1.0 (flags = 0x1)
+0  O                                                                         (0 = 0.0%)
+1  ------------------------------------------------------------------------O (1 = 100.0%) {0.0%}
+2  O                                                                         (0 = 0.0%) {100.0%}
+
+Histogram: AsyncDNS.ConfigParseWin recorded 1 samples, average = 0.0 (flags = 0x1)
+0  ------------------------------------------------------------------------O (1 = 100.0%)
+1  ... 
+
+Histogram: AsyncDNS.HostParseResult recorded 1 samples, average = 1.0 (flags = 0x1)
+0  O                                                                         (0 = 0.0%)
+1  ------------------------------------------------------------------------O (1 = 100.0%) {0.0%}
+2  O                                                                         (0 = 0.0%) {100.0%}
+
+Histogram: AsyncDNS.HostsChange recorded 1 samples, average = 1.0 (flags = 0x1)
+0  O                                                                         (0 = 0.0%)
+1  ------------------------------------------------------------------------O (1 = 100.0%) {0.0%}
+2  O                                                                         (0 = 0.0%) {100.0%}
+
+Histogram: AsyncDNS.HostsParseDuration recorded 1 samples, average = 0.0 (flags = 0x1)
+0  ------------------------------------------------------------------------O (1 = 100.0%)
+1  ... 
+
+Histogram: AsyncDNS.HostsParseWin recorded 1 samples, average = 0.0 (flags = 0x1)
+0  ------------------------------------------------------------------------O (1 = 100.0%)
+1  ... 
+
+Histogram: AsyncDNS.HostsSize recorded 1 samples, average = 824.0 (flags = 0x1)
+0    ... 
+777  ------------------------------------------------------------------------O (1 = 100.0%) {0.0%}
+1023 ... 
+
+Histogram: AsyncDNS.WatchStatus recorded 1 samples, average = 0.0 (flags = 0x1)
+0  ------------------------------------------------------------------------O (1 = 100.0%)
+1  ... 
+
+Histogram: Aura.CreatedGpuBrowserCompositor recorded 1 samples, average = 0.0 (flags = 0x1)
+0  ------------------------------------------------------------------------O (1 = 100.0%)
+1  ... 
+
+Histogram: ChildProcessSecurityPolicy.PerChildFilePermissions recorded 1 samples, average = 0.0 (flags = 0x1)
+0  ------------------------------------------------------------------------O (1 = 100.0%)
+1  ... 
+
+Histogram: Cookie.BetweenAccessIntervalMinutes recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Cookie.Count recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Cookie.DeletionCause recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Cookie.DomainCount recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Cookie.DomainPerEtldp1Count recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Cookie.Etldp1Count recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Cookie.EvictedLastAccessMinutes recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Cookie.ExpirationDurationMinutes recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Cookie.TimeBlockedOnLoad recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Cookie.TimeGet recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Event.Latency.Browser recorded 28 samples, average = 1571.4 (flags = 0x1)
+0      ------------------------------------------------------------------------O (25 = 89.3%)
+1      ... 
+13769  --O                                                                       (3 = 10.7%) {89.3%}
+15678  ... 
+
+Histogram: Event.Latency.Browser.ET_MOUSE_EXITED recorded 2 samples, average = 7500.0 (flags = 0x1)
+0      ------------------------------------------------------------------------O (1 = 50.0%)
+1      ... 
+13769  --------------O                                                           (1 = 50.0%) {50.0%}
+15678  ... 
+
+Histogram: Event.Latency.Browser.ET_MOUSE_MOVED recorded 26 samples, average = 1115.4 (flags = 0x1)
+0      ------------------------------------------------------------------------O (24 = 92.3%)
+1      ... 
+13769  -O                                                                        (2 = 7.7%) {92.3%}
+15678  ... 
+
+Histogram: GPU.AtExitReceivedMemoryStats recorded 1 samples, average = 0.0 (flags = 0x1)
+0  ------------------------------------------------------------------------O (1 = 100.0%)
+1  ... 
+
+Histogram: GPU.AtExitSurfaceCount recorded 1 samples, average = 0.0 (flags = 0x1)
+0  ------------------------------------------------------------------------O (1 = 100.0%)
+1  ... 
+
+Histogram: GPU.BlacklistFeatureTestResults.Accelerated2dCanvas recorded 1 samples, average = 1.0 (flags = 0x1)
+0  O                                                                         (0 = 0.0%)
+1  ------------------------------------------------------------------------O (1 = 100.0%) {0.0%}
+2  ... 
+
+Histogram: GPU.BlacklistFeatureTestResults.AcceleratedCompositing recorded 1 samples, average = 0.0 (flags = 0x1)
+0  ------------------------------------------------------------------------O (1 = 100.0%)
+1  ... 
+
+Histogram: GPU.BlacklistFeatureTestResults.TextureSharing recorded 1 samples, average = 1.0 (flags = 0x1)
+0  O                                                                         (0 = 0.0%)
+1  ------------------------------------------------------------------------O (1 = 100.0%) {0.0%}
+2  ... 
+
+Histogram: GPU.BlacklistFeatureTestResults.Webgl recorded 1 samples, average = 0.0 (flags = 0x1)
+0  ------------------------------------------------------------------------O (1 = 100.0%)
+1  ... 
+
+Histogram: GPU.BlacklistFeatureTestResultsWindows.Accelerated2dCanvas recorded 1 samples, average = 10.0 (flags = 0x1)
+0   ... 
+10  ------------------------------------------------------------------------O (1 = 100.0%) {0.0%}
+11  ... 
+
+Histogram: GPU.BlacklistFeatureTestResultsWindows.AcceleratedCompositing recorded 1 samples, average = 9.0 (flags = 0x1)
+0  ... 
+9  ------------------------------------------------------------------------O (1 = 100.0%) {0.0%}
+10 ... 
+
+Histogram: GPU.BlacklistFeatureTestResultsWindows.TextureSharing recorded 1 samples, average = 10.0 (flags = 0x1)
+0   ... 
+10  ------------------------------------------------------------------------O (1 = 100.0%) {0.0%}
+11  ... 
+
+Histogram: GPU.BlacklistFeatureTestResultsWindows.Webgl recorded 1 samples, average = 9.0 (flags = 0x1)
+0  ... 
+9  ------------------------------------------------------------------------O (1 = 100.0%) {0.0%}
+10 ... 
+
+Histogram: GPU.BlacklistTestResultsPerEntry recorded 4 samples, average = 47.5 (flags = 0x1)
+0   ------------------------------------------------------------------------O (1 = 25.0%)
+1   ... 
+32  ------------------------------------------------------------------------O (1 = 25.0%) {25.0%}
+33  ... 
+78  ------------------------------------------------------------------------O (1 = 25.0%) {50.0%}
+79  O                                                                         (0 = 0.0%) {75.0%}
+80  ------------------------------------------------------------------------O (1 = 25.0%) {75.0%}
+81  ... 
+
+Histogram: GPU.CreateBrowserCompositor recorded 1 samples, average = 0.0 (flags = 0x1)
+0  ------------------------------------------------------------------------O (1 = 100.0%)
+1  ... 
+
+Histogram: GPU.DisplayLinkInstallationStatus recorded 1 samples, average = 0.0 (flags = 0x1)
+0  ------------------------------------------------------------------------O (1 = 100.0%)
+1  ... 
+
+Histogram: GPU.GLResetNotificationStrategy recorded 1 samples (flags = 0x1)
+0  ------------------------------------------------------------------------O (1 = 100.0%)
+
+Histogram: GPU.GPU.GPUProcessSoftwareRendering recorded 1 samples, average = 0.0 (flags = 0x1)
+0  ------------------------------------------------------------------------O (1 = 100.0%)
+1  ... 
+
+Histogram: GPU.GPUProcessExitCode recorded 1 samples, average = 0.0 (flags = 0x1)
+0  ------------------------------------------------------------------------O (1 = 100.0%)
+1  ... 
+
+Histogram: GPU.GPUProcessLaunchCause recorded 1 samples, average = 8.0 (flags = 0x1)
+0  ... 
+8  ------------------------------------------------------------------------O (1 = 100.0%) {0.0%}
+9  ... 
+
+Histogram: GPU.GPUProcessLifetimeEvents recorded 2 samples, average = 1.0 (flags = 0x1)
+0  ------------------------------------------------------------------------O (1 = 50.0%)
+1  O                                                                         (0 = 0.0%) {50.0%}
+2  ------------------------------------------------------------------------O (1 = 50.0%) {50.0%}
+3  ... 
+
+Histogram: GPU.GPUProcessTerminationStatus recorded 1 samples, average = 0.0 (flags = 0x1)
+0  ------------------------------------------------------------------------O (1 = 100.0%)
+1  ... 
+
+Histogram: GPU.WinSAT.GamingScore2 recorded 1 samples, average = 35.0 (flags = 0x1)
+0   ... 
+34  ------------------------------------------------------------------------O (1 = 100.0%) {0.0%}
+36  ... 
+
+Histogram: GPU.WinSAT.GraphicsScore2 recorded 1 samples, average = 30.0 (flags = 0x1)
+0   ... 
+30  ------------------------------------------------------------------------O (1 = 100.0%) {0.0%}
+32  ... 
+
+Histogram: GPU.WinSAT.HasResults recorded 1 samples, average = 1.0 (flags = 0x1)
+0  O                                                                         (0 = 0.0%)
+1  ------------------------------------------------------------------------O (1 = 100.0%) {0.0%}
+2  O                                                                         (0 = 0.0%) {100.0%}
+
+Histogram: GPU.WinSAT.OverallScore2 recorded 1 samples, average = 30.0 (flags = 0x1)
+0   ... 
+30  ------------------------------------------------------------------------O (1 = 100.0%) {0.0%}
+32  ... 
+
+Histogram: GPU.WinSAT.ReadResultsFileTime recorded 1 samples, average = 0.0 (flags = 0x1)
+0  ------------------------------------------------------------------------O (1 = 100.0%)
+1  ... 
+
+Histogram: Net.DhcpWpadCancelTime recorded 1 samples, average = 12117657.0 (flags = 0x1)
+0      ... 
+10000  ------------------------------------------------------------------------O (1 = 100.0%) {0.0%}
+
+Histogram: Net.NotifyAddrChangeFailures recorded 1 samples, average = 0.0 (flags = 0x1)
+0  ------------------------------------------------------------------------O (1 = 100.0%)
+1  ... 
+
+Histogram: Net.NumDuplicateCookiesInDb recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketIdleTimeBeforeNextUse_ReusedSocket_HTTPProxy recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketIdleTimeBeforeNextUse_ReusedSocket_SOCK recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketIdleTimeBeforeNextUse_ReusedSocket_SSL2 recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketIdleTimeBeforeNextUse_ReusedSocket_SSLForProxies recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketIdleTimeBeforeNextUse_ReusedSocket_SSLforHTTPSProxy recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketIdleTimeBeforeNextUse_ReusedSocket_TCP recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketIdleTimeBeforeNextUse_ReusedSocket_TCPforHTTPProxy recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketIdleTimeBeforeNextUse_ReusedSocket_TCPforHTTPSProxy recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketIdleTimeBeforeNextUse_ReusedSocket_TCPforSOCKS recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketIdleTimeBeforeNextUse_UnusedSocket_HTTPProxy recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketIdleTimeBeforeNextUse_UnusedSocket_SOCK recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketIdleTimeBeforeNextUse_UnusedSocket_SSL2 recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketIdleTimeBeforeNextUse_UnusedSocket_SSLForProxies recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketIdleTimeBeforeNextUse_UnusedSocket_SSLforHTTPSProxy recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketIdleTimeBeforeNextUse_UnusedSocket_TCP recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketIdleTimeBeforeNextUse_UnusedSocket_TCPforHTTPProxy recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketIdleTimeBeforeNextUse_UnusedSocket_TCPforHTTPSProxy recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketIdleTimeBeforeNextUse_UnusedSocket_TCPforSOCKS recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketInitErrorCodes_HTTPProxy recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketInitErrorCodes_SOCK recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketInitErrorCodes_SSL2 recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketInitErrorCodes_SSLForProxies recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketInitErrorCodes_SSLforHTTPSProxy recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketInitErrorCodes_TCP recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketInitErrorCodes_TCPforHTTPProxy recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketInitErrorCodes_TCPforHTTPSProxy recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketInitErrorCodes_TCPforSOCKS recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketRequestTime_HTTPProxy recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketRequestTime_SOCK recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketRequestTime_SSL2 recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketRequestTime_SSLForProxies recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketRequestTime_SSLforHTTPSProxy recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketRequestTime_TCP recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketRequestTime_TCPforHTTPProxy recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketRequestTime_TCPforHTTPSProxy recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketRequestTime_TCPforSOCKS recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketType_HTTPProxy recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketType_SOCK recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketType_SSL2 recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketType_SSLForProxies recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketType_SSLforHTTPSProxy recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketType_TCP recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketType_TCPforHTTPProxy recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketType_TCPforHTTPSProxy recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Net.SocketType_TCPforSOCKS recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: Renderer4.AccelContentPaintDurationMS recorded 2 samples, average = 0.0 (flags = 0x1)
+0  ------------------------------------------------------------------------O (2 = 100.0%)
+1  ... 
+
+Histogram: Renderer4.AccelContentPaintMegapixPerSecond recorded 2 samples, average = 259.0 (flags = 0x1)
+0    ... 
+210  ------------------------------------------------------------------------O (2 = 100.0%) {0.0%}
+
+Histogram: Renderer4.renderPassCount recorded 2 samples, average = 1.0 (flags = 0x1)
+0  O                                                                         (0 = 0.0%)
+1  ------------------------------------------------------------------------O (2 = 100.0%) {0.0%}
+2  ... 
+
+Histogram: SequencedWorkerPool.TaskCount recorded 20 samples, average = 0.8 (flags = 0x1)
+0  ------------------------------------------------------------------------O (9 = 45.0%)
+1  ----------------------------------------------------------------O         (8 = 40.0%) {45.0%}
+2  ----------------O                                                         (2 = 10.0%) {85.0%}
+3  --------O                                                                 (1 = 5.0%) {95.0%}
+4  ... 
+
+Histogram: SequencedWorkerPool.UnrunnableTaskCount recorded 20 samples, average = 0.0 (flags = 0x1)
+0  ------------------------------------------------------------------------O (20 = 100.0%)
+1  ... 
+
+Histogram: appcache.CompletionQueueTime recorded 1 samples, average = 0.0 (flags = 0x1)
+0  ------------------------------------------------------------------------O (1 = 100.0%)
+1  ... 
+
+Histogram: appcache.CompletionRunTime recorded 1 samples, average = 0.0 (flags = 0x1)
+0  ------------------------------------------------------------------------O (1 = 100.0%)
+1  ... 
+
+Histogram: appcache.TaskQueueTime recorded 1 samples, average = 0.0 (flags = 0x1)
+0  ------------------------------------------------------------------------O (1 = 100.0%)
+1  ... 
+
+Histogram: appcache.TaskRunTime recorded 1 samples, average = 0.0 (flags = 0x1)
+0  ------------------------------------------------------------------------O (1 = 100.0%)
+1  ... 
+
+
