@@ -21,10 +21,14 @@ namespace Browser
         //        Assembly asm = null;
         //        string comName = ev.Name.Split(',')[0];
 
+        //        if (comName == "CefSharp.Core")
+        //            ;
+
         //        string execDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         //        execDir = Path.Combine(execDir, "bin");
         //        string file = Path.Combine(execDir, comName + ".dll");
         //        Debug.WriteLine("<----" + file);
+
 
         //        //string resourceName = @"DLL\" + comName + ".dll";
         //        //var assembly = Assembly.GetExecutingAssembly();
@@ -82,7 +86,7 @@ namespace Browser
             //string rootPath = FileUtility.GetAssemblyPath();
             settings.BrowserSubprocessPath = Path.Combine(pathBin, "CefSharp.BrowserSubprocess.exe");
             settings.LocalesDirPath = Path.Combine(pathBin, "locales");
-            settings.ResourcesDirPath = Path.Combine(pathBin);
+            settings.ResourcesDirPath = Path.Combine(pathRoot);
             Cef.EnableHighDPISupport();
             settings.CefCommandLineArgs.Add("disable-gpu", "1");
             Cef.Initialize(settings, performDependencyCheck: true, browserProcessHandler: null);

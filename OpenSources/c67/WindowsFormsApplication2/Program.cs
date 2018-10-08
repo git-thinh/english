@@ -5,11 +5,15 @@ using System.Linq;
 using System.Windows.Forms;
 using CefSharp;
 using CefSharp.WinForms;
+using System.Reflection;
+using System.Diagnostics;
 
 namespace WindowsFormsApplication2
 {
     static class Program
     {
+
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

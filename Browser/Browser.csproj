@@ -57,10 +57,6 @@
       <HintPath>DLL\CefSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="CefSharp.Core">
-      <HintPath>DLL\CefSharp.Core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="CefSharp.WinForms">
       <HintPath>DLL\CefSharp.WinForms.dll</HintPath>
       <Private>False</Private>
@@ -82,7 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
-    <Compile Include="fBrowser.cs">
+    <Compile Include="fWebView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LIB\ControlTransparent.cs">
