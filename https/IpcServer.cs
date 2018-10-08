@@ -222,7 +222,7 @@ namespace System
                     }
                     catch (Exception ex)
                     {
-                        socket.Send(JsonConvert.SerializeObject(new oMsgSocket(false, MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST, message, ex.Message)));
+                        socket.Send(JsonConvert.SerializeObject(new oMsgSocket(false, MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST, 0, message, ex.Message)));
                     }
                     break;
             }

@@ -133,9 +133,10 @@
             EN_DEFINE_WORD_SAVE: 32,
             EN_DEFINE_WORD_REMOVE: 32
         };
-        var _CLIENT_NAME = _WS_NAME.BROWSER;
+        var _CLIENT_NAME = _WS_NAME.BROWSER, _CLIENT_ID = 1;
+        var _GET_ID = function () { var date = new Date(); var id = _CLIENT_ID + ("0" + (date.getMonth() + 1)).slice(-2) + ("0" + date.getDate()).slice(-2) + ("0" + date.getHours()).slice(-2) + ("0" + date.getMinutes()).slice(-2) + ("0" + date.getSeconds()).slice(-2) + (date.getMilliseconds() + Math.floor(Math.random() * 100)).toString().substring(0, 3); return parseInt(id); };
         ////////////////////////////////////////////////////////////
-        var _WEBSOCKET, _WEBSOCKET_OPEN = false, _WEBSOCKET_FROM = _CLIENT_NAME;        
+        var _WEBSOCKET, _WEBSOCKET_OPEN = false;
         if ("WebSocket" in window) {
             _WEBSOCKET = new WebSocket("ws://127.0.0.1:56789");
             _WEBSOCKET.onopen = function () { _WEBSOCKET_OPEN = true; _WEBSOCKET.send(_CLIENT_NAME); };
@@ -144,12 +145,16 @@
             _WEBSOCKET.onerror = function () { _WEBSOCKET_OPEN = false; };
         }
         var f_createMsg = function (sendTo, msgType, msgRequest, msgResponse) {
-            var _ok = false;
-            var id = _WEBSOCKET_FROM.toLowerCase() + '-4xxx-yxxx-xxxxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) { var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8); return v.toString(16); }).substring(0, 32);
+            var date = new Date();
+            //alert(date.getFullYear().toString().substr(2) + ("0" + (date.getMonth() + 1)).slice(-2) + ("0" + date.getDate()).slice(-2) + ("0" + date.getHours()).slice(-2) + ("0" + date.getMinutes()).slice(-2) + ("0" + date.getSeconds()).slice(-2));
+            //var id = _CLIENT_NAME.toLowerCase() + '-4xxx-yxxx-xxxxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) { var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8); return v.toString(16); }).substring(0, 32);
+            var id = _GET_ID();
+            //alert(id);
+            var _ok = false;            
             var _request = ''; if (msgRequest) { if (typeof msgRequest == 'string') _request = msgRequest.split('"').join('¦'); else _request = JSON.stringify(msgRequest).split('"').join('¦'); }
             var _response = ''; if (msgResponse) { _ok = true; if (typeof msgResponse == 'string') _response = msgResponse.split('"').join('¦'); else _response = JSON.stringify(msgResponse).split('"').join('¦'); }
             //alert('CREATE_MSG: RESPONSE=' + _response);
-            return { Ok: _ok,  MsgId: id, From: _WEBSOCKET_FROM, To: sendTo, MsgType: msgType, MsgRequest: _request, MsgResponse: _response };
+            return { Ok: _ok, MsgId: id, From: _CLIENT_NAME, To: sendTo, MsgType: msgType, MsgRequest: _request, MsgResponse: _response };
         }
         var f_sendMsg = function (nameReceiver, msg_type, msgRequest, msgResponse) { if (_WEBSOCKET_OPEN && _WEBSOCKET) { var m = f_createMsg(nameReceiver, msg_type, msgRequest, msgResponse); _WEBSOCKET.send(JSON.stringify(m)); return m.MsgId; } return null; }
         var f_sendHTTPS = function (msg_type, msgRequest, msgResponse) { return f_sendMsg(_WS_NAME.HTTPS, msg_type, msgRequest, msgResponse); };
@@ -191,10 +196,7 @@
                 textSelect = '';
 
             if (id == null || id.trim().length == 0) {
-                id = 'event_xxxxxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-                    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-                    return v.toString(16);
-                });
+                var id = _GET_ID();
                 el.setAttribute('id', id);
             }
 
@@ -366,7 +368,8 @@
                     oTran.text = text;
                     oTran.mean_vi = s;
                     f_displayTranslate(oTran);
-                    //alert('CACHE: BROWSER -> SETTING= ' + JSON.stringify(oTran));
+
+                    f_log('CACHE: BROWSER -> SETTING = ' + JSON.stringify(oTran));
                     f_sendSETTING(_MSG_TYPE.EN_TRANSLATE_GOOGLE_RESPONSE, null, oTran);
                 }
             }
@@ -409,10 +412,7 @@
                         var node = document.createElement('i');
                         node.className = '___translated';
                         node.setAttribute('title', s);
-                        var id = 'trans_xxxxxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-                            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-                            return v.toString(16);
-                        });
+                        var id = oTran.id;
                         node.setAttribute('id', id);
                         node.innerHTML = oTran.text;
                         //range.insertNode(document.createTextNode('[' + s + ']'));

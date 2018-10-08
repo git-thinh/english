@@ -100,7 +100,7 @@ namespace System
     public class oMsgSocket
     {
         public bool Ok { set; get; }
-        public string MsgId { set; get; }
+        public long MsgId { set; get; }
         public string From { set; get; }
         public string To { set; get; }
         
@@ -155,7 +155,7 @@ namespace System
         public MSG_TYPE MsgType { set; get; }
 
 
-        public oMsgSocket(bool ok, MSG_TYPE msgType, string msgId = "", string msgRequest = "", string msgResponse = "")
+        public oMsgSocket(bool ok, MSG_TYPE msgType, long msgId = 0, string msgRequest = "", string msgResponse = "")
         {
             this.Ok = ok;
             this.MsgType = msgType;

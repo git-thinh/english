@@ -10,7 +10,6 @@
             window.API.Go = function () { };
             window.API.GoTitle = function () { };
             window.API.UpdateLinks = function () { };
-            window.API.GetAppInfo = function () { };
         }
         ////////////////////////////////////////////////////////////
         var _WS_NAME = {
@@ -46,9 +45,10 @@
             EN_DEFINE_WORD_SAVE: 32,
             EN_DEFINE_WORD_REMOVE: 32
         };
-        var _CLIENT_NAME = _WS_NAME.SETTING;
+        var _CLIENT_NAME = _WS_NAME.SETTING, _CLIENT_ID = 2;
+        var _GET_ID = function () { var date = new Date(); var id = _CLIENT_ID + ("0" + (date.getMonth() + 1)).slice(-2) + ("0" + date.getDate()).slice(-2) + ("0" + date.getHours()).slice(-2) + ("0" + date.getMinutes()).slice(-2) + ("0" + date.getSeconds()).slice(-2) + (date.getMilliseconds() + Math.floor(Math.random() * 100)).toString().substring(0, 3); return parseInt(id); };
         ////////////////////////////////////////////////////////////
-        var _WEBSOCKET, _WEBSOCKET_OPEN = false, _WEBSOCKET_FROM = _CLIENT_NAME;
+        var _WEBSOCKET, _WEBSOCKET_OPEN = false;
         if ("WebSocket" in window) {
             _WEBSOCKET = new WebSocket("ws://127.0.0.1:56789");
             _WEBSOCKET.onopen = function () { _WEBSOCKET_OPEN = true; _WEBSOCKET.send(_CLIENT_NAME); };
@@ -57,12 +57,16 @@
             _WEBSOCKET.onerror = function () { _WEBSOCKET_OPEN = false; };
         }
         var f_createMsg = function (sendTo, msgType, msgRequest, msgResponse) {
+            var date = new Date();
+            //alert(date.getFullYear().toString().substr(2) + ("0" + (date.getMonth() + 1)).slice(-2) + ("0" + date.getDate()).slice(-2) + ("0" + date.getHours()).slice(-2) + ("0" + date.getMinutes()).slice(-2) + ("0" + date.getSeconds()).slice(-2));
+            //var id = _CLIENT_NAME.toLowerCase() + '-4xxx-yxxx-xxxxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) { var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8); return v.toString(16); }).substring(0, 32);
+            var id = _GET_ID();
+            //alert(id);
             var _ok = false;
-            var id = _WEBSOCKET_FROM.toLowerCase() + '-4xxx-yxxx-xxxxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) { var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8); return v.toString(16); }).substring(0, 32);
             var _request = ''; if (msgRequest) { if (typeof msgRequest == 'string') _request = msgRequest.split('"').join('¦'); else _request = JSON.stringify(msgRequest).split('"').join('¦'); }
             var _response = ''; if (msgResponse) { _ok = true; if (typeof msgResponse == 'string') _response = msgResponse.split('"').join('¦'); else _response = JSON.stringify(msgResponse).split('"').join('¦'); }
             //alert('CREATE_MSG: RESPONSE=' + _response);
-            return { Ok: _ok, MsgId: id, From: _WEBSOCKET_FROM, To: sendTo, MsgType: msgType, MsgRequest: _request, MsgResponse: _response };
+            return { Ok: _ok, MsgId: id, From: _CLIENT_NAME, To: sendTo, MsgType: msgType, MsgRequest: _request, MsgResponse: _response };
         }
         var f_sendMsg = function (nameReceiver, msg_type, msgRequest, msgResponse) { if (_WEBSOCKET_OPEN && _WEBSOCKET) { var m = f_createMsg(nameReceiver, msg_type, msgRequest, msgResponse); _WEBSOCKET.send(JSON.stringify(m)); return m.MsgId; } return null; }
         var f_sendHTTPS = function (msg_type, msgRequest, msgResponse) { return f_sendMsg(_WS_NAME.HTTPS, msg_type, msgRequest, msgResponse); };
@@ -92,6 +96,7 @@
         var _appInfo = API.GetAppInfo();
         if (_appInfo && _appInfo.length > 0) APP_INFO = JSON.parse(_appInfo);
         //f_log('APP_INFO = ' + JSON.stringify(APP_INFO));
+        ////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////
 
         ////////////////////////////////////////////////////////////
@@ -267,25 +272,27 @@
         }
 
         function f_displayTranslate(oTran) {
-            f_log('SETTING_TRANS: ' + JSON.stringify(oTran));
+            //f_log('SETTING_TRANS: ' + JSON.stringify(oTran));
             if (oTran && oTran.success == true) {
-                var it = { "Type": "link", "Url": "https://dictionary.cambridge.org/grammar/british-grammar/above-or-over", "Tags": "grammar, above, over", "Title": oTran.text, "Text": oTran.mean_vi };
+                var id = oTran.id, text = oTran.text, mean_vi = oTran.mean_vi;
 
                 var items = document.getElementById('items-english-dictinary');
                 var fs = document.querySelectorAll('#items-english-dictinary li');
                 for (var i = 0; i < fs.length; i++)
                     fs[i].removeClass('active');
 
-                var li = document.getElementById(oTran.id);
+                f_log(id + ': ' + text + ' = ' + mean_vi);
+
+                var li = document.getElementById(id);
                 if (li) {
                     li.addClass('active');
                 } else {
                     li = document.createElement('li');
                     li.id = oTran.id;
-                    li.className = it.Type + ' active';
+                    li.className = 'link active';
 
-                    var _label = '<label onclick="_openUrl(\'' + it.Url + '\')">' + it.Title + '</label>',
-                        _em = '<em>' + it.Text + '</em>',
+                    var _label = '<label>' + text + '</label>',
+                        _em = '<em>' + mean_vi + '</em>',
                         _p = '';//'<p>' + it.Text + '</p>',
                     _span_i = ''; // it.Tags.length > 0 ? ('<span><i>' + it.Tags.split(',').join('</i><i>') + '</i></span>') : '';
 
