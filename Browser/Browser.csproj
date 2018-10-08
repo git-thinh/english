@@ -53,8 +53,26 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CefSharp">
+      <HintPath>DLL\CefSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CefSharp.Core">
+      <HintPath>DLL\CefSharp.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CefSharp.WinForms">
+      <HintPath>DLL\CefSharp.WinForms.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>DLL\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,10 +82,182 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="fBrowser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LIB\ControlTransparent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LIB\Fleck\ConnectionNotAvailableException.cs" />
+    <Compile Include="LIB\Fleck\FleckLog.cs" />
+    <Compile Include="LIB\Fleck\FrameType.cs" />
+    <Compile Include="LIB\Fleck\HandlerFactory.cs" />
+    <Compile Include="LIB\Fleck\Handlers\ComposableHandler.cs" />
+    <Compile Include="LIB\Fleck\Handlers\Draft76Handler.cs" />
+    <Compile Include="LIB\Fleck\Handlers\FlashSocketPolicyRequestHandler.cs" />
+    <Compile Include="LIB\Fleck\Handlers\Hybi13Handler.cs" />
+    <Compile Include="LIB\Fleck\Helpers\MonoHelper.cs" />
+    <Compile Include="LIB\Fleck\Interfaces\IHandler.cs" />
+    <Compile Include="LIB\Fleck\Interfaces\ISocket.cs" />
+    <Compile Include="LIB\Fleck\Interfaces\IWebSocketConnection.cs" />
+    <Compile Include="LIB\Fleck\Interfaces\IWebSocketConnectionInfo.cs" />
+    <Compile Include="LIB\Fleck\Interfaces\IWebSocketServer.cs" />
+    <Compile Include="LIB\Fleck\IntExtensions.cs" />
+    <Compile Include="LIB\Fleck\QueuedStream.cs" />
+    <Compile Include="LIB\Fleck\ReadState.cs" />
+    <Compile Include="LIB\Fleck\RequestParser.cs" />
+    <Compile Include="LIB\Fleck\SocketWrapper.cs" />
+    <Compile Include="LIB\Fleck\SubProtocolNegotiationFailureException.cs" />
+    <Compile Include="LIB\Fleck\SubProtocolNegotiator.cs" />
+    <Compile Include="LIB\Fleck\WebSocketConnection.cs" />
+    <Compile Include="LIB\Fleck\WebSocketConnectionInfo.cs" />
+    <Compile Include="LIB\Fleck\WebSocketException.cs" />
+    <Compile Include="LIB\Fleck\WebSocketHttpRequest.cs" />
+    <Compile Include="LIB\Fleck\WebSocketServer.cs" />
+    <Compile Include="LIB\Fleck\WebSocketStatusCodes.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Class1.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Combination.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Hook.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\HotKeys\HotKeyArgs.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\HotKeys\HotKeySet.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\HotKeys\HotKeySetCollection.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\HotKeys\HotKeySetsListener.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\IKeyboardEvents.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\IKeyboardMouseEvents.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\IMouseEvents.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Implementation\AppEventFacade.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Implementation\AppKeyListener.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Implementation\AppMouseListener.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Implementation\BaseListener.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Implementation\ButtonSet.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Implementation\Callback.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Implementation\Chord.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Implementation\EventFacade.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Implementation\GlobalEventFacade.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Implementation\GlobalKeyListener.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Implementation\GlobalMouseListener.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Implementation\KeyboardState.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Implementation\KeyListener.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Implementation\KeysExtensions.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Implementation\MouseListener.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Implementation\Subscribe.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\KeyCombinationExtensions.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\KeyEventArgsExt.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\KeyPressEventArgsExt.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\MouseEventExtArgs.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\Sequence.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\SequenceBase.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\AppMouseStruct.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\CallbackData.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\HookHelper.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\HookIds.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\HookNativeMethods.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\HookProcedure.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\HookProcedureHandle.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\HookResult.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\HotkeysNativeMethods.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\KeyboardHookStruct.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\KeyboardNativeMethods.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\Messages.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\MouseNativeMethods.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\MouseStruct.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\Point.cs" />
+    <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\ThreadNativeMethods.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\crc32.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\EncodingFoundException.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlAttribute.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlAttributeCollection.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlCmdLine.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlCommentNode.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlConsoleListener.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlDocument.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlDocument.PathMethods.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlDocument.Xpath.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlElementFlag.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlEntity.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlNameTable.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlNode.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlNode.Encapsulator.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlNode.Xpath.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlNodeCollection.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlNodeNavigator.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlNodeType.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlParseError.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlParseErrorCode.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlTextNode.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlWeb.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlWeb.Xpath.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\HtmlWebException.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\InvalidProgramException.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\IOLibrary.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\Metro\HtmlWeb.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\Metro\InvalidProgramException.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\MixedCodeDocument.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\MixedCodeDocumentCodeFragment.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\MixedCodeDocumentFragment.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\MixedCodeDocumentFragmentList.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\MixedCodeDocumentFragmentType.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\MixedCodeDocumentTextFragment.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\NameValuePair.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\NameValuePairList.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\Trace.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\Trace.FullFramework.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\Core\Utilities.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\CssSelector.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\ExtensionMethods.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\NodeExtensionMethods.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\PseudoClass.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\PseudoClassNameAttribute.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\PseudoClassSelectors\FirstChildPseudoClass.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\PseudoClassSelectors\LastChildPseudoClass.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\PseudoClassSelectors\NotPseudoClass.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\PseudoClassSelectors\NthChildPseudoClass.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\Selectors\AllSelector.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\Selectors\AttributeSelector.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\Selectors\ClassNameSelector.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\Selectors\IdSelector.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\Selectors\ImediateChildrenSelector.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\Selectors\PseudoClassSelector.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\Selectors\SiblingImediateSelector.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\Selectors\SiblingSelector.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\Selectors\TagNameSelector.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\Token.cs" />
+    <Compile Include="LIB\HtmlAgilityPack\CssSelectors\Tokenizer.cs" />
+    <Compile Include="LIB\Rpc\Check.cs" />
+    <Compile Include="LIB\Rpc\Enums.cs" />
+    <Compile Include="LIB\Rpc\Interop\RpcApi.cs" />
+    <Compile Include="LIB\Rpc\Interop\RpcClientInfo.cs" />
+    <Compile Include="LIB\Rpc\Interop\RpcHandle.cs" />
+    <Compile Include="LIB\Rpc\Interop\StructPtr.cs" />
+    <Compile Include="LIB\Rpc\Interop\Structs\COMM_FAULT_OFFSETS.cs" />
+    <Compile Include="LIB\Rpc\Interop\Structs\MIDL_SERVER_INFO.cs" />
+    <Compile Include="LIB\Rpc\Interop\Structs\MIDL_STUB_DESC.cs" />
+    <Compile Include="LIB\Rpc\Interop\Structs\RPC_CALL_ATTRIBUTES_V2.cs" />
+    <Compile Include="LIB\Rpc\Interop\Structs\RPC_CLIENT_INTERFACE.cs" />
+    <Compile Include="LIB\Rpc\Interop\Structs\RPC_DISPATCH_TABLE.cs" />
+    <Compile Include="LIB\Rpc\Interop\Structs\RPC_PROTSEQ_ENDPOINT.cs" />
+    <Compile Include="LIB\Rpc\Interop\Structs\RPC_SERVER_INTERFACE.cs" />
+    <Compile Include="LIB\Rpc\Interop\Structs\RPC_SYNTAX_IDENTIFIER.cs" />
+    <Compile Include="LIB\Rpc\Interop\Structs\RPC_VERSION.cs" />
+    <Compile Include="LIB\Rpc\Interop\Structs\SEC_WINNT_AUTH_IDENTITY.cs" />
+    <Compile Include="LIB\Rpc\Interop\UsageCounter.cs" />
+    <Compile Include="LIB\Rpc\IRpcClientInfo.cs" />
+    <Compile Include="LIB\Rpc\RpcClientApi.cs" />
+    <Compile Include="LIB\Rpc\RpcException.cs" />
+    <Compile Include="LIB\Rpc\RpcServerApi.cs" />
+    <Compile Include="LIB\Rpc\TraceLog.cs" />
+    <Compile Include="MessageListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="_CONST.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="LIB\HtmlAgilityPack\CssSelectors\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LIB\Fleck\ReadMe.txt" />
+    <Content Include="LIB\Gma.System.MouseKeyHook\HotKeys\ReadMe.txt" />
+    <Content Include="LIB\Rpc\ReadMe.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
