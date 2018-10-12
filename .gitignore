@@ -273,3 +273,6 @@ Run/debug.log
 .vs/test/v14/.suo
 .vs/Browser/v14/.suo
 test/test.csproj.user
+build/test.vshost.exe.manifest
+build/test.vshost.exe
+build/test.pdb
