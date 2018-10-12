@@ -78,7 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
-    <Compile Include="fWebView.cs">
+    <Compile Include="fBrowser.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LIB\ControlTransparent.cs">

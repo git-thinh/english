@@ -270,3 +270,6 @@ Run/Cache/000003.log
 Run/Browser.vshost.exe.manifest
 Run/debug.log
 .vs/Browser/v14/.suo
+.vs/test/v14/.suo
+.vs/Browser/v14/.suo
+test/test.csproj.user
