@@ -276,3 +276,13 @@ test/test.csproj.user
 build/test.vshost.exe.manifest
 build/test.vshost.exe
 build/test.pdb
+test/obj/x86/Release/test.Properties.Resources.resources
+test/obj/x86/Release/test.pdb
+test/obj/x86/Release/test.exe
+test/obj/x86/Release/test.csproj.FileListAbsolute.txt
+test/obj/x86/Release/test.Browser.resources
+test/obj/x86/Release/TempPE/Properties.Resources.Designer.cs.dll
+test/obj/x86/Debug/test.pdb
+test/obj/x86/Debug/test.exe
+test/obj/x86/Debug/test.csproj.FileListAbsolute.txt
+test/obj/x86/Debug/test.Browser.resources

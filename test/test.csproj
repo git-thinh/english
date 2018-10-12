@@ -42,7 +42,7 @@
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <OutputPath>bin\x86\Release\</OutputPath>
+    <OutputPath>..\build\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
@@ -89,22 +89,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Browser\BrowserUI.cs" />
+    <Compile Include="Browser\FormBrowser.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Browser\HttpScheme.cs" />
+    <Compile Include="Browser\IBrowserView.cs" />
     <Compile Include="Browser\LocalScheme.cs" />
     <Compile Include="Browser\Models.cs" />
     <Compile Include="Browser\SettingScheme.cs" />
     <Compile Include="Browser\TestScheme.cs" />
-    <Compile Include="Browser\test\BoundObject.cs" />
-    <Compile Include="Browser\test\Browser.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Browser\test\Browser.designer.cs">
-      <DependentUpon>Browser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Browser\test\DownloadHandler.cs" />
-    <Compile Include="Browser\test\ExamplePresenter.cs" />
-    <Compile Include="Browser\test\IExampleView.cs" />
-    <Compile Include="Browser\test\SchemeHandler.cs" />
     <Compile Include="LIB\ControlTransparent.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -285,9 +279,6 @@
     <None Include="LIB\HtmlAgilityPack\CssSelectors\README.md" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Browser\test\Browser.resx">
-      <DependentUpon>Browser.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

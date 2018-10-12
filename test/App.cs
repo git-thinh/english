@@ -8,9 +8,10 @@ namespace test
         [STAThread]
         static void Main(string[] args)
         {
-            ExamplePresenter.Init();
-            Browser browser = new Browser();
-            Application.Run(browser);
+            BrowserUI.Init();
+            var f = new FormBrowser();
+            Application.Run(f);
+            BrowserUI.Exit();
         }
     }
 }

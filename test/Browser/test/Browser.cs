@@ -221,7 +221,7 @@ namespace test
             var handler = this.UrlActivated;
             if (handler != null)
             {
-                handler(this, urlTextBox.Text);
+                handler(null, urlTextBox.Text);
             }
         }
 
