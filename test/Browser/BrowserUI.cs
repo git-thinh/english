@@ -10,11 +10,43 @@ namespace test
 {
     public class BrowserUI : IRequestHandler, ICookieVisitor
     {
+        #region [ VAR ]
+
+        //////☆★☐☑⧉✉⦿⦾⚠⚿⛑✕✓⥀✖↭☊⦧▷◻◼⟲≔☰⚒❯►❚❚❮⟳⚑⚐✎✛
+        //////🕮🖎✍⦦☊🕭🔔🗣🗢🖳🎚🏷🖈🎗🏱🏲🗀🗁🕷🖒🖓👍👎♥♡♫♪♬♫🎙🎖🗝●◯⬤⚲☰⚒🕩🕪❯►❮⟳⚐🗑✎✛🗋🖫⛉ ⛊ ⛨⚏★☆
+
+        //readonly string URL_SETTING = "about:blank";
+        //readonly string URL_SETTING = "local://view/setting.html";
+        //readonly string URL = "https://vnexpress.net";
+        //readonly string URL_GOOGLE = "https://google.com.vn";
+        //readonly string URL = "http://w2ui.com/web/demos/#!layout/layout-1";
+        readonly string URL = "about:blank";
+        //readonly string URL = "local://view/ws.html";
+        //readonly string URL = "local://view/ws.html";
+        //readonly string URL = "http://test.local/demo.html";
+        //readonly string URL = "https://dictionary.cambridge.org/grammar/british-grammar/above-or-over";
+        //readonly string URL = "https://vuejs.org/v2/guide/";
+        //readonly string URL = "https://msdn.microsoft.com/en-us/library/ff361664(v=vs.110).aspx";
+        //readonly string URL = "https://developer.mozilla.org/en-US/docs/Web";
+        //readonly string URL = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters";
+        //readonly string URL = "https://www.myenglishpages.com/site_php_files/grammar-lesson-tenses.php";
+        //readonly string URL = "https://learnenglish.britishcouncil.org/en/english-grammar/pronouns";
+
+        //const string URL = "https://translate.google.com/#en/vi/hello";
+
+        #endregion
+
         public static void Init()
         {
             Settings settings = new Settings();
             if (CEF.Initialize(settings))
             {
+                CEF.RegisterScheme("local", new LocalSchemeHandlerFactory());
+                //////CEF.RegisterScheme("http", new HttpSchemeHandlerFactory());
+                //////CEF.RegisterScheme("https", new HttpSchemeHandlerFactory());
+
+                //////CEF.RegisterJsObject("API", new ApiJavascript());
+
                 //CEF.RegisterScheme("test", new SchemeHandlerFactory());
                 //CEF.RegisterJsObject("bound", new BoundObject());
             }
@@ -30,11 +62,10 @@ namespace test
         private readonly IWebBrowser model;
         private readonly IBrowserView view;
         private readonly Action<Action> gui_invoke;
-        readonly string _URL = "about:blank";
 
         public BrowserUI(string url, IWebBrowser model, IBrowserView view, Action<Action> gui_invoke)
         {
-            this._URL = url;
+            this.URL = url;
             this.model = model;
             this.view = view;
             this.gui_invoke = gui_invoke;
@@ -59,8 +90,8 @@ namespace test
 
         private void model_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            string @string = null;
-            bool @bool = false;
+            string _string = null;
+            bool _bool = false;
 
             Debug.WriteLine(" = " + e.PropertyName);
 
@@ -69,28 +100,28 @@ namespace test
                 case "IsBrowserInitialized":
                     if (model.IsBrowserInitialized)
                     {
-                        model.Load(_URL);
+                        model.Load(URL);
                     }
                     break;
                 case "Title":
-                    @string = model.Title;
-                    gui_invoke(() => view.SetTitle(@string));
+                    _string = model.Title;
+                    gui_invoke(() => view.SetTitle(_string));
                     break;
                 case "Address":
-                    @string = model.Address;
-                    gui_invoke(() => view.SetAddress(@string));
+                    _string = model.Address;
+                    gui_invoke(() => view.SetAddress(_string));
                     break;
                 case "CanGoBack":
-                    @bool = model.CanGoBack;
-                    gui_invoke(() => view.SetCanGoBack(@bool));
+                    _bool = model.CanGoBack;
+                    gui_invoke(() => view.SetCanGoBack(_bool));
                     break;
                 case "CanGoForward":
-                    @bool = model.CanGoForward;
-                    gui_invoke(() => view.SetCanGoForward(@bool));
+                    _bool = model.CanGoForward;
+                    gui_invoke(() => view.SetCanGoForward(_bool));
                     break;
                 case "IsLoading":
-                    @bool = model.IsLoading;
-                    gui_invoke(() => view.SetIsLoading(@bool));
+                    _bool = model.IsLoading;
+                    gui_invoke(() => view.SetIsLoading(_bool));
                     break;
             }
         }

@@ -13,7 +13,7 @@ namespace CefSharp.Example
     {
         private readonly CefWebBrowser _browserControl;
         //private const string cefSharpHomeUrl = "https://google.com.vn";
-        private const string cefSharpHomeUrl = "test://test/modalmain.html";
+        private const string cefSharpHomeUrl = "local://view/bc1.html";
         //private const string cefSharpHomeUrl = "https://vnexpress.net";
 
         public Browser()
@@ -201,7 +201,7 @@ namespace CefSharp.Example
 
         private void TestSchemeHandlerToolStripMenuItemClick(object sender, EventArgs e)
         {
-            _browserControl.Load("test://test/SchemeTest.html");
+            _browserControl.Load("local://view/SchemeTest.html");
         }
 
         private void TestConsoleMessagesToolStripMenuItemClick(object sender, EventArgs e)
@@ -212,7 +212,7 @@ namespace CefSharp.Example
 
         private void TestBingClrObjectToJsToolStripMenuItemClick(object sender, EventArgs e)
         {
-            _browserControl.Load("test://test/BindingTest.html");
+            _browserControl.Load("local://view/BindingTest.html");
         }
 
         private void cefSharpHomeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -227,42 +227,42 @@ namespace CefSharp.Example
 
         private void popupModalToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _browserControl.Load("test://test/modalmain.html");
+            _browserControl.Load("local://view/modalmain.html");
         }
 
         private void aJAXXMLHttpRequestToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _browserControl.Load("test://test/xmlhttprequest.html");
+            _browserControl.Load("local://view/xmlhttprequest.html");
         }
 
         private void userInterfaceAppExampleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _browserControl.Load("test://test/uiplugin.html");
+            _browserControl.Load("local://view/uiplugin.html");
         }
 
         private void transparencyExamplesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _browserControl.Load("test://test/transparency.html");
+            _browserControl.Load("local://view/transparency.html");
         }
 
         private void offScreenRenderingAppExampleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _browserControl.Load("test://test/osrplugin.html");
+            _browserControl.Load("local://view/osrplugin.html");
         }
 
         private void localStorageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _browserControl.Load("test://test/localstorage.html");
+            _browserControl.Load("local://view/localstorage.html");
         }
 
         private void javaScriptExtensionPerformanceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _browserControl.Load("test://test/extensionperf.html");
+            _browserControl.Load("local://view/extensionperf.html");
         }
 
         private void menuDOM_Access_Click(object sender, EventArgs e)
         {
-            _browserControl.Load("test://test/domaccess.html");
+            _browserControl.Load("local://view/domaccess.html");
         }
 
         private void Browser_FormClosing(object sender, FormClosingEventArgs e)

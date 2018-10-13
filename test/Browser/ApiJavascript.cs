@@ -12,38 +12,39 @@ namespace test
     {
         public string GetAppInfo()
         {
-            var o = App.f_app_getInfo();
-            if (o != null) {
-                string s = JsonConvert.SerializeObject(o);
-                return s;
-            }
+            //var o = App.f_app_getInfo();
+            //if (o != null) {
+            //    string s = JsonConvert.SerializeObject(o);
+            //    return s;
+            //}
             return string.Empty;
         }
 
         // API.Go(...)
         public void Go(string url)
         {
-            App.f_ui_browserGoUrl(url, string.Empty);
+            //App.f_ui_browserGoUrl(url, string.Empty);
         }
 
         // API.GoTitle(...)
         public void GoTitle(string url, string title)
         {
-            App.f_ui_browserGoUrl(url, title);
+            //App.f_ui_browserGoUrl(url, title);
         }
 
         // API.UpdateLinks([{Text:"", Link: "http..."}])
         public void UpdateLinks(string jsonLinks)
         {
             //oLink[] links = JsonConvert.DeserializeObject<oLink[]>(jsonLinks);
-            App.f_api_sendMessage(MSG_TYPE.URL_CACHE_FOR_SEARCH, jsonLinks);
+            //App.f_api_sendMessage(MSG_TYPE.URL_CACHE_FOR_SEARCH, jsonLinks);
         }
 
         // API.GetDataDomain(...)
         public string GetDataDomain()
         {
-            byte[] buf = App.f_api_sendMessage(MSG_TYPE.URL_GET_ALL_DOMAIN);
-            return Encoding.UTF8.GetString(buf);
+            //byte[] buf = App.f_api_sendMessage(MSG_TYPE.URL_GET_ALL_DOMAIN);
+            //return Encoding.UTF8.GetString(buf);
+            return string.Empty;
         }
 
         // API.ReadFile(...)

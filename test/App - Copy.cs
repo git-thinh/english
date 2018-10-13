@@ -144,66 +144,45 @@ namespace test
 
         static void f_app_Init()
         {
-            ExamplePresenter.Init();
+            Console.Title = "BROWSER";
 
-            Browser browser = new Browser();
-            Application.Run(browser);
+            //f_api_Init();
 
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
+            //string pathCache = Path.Combine(Path.GetDirectoryName(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)), "Cache");
+            //if (!Directory.Exists(pathCache)) Directory.CreateDirectory(pathCache);
+            Settings settings = new Settings() { UserAgent = "Chrome25" };
 
-            //if (!CEF.Initialize(new Settings()))
-            //{
-            //    //if (Environment.GetCommandLineArgs().Contains("--type=renderer"))
-            //    //{
-            //    //    Environment.Exit(0);
-            //    //}
-            //    //else
-            //    //{
-            //    //    return;
-            //    //}
-            //}
-            //Application.Run(new Form());
-            //f_app_Exit();
+            if (!CEF.Initialize(settings))
+            {
+                Console.WriteLine("Couldn't initialise CEF");
+                return;
+            }
 
-            //////Console.Title = "BROWSER";
+            //CEF.RegisterScheme("local", new LocalSchemeHandlerFactory());
+            //CEF.RegisterScheme("http", new HttpSchemeHandlerFactory());
+            //CEF.RegisterScheme("https", new HttpSchemeHandlerFactory());
 
-            //////f_api_Init();
+            //CEF.RegisterJsObject("API", new ApiJavascript());
 
-            //////string pathCache = Path.Combine(Path.GetDirectoryName(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)), "Cache");
-            //////if (!Directory.Exists(pathCache)) Directory.CreateDirectory(pathCache);
-            ////Settings settings = new Settings() { UserAgent = "Chrome25" };
+            m_main = new fBrowser();
+            m_main.Shown += (se, ev) =>
+            {
+                //m_msgHandleID = m_main.f_main_msgHandleID();
+                //f_api_Register(m_msgHandleID);
+            };
 
-            ////if (!CEF.Initialize(settings))
-            ////{
-            ////    Console.WriteLine("Couldn't initialise CEF");
-            ////    return;
-            ////}
-
-            //////CEF.RegisterScheme("local", new LocalSchemeHandlerFactory());
-            //////CEF.RegisterScheme("http", new HttpSchemeHandlerFactory());
-            //////CEF.RegisterScheme("https", new HttpSchemeHandlerFactory());
-
-            //////CEF.RegisterJsObject("API", new ApiJavascript());
-
-            ////m_main = new fBrowser();
-            ////m_main.Shown += (se, ev) =>
-            ////{
-            ////    //m_msgHandleID = m_main.f_main_msgHandleID();
-            ////    //f_api_Register(m_msgHandleID);
-            ////};
-
-            ////Application.ApplicationExit += (se, ev) => {
-            ////    //f_api_UnRegister(m_msgHandleID);
-            ////    f_app_Exit();
-            ////};
-            ////Application.EnableVisualStyles();
-            ////Application.Run(m_main);
+            Application.ApplicationExit += (se, ev) =>
+            {
+                //f_api_UnRegister(m_msgHandleID);
+                f_app_Exit();
+            };
+            Application.EnableVisualStyles();
+            Application.Run(m_main);
         }
 
         static void f_app_Exit()
         {
-            f_api_Exit();
+            //f_api_Exit();
             //Console.WriteLine("Enter to EXIT...");
             //Console.ReadLine();
 
@@ -212,8 +191,8 @@ namespace test
             //GC.Collect();
             //GC.WaitForPendingFinalizers();
 
-            GC.Collect(0, GCCollectionMode.Forced);
-            GC.WaitForPendingFinalizers();
+            //GC.Collect(0, GCCollectionMode.Forced);
+            //GC.WaitForPendingFinalizers();
         }
 
         static void f_app_Run()

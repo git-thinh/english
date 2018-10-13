@@ -35,13 +35,15 @@ namespace test
         //////🕮🖎✍⦦☊🕭🔔🗣🗢🖳🎚🏷🖈🎗🏱🏲🗀🗁🕷🖒🖓👍👎♥♡♫♪♬♫🎙🎖🗝●◯⬤⚲☰⚒🕩🕪❯►❮⟳⚐🗑✎✛🗋🖫⛉ ⛊ ⛨⚏★☆
 
         const int SETTING_WIDTH = 299;
-        const string URL_SETTING = "about:blank";
-        //const string URL_SETTING = "local://view/setting.html";
+        //const string URL_SETTING = "about:blank";
+        const string URL_SETTING = "local://view/setting.html";
         //const string URL = "https://vnexpress.net";
         //const string URL_GOOGLE = "https://google.com.vn";
         //const string URL = "http://w2ui.com/web/demos/#!layout/layout-1";
-        const string URL = "about:blank";
+        //const string URL = "about:blank";
         //const string URL = "local://view/ws.html";
+        //const string URL = "local://view/bc1.html";
+        const string URL = "local://view/article.html";
         //const string URL = "http://test.local/demo.html";
         //const string URL = "https://dictionary.cambridge.org/grammar/british-grammar/above-or-over";
         //const string URL = "https://vuejs.org/v2/guide/";
@@ -53,8 +55,8 @@ namespace test
 
         //const string URL = "https://translate.google.com/#en/vi/hello";
 
-        private WebView ui_browser;
-        private WebView ui_setting;
+        readonly WebView ui_browser;
+        readonly WebView ui_setting;
 
         private Panel ui_header;
         private Panel ui_footer;
@@ -97,20 +99,34 @@ namespace test
             this.FormBorderStyle = FormBorderStyle.None;
             this.Text = "Browser";
             this.Icon = Resources.icon;
+
+            ui_browser = new WebView() { Dock = DockStyle.Fill };
+            ui_setting = new WebView() { Dock = DockStyle.Left, Width = SETTING_WIDTH };
+            this.Controls.AddRange(new Control[] { ui_browser, ui_setting });
+            ui_browser.PropertyChanged += (se, ev) => { switch (ev.PropertyName) { case "IsBrowserInitialized": ui_browser.Load(URL); break; case "IsLoading": break; } };
+            ui_setting.PropertyChanged += (se, ev) => { switch (ev.PropertyName) { case "IsBrowserInitialized": ui_setting.Load(URL_SETTING); break; case "IsLoading": break; } };
+            ui_browser.RequestHandler = new HandleBrowser();
+
+            //ui_browser.re("local", new LocalSchemeHandlerFactory());
+            //ui_browser.RegisterScheme("http", new HttpSchemeHandlerFactory());
+            //ui_browser.RegisterScheme("https", new HttpSchemeHandlerFactory());
+
+            //CEF.RegisterJsObject("API", new ApiJavascript());
+
             this.Shown += (se, ev) =>
             {
                 //this.WindowState = FormWindowState.Maximized;
                 this.Width = 1024;
                 this.Height = Screen.PrimaryScreen.WorkingArea.Height - 200;
                 this.Top = 100;
-                this.Left = Screen.PrimaryScreen.WorkingArea.Width - this.Width;
+                this.Left = 0;// Screen.PrimaryScreen.WorkingArea.Width - this.Width;
 
                 f_main_Init();
 
-                APP_INFO.HandleID = (int)this.Handle;
-                APP_INFO.HandleMessageID = (int)MSG_WINDOW.Handle;
+                //APP_INFO.HandleID = (int)this.Handle;
+                //APP_INFO.HandleMessageID = (int)MSG_WINDOW.Handle;
 
-                f_main_updateAppInfo();
+                //f_main_updateAppInfo();
             };
 
             this.FormClosing += (se, ev) =>
@@ -128,27 +144,21 @@ namespace test
         {
             #region [ BROWSER ]
 
-            ui_browser = new WebView(URL, new BrowserSettings()
-            {
-                PageCacheDisabled = true
-            });
-            ui_browser.Dock = DockStyle.Fill;
-            ui_browser.PropertyChanged += f_browserPropertyChanged;
-            ui_browser.ConsoleMessage += f_browserConsoleMessage;
+            //ui_browser.Dock = DockStyle.Fill;
+            //ui_browser.PropertyChanged += f_browserPropertyChanged;
+            //ui_browser.ConsoleMessage += f_browserConsoleMessage;
             //ui_browser.BeforeResourceLoadHandler = this;
-            this.Controls.Add(ui_browser);
+            //this.Controls.Add(ui_browser);
 
             #endregion
 
             #region [ SETTING ]
 
-            ui_setting = new WebView(URL_SETTING, new BrowserSettings() {
-                PageCacheDisabled = true,
-            });
-            ui_setting.Width = SETTING_WIDTH;
-            ui_setting.Dock = DockStyle.Left;
-            ui_setting.ConsoleMessage += f_settingConsoleMessage;
-            this.Controls.Add(ui_setting);
+            
+            //ui_setting.Width = SETTING_WIDTH;
+            //ui_setting.Dock = DockStyle.Left;
+            //ui_setting.ConsoleMessage += f_settingConsoleMessage;
+            //this.Controls.Add(ui_setting);
 
             var spliter = new Splitter()
             {
