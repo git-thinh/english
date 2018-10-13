@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Concurrent;
 using System.Diagnostics;
+using System.IO;
 using System.Text;
+using System.Web;
 using System.Windows.Forms;
 
 namespace test
@@ -18,8 +20,16 @@ namespace test
     {
         #region [ LINK - HTML]
 
+        static string view = string.Empty;
+        static string view_end = string.Empty;
         static ConcurrentDictionary<string, long> _link = new ConcurrentDictionary<string, long>();
         static ConcurrentDictionary<string, string> _html = new ConcurrentDictionary<string, string>();
+
+        public App()
+        {
+            if (File.Exists("view/view.html")) view = File.ReadAllText("view/view.html");
+            if (File.Exists("view/view-end.html")) view_end = File.ReadAllText("view/view-end.html");
+        }
 
         public void f_link_AddUrls(string[] urls)
         {
@@ -29,7 +39,7 @@ namespace test
         {
             if (_html.ContainsKey(url))
             {
-                Console.WriteLine("##>" + url);
+                Console.WriteLine("#-> " + url);
                 return _html[url];
             }
             return null;
@@ -37,18 +47,19 @@ namespace test
 
         public string f_link_fetchHtmlOnline(string url)
         {
-            Console.WriteLine("==>" + url);
+            Console.WriteLine("c> " + url);
 
             /* https://stackoverflow.com/questions/4291912/process-start-how-to-get-the-output */
             Process process = new Process();
             process.StartInfo.FileName = "curl.exe";
-            process.StartInfo.Arguments = url;
+            process.StartInfo.Arguments = "--insecure " + url;
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.RedirectStandardOutput = true;
             process.StartInfo.RedirectStandardError = true;
             process.Start();
             //* Read the output (or the error)
             string html = process.StandardOutput.ReadToEnd();
+            html = _htmlFormat(url, html);
 
             _link.TryAdd(url, _link.Count + 1);
             _html.TryAdd(url, html);
@@ -57,7 +68,8 @@ namespace test
             //string err = process.StandardError.ReadToEnd();
             //Console.WriteLine(err);
             process.WaitForExit();
-            return html;
+
+            return view + "</head><body>" + html + view_end;
 
             //////* Create your Process
             ////Process process = new Process();
@@ -81,6 +93,21 @@ namespace test
             ////process.WaitForExit(); 
         }
 
+        string _htmlFormat(string url, string html)
+        {
+            string s = HttpUtility.HtmlDecode(html), title = "";
+
+            // Fetch all url same domain in this page ...
+            string[] urls = Html.f_html_actractUrl(url, s);
+            s = Html.f_html_Format(url, s);
+
+            int posH1 = s.ToLower().IndexOf("<h1");
+            if (posH1 != -1) s = s.Substring(posH1, s.Length - posH1);
+
+            s = "<!--" + url + @"-->" + Environment.NewLine + @"<input id=""___title"" value=""" + title + @""" type=""hidden"">" + s;
+
+            return s;
+        }
 
         #endregion
 
@@ -93,7 +120,7 @@ namespace test
         {
             Settings settings = new Settings() { };
             if (!CEF.Initialize(settings)) return;
-            CEF.RegisterScheme("local", new LocalSchemeHandlerFactory(this));
+            //CEF.RegisterScheme("local", new LocalSchemeHandlerFactory(this));
             Application.ApplicationExit += (se, ev) => f_app_Exit();
             Application.Run(new fMain(this));
             f_app_Exit();

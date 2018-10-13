@@ -24,6 +24,7 @@ namespace test
         //const string URL_SETTING = "about:blank";
         //const string URL_SETTING = "local://view/setting.html";
         //const string URL = "https://vnexpress.net";
+        const string URL = "https://dictionary.cambridge.org/grammar/british-grammar/above-or-over";
         //const string URL_GOOGLE = "https://google.com.vn";
         //const string URL = "http://w2ui.com/web/demos/#!layout/layout-1";
         //const string URL = "about:blank";
@@ -31,7 +32,6 @@ namespace test
         //const string URL = "local://view/bc1.html";
         //const string URL = "local://view/article.html";
         //const string URL = "http://test.local/demo.html";
-        const string URL = "https://dictionary.cambridge.org/grammar/british-grammar/above-or-over";
         //const string URL = "https://vuejs.org/v2/guide/";
         //const string URL = "https://msdn.microsoft.com/en-us/library/ff361664(v=vs.110).aspx";
         //const string URL = "https://developer.mozilla.org/en-US/docs/Web";

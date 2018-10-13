@@ -1,4 +1,4 @@
-﻿using Fleck;
+﻿//using Fleck;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -221,17 +221,17 @@ namespace System
             return ls.ToArray();
         }
 
-        public static byte[] f_sendApi(this Rpc.RpcClientApi client, MSG_TYPE type, string message)
-        {
-            byte[] m = f_createMessage(type, message);
-            return client.Execute(m);
-        }
+        //public static byte[] f_sendApi(this Rpc.RpcClientApi client, MSG_TYPE type, string message)
+        //{
+        //    byte[] m = f_createMessage(type, message);
+        //    return client.Execute(m);
+        //}
 
-        public static byte[] f_sendApi(this Rpc.RpcClientApi client, MSG_TYPE type, int message)
-        {
-            byte[] m = f_createMessage(type, message);
-            return client.Execute(m);
-        }
+        //public static byte[] f_sendApi(this Rpc.RpcClientApi client, MSG_TYPE type, int message)
+        //{
+        //    byte[] m = f_createMessage(type, message);
+        //    return client.Execute(m);
+        //}
 
         public static void f_sendMessage(int handle, MSG_TYPE type, string message)
         {
@@ -262,8 +262,8 @@ namespace System
         public int x { set; get; }
         public int y { set; get; }
 
-        [JsonIgnore]
-        public IWebSocketConnection socket { set; get; }
+        //[JsonIgnore]
+        //public IWebSocketConnection socket { set; get; }
 
         [JsonIgnore]
         public WebRequest webRequest { set; get; }
@@ -274,7 +274,7 @@ namespace System
         public oEN_TRANSLATE_GOOGLE_MESSAGE()
         {
             this.success = false;
-            this.socket = null;
+            //this.socket = null;
             this.webRequest = null;
             this.translateCallBack = null;
 
@@ -282,16 +282,16 @@ namespace System
             this.type = string.Empty;
         }
 
-        public oEN_TRANSLATE_GOOGLE_MESSAGE(WebRequest _webRequest, TranslateCallBack _translateCallBack, IWebSocketConnection _socket)
-        {
-            this.success = false;
-            this.webRequest = _webRequest;
-            this.translateCallBack = _translateCallBack;
-            this.socket = _socket;
+        //public oEN_TRANSLATE_GOOGLE_MESSAGE(WebRequest _webRequest, TranslateCallBack _translateCallBack, IWebSocketConnection _socket)
+        //{
+        //    this.success = false;
+        //    this.webRequest = _webRequest;
+        //    this.translateCallBack = _translateCallBack;
+        //    this.socket = _socket;
 
-            this.mean_vi = string.Empty;
-            this.type = string.Empty;
-        }
+        //    this.mean_vi = string.Empty;
+        //    this.type = string.Empty;
+        //}
 
         public override string ToString()
         {
