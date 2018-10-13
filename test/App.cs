@@ -89,7 +89,7 @@ namespace test
         {
             if (CACHE.ContainsKey(url))
             {
-                Console.WriteLine("#> " + url);
+                Console.WriteLine("### " + url);
                 return CACHE[url];
             }
             return null;
@@ -97,7 +97,7 @@ namespace test
 
         public string f_link_fetchHtmlOnline(string url)
         {
-            Console.WriteLine(">> " + url);
+            Console.WriteLine("OK: " + url);
 
             /* https://stackoverflow.com/questions/4291912/process-start-how-to-get-the-output */
             Process process = new Process();
