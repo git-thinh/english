@@ -5,6 +5,7 @@ using Gma.System.MouseKeyHook;
 using System.Runtime.InteropServices;
 using test.Properties;
 using CefSharp.WinForms;
+using CefSharp;
 
 namespace test
 {
@@ -23,8 +24,8 @@ namespace test
         //const int SETTING_WIDTH = 299;
         //const string URL_SETTING = "about:blank";
         //const string URL_SETTING = "local://view/setting.html";
-        //const string URL = "https://vnexpress.net";
-        const string URL = "https://dictionary.cambridge.org/grammar/british-grammar/above-or-over";
+        const string URL = "https://vnexpress.net";
+        //const string URL = "https://dictionary.cambridge.org/grammar/british-grammar/above-or-over";
         //const string URL_GOOGLE = "https://google.com.vn";
         //const string URL = "http://w2ui.com/web/demos/#!layout/layout-1";
         //const string URL = "about:blank";
@@ -58,6 +59,10 @@ namespace test
         #endregion
 
         #region [ MAIN ]
+
+        public IWebBrowser f_getBrowser() {
+            return ui_browser;
+        }
 
         public fMain(IApp app)
         {
@@ -299,7 +304,7 @@ namespace test
 
         void f_browser_openUrlByKey(string urlKey)
         {
-
+            _app.f_main_openUrl(urlKey, null);
         }
 
         void f_browser_appOpenWindow()

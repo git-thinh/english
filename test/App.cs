@@ -1,8 +1,10 @@
 ﻿using CefSharp;
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Web;
 using System.Windows.Forms;
@@ -14,21 +16,69 @@ namespace test
         void f_link_AddUrls(string[] urls);
         string f_link_getHtml(string url);
         string f_link_fetchHtmlOnline(string url);
+        void f_link_updateUrls(oLink[] links);
+
+        bool f_main_openUrl(string url, string title);
     }
 
     class App : IApp
     {
+        private IWebBrowser _browser = null;
+
         #region [ LINK - HTML]
 
-        static string view = string.Empty;
-        static string view_end = string.Empty;
-        static ConcurrentDictionary<string, long> _link = new ConcurrentDictionary<string, long>();
-        static ConcurrentDictionary<string, string> _html = new ConcurrentDictionary<string, string>();
+        readonly List<string> DOMAIN_LIST;
+
+        readonly ConcurrentDictionary<string, string> CACHE;
+        readonly ConcurrentDictionary<string, string> LINK;
+        readonly ConcurrentDictionary<int, int> LINK_LEVEL;
+        readonly ConcurrentDictionary<string, int> LINK_ID;
+        readonly ConcurrentDictionary<int, int> TIME_VIEW_LINK;
+        readonly ConcurrentDictionary<string, List<int>> INDEX;
+        readonly ConcurrentDictionary<string, List<int>> DOMAIN_LINK;
+        readonly ConcurrentDictionary<string, List<int>> KEY_INDEX;
+        readonly ConcurrentDictionary<string, string> TRANSLATE;
 
         public App()
         {
-            if (File.Exists("view/view.html")) view = File.ReadAllText("view/view.html");
-            if (File.Exists("view/view-end.html")) view_end = File.ReadAllText("view/view-end.html");
+            if (Directory.Exists("cache")) DOMAIN_LIST = Directory.GetDirectories("cache").Select(x => x.Substring(6)).ToList();
+            else DOMAIN_LIST = new List<string>();
+
+            TRANSLATE = new ConcurrentDictionary<string, string>();
+            CACHE = new ConcurrentDictionary<string, string>();
+            LINK = new ConcurrentDictionary<string, string>();
+            LINK_LEVEL = new ConcurrentDictionary<int, int>();
+            LINK_ID = new ConcurrentDictionary<string, int>();
+            INDEX = new ConcurrentDictionary<string, List<int>>();
+            DOMAIN_LINK = new ConcurrentDictionary<string, List<int>>();
+            TIME_VIEW_LINK = new ConcurrentDictionary<int, int>();
+            KEY_INDEX = new ConcurrentDictionary<string, List<int>>();
+        }
+
+        public void f_link_updateUrls(oLink[] links)
+        {
+            if (links.Length > 0)
+            {
+                var ls = links.GroupBy(x => x.Url).Select(x => x.First()).ToArray();
+                string domain = Html.f_html_getDomainMainByUrl(ls[0].Url);
+                string url, title;
+                for (int i = 0; i < ls.Length; i++)
+                {
+                    url = ls[i].Url;
+                    title = ls[i].Text;
+                    f_cacheUrl(url, title, domain, i);
+                }
+            }
+        }
+
+        public bool f_main_openUrl(string url, string title)
+        {
+            if (_browser != null)
+            {
+                _browser.Load(url);
+                return true;
+            }
+            return false;
         }
 
         public void f_link_AddUrls(string[] urls)
@@ -37,17 +87,17 @@ namespace test
 
         public string f_link_getHtml(string url)
         {
-            if (_html.ContainsKey(url))
+            if (CACHE.ContainsKey(url))
             {
-                Console.WriteLine("#-> " + url);
-                return _html[url];
+                Console.WriteLine("#> " + url);
+                return CACHE[url];
             }
             return null;
         }
 
         public string f_link_fetchHtmlOnline(string url)
         {
-            Console.WriteLine("c> " + url);
+            Console.WriteLine(">> " + url);
 
             /* https://stackoverflow.com/questions/4291912/process-start-how-to-get-the-output */
             Process process = new Process();
@@ -56,20 +106,27 @@ namespace test
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.RedirectStandardOutput = true;
             process.StartInfo.RedirectStandardError = true;
+            process.StartInfo.StandardOutputEncoding = Encoding.UTF8;
             process.Start();
             //* Read the output (or the error)
             string html = process.StandardOutput.ReadToEnd();
             html = _htmlFormat(url, html);
 
-            _link.TryAdd(url, _link.Count + 1);
-            _html.TryAdd(url, html);
+            f_cacheUrl(url);
+            CACHE.TryAdd(url, html);
+
+            if (html.Contains("Error -101 when loading url"))
+            {
+                Console.WriteLine("??????????????????????????????????????????? ERROR: " + url);
+                return f_link_fetchHtmlOnline(url);
+            }
 
             //Console.WriteLine(html);
             //string err = process.StandardError.ReadToEnd();
             //Console.WriteLine(err);
             process.WaitForExit();
 
-            return view + "</head><body>" + html + view_end;
+            return html;
 
             //////* Create your Process
             ////Process process = new Process();
@@ -78,6 +135,7 @@ namespace test
             ////process.StartInfo.UseShellExecute = false;
             ////process.StartInfo.RedirectStandardOutput = true;
             ////process.StartInfo.RedirectStandardError = true;
+            ////process.StartInfo.StandardOutputEncoding = Encoding.UTF8;
             //////* Set your output and error (asynchronous) handlers
             ////process.OutputDataReceived += (se, ev) => {
             ////    string html = ev.Data;
@@ -98,7 +156,7 @@ namespace test
             string s = HttpUtility.HtmlDecode(html), title = "";
 
             // Fetch all url same domain in this page ...
-            string[] urls = Html.f_html_actractUrl(url, s);
+            //string[] urls = Html.f_html_actractUrl(url, s);
             s = Html.f_html_Format(url, s);
 
             int posH1 = s.ToLower().IndexOf("<h1");
@@ -107,6 +165,59 @@ namespace test
             s = "<!--" + url + @"-->" + Environment.NewLine + @"<input id=""___title"" value=""" + title + @""" type=""hidden"">" + s;
 
             return s;
+        }
+
+        string f_text_convert_UTF8_ACSII(string utf8)
+        {
+            string stFormD = utf8.Normalize(NormalizationForm.FormD);
+            StringBuilder sb = new StringBuilder();
+            for (int ich = 0; ich < stFormD.Length; ich++)
+            {
+                System.Globalization.UnicodeCategory uc = System.Globalization.CharUnicodeInfo.GetUnicodeCategory(stFormD[ich]);
+                if (uc != System.Globalization.UnicodeCategory.NonSpacingMark)
+                {
+                    sb.Append(stFormD[ich]);
+                }
+            }
+            sb = sb.Replace('Đ', 'D');
+            sb = sb.Replace('đ', 'd');
+            return (sb.ToString().Normalize(NormalizationForm.FormD));
+        }
+
+        void f_cacheUrl(string url, string title = "", string domain = "", int indexForEach = 0)
+        {
+            if (string.IsNullOrEmpty(url) || string.IsNullOrEmpty(title)) return;
+
+            if (domain == "") domain = Html.f_html_getDomainMainByUrl(url);
+            int id = LINK.Count + 1, time_view = int.Parse(DateTime.Now.ToString("1ddHHmmss")) + indexForEach;
+
+            if (!LINK.ContainsKey(url))
+            {
+                LINK.TryAdd(url, title);
+                LINK_ID.TryAdd(url, id);
+                TIME_VIEW_LINK.TryAdd(id, time_view);
+                LINK_LEVEL.TryAdd(id, url.Split('/').Length - 3);
+            }
+
+            lock (DOMAIN_LIST) if (!DOMAIN_LIST.Contains(domain)) DOMAIN_LIST.Add(domain);
+            if (DOMAIN_LINK.ContainsKey(domain)) DOMAIN_LINK[domain].Add(id); else DOMAIN_LINK.TryAdd(domain, new List<int>() { id });
+
+            if (!string.IsNullOrEmpty(title))
+            {
+                string s = f_text_convert_UTF8_ACSII(title).ToLower().ToLower();
+                string[] words = s.Split(' ').Where(x => x.Length > 2).ToArray();
+                for (int i = 0; i < words.Length; i++)
+                {
+                    if (KEY_INDEX.ContainsKey(words[i]))
+                    {
+                        if (KEY_INDEX[words[i]].IndexOf(id) == -1)
+                            KEY_INDEX[words[i]].Add(id);
+                    }
+                    else
+                        KEY_INDEX.TryAdd(words[i], new List<int>() { id });
+                }
+                //Console.WriteLine(string.Format(" INDEX: {0}", KEY_INDEX.Count));
+            }
         }
 
         #endregion
@@ -121,14 +232,26 @@ namespace test
             Settings settings = new Settings() { };
             if (!CEF.Initialize(settings)) return;
             //CEF.RegisterScheme("local", new LocalSchemeHandlerFactory(this));
+            CEF.RegisterJsObject("API", new API(this));
             Application.ApplicationExit += (se, ev) => f_app_Exit();
-            Application.Run(new fMain(this));
+            var main = new fMain(this);
+            _browser = main.f_getBrowser();
+            Application.Run(main);
             f_app_Exit();
         }
 
         void f_app_Exit()
         {
-            _link.Clear();
+            CACHE.Clear();
+            LINK.Clear();
+            LINK_LEVEL.Clear();
+            LINK_ID.Clear();
+            TIME_VIEW_LINK.Clear();
+            INDEX.Clear();
+            DOMAIN_LINK.Clear();
+            KEY_INDEX.Clear();
+            TRANSLATE.Clear();
+
             CEF.Shutdown();
         }
 
