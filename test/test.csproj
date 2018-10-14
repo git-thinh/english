@@ -89,6 +89,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="fView.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="fMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +99,33 @@
     <Compile Include="LIB\ControlTransparent.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="LIB\Fleck\ConnectionNotAvailableException.cs" />
+    <Compile Include="LIB\Fleck\FleckLog.cs" />
+    <Compile Include="LIB\Fleck\FrameType.cs" />
+    <Compile Include="LIB\Fleck\HandlerFactory.cs" />
+    <Compile Include="LIB\Fleck\Handlers\ComposableHandler.cs" />
+    <Compile Include="LIB\Fleck\Handlers\Draft76Handler.cs" />
+    <Compile Include="LIB\Fleck\Handlers\FlashSocketPolicyRequestHandler.cs" />
+    <Compile Include="LIB\Fleck\Handlers\Hybi13Handler.cs" />
+    <Compile Include="LIB\Fleck\Helpers\MonoHelper.cs" />
+    <Compile Include="LIB\Fleck\Interfaces\IHandler.cs" />
+    <Compile Include="LIB\Fleck\Interfaces\ISocket.cs" />
+    <Compile Include="LIB\Fleck\Interfaces\IWebSocketConnection.cs" />
+    <Compile Include="LIB\Fleck\Interfaces\IWebSocketConnectionInfo.cs" />
+    <Compile Include="LIB\Fleck\Interfaces\IWebSocketServer.cs" />
+    <Compile Include="LIB\Fleck\IntExtensions.cs" />
+    <Compile Include="LIB\Fleck\QueuedStream.cs" />
+    <Compile Include="LIB\Fleck\ReadState.cs" />
+    <Compile Include="LIB\Fleck\RequestParser.cs" />
+    <Compile Include="LIB\Fleck\SocketWrapper.cs" />
+    <Compile Include="LIB\Fleck\SubProtocolNegotiationFailureException.cs" />
+    <Compile Include="LIB\Fleck\SubProtocolNegotiator.cs" />
+    <Compile Include="LIB\Fleck\WebSocketConnection.cs" />
+    <Compile Include="LIB\Fleck\WebSocketConnectionInfo.cs" />
+    <Compile Include="LIB\Fleck\WebSocketException.cs" />
+    <Compile Include="LIB\Fleck\WebSocketHttpRequest.cs" />
+    <Compile Include="LIB\Fleck\WebSocketServer.cs" />
+    <Compile Include="LIB\Fleck\WebSocketStatusCodes.cs" />
     <Compile Include="LIB\Gma.System.MouseKeyHook\Class1.cs" />
     <Compile Include="LIB\Gma.System.MouseKeyHook\Combination.cs" />
     <Compile Include="LIB\Gma.System.MouseKeyHook\Hook.cs" />
@@ -236,6 +266,7 @@
     <Content Include="..\build\view\view-end.html">
       <Link>VIEW\view-end.html</Link>
     </Content>
+    <Content Include="LIB\Fleck\ReadMe.txt" />
     <Content Include="LIB\Gma.System.MouseKeyHook\HotKeys\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>

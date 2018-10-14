@@ -32,6 +32,12 @@ namespace test
             _app.f_app_callFromJs(data);
         }
 
+        public String f_app_getInfo()
+        {
+            String s = JsonConvert.SerializeObject(_app.f_app_getInfo());
+            return s;
+        }
+
         public String f_file_Read(String file)
         {
             if (File.Exists(file)) return File.ReadAllText(file);
@@ -109,8 +115,14 @@ namespace test
                             requestResponse.RespondWith(resourceStream, "text/html");
                             return false;
                         }
-                        #endregion
+                        else
+                        {
+                            Stream resourceStream = new MemoryStream(Encoding.UTF8.GetBytes("Cannot found page: " + path));
+                            requestResponse.RespondWith(resourceStream, "text/html");
+                            return false;
+                        }
                         break;
+                        #endregion
                     case ".js":
                         #region
                         if (File.Exists(path))

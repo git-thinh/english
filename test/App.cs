@@ -1,4 +1,5 @@
 ﻿using CefSharp;
+using Fleck;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Concurrent;
@@ -22,13 +23,56 @@ namespace test
 
         bool f_main_openUrl(string url, string title);
         void f_app_callFromJs(string data);
+        void f_view_Open(string view);
+
+        oAppInfo f_app_getInfo();
     }
 
     class App : IApp
     {
-        private IFormMain _fomMain = null;
+        IFormMain _fomMain = null;
 
-        #region [ LINK - HTML]
+        public void f_view_Open(string view)
+        {
+            var v = new fView(this, view);
+            v.Shown += (vse, vev) => {
+                v.Left = _fomMain.f_app_getInfo().Width + _fomMain.f_app_getInfo().Left + 5;
+                v.Top = _fomMain.f_app_getInfo().Top;
+                v.Height = _fomMain.f_app_getInfo().Height;
+            };
+            v.Show();
+        }
+
+        public App()
+        {
+            if (Directory.Exists("cache")) DOMAIN_LIST = Directory.GetDirectories("cache").Select(x => x.Substring(6)).ToList();
+            else DOMAIN_LIST = new List<string>();
+            
+            ///////////////////////////////////////////////////////////////////////
+
+            TRANSLATE = new ConcurrentDictionary<string, string>();
+            CACHE = new ConcurrentDictionary<string, string>();
+            LINK = new ConcurrentDictionary<string, string>();
+            LINK_LEVEL = new ConcurrentDictionary<int, int>();
+            LINK_ID = new ConcurrentDictionary<string, int>();
+            INDEX = new ConcurrentDictionary<string, List<int>>();
+            DOMAIN_LINK = new ConcurrentDictionary<string, List<int>>();
+            TIME_VIEW_LINK = new ConcurrentDictionary<int, int>();
+            KEY_INDEX = new ConcurrentDictionary<string, List<int>>();
+
+            ///////////////////////////////////////////////////////////////////////
+
+            CLIENTS = new List<IWebSocketConnection>();
+            NOTI = new WebSocketServer("ws://0.0.0.0:56789");
+            NOTI.Start(socket =>
+            {
+                socket.OnOpen = () => CLIENTS.Add(socket);
+                socket.OnClose = () => CLIENTS.Remove(socket);
+                socket.OnMessage += (msg) => f_ws_onMessage(socket, msg);
+            });            
+        }
+
+        #region [ LINK - HTML ]
 
         readonly List<string> DOMAIN_LIST;
 
@@ -41,133 +85,7 @@ namespace test
         readonly ConcurrentDictionary<string, List<int>> DOMAIN_LINK;
         readonly ConcurrentDictionary<string, List<int>> KEY_INDEX;
         readonly ConcurrentDictionary<string, string> TRANSLATE;
-
-        public App()
-        {
-            if (Directory.Exists("cache")) DOMAIN_LIST = Directory.GetDirectories("cache").Select(x => x.Substring(6)).ToList();
-            else DOMAIN_LIST = new List<string>();
-
-            TRANSLATE = new ConcurrentDictionary<string, string>();
-            CACHE = new ConcurrentDictionary<string, string>();
-            LINK = new ConcurrentDictionary<string, string>();
-            LINK_LEVEL = new ConcurrentDictionary<int, int>();
-            LINK_ID = new ConcurrentDictionary<string, int>();
-            INDEX = new ConcurrentDictionary<string, List<int>>();
-            DOMAIN_LINK = new ConcurrentDictionary<string, List<int>>();
-            TIME_VIEW_LINK = new ConcurrentDictionary<int, int>();
-            KEY_INDEX = new ConcurrentDictionary<string, List<int>>();
-        }
-
-        void f_process_messageTo_MAIN(oMsgSocket msg)
-        {
-            try
-            {
-                string msgRequest = msg.MsgRequestJson, text = string.Empty;
-                if (string.IsNullOrEmpty(msgRequest)) return;
-
-                msgRequest = msgRequest.Trim();
-                Console.WriteLine(string.Format("{0} -> {1}", msg.From, msgRequest));
-                switch (msg.MsgType)
-                {
-                    case MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST:
-                        #region
-
-                        var otran = JsonConvert.DeserializeObject<oEN_TRANSLATE_GOOGLE_MESSAGE>(msgRequest);
-                        //otran.socket = socket;
-
-                        text = otran.text.Trim().Replace(':', '-');
-                        if (TRANSLATE.ContainsKey(text))
-                        {
-                            otran.mean_vi = TRANSLATE[text];
-                            otran.success = true;
-                            Console.WriteLine("-> TRANSLATE.CACHE: {0} = {1}", text, otran.mean_vi);
-
-                            msg.Ok = true;
-                            msg.MsgResponse = JsonConvert.SerializeObject(otran);
-                            msg.MsgType = MSG_TYPE.EN_TRANSLATE_GOOGLE_RESPONSE;
-                            string _msgResponse = JsonConvert.SerializeObject(msg);
-                            //f_broadCastMessage(_msgResponse);
-                        }
-                        else
-                        {
-                            GooTranslateService_v1.TranslateAsync(otran, text, "en", "vi", string.Empty, (_otran) =>
-                            {
-                                if (_otran.mean_vi.Contains(':')) {
-                                    f_process_messageTo_MAIN(msg);
-                                    return;
-                                }
-                                //Console.WriteLine("\r\n -> V1: " + text + " (" + _otran.type + "): " + _otran.mean_vi);
-                                if (!TRANSLATE.ContainsKey(text)) TRANSLATE.TryAdd(text, _otran.mean_vi);
-                                Console.WriteLine("-> TRANSLATE.ONLINE: {0} = {1}", text, otran.mean_vi);
-
-                                if (_otran.success)
-                                {
-                                    msg.Ok = true;
-                                    msg.MsgType = MSG_TYPE.EN_TRANSLATE_GOOGLE_RESPONSE;
-                                    msg.MsgResponse = JsonConvert.SerializeObject(otran);
-                                    string _msgWs = JsonConvert.SerializeObject(msg);
-                                    //f_broadCastMessage(_msgWs);
-                                }
-                                else
-                                {
-                                    msg.Ok = false;
-                                    msg.MsgType = MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST;
-                                    msg.MsgResponse = _otran.mean_vi;
-                                    string _msgWs = JsonConvert.SerializeObject(msg);
-                                    //f_broadCastMessage(_msgWs);
-                                }
-                            });
-                        }
-
-                        #endregion
-                        break;
-                }
-            }
-            catch (Exception ex)
-            {
-                msg.Ok = false;
-                msg.MsgType = MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST;
-                msg.MsgResponse = ex.Message;
-                //socket.Send(JsonConvert.SerializeObject(msg));
-            }
-        }
-
-        public void f_app_callFromJs(string data)
-        {
-            // {"Ok":false,"MsgId":11014095853828,"From":"BROWSER","To":"MAIN","MsgType":20,"MsgRequest":"{�id�:�11014095853548�,�cached�:false,�x�:435,�y�:235,�text�:�please�}","MsgResponse":""}
-
-            try
-            {
-                oMsgSocket m = JsonConvert.DeserializeObject<oMsgSocket>(data);
-                //m.MsgText = m.MsgText.Replace('¦', '"');
-                switch (m.To)
-                {
-                    //case _WS_NAME.ALL:
-                    //    lock (CLIENTS) { CLIENTS.ForEach((ws) => { if (ws.IsAvailable) ws.Send(message); }); }
-                    //    break;
-                    //case _WS_NAME.BOX_ENGLISH:
-                    //    if (CLIENT_BOX_ENGLISH.IsAvailable) CLIENT_BOX_ENGLISH.Send(message);
-                    //    break;
-                    //case _WS_NAME.BROWSER:
-                    //    if (CLIENT_BROWSER.IsAvailable) CLIENT_BROWSER.Send(message);
-                    //    break;
-                    //case _WS_NAME.SETTING:
-                    //    if (CLIENT_SETTING.IsAvailable) CLIENT_SETTING.Send(message);
-                    //    break;
-                    //case _WS_NAME.PLAYER:
-                    //    if (CLIENT_PLAYER.IsAvailable) CLIENT_PLAYER.Send(message);
-                    //    break;
-                    case _WS_NAME.MAIN:
-                        f_process_messageTo_MAIN(m);
-                        break;
-                }
-            }
-            catch (Exception ex)
-            {
-                //socket.Send(JsonConvert.SerializeObject(new oMsgSocket(false, MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST, 0, message, ex.Message)));
-            }
-        }
-
+        
         public void f_link_updateUrls(oLink[] links)
         {
             if (links.Length > 0)
@@ -365,7 +283,166 @@ namespace test
 
         #endregion
 
+        #region [ RECEIVE MESSAGE FROM JS ]
+
+        void f_process_messageTo_MAIN(oMsgSocket msg)
+        {
+            try
+            {
+                string msgRequest = msg.MsgRequestJson, text = string.Empty;
+                if (string.IsNullOrEmpty(msgRequest)) return;
+
+                msgRequest = msgRequest.Trim();
+                Console.WriteLine(string.Format("{0} -> {1}", msg.From, msgRequest));
+                switch (msg.MsgType)
+                {
+                    case MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST:
+                        #region
+
+                        var otran = JsonConvert.DeserializeObject<oEN_TRANSLATE_GOOGLE_MESSAGE>(msgRequest);
+
+                        text = otran.text.Trim().Replace(':', '-');
+                        if (TRANSLATE.ContainsKey(text))
+                        {
+                            otran.mean_vi = TRANSLATE[text];
+                            otran.success = true;
+                            Console.WriteLine("-> TRANSLATE.CACHE: {0} = {1}", text, otran.mean_vi);
+
+                            msg.Ok = true;
+                            msg.MsgResponse = JsonConvert.SerializeObject(otran);
+                            msg.MsgType = MSG_TYPE.EN_TRANSLATE_GOOGLE_RESPONSE;
+                            string _msgResponse = JsonConvert.SerializeObject(msg);
+                            f_ws_broadCast(_msgResponse);
+                        }
+                        else
+                        {
+                            GooTranslateService_v1.TranslateAsync(otran, text, "en", "vi", string.Empty, (_otran) =>
+                            {
+                                if (_otran.mean_vi.Contains(':'))
+                                {
+                                    f_process_messageTo_MAIN(msg);
+                                    return;
+                                }
+                                //Console.WriteLine("\r\n -> V1: " + text + " (" + _otran.type + "): " + _otran.mean_vi);
+                                if (!TRANSLATE.ContainsKey(text)) TRANSLATE.TryAdd(text, _otran.mean_vi);
+                                Console.WriteLine("-> TRANSLATE.ONLINE: {0} = {1}", text, otran.mean_vi);
+
+                                if (_otran.success)
+                                {
+                                    msg.Ok = true;
+                                    msg.MsgType = MSG_TYPE.EN_TRANSLATE_GOOGLE_RESPONSE;
+                                    msg.MsgResponse = JsonConvert.SerializeObject(otran);
+                                    string _msgWs = JsonConvert.SerializeObject(msg);
+                                    f_ws_broadCast(_msgWs);
+                                }
+                                else
+                                {
+                                    msg.Ok = false;
+                                    msg.MsgType = MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST;
+                                    msg.MsgResponse = _otran.mean_vi;
+                                    string _msgWs = JsonConvert.SerializeObject(msg);
+                                    f_ws_broadCast(_msgWs);
+                                }
+                            });
+                        }
+
+                        #endregion
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                msg.Ok = false;
+                msg.MsgType = MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST;
+                msg.MsgResponse = ex.Message;
+                //socket.Send(JsonConvert.SerializeObject(msg));
+            }
+        }
+
+        public void f_app_callFromJs(string message)
+        {
+            try
+            {
+                oMsgSocket m = JsonConvert.DeserializeObject<oMsgSocket>(message);
+                switch (m.To)
+                {
+                    case _NAME_UI.MAIN:
+                        f_process_messageTo_MAIN(m);
+                        break;
+                    case _NAME_UI.ALL:
+                        lock (CLIENTS) { CLIENTS.ForEach((ws) => { if (ws.IsAvailable) ws.Send(message); }); }
+                        break;
+                    case _NAME_UI.BOX_ENGLISH:
+                        if (CLIENT_BOX_ENGLISH.IsAvailable) CLIENT_BOX_ENGLISH.Send(message);
+                        break;
+                    case _NAME_UI.SEARCH:
+                        if (CLIENT_SEARCH.IsAvailable) CLIENT_SEARCH.Send(message);
+                        break;
+                    case _NAME_UI.SETTING:
+                        if (CLIENT_SETTING.IsAvailable) CLIENT_SETTING.Send(message);
+                        break;
+                    case _NAME_UI.PLAYER:
+                        if (CLIENT_PLAYER.IsAvailable) CLIENT_PLAYER.Send(message);
+                        break;
+                }
+            }
+            catch
+            {
+                //socket.Send(JsonConvert.SerializeObject(new oMsgSocket(false, MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST, 0, message, ex.Message)));
+            }
+        }
+
+        #endregion
+
+        #region [ WEBSOCKET ]
+
+        readonly WebSocketServer NOTI;
+        readonly List<IWebSocketConnection> CLIENTS;
+
+        private IWebSocketConnection CLIENT_MAIN = null;
+        private IWebSocketConnection CLIENT_SEARCH = null;
+        private IWebSocketConnection CLIENT_SETTING = null;
+        private IWebSocketConnection CLIENT_PLAYER = null;
+        private IWebSocketConnection CLIENT_BOX_ENGLISH = null;
+
+        void f_ws_onMessage(IWebSocketConnection socket, string message)
+        {
+            switch (message)
+            { 
+                case _NAME_UI.MAIN:
+                    CLIENT_MAIN = socket;
+                    break;
+                case _NAME_UI.SETTING:
+                    CLIENT_SETTING = socket;
+                    break;
+                case _NAME_UI.SEARCH:
+                    CLIENT_SEARCH = socket;
+                    break;
+                case _NAME_UI.PLAYER:
+                    CLIENT_PLAYER = socket;
+                    break;
+                case _NAME_UI.BOX_ENGLISH:
+                    CLIENT_BOX_ENGLISH = socket;
+                    break;  
+            }
+        }
+
+        void f_ws_broadCast(string msg)
+        {
+            lock (CLIENTS)
+            {
+                CLIENTS.ForEach(socket =>
+                {
+                    if (socket.IsAvailable) socket.Send(msg);
+                });
+            }
+        }
+
+        #endregion
+
         #region [ APP ]
+
+        public oAppInfo f_app_getInfo() { return _fomMain.f_app_getInfo(); }
 
         [STAThread]
         static void Main(string[] args) => new App().f_app_Run();
@@ -378,6 +455,9 @@ namespace test
             CEF.RegisterJsObject("API", new API(this));
             Application.ApplicationExit += (se, ev) => f_app_Exit();
             var main = new fMain(this);
+            main.Shown += (se, ev) => {
+                f_view_Open("links");
+            };
             _fomMain = main;
             Application.Run(main);
             f_app_Exit();
@@ -385,6 +465,9 @@ namespace test
 
         void f_app_Exit()
         {
+            NOTI.Dispose();
+            CLIENTS.Clear();
+
             CACHE.Clear();
             LINK.Clear();
             LINK_LEVEL.Clear();

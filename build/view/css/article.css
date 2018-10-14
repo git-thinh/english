@@ -60,6 +60,10 @@ body {
     background-color: #ccc;
 }
 
+div, p, li {
+    line-height: 35px;    
+}
+
 /***************************************/
 
 #___box_tran {

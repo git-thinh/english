@@ -1,8 +1,8 @@
 ﻿var _NAME_UI = {
     ALL: "*",
     BOX_ENGLISH: "BOX_ENGLISH",
-    BROWSER: "BROWSER",
     SETTING: "SETTING",
+    SEARCH: "SEARCH",
     PLAYER: "PLAYER",
     MAIN: "MAIN",
 };
@@ -31,11 +31,42 @@ var _MSG_TYPE = {
     EN_DEFINE_WORD_SAVE: 32,
     EN_DEFINE_WORD_REMOVE: 32
 };
-var _CLIENT_ID = 1, _CLIENT_NAME = _NAME_UI.BROWSER;
+var _CLIENT_ID = 1;
+var _CLIENT_NAME = _NAME_UI.MAIN;
 var _GET_ID = function () { var date = new Date(); var id = _CLIENT_ID + ("0" + (date.getMonth() + 1)).slice(-2) + ("0" + date.getDate()).slice(-2) + ("0" + date.getHours()).slice(-2) + ("0" + date.getMinutes()).slice(-2) + ("0" + date.getSeconds()).slice(-2) + (date.getMilliseconds() + Math.floor(Math.random() * 100)).toString().substring(0, 3); return parseInt(id); };
 var f_log = 1 ? console.log.bind(console, '[LOG] ') : function () { };
+////////////////////////////////////////////////////////////
+var APP_INFO;
+var _appInfo = API.f_app_getInfo();
+if (_appInfo && _appInfo.length > 0) APP_INFO = JSON.parse(_appInfo);
+f_log('APP_INFO = ', APP_INFO);
 ///////////////////////////////////////////////////////////////////////////
-
+var _WEBSOCKET, _WEBSOCKET_OPEN = false;
+if ("WebSocket" in window) {
+    _WEBSOCKET = new WebSocket("ws://127.0.0.1:56789");
+    _WEBSOCKET.onopen = function () { _WEBSOCKET_OPEN = true; _WEBSOCKET.send(_CLIENT_NAME); };
+    _WEBSOCKET.onmessage = function (evt) { f_socket_onMessage(evt.data); };
+    _WEBSOCKET.onclose = function () { _WEBSOCKET_OPEN = false; };
+    _WEBSOCKET.onerror = function () { _WEBSOCKET_OPEN = false; };
+}
+var f_socket_onMessage = function (data) {
+    f_log('WS.' + _CLIENT_NAME + ' <- ', data);
+    //{"Ok":true,"MsgId":"browser-4414-befb-cf1e00-5bbcf7aebe90","Data":"{¦success¦:true,¦id¦:¦event_52f087c-4250-a23f-364ec41a2de8¦,¦text¦:¦came ¦,¦type¦:¦verb¦,¦mean_vi¦:¦đã đến; đến; đi đến; đi lại; đi tới; lên đến; lên tới; xảy đến; xảy ra¦,¦x¦:175,¦y¦:262}","Message":"","MsgType":21}
+    //alert(data);
+    var m = JSON.parse(data);
+    if (m.Ok) {
+        var s = m.MsgResponse;
+        if (s && s.length > 0) s = s.split('¦').join('"');
+        switch (m.MsgType) {
+            case _MSG_TYPE.EN_TRANSLATE_GOOGLE_RESPONSE:
+                var otran = JSON.parse(s);
+                f_displayTranslate(otran);
+                break;
+        }
+    } else
+        alert('ERROR: ' + m.MsgResponse);
+};
+///////////////////////////////////////////////////////////////////////////
 var f_createMsg = function (sendTo, msgType, msgRequest, msgResponse) {
     var date = new Date();
     //alert(date.getFullYear().toString().substr(2) + ("0" + (date.getMonth() + 1)).slice(-2) + ("0" + date.getDate()).slice(-2) + ("0" + date.getHours()).slice(-2) + ("0" + date.getMinutes()).slice(-2) + ("0" + date.getSeconds()).slice(-2));
@@ -53,10 +84,9 @@ var f_sendMAIN = function (msg_type, msgRequest, msgResponse) { return f_sendMsg
 var f_sendALL = function (msg_type, msgRequest, msgResponse) { return f_sendMsg(_NAME_UI.ALL, msg_type, msgRequest, msgResponse); };
 var f_sendSETTING = function (msg_type, msgRequest, msgResponse) { return f_sendMsg(_NAME_UI.SETTING, msg_type, msgRequest, msgResponse); };
 var f_sendPLAYER = function (msg_type, msgRequest, msgResponse) { return f_sendMsg(_NAME_UI.PLAYER, msg_type, msgRequest, msgResponse); };
-
 ///////////////////////////////////////////////////////////////////////////
 var f_translate_Execute = function (oTran) { var type = _MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST; };
-var f_link_updateUrls = function (aLink) { f_log('jsonsUrls = ', aLink); API.f_link_updateUrls(JSON.stringify(aLink)); };
+function f_link_updateUrls(aLink) { f_log('jsonsUrls = ', aLink); API.f_link_updateUrls(JSON.stringify(aLink)); }
 ///////////////////////////////////////////////////////////////////////////
 
 var _SELECT_OBJ = { x: 0, y: 0, text: '', id: '' };
@@ -200,7 +230,7 @@ function f_domLoaded() {
         } else { el.parentElement.removeChild(el); continue; }
     }
 
-    if (aLink.length > 0) { 
+    if (aLink.length > 0) {
         setTimeout(function (_aLink) { f_link_updateUrls(_aLink); }, 100, aLink);
     }
 
@@ -259,7 +289,7 @@ function f_displayTranslate(oTran) {
         }
 
         s = s[0].toUpperCase() + s.substr(1);
-        var wiBrowser = APP_INFO.Width - APP_INFO.AreaLeft.Width;
+        var wiBrowser = APP_INFO.Width;
         var wiText = f_getTextWidth(s, '0.7em Arial') + 25;
 
         if (wiText > wiBrowser) {

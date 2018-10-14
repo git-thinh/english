@@ -10,9 +10,11 @@ using System.Collections.Generic;
 
 namespace test
 {
-    public interface IFormMain {
+    public interface IFormMain
+    {
         void f_browser_Go(string url);
         void f_browser_updateInfoPage(string url, string title);
+        oAppInfo f_app_getInfo();
     }
 
     public class fMain : Form, IFormMain
@@ -66,11 +68,27 @@ namespace test
         #endregion
 
         #region [ MAIN ]
-
-        public IWebBrowser f_getBrowser()
+        MenuItem[] f_build_contextMenu()
         {
-            return ui_browser;
+            return new MenuItem[] {
+                new MenuItem("Reload Page", f_browser_menuContextItemClick) { Tag = "reload" },
+                new MenuItem("Bookmark Page", f_browser_menuContextItemClick){ Tag = "bookmark" },
+                new MenuItem("-"){ Tag = "" },
+                new MenuItem("Links", f_browser_menuContextItemClick){ Tag = "link" },
+                new MenuItem("Search", f_browser_menuContextItemClick){ Tag = "search" },
+                new MenuItem("English", f_browser_menuContextItemClick){ Tag = "english" },
+                new MenuItem("Player", f_browser_menuContextItemClick){ Tag = "player" },
+                new MenuItem("-"){ Tag = "" },
+                new MenuItem("Setting", f_browser_menuContextItemClick){ Tag = "setting" },
+                new MenuItem("Show DevTool", f_browser_menuContextItemClick){ Tag = "devtool_open" },
+                new MenuItem("View Source", f_browser_menuContextItemClick){ Tag = "view_source" },
+                new MenuItem("Print", f_browser_menuContextItemClick){ Tag = "print" },
+                new MenuItem("-"){ Tag = "" },
+                new MenuItem("Exit Application", f_browser_menuContextItemClick){ Tag = "exit" },
+            };
         }
+
+        public oAppInfo f_app_getInfo() { return new oAppInfo() { Height = this.Height, Width = this.Width, Left = this.Left, Top = this.Top, Url = ui_browser.Address }; }
 
         public fMain(IApp app)
         {
@@ -87,21 +105,7 @@ namespace test
             ui_browser.PropertyChanged += (se, ev) => { switch (ev.PropertyName) { case "IsBrowserInitialized": f_browser_Go(URL); break; case "Title": f_browser_loadTitleReady(ui_browser.Title); break; case "IsLoading": f_browser_loadDomReady(); break; } };
             ui_browser.RequestHandler = new BrowserRequestHandler(app);
 
-            var listMenuContext = new List<MenuItem>() {
-                new MenuItem("Reload Page", f_browser_menuContextItemClick) { Tag = "reload" },
-                new MenuItem("Bookmark Page", f_browser_menuContextItemClick){ Tag = "bookmark" },
-                new MenuItem("-"){ Tag = "" },
-                new MenuItem("Links", f_browser_menuContextItemClick){ Tag = "link" },
-                new MenuItem("Search", f_browser_menuContextItemClick){ Tag = "search" },
-                new MenuItem("-"){ Tag = "" },
-                new MenuItem("Setting", f_browser_menuContextItemClick){ Tag = "setting" },
-                new MenuItem("Show DevTool", f_browser_menuContextItemClick){ Tag = "devtool_open" },
-                new MenuItem("View Source", f_browser_menuContextItemClick){ Tag = "view_source" },
-                new MenuItem("Print", f_browser_menuContextItemClick){ Tag = "print" },
-                new MenuItem("-"){ Tag = "" },
-                new MenuItem("Exit Application", f_browser_menuContextItemClick){ Tag = "exit" },
-            };
-            ContextMenu cm = new ContextMenu(listMenuContext.ToArray());
+            ContextMenu cm = new ContextMenu(f_build_contextMenu());
             ui_browser.ContextMenu = cm;
             ui_browser.MenuHandler = new BrowserMenuHandel();
 
@@ -111,10 +115,10 @@ namespace test
             this.Shown += (se, ev) =>
             {
                 //this.WindowState = FormWindowState.Maximized;
-                this.Width = 800;
+                this.Width = 600;
                 this.Height = Screen.PrimaryScreen.WorkingArea.Height - 200;
                 this.Top = 100;
-                this.Left = (Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2;
+                this.Left = 0;// (Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2;
 
                 f_main_Init();
             };
@@ -143,14 +147,22 @@ namespace test
                 Text = " < ",
                 Width = 24,
                 ForeColor = Color.Gray,
-                Dock = DockStyle.Right
+                Dock = DockStyle.Right,
+                TextAlign = ContentAlignment.BottomCenter,
             };
             ui_nextLabel = new Label()
             {
                 Text = " > ",
                 Width = 24,
-                Dock = DockStyle.Right
+                ForeColor = Color.Gray,
+                Dock = DockStyle.Right,
+                TextAlign = ContentAlignment.BottomCenter,
             };
+            ui_backLabel.MouseHover += (se, ev) => { ui_backLabel.BackColor = Color.Orange; this.Cursor = Cursors.Hand; };
+            ui_backLabel.MouseLeave += (se, ev) => { ui_backLabel.BackColor = Color.White; this.Cursor = Cursors.Default; };
+            ui_nextLabel.MouseHover += (se, ev) => { ui_nextLabel.BackColor = Color.Orange; this.Cursor = Cursors.Hand; };
+            ui_nextLabel.MouseLeave += (se, ev) => { ui_nextLabel.BackColor = Color.White; this.Cursor = Cursors.Default; };
+
             var lblMin = new Label()
             {
                 Text = "[ - ]",
@@ -317,20 +329,21 @@ namespace test
                     ui_browser.Reload();
                     break;
                 case "bookmark":
-                    break;
                 case "link":
-                    break;
                 case "search":
+                case "english":
+                case "setting":
+                case "player":
+                    _app.f_view_Open(key);
                     break;
                 case "devtool_open":
                     ui_browser.ShowDevTools();
-                    break;
-                case "setting":
                     break;
                 case "print":
                     ui_browser.Print();
                     break;
                 case "view_source":
+                    #region
                     string source = _app.f_link_getHtmlCache(ui_browser.Address);
                     var f = new Form()
                     {
@@ -353,6 +366,7 @@ namespace test
                         Font = new Font("Lucida Console", 13, FontStyle.Regular),
                     });
                     f.Show();
+                    #endregion
                     break;
                 case "exit":
                     this.Close();
@@ -365,7 +379,8 @@ namespace test
             ui_browser.Load(url);
         }
 
-        public void f_browser_updateInfoPage(string url, string title) {
+        public void f_browser_updateInfoPage(string url, string title)
+        {
             ui_urlLabel.Invoke(t => t.Text = title);
             ui_urlTextBox.Invoke(t => t.Text = url);
         }
