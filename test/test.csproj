@@ -211,6 +211,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="UI.cs" />
     <Compile Include="_CONST.cs" />
   </ItemGroup>
   <ItemGroup>

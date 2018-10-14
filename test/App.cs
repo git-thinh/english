@@ -24,7 +24,7 @@ namespace test
 
     class App : IApp
     {
-        private IWebBrowser _browser = null;
+        private IFormMain _fomMain = null;
 
         #region [ LINK - HTML]
 
@@ -74,9 +74,9 @@ namespace test
 
         public bool f_main_openUrl(string url, string title)
         {
-            if (_browser != null)
+            if (_fomMain != null)
             {
-                _browser.Load(url);
+                _fomMain.f_browser_Go(url);
                 return true;
             }
             return false;
@@ -98,14 +98,13 @@ namespace test
 
         public string f_link_getHtmlOnline(string url)
         {
-            
-
             /* https://stackoverflow.com/questions/4291912/process-start-how-to-get-the-output */
             Process process = new Process();
             process.StartInfo.FileName = "curl.exe";
             //process.StartInfo.Arguments = url;
             //process.StartInfo.Arguments = "--insecure " + url;
-            process.StartInfo.Arguments = "-v " + url; /* -v url: handle error 302 found redirect localtion*/
+            //process.StartInfo.Arguments = "--max-time 5 -v " + url; /* -v url: handle error 302 found redirect localtion*/
+            process.StartInfo.Arguments = "-m 5 -v " + url; /* -v url: handle error 302 found redirect localtion*/
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.RedirectStandardOutput = true;
             process.StartInfo.RedirectStandardError = true;
@@ -116,19 +115,28 @@ namespace test
             if (string.IsNullOrEmpty(html))
             {                
                 string err = process.StandardError.ReadToEnd(), urlDirect = string.Empty;
-                //Console.WriteLine("??????????????????????????????????????????? ERROR: " + url);
-
-                int pos = err.IndexOf("< Location: http");
-                if (pos != 0)
+                
+                int pos = err.IndexOf("< Location: ");
+                if (pos != -1)
                 {
                     urlDirect = err.Substring(pos + 12, err.Length - (pos + 12)).Split(new char[] { '\r', '\n' })[0].Trim();
+                    if (urlDirect[0] == '/')
+                    {
+                        Uri uri = new Uri(url);
+                        urlDirect = uri.Scheme + "://" + uri.Host + urlDirect;
+                    }
+
                     Console.WriteLine("-> Redirect: " + urlDirect);
 
+
                     html = f_link_getHtmlCache(urlDirect);
-                    if (string.IsNullOrEmpty(html)) 
+                    if (string.IsNullOrEmpty(html))
                         return f_link_getHtmlOnline(urlDirect);
                     else
                         return html;
+                }
+                else {
+                    Console.WriteLine("??????????????????????????????????????????? ERROR: " + url);
                 }
 
                 Console.WriteLine("-> Fail: " + url);
@@ -138,12 +146,15 @@ namespace test
 
             Console.WriteLine("-> Ok: " + url);
 
+            string title = Html.f_html_getTitle(html);
             html = _htmlFormat(url, html);
             f_cacheUrl(url);
             CACHE.TryAdd(url, html);
 
             //string err = process.StandardError.ReadToEnd();
             process.WaitForExit();
+
+            if (_fomMain != null) _fomMain.f_browser_updateInfoPage(url, title);
 
             return html;
 
@@ -254,7 +265,7 @@ namespace test
             CEF.RegisterJsObject("API", new API(this));
             Application.ApplicationExit += (se, ev) => f_app_Exit();
             var main = new fMain(this);
-            _browser = main.f_getBrowser();
+            _fomMain = main;
             Application.Run(main);
             f_app_Exit();
         }

@@ -10,7 +10,12 @@ using System.Collections.Generic;
 
 namespace test
 {
-    public class fMain : Form
+    public interface IFormMain {
+        void f_browser_Go(string url);
+        void f_browser_updateInfoPage(string url, string title);
+    }
+
+    public class fMain : Form, IFormMain
     {
         #region [ VAR ]
         readonly IApp _app;
@@ -277,11 +282,11 @@ namespace test
             ui_footer.Controls.AddRange(new Control[] {
                 ui_urlTextBox,
                 ui_statusLabel,
-                devTool,
-                new Label() { Text = "|", Width = 3, Dock = DockStyle.Left, ForeColor = Color.LightGray, TextAlign = ContentAlignment.BottomCenter },
-                lblSearch,
-                new Label() { Text = "|", Width = 3, Dock = DockStyle.Left, ForeColor = Color.LightGray, TextAlign = ContentAlignment.BottomCenter },
-                menu,
+                //devTool,
+                //new Label() { Text = "|", Width = 3, Dock = DockStyle.Left, ForeColor = Color.LightGray, TextAlign = ContentAlignment.BottomCenter },
+                //lblSearch,
+                //new Label() { Text = "|", Width = 3, Dock = DockStyle.Left, ForeColor = Color.LightGray, TextAlign = ContentAlignment.BottomCenter },
+                //menu,
                 ui_resize });
 
             ui_resize.MouseDown += (se, ev) => { f_hook_mouse_Open(); m_resizing = true; };
@@ -355,9 +360,14 @@ namespace test
             }
         }
 
-        void f_browser_Go(string url)
+        public void f_browser_Go(string url)
         {
             ui_browser.Load(url);
+        }
+
+        public void f_browser_updateInfoPage(string url, string title) {
+            ui_urlLabel.Invoke(t => t.Text = title);
+            ui_urlTextBox.Invoke(t => t.Text = url);
         }
 
         void f_browser_loadTitleReady(string title)

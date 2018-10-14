@@ -11,7 +11,12 @@ namespace System
 {
     static class Html
     {
-       public static void f_html_getSourceByUrl(string url, Action<string, string> f_callback_fail, Action<string, oPage> f_callback_success)
+        public static string f_html_getTitle(string html) {
+            string title = Regex.Match(html, @"\<title\b[^>]*\>\s*(?<Title>[\s\S]*?)\</title\>", RegexOptions.IgnoreCase).Groups["Title"].Value;
+            return title;
+        }
+
+        public static void f_html_getSourceByUrl(string url, Action<string, string> f_callback_fail, Action<string, oPage> f_callback_success)
         {
             try
             {
@@ -45,7 +50,7 @@ namespace System
                                 data = HttpUtility.HtmlDecode(data);
 
                                 // Fetch all url same domain in this page ...
-                                string[] urls = f_html_actractUrl(_url, data);                               
+                                string[] urls = f_html_actractUrl(_url, data);
                                 data = f_html_Format(_url, data);
 
                                 int posH1 = data.ToLower().IndexOf("<h1");
@@ -55,7 +60,7 @@ namespace System
 
                                 //string domain = f_html_getDomainByUrl(para.Item2.Url);
                                 //string file = f_html_getPathFileByUrl(para.Item2.Url);
-                                
+
                                 f_callback_success(_url, new oPage() { Url = _url, Source = data, Urls = urls, Title = title });
 
                                 //if (para.Item2.isWriteFileCache)
