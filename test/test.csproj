@@ -230,6 +230,9 @@
     <Content Include="..\build\view\js\article.js">
       <Link>VIEW\article.js</Link>
     </Content>
+    <Content Include="..\build\view\view-end.html">
+      <Link>VIEW\view-end.html</Link>
+    </Content>
     <Content Include="LIB\Gma.System.MouseKeyHook\HotKeys\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>

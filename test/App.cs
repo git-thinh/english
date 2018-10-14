@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Web;
 using System.Windows.Forms;
 
@@ -14,8 +15,8 @@ namespace test
     public interface IApp
     {
         void f_link_AddUrls(string[] urls);
-        string f_link_getHtml(string url);
-        string f_link_fetchHtmlOnline(string url);
+        string f_link_getHtmlCache(string url);
+        string f_link_getHtmlOnline(string url);
         void f_link_updateUrls(oLink[] links);
 
         bool f_main_openUrl(string url, string title);
@@ -85,7 +86,7 @@ namespace test
         {
         }
 
-        public string f_link_getHtml(string url)
+        public string f_link_getHtmlCache(string url)
         {
             if (CACHE.ContainsKey(url))
             {
@@ -95,14 +96,16 @@ namespace test
             return null;
         }
 
-        public string f_link_fetchHtmlOnline(string url)
+        public string f_link_getHtmlOnline(string url)
         {
-            Console.WriteLine("OK: " + url);
+            
 
             /* https://stackoverflow.com/questions/4291912/process-start-how-to-get-the-output */
             Process process = new Process();
             process.StartInfo.FileName = "curl.exe";
-            process.StartInfo.Arguments = "--insecure " + url;
+            //process.StartInfo.Arguments = url;
+            //process.StartInfo.Arguments = "--insecure " + url;
+            process.StartInfo.Arguments = "-v " + url; /* -v url: handle error 302 found redirect localtion*/
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.RedirectStandardOutput = true;
             process.StartInfo.RedirectStandardError = true;
@@ -110,20 +113,36 @@ namespace test
             process.Start();
             //* Read the output (or the error)
             string html = process.StandardOutput.ReadToEnd();
-            html = _htmlFormat(url, html);
+            if (string.IsNullOrEmpty(html))
+            {                
+                string err = process.StandardError.ReadToEnd(), urlDirect = string.Empty;
+                //Console.WriteLine("??????????????????????????????????????????? ERROR: " + url);
 
+                int pos = err.IndexOf("< Location: http");
+                if (pos != 0)
+                {
+                    urlDirect = err.Substring(pos + 12, err.Length - (pos + 12)).Split(new char[] { '\r', '\n' })[0].Trim();
+                    Console.WriteLine("-> Redirect: " + urlDirect);
+
+                    html = f_link_getHtmlCache(urlDirect);
+                    if (string.IsNullOrEmpty(html)) 
+                        return f_link_getHtmlOnline(urlDirect);
+                    else
+                        return html;
+                }
+
+                Console.WriteLine("-> Fail: " + url);
+
+                return null;
+            }
+
+            Console.WriteLine("-> Ok: " + url);
+
+            html = _htmlFormat(url, html);
             f_cacheUrl(url);
             CACHE.TryAdd(url, html);
 
-            if (html.Contains("Error -101 when loading url"))
-            {
-                Console.WriteLine("??????????????????????????????????????????? ERROR: " + url);
-                return f_link_fetchHtmlOnline(url);
-            }
-
-            //Console.WriteLine(html);
             //string err = process.StandardError.ReadToEnd();
-            //Console.WriteLine(err);
             process.WaitForExit();
 
             return html;

@@ -49,7 +49,8 @@ namespace test
         }
 
         public bool OnBeforeMenu(IWebBrowser browser)
-        {
+        {            
+            
             return true;
         }
     }
@@ -59,12 +60,17 @@ namespace test
         static string view = string.Empty;
         static string view_end = string.Empty;
 
+        static BrowserRequestHandler() {
+            if (File.Exists("view/view.html")) view = File.ReadAllText("view/view.html");
+            if (File.Exists("view/view-end.html")) view_end = File.ReadAllText("view/view-end.html");
+        }
+
+        public static string buildPageHtml(string body) => view + "</head><body>" + body + view_end;
+
         readonly IApp _app;
         public BrowserRequestHandler(IApp app) : base()
         {
             this._app = app;
-            if (File.Exists("view/view.html")) view = File.ReadAllText("view/view.html");
-            if (File.Exists("view/view-end.html")) view_end = File.ReadAllText("view/view-end.html");
         }
 
         public bool GetAuthCredentials(IWebBrowser browser, bool isProxy, string host, int port, string realm, string scheme, ref string username, ref string password) => false;
@@ -88,7 +94,7 @@ namespace test
 
             Uri uri = new Uri(url);
             bool isView = uri.Segments.Length > 1 && uri.Segments[1] == "view/";
-            Console.WriteLine("--> " + url);
+            Console.WriteLine("> " + url);
 
             if (isView)
             {
@@ -154,11 +160,11 @@ namespace test
                 if (url == _url)
                 {
                     //Console.WriteLine(">> " + url);
-
-                    string html = _app.f_link_getHtml(url);
+                    
+                    string html = _app.f_link_getHtmlCache(url);
                     if (!string.IsNullOrEmpty(html))
                     {
-                        html = view + "</head><body>" + html + view_end;
+                        html = buildPageHtml(html);
                         Stream resourceStream = new MemoryStream(Encoding.UTF8.GetBytes(html));
                         requestResponse.RespondWith(resourceStream, "text/html");
                         return false;
@@ -169,8 +175,14 @@ namespace test
                         //Stream resourceStream = new MemoryStream(Encoding.UTF8.GetBytes(html));
                         //requestResponse.RespondWith(resourceStream, "text/html");
 
-                        html = _app.f_link_fetchHtmlOnline(url);
-                        html = view + "</head><body>" + html + view_end;
+                        html = _app.f_link_getHtmlOnline(url);
+                        if (string.IsNullOrEmpty(html)) {
+                            html = "<h1>Cannot find: " + url + "</h1>";
+                        }
+                        else
+                        {
+                            html = buildPageHtml(html);
+                        }
 
                         Stream resourceStream = new MemoryStream(Encoding.UTF8.GetBytes(html));
                         requestResponse.RespondWith(resourceStream, "text/html");

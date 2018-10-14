@@ -1,5 +1,7 @@
-
-var f_log = 1 ? console.log.bind(console, '[LOG] ') : function () { };
+var _CLIENT_ID = 1,
+_GET_ID = function () { var date = new Date(); var id = _CLIENT_ID + ("0" + (date.getMonth() + 1)).slice(-2) + ("0" + date.getDate()).slice(-2) + ("0" + date.getHours()).slice(-2) + ("0" + date.getMinutes()).slice(-2) + ("0" + date.getSeconds()).slice(-2) + (date.getMilliseconds() + Math.floor(Math.random() * 100)).toString().substring(0, 3); return parseInt(id); },
+f_log = 1 ? console.log.bind(console, '[LOG] ') : function () { };
+///////////////////////////////////////////////////////////////////////////
 
 var _SELECT_OBJ = { x: 0, y: 0, text: '', id: '' };
 
