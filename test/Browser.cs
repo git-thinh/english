@@ -15,25 +15,30 @@ namespace test
             this._app = app;
         }
 
-        public bool f_main_openUrl(string url, string title)
+        public bool f_main_openUrl(String url, String title)
         {
             return _app.f_main_openUrl(url, title);
         }
 
-        public void f_link_updateUrls(string jsonsUrls)
+        public void f_link_updateUrls(String jsonsUrls)
         {
             oLink[] links = JsonConvert.DeserializeObject<oLink[]>(jsonsUrls);
             //App.f_api_sendMessage(MSG_TYPE.URL_CACHE_FOR_SEARCH, jsonLinks);
             _app.f_link_updateUrls(links);
         }
 
-        public string ReadFile(string file)
+        public void f_app_callFromJs(String data)
+        {
+            _app.f_app_callFromJs(data);
+        }
+
+        public String f_file_Read(String file)
         {
             if (File.Exists(file)) return File.ReadAllText(file);
             return JsonConvert.SerializeObject(new { Ok = false, Message = "Cannot find the file: " + file });
         }
 
-        public void WriteFile(string file, string data)
+        public void f_file_Write(String file, String data)
         {
             if (File.Exists(file))
                 File.WriteAllText(file, data);
@@ -42,17 +47,7 @@ namespace test
 
     public class BrowserMenuHandel : IMenuHandler
     {
-        readonly IApp _app;
-        public BrowserMenuHandel(IApp app) : base()
-        {
-            this._app = app;
-        }
-
-        public bool OnBeforeMenu(IWebBrowser browser)
-        {            
-            
-            return true;
-        }
+        public bool OnBeforeMenu(IWebBrowser browser) => true;
     }
 
     public class BrowserRequestHandler : IRequestHandler

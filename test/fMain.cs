@@ -103,7 +103,7 @@ namespace test
             };
             ContextMenu cm = new ContextMenu(listMenuContext.ToArray());
             ui_browser.ContextMenu = cm;
-            ui_browser.MenuHandler = new BrowserMenuHandel(app);
+            ui_browser.MenuHandler = new BrowserMenuHandel();
 
 
 

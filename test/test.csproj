@@ -144,6 +144,8 @@
     <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\MouseStruct.cs" />
     <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\Point.cs" />
     <Compile Include="LIB\Gma.System.MouseKeyHook\WinApi\ThreadNativeMethods.cs" />
+    <Compile Include="LIB\Google\GooTranslateService_v1.cs" />
+    <Compile Include="LIB\Google\GooTranslateService_v2.cs" />
     <Compile Include="LIB\Html.cs" />
     <Compile Include="LIB\HtmlAgilityPack\Core\crc32.cs" />
     <Compile Include="LIB\HtmlAgilityPack\Core\EncodingFoundException.cs" />

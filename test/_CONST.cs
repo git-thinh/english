@@ -24,7 +24,7 @@ namespace System
         public const string BROWSER = "BROWSER";
         public const string SETTING = "SETTING";
         public const string PLAYER = "PLAYER";
-        public const string HTTPS = "HTTPS";
+        public const string MAIN = "MAIN";
     }
 
     public enum MSG_TYPE

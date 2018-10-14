@@ -4,4 +4,3 @@ G:\english\test\obj\x86\Debug\test.Properties.Resources.resources
 G:\english\test\obj\x86\Debug\test.csproj.GenerateResource.Cache
 G:\english\test\obj\x86\Debug\test.exe
 G:\english\test\obj\x86\Debug\test.pdb
-G:\english\test\obj\x86\Debug\test.csprojResolveAssemblyReference.cache
