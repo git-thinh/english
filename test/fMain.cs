@@ -10,15 +10,11 @@ using System.Collections.Generic;
 
 namespace test
 {
-    public interface IFormMain
-    {
-        void f_browser_Go(string url);
-        void f_browser_updateInfoPage(string url, string title);
-        oAppInfo f_app_getInfo();
-    }
 
-    public class fMain : Form, IFormMain
+    public class fMain : Form, IForm
     {
+        readonly string _form_name = _NAME_UI.MAIN;
+
         #region [ VAR ]
         readonly IApp _app;
 
@@ -68,6 +64,9 @@ namespace test
         #endregion
 
         #region [ MAIN ]
+
+        public string f_get_formKey() { return _form_name; }
+
         MenuItem[] f_build_contextMenu()
         {
             return new MenuItem[] {
@@ -103,7 +102,7 @@ namespace test
             ui_browser = new WebView() { Dock = DockStyle.Fill };
             this.Controls.Add(ui_browser);
             ui_browser.PropertyChanged += (se, ev) => { switch (ev.PropertyName) { case "IsBrowserInitialized": f_browser_Go(URL); break; case "Title": f_browser_loadTitleReady(ui_browser.Title); break; case "IsLoading": f_browser_loadDomReady(); break; } };
-            ui_browser.RequestHandler = new BrowserRequestHandler(app);
+            ui_browser.RequestHandler = new BrowserRequestHandler(app, this);
 
             ContextMenu cm = new ContextMenu(f_build_contextMenu());
             ui_browser.ContextMenu = cm;
@@ -318,6 +317,12 @@ namespace test
 
         #region [ BROWSER ]
 
+        public void f_sendToBrowser(string data) {
+            string js = "f_receiveMessageFromAPI(" + data + ");";
+            ui_browser.ExecuteScript(js);        
+            //var val = ui_browser.EvaluateScript(js);
+        }
+
         void f_browser_menuContextItemClick(object sender, EventArgs e)
         {
             MenuItem menu = (MenuItem)sender;
@@ -334,7 +339,7 @@ namespace test
                 case "english":
                 case "setting":
                 case "player":
-                    _app.f_view_Open(key);
+                    _app.f_local_openFormKey(key);
                     break;
                 case "devtool_open":
                     ui_browser.ShowDevTools();
@@ -356,7 +361,7 @@ namespace test
                     };
                     f.Controls.Add(new TextBox()
                     {
-                        Text = BrowserRequestHandler.buildPageHtml(source),
+                        Text = BrowserRequestHandler.buildPageHtml(source, this),
                         Multiline = true,
                         BorderStyle = BorderStyle.None,
                         Dock = DockStyle.Fill,
@@ -376,6 +381,7 @@ namespace test
 
         public void f_browser_Go(string url)
         {
+            if (ui_browser.IsLoading) ui_browser.Stop();
             ui_browser.Load(url);
         }
 

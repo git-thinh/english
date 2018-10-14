@@ -58,19 +58,27 @@ namespace test
 
     public class BrowserRequestHandler : IRequestHandler
     {
+        readonly IForm _form;
         static string view = string.Empty;
         static string view_end = string.Empty;
 
-        static BrowserRequestHandler() {
+        static BrowserRequestHandler()
+        {
             if (File.Exists("view/view.html")) view = File.ReadAllText("view/view.html");
             if (File.Exists("view/view-end.html")) view_end = File.ReadAllText("view/view-end.html");
         }
 
-        public static string buildPageHtml(string body) => view + "</head><body>" + body + view_end;
+        public static string buildPageHtml(string body, IForm form)
+        {
+            string formKey = form.f_get_formKey();
+            return view + @"<script type=""text/javascript"" src=""/view/js/"+ formKey + @".js""></script><link type=""text/css"" href=""/view/css/" + formKey + @".css"" rel=""stylesheet"" />" +
+                  "</head><body>" + body + view_end;
+        }
 
         readonly IApp _app;
-        public BrowserRequestHandler(IApp app) : base()
+        public BrowserRequestHandler(IApp app, IForm form) : base()
         {
+            this._form = form;
             this._app = app;
         }
 
@@ -99,7 +107,7 @@ namespace test
 
             if (isView)
             {
-                #region
+                #region [ LOCAL IN VIEW]
 
                 string path = uri.AbsolutePath.Replace('/', '\\').Substring(1).ToLower(), ext = path.Substring(path.Length - 3, 3);
                 //Console.WriteLine("#> " + path);
@@ -122,7 +130,7 @@ namespace test
                             return false;
                         }
                         break;
-                        #endregion
+                    #endregion
                     case ".js":
                         #region
                         if (File.Exists(path))
@@ -163,15 +171,16 @@ namespace test
             }
             else
             {
-                #region
+                #region [ HTML FROM CURL ]
+
                 if (url == _url)
                 {
                     //Console.WriteLine(">> " + url);
-                    
+
                     string html = _app.f_link_getHtmlCache(url);
                     if (!string.IsNullOrEmpty(html))
                     {
-                        html = buildPageHtml(html);
+                        html = buildPageHtml(html, _form);
                         Stream resourceStream = new MemoryStream(Encoding.UTF8.GetBytes(html));
                         requestResponse.RespondWith(resourceStream, "text/html");
                         return false;
@@ -183,12 +192,13 @@ namespace test
                         //requestResponse.RespondWith(resourceStream, "text/html");
 
                         html = _app.f_link_getHtmlOnline(url);
-                        if (string.IsNullOrEmpty(html)) {
+                        if (string.IsNullOrEmpty(html))
+                        {
                             html = "<h1>Cannot find: " + url + "</h1>";
                         }
                         else
                         {
-                            html = buildPageHtml(html);
+                            html = buildPageHtml(html, _form);
                         }
 
                         Stream resourceStream = new MemoryStream(Encoding.UTF8.GetBytes(html));

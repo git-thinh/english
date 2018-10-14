@@ -14,6 +14,16 @@ using System.Windows.Forms;
 
 namespace test
 {
+    public interface IForm
+    {
+        void f_browser_Go(string url);
+        void f_browser_updateInfoPage(string url, string title);
+        oAppInfo f_app_getInfo();
+        string f_get_formKey();
+
+        void f_sendToBrowser(string data);
+    }
+
     public interface IApp
     {
         void f_link_AddUrls(string[] urls);
@@ -23,18 +33,19 @@ namespace test
 
         bool f_main_openUrl(string url, string title);
         void f_app_callFromJs(string data);
-        void f_view_Open(string view);
+        void f_local_openFormKey(string formKey);
 
         oAppInfo f_app_getInfo();
     }
 
     class App : IApp
     {
-        IFormMain _fomMain = null;
+        IForm _fomMain = null;
+        readonly List<IForm> CLIENTS;
 
-        public void f_view_Open(string view)
+        public void f_local_openFormKey(string view)
         {
-            var v = new fView(this, view);
+            var v = new fLocal(this, view);
             v.Shown += (vse, vev) => {
                 v.Left = _fomMain.f_app_getInfo().Width + _fomMain.f_app_getInfo().Left + 5;
                 v.Top = _fomMain.f_app_getInfo().Top;
@@ -62,14 +73,7 @@ namespace test
 
             ///////////////////////////////////////////////////////////////////////
 
-            CLIENTS = new List<IWebSocketConnection>();
-            NOTI = new WebSocketServer("ws://0.0.0.0:56789");
-            NOTI.Start(socket =>
-            {
-                socket.OnOpen = () => CLIENTS.Add(socket);
-                socket.OnClose = () => CLIENTS.Remove(socket);
-                socket.OnMessage += (msg) => f_ws_onMessage(socket, msg);
-            });            
+            CLIENTS = new List<IForm>();         
         }
 
         #region [ LINK - HTML ]
@@ -161,7 +165,9 @@ namespace test
 
                     html = f_link_getHtmlCache(urlDirect);
                     if (string.IsNullOrEmpty(html))
-                        return f_link_getHtmlOnline(urlDirect);
+                    {
+                        return "<script> location.href='" + urlDirect + "'; </script>";
+                    }
                     else
                         return html;
                 }
@@ -283,7 +289,7 @@ namespace test
 
         #endregion
 
-        #region [ RECEIVE MESSAGE FROM JS ]
+        #region [ MESSAGE FROM JS ]
 
         void f_process_messageTo_MAIN(oMsgSocket msg)
         {
@@ -312,7 +318,7 @@ namespace test
                             msg.MsgResponse = JsonConvert.SerializeObject(otran);
                             msg.MsgType = MSG_TYPE.EN_TRANSLATE_GOOGLE_RESPONSE;
                             string _msgResponse = JsonConvert.SerializeObject(msg);
-                            f_ws_broadCast(_msgResponse);
+                            f_sendToBrowser(_msgResponse);
                         }
                         else
                         {
@@ -333,7 +339,7 @@ namespace test
                                     msg.MsgType = MSG_TYPE.EN_TRANSLATE_GOOGLE_RESPONSE;
                                     msg.MsgResponse = JsonConvert.SerializeObject(otran);
                                     string _msgWs = JsonConvert.SerializeObject(msg);
-                                    f_ws_broadCast(_msgWs);
+                                    f_sendToBrowser(_msgWs);
                                 }
                                 else
                                 {
@@ -341,7 +347,7 @@ namespace test
                                     msg.MsgType = MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST;
                                     msg.MsgResponse = _otran.mean_vi;
                                     string _msgWs = JsonConvert.SerializeObject(msg);
-                                    f_ws_broadCast(_msgWs);
+                                    f_sendToBrowser(_msgWs);
                                 }
                             });
                         }
@@ -369,21 +375,21 @@ namespace test
                     case _NAME_UI.MAIN:
                         f_process_messageTo_MAIN(m);
                         break;
-                    case _NAME_UI.ALL:
-                        lock (CLIENTS) { CLIENTS.ForEach((ws) => { if (ws.IsAvailable) ws.Send(message); }); }
-                        break;
-                    case _NAME_UI.BOX_ENGLISH:
-                        if (CLIENT_BOX_ENGLISH.IsAvailable) CLIENT_BOX_ENGLISH.Send(message);
-                        break;
-                    case _NAME_UI.SEARCH:
-                        if (CLIENT_SEARCH.IsAvailable) CLIENT_SEARCH.Send(message);
-                        break;
-                    case _NAME_UI.SETTING:
-                        if (CLIENT_SETTING.IsAvailable) CLIENT_SETTING.Send(message);
-                        break;
-                    case _NAME_UI.PLAYER:
-                        if (CLIENT_PLAYER.IsAvailable) CLIENT_PLAYER.Send(message);
-                        break;
+                    //case _NAME_UI.ALL:
+                    //    lock (CLIENTS) { CLIENTS.ForEach((ws) => { if (ws.IsAvailable) ws.Send(message); }); }
+                    //    break;
+                    //case _NAME_UI.BOX_ENGLISH:
+                    //    if (CLIENT_BOX_ENGLISH.IsAvailable) CLIENT_BOX_ENGLISH.Send(message);
+                    //    break;
+                    //case _NAME_UI.SEARCH:
+                    //    if (CLIENT_SEARCH.IsAvailable) CLIENT_SEARCH.Send(message);
+                    //    break;
+                    //case _NAME_UI.SETTING:
+                    //    if (CLIENT_SETTING.IsAvailable) CLIENT_SETTING.Send(message);
+                    //    break;
+                    //case _NAME_UI.PLAYER:
+                    //    if (CLIENT_PLAYER.IsAvailable) CLIENT_PLAYER.Send(message);
+                    //    break;
                 }
             }
             catch
@@ -393,53 +399,20 @@ namespace test
         }
 
         #endregion
-
-        #region [ WEBSOCKET ]
-
-        readonly WebSocketServer NOTI;
-        readonly List<IWebSocketConnection> CLIENTS;
-
-        private IWebSocketConnection CLIENT_MAIN = null;
-        private IWebSocketConnection CLIENT_SEARCH = null;
-        private IWebSocketConnection CLIENT_SETTING = null;
-        private IWebSocketConnection CLIENT_PLAYER = null;
-        private IWebSocketConnection CLIENT_BOX_ENGLISH = null;
-
-        void f_ws_onMessage(IWebSocketConnection socket, string message)
+        
+        void f_sendToBrowser(string msg)
         {
-            switch (message)
-            { 
-                case _NAME_UI.MAIN:
-                    CLIENT_MAIN = socket;
-                    break;
-                case _NAME_UI.SETTING:
-                    CLIENT_SETTING = socket;
-                    break;
-                case _NAME_UI.SEARCH:
-                    CLIENT_SEARCH = socket;
-                    break;
-                case _NAME_UI.PLAYER:
-                    CLIENT_PLAYER = socket;
-                    break;
-                case _NAME_UI.BOX_ENGLISH:
-                    CLIENT_BOX_ENGLISH = socket;
-                    break;  
-            }
-        }
+            _fomMain.f_sendToBrowser(msg);
 
-        void f_ws_broadCast(string msg)
-        {
             lock (CLIENTS)
             {
-                CLIENTS.ForEach(socket =>
+                CLIENTS.ForEach(fom =>
                 {
-                    if (socket.IsAvailable) socket.Send(msg);
+                    fom.f_sendToBrowser(msg);
                 });
             }
         }
-
-        #endregion
-
+        
         #region [ APP ]
 
         public oAppInfo f_app_getInfo() { return _fomMain.f_app_getInfo(); }
@@ -456,7 +429,7 @@ namespace test
             Application.ApplicationExit += (se, ev) => f_app_Exit();
             var main = new fMain(this);
             main.Shown += (se, ev) => {
-                f_view_Open("links");
+                //f_view_Open("links");
             };
             _fomMain = main;
             Application.Run(main);
@@ -465,7 +438,6 @@ namespace test
 
         void f_app_Exit()
         {
-            NOTI.Dispose();
             CLIENTS.Clear();
 
             CACHE.Clear();

@@ -89,7 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
-    <Compile Include="fView.cs">
+    <Compile Include="fLocal.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="fMain.cs">
@@ -248,24 +248,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="icon.ico" />
-    <None Include="..\build\view\article.html">
-      <Link>VIEW\article.html</Link>
-    </None>
-    <None Include="..\build\view\setting.html">
-      <Link>VIEW\setting.html</Link>
-    </None>
-    <None Include="..\build\view\view.html">
-      <Link>VIEW\view.html</Link>
-    </None>
-    <Content Include="..\build\view\css\article.css">
-      <Link>VIEW\article.css</Link>
-    </Content>
-    <Content Include="..\build\view\js\article.js">
-      <Link>VIEW\article.js</Link>
-    </Content>
-    <Content Include="..\build\view\view-end.html">
-      <Link>VIEW\view-end.html</Link>
-    </Content>
     <Content Include="LIB\Fleck\ReadMe.txt" />
     <Content Include="LIB\Gma.System.MouseKeyHook\HotKeys\ReadMe.txt" />
   </ItemGroup>

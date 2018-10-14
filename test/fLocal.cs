@@ -8,14 +8,16 @@ using test.Properties;
 
 namespace test
 {
-    public class fView: Form
+    public class fLocal: Form, IForm
     {
+        readonly string _form_key;
         readonly WebView ui_browser;
         readonly IApp _app;
         readonly string URL = "about:blank";
 
-        public fView(IApp app, string key) {
-            URL = "http://local/view/" + key + ".html";
+        public fLocal(IApp app, string form_key) {
+            _form_key = form_key;
+            URL = "http://local/view/" + form_key + ".html";
 
             this._app = app;
             this.FormBorderStyle = FormBorderStyle.None;
@@ -25,7 +27,7 @@ namespace test
             ui_browser = new WebView() { Dock = DockStyle.Fill };
             this.Controls.Add(ui_browser);
             ui_browser.PropertyChanged += (se, ev) => { switch (ev.PropertyName) { case "IsBrowserInitialized": f_browser_Go(URL); break; case "Title": f_browser_loadTitleReady(ui_browser.Title); break; case "IsLoading": f_browser_loadDomReady(); break; } };
-            ui_browser.RequestHandler = new BrowserRequestHandler(app);
+            ui_browser.RequestHandler = new BrowserRequestHandler(app, this);
 
             ContextMenu cm = new ContextMenu(f_build_contextMenu());
             ui_browser.ContextMenu = cm;
@@ -74,7 +76,7 @@ namespace test
                     };
                     f.Controls.Add(new TextBox()
                     {
-                        Text = BrowserRequestHandler.buildPageHtml(source),
+                        Text = BrowserRequestHandler.buildPageHtml(source, this),
                         Multiline = true,
                         BorderStyle = BorderStyle.None,
                         Dock = DockStyle.Fill,
@@ -96,9 +98,31 @@ namespace test
         {
         }
 
-        private void f_browser_Go(string url)
+        public void f_sendToBrowser(string data)
         {
+            string js = "f_receiveMessageFromAPI(" + data + ");";
+            ui_browser.ExecuteScript(js);
+            //var val = ui_browser.EvaluateScript(js);
+        }
+
+        public void f_browser_Go(string url)
+        {
+            if (ui_browser.IsLoading) ui_browser.Stop();
             ui_browser.Load(url);
+        }
+        
+        public void f_browser_updateInfoPage(string url, string title)
+        {
+        }
+
+        public oAppInfo f_app_getInfo()
+        {
+            return new oAppInfo() { Width = this.Width, Height = this.Height, Top = this.Top, Left = this.Left };
+        }
+
+        public string f_get_formKey()
+        {
+            return _form_key;
         }
     }
 }

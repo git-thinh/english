@@ -124,8 +124,10 @@ namespace Fleck
         {
             try
             {
-                Func<AsyncCallback, object, IAsyncResult> begin =
-               (cb, s) => _stream.BeginRead(buffer, offset, buffer.Length, cb, s);
+                Func<AsyncCallback, object, IAsyncResult> begin = (cb, s) => {
+                   if(s != null) _stream.BeginRead(buffer, offset, buffer.Length, cb, s);
+                    return null;
+                };
 
                 Task<int> task = Task.Factory.FromAsync<int>(begin, _stream.EndRead, null);
                 task.ContinueWith(t => callback(t.Result), TaskContinuationOptions.NotOnFaulted)
