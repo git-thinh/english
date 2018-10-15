@@ -2,28 +2,6 @@
 <div id="header">
     <input id="txt_search" type="text" placeholder="Search ..." />
     <button onclick="location.reload()">Reload</button>
-    <br />
-    <button onclick="f_search('star', event)">Star</button>
-    <button onclick="f_search('link', event)">Link</button>
-    <button onclick="f_search('english', event)" class="active">English</button>
-    <button onclick="f_search('tag', event)">Tags</button>
-    <button onclick="f_search('doc', event)">Doc</button>
-    <button onclick="f_search('domain', event)">Media</button>
-    <div id="filter">
-        <div id="filter-link" class="filter-items"></div>
-        <div id="filter-star" class="filter-items"></div>
-        <div id="filter-english" class="filter-items">
-            <input name="filter-english" value="article" type="radio" />
-            <label value="article">Article</label>
-            <input name="filter-english" value="dictionary" checked type="radio" />
-            <label value="dictionary">Dictionary</label>
-            <input name="filter-english" value="grammar" type="radio" />
-            <label value="grammar">Grammar</label>
-        </div>
-        <div id="filter-tag" class="filter-items"></div>
-        <div id="filter-doc" class="filter-items"></div>
-        <div id="filter-media" class="filter-items"></div>
-    </div>
 </div>
 <div id="main">
     <ul id="items-link" class="items"></ul>
@@ -36,9 +14,23 @@
     <ul id="items-media" class="items"></ul>
 </div>
 <div id="footer">
-    <button> < </button>
-    <p id="pager">
-        Item 123-123 | Page 1-35
-    </p>
-    <button> > </button>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination" data-style="display: flex;">
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 </div>

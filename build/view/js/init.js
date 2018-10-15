@@ -63,3 +63,8 @@ var f_sendPLAYER = function (msg_type, msgRequest, msgResponse) { return f_sendM
 var f_translate_Execute = function (oTran) { var type = _MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST; };
 function f_link_updateUrls(aLink) { f_log('jsonsUrls = ', aLink); API.f_link_updateUrls(JSON.stringify(aLink)); }
 ///////////////////////////////////////////////////////////////////////////
+
+document.addEventListener("DOMContentLoaded", function (event) {
+    console.log("DOM fully loaded and parsed");
+    flexibility(document.documentElement);
+});

@@ -16,6 +16,7 @@ namespace test
         readonly string URL = "about:blank";
 
         public fLocal(IApp app, string form_key) {
+            this.Text = form_key;
             _form_key = form_key;
             URL = "http://local/view/" + form_key + ".html";
 

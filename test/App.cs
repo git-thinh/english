@@ -46,10 +46,12 @@ namespace test
         public void f_form_openByKey(string view)
         {
             var v = new fLocal(this, view);
-            v.Shown += (vse, vev) => {
+            v.Shown += (vse, vev) =>
+            {
                 v.Left = _fomMain.f_getInfo().Width + _fomMain.f_getInfo().Left + 5;
                 v.Top = _fomMain.f_getInfo().Top;
                 v.Height = _fomMain.f_getInfo().Height;
+                v.Width = 600;
             };
             v.Show();
         }
@@ -80,7 +82,7 @@ namespace test
         {
             if (Directory.Exists("cache")) DOMAIN_LIST = Directory.GetDirectories("cache").Select(x => x.Substring(6)).ToList();
             else DOMAIN_LIST = new List<string>();
-            
+
             ///////////////////////////////////////////////////////////////////////
 
             TRANSLATE = new ConcurrentDictionary<string, string>();
@@ -95,7 +97,7 @@ namespace test
 
             ///////////////////////////////////////////////////////////////////////
 
-            CLIENTS = new List<IForm>();         
+            CLIENTS = new List<IForm>();
         }
 
         #region [ LINK - HTML ]
@@ -111,7 +113,7 @@ namespace test
         readonly ConcurrentDictionary<string, List<int>> DOMAIN_LINK;
         readonly ConcurrentDictionary<string, List<int>> KEY_INDEX;
         readonly ConcurrentDictionary<string, string> TRANSLATE;
-        
+
         public void f_link_updateUrls(oLink[] links)
         {
             if (links.Length > 0)
@@ -344,7 +346,7 @@ namespace test
                         }
                         else
                         {
-                            GooTranslateService_v1.TranslateAsync(otran, text, "en", "vi", string.Empty, (_otran) =>
+                            GooTranslateService_v1.TranslateAsync(otran, "en", "vi", string.Empty, (_otran) =>
                             {
                                 if (_otran.mean_vi.Contains(':'))
                                 {
@@ -397,21 +399,21 @@ namespace test
                     case _NAME_UI.MAIN:
                         f_process_messageTo_MAIN(m);
                         break;
-                    //case _NAME_UI.ALL:
-                    //    lock (CLIENTS) { CLIENTS.ForEach((ws) => { if (ws.IsAvailable) ws.Send(message); }); }
-                    //    break;
-                    //case _NAME_UI.BOX_ENGLISH:
-                    //    if (CLIENT_BOX_ENGLISH.IsAvailable) CLIENT_BOX_ENGLISH.Send(message);
-                    //    break;
-                    //case _NAME_UI.SEARCH:
-                    //    if (CLIENT_SEARCH.IsAvailable) CLIENT_SEARCH.Send(message);
-                    //    break;
-                    //case _NAME_UI.SETTING:
-                    //    if (CLIENT_SETTING.IsAvailable) CLIENT_SETTING.Send(message);
-                    //    break;
-                    //case _NAME_UI.PLAYER:
-                    //    if (CLIENT_PLAYER.IsAvailable) CLIENT_PLAYER.Send(message);
-                    //    break;
+                        //case _NAME_UI.ALL:
+                        //    lock (CLIENTS) { CLIENTS.ForEach((ws) => { if (ws.IsAvailable) ws.Send(message); }); }
+                        //    break;
+                        //case _NAME_UI.BOX_ENGLISH:
+                        //    if (CLIENT_BOX_ENGLISH.IsAvailable) CLIENT_BOX_ENGLISH.Send(message);
+                        //    break;
+                        //case _NAME_UI.SEARCH:
+                        //    if (CLIENT_SEARCH.IsAvailable) CLIENT_SEARCH.Send(message);
+                        //    break;
+                        //case _NAME_UI.SETTING:
+                        //    if (CLIENT_SETTING.IsAvailable) CLIENT_SETTING.Send(message);
+                        //    break;
+                        //case _NAME_UI.PLAYER:
+                        //    if (CLIENT_PLAYER.IsAvailable) CLIENT_PLAYER.Send(message);
+                        //    break;
                 }
             }
             catch
@@ -421,7 +423,7 @@ namespace test
         }
 
         #endregion
-        
+
         void f_sendToBrowser(string msg)
         {
             _fomMain.f_sendToBrowser(msg);
@@ -434,21 +436,27 @@ namespace test
                 });
             }
         }
-        
+
         #region [ APP ]
-         
+
         [STAThread]
         static void Main(string[] args) => new App().f_app_Run();
 
         public void f_app_Run()
         {
+            new Thread(() =>
+            {
+                GooTranslateService_v1.TranslateAsync(new oEN_TRANSLATE_GOOGLE_MESSAGE() { text = "ping" }, "en", "vi", string.Empty, (_otran) => Console.WriteLine("-> TRANSLATE.PING: {0} = {1}", _otran.text, _otran.mean_vi));
+            }).Start();
+
             Settings settings = new Settings() { };
             if (!CEF.Initialize(settings)) return;
             //CEF.RegisterScheme("local", new LocalSchemeHandlerFactory(this));
             //CEF.RegisterJsObject("API", new API(this, main));
             Application.ApplicationExit += (se, ev) => f_app_Exit();
             var main = new fMain(this);
-            main.Shown += (se, ev) => {
+            main.Shown += (se, ev) =>
+            {
                 //f_view_Open("links");
             };
             _fomMain = main;

@@ -65,13 +65,12 @@ namespace System
         
         public static void TranslateAsync(
             oEN_TRANSLATE_GOOGLE_MESSAGE oTranslateObject,
-            string text,
             string sourceLng,
             string destLng,
             string textTranslatorUrlKey,
             TranslateCallBack callBack)
         {
-            var request = CreateWebRequest(text, sourceLng, destLng, textTranslatorUrlKey);
+            var request = CreateWebRequest(oTranslateObject.text, sourceLng, destLng, textTranslatorUrlKey);
 
             oTranslateObject.translateCallBack = callBack;
             oTranslateObject.webRequest = request;

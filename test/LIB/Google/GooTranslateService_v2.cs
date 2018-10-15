@@ -34,14 +34,13 @@ namespace System
         private const string RequestGoogleTranslatorUrl = "https://translate.googleapis.com/translate_a/single?client=gtx&sl={0}&tl={1}&hl=en&dt=t&dt=bd&dj=1&source=icon&tk=467103.467103&q={2}";
         
         public static void TranslateAsync(
-            oEN_TRANSLATE_GOOGLE_MESSAGE oTranslateObject,
-            string text,
+            oEN_TRANSLATE_GOOGLE_MESSAGE oTranslateObject, 
             string sourceLng,
             string destLng,
             string textTranslatorUrlKey,
             TranslateCallBack callBack)
         {
-            var request = CreateWebRequest(text, sourceLng, destLng, textTranslatorUrlKey);
+            var request = CreateWebRequest(oTranslateObject.text, sourceLng, destLng, textTranslatorUrlKey);
 
             oTranslateObject.translateCallBack = callBack;
             oTranslateObject.webRequest = request;
