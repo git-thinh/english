@@ -18,7 +18,7 @@ namespace test
     {
         void f_browser_Go(string url);
         void f_browser_updateInfoPage(string url, string title);
-        oAppInfo f_app_getInfo();
+        oAppInfo f_getInfo();
         string f_get_formKey();
 
         void f_sendToBrowser(string data);
@@ -33,9 +33,9 @@ namespace test
 
         bool f_main_openUrl(string url, string title);
         void f_app_callFromJs(string data);
-        void f_local_openFormKey(string formKey);
-
-        oAppInfo f_app_getInfo();
+        void f_form_openByKey(string formKey);
+        void f_form_unRegister(IForm form);
+        void f_form_Register(IForm form);
     }
 
     class App : IApp
@@ -43,15 +43,37 @@ namespace test
         IForm _fomMain = null;
         readonly List<IForm> CLIENTS;
 
-        public void f_local_openFormKey(string view)
+        public void f_form_openByKey(string view)
         {
             var v = new fLocal(this, view);
             v.Shown += (vse, vev) => {
-                v.Left = _fomMain.f_app_getInfo().Width + _fomMain.f_app_getInfo().Left + 5;
-                v.Top = _fomMain.f_app_getInfo().Top;
-                v.Height = _fomMain.f_app_getInfo().Height;
+                v.Left = _fomMain.f_getInfo().Width + _fomMain.f_getInfo().Left + 5;
+                v.Top = _fomMain.f_getInfo().Top;
+                v.Height = _fomMain.f_getInfo().Height;
             };
             v.Show();
+        }
+        public void f_form_unRegister(IForm form)
+        {
+            if (form != null)
+            {
+                lock (CLIENTS)
+                {
+                    int pos = CLIENTS.IndexOf(form);
+                    if (pos != -1) CLIENTS.RemoveAt(pos);
+                }
+            }
+        }
+        public void f_form_Register(IForm form)
+        {
+            if (form != null)
+            {
+                lock (CLIENTS)
+                {
+                    int pos = CLIENTS.IndexOf(form);
+                    if (pos == -1) CLIENTS.Add(form);
+                }
+            }
         }
 
         public App()
@@ -414,9 +436,7 @@ namespace test
         }
         
         #region [ APP ]
-
-        public oAppInfo f_app_getInfo() { return _fomMain.f_app_getInfo(); }
-
+         
         [STAThread]
         static void Main(string[] args) => new App().f_app_Run();
 
@@ -425,7 +445,7 @@ namespace test
             Settings settings = new Settings() { };
             if (!CEF.Initialize(settings)) return;
             //CEF.RegisterScheme("local", new LocalSchemeHandlerFactory(this));
-            CEF.RegisterJsObject("API", new API(this));
+            //CEF.RegisterJsObject("API", new API(this, main));
             Application.ApplicationExit += (se, ev) => f_app_Exit();
             var main = new fMain(this);
             main.Shown += (se, ev) => {

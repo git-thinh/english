@@ -20,7 +20,8 @@ namespace test
             URL = "http://local/view/" + form_key + ".html";
 
             this._app = app;
-            this.FormBorderStyle = FormBorderStyle.None;
+            app.f_form_Register(this);
+            //this.FormBorderStyle = FormBorderStyle.None;
 
             this.Icon = Resources.icon;
 
@@ -28,10 +29,15 @@ namespace test
             this.Controls.Add(ui_browser);
             ui_browser.PropertyChanged += (se, ev) => { switch (ev.PropertyName) { case "IsBrowserInitialized": f_browser_Go(URL); break; case "Title": f_browser_loadTitleReady(ui_browser.Title); break; case "IsLoading": f_browser_loadDomReady(); break; } };
             ui_browser.RequestHandler = new BrowserRequestHandler(app, this);
+            ui_browser.RegisterJsObject("API", new API(app, this));
 
             ContextMenu cm = new ContextMenu(f_build_contextMenu());
             ui_browser.ContextMenu = cm;
             ui_browser.MenuHandler = new BrowserMenuHandel();
+
+            this.FormClosing += (se, ev) => {
+                this._app.f_form_unRegister(this);
+            };
         }
 
         private void f_browser_loadDomReady()
@@ -115,7 +121,7 @@ namespace test
         {
         }
 
-        public oAppInfo f_app_getInfo()
+        public oAppInfo f_getInfo()
         {
             return new oAppInfo() { Width = this.Width, Height = this.Height, Top = this.Top, Left = this.Left };
         }

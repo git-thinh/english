@@ -3,6 +3,7 @@
     BOX_ENGLISH: "BOX_ENGLISH",
     SETTING: "SETTING",
     SEARCH: "SEARCH",
+    LINK: "LINK",
     PLAYER: "PLAYER",
     MAIN: "MAIN",
 };
@@ -62,19 +63,3 @@ var f_sendPLAYER = function (msg_type, msgRequest, msgResponse) { return f_sendM
 var f_translate_Execute = function (oTran) { var type = _MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST; };
 function f_link_updateUrls(aLink) { f_log('jsonsUrls = ', aLink); API.f_link_updateUrls(JSON.stringify(aLink)); }
 ///////////////////////////////////////////////////////////////////////////
-function f_receiveMessageFromAPI(m) {
-    f_log('API.' + _CLIENT_NAME + ' <- ', m);
-    //{"Ok":true,"MsgId":"browser-4414-befb-cf1e00-5bbcf7aebe90","Data":"{¦success¦:true,¦id¦:¦event_52f087c-4250-a23f-364ec41a2de8¦,¦text¦:¦came ¦,¦type¦:¦verb¦,¦mean_vi¦:¦đã đến; đến; đi đến; đi lại; đi tới; lên đến; lên tới; xảy đến; xảy ra¦,¦x¦:175,¦y¦:262}","Message":"","MsgType":21}
-    //alert(data);
-    if (m && m.Ok) {
-        var s = m.MsgResponse;
-        if (s && s.length > 0) s = s.split('¦').join('"');
-        switch (m.MsgType) {
-            case _MSG_TYPE.EN_TRANSLATE_GOOGLE_RESPONSE:
-                var otran = JSON.parse(s);
-                f_displayTranslate(otran);
-                break;
-        }
-    } else
-        alert('ERROR: ' + m.MsgResponse);
-}

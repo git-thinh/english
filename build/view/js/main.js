@@ -1,5 +1,24 @@
 ﻿_CLIENT_ID = 1;
 _CLIENT_NAME = _NAME_UI.MAIN;
+function f_receiveMessageFromAPI(m) {
+    f_log('API.' + _CLIENT_NAME + ' <- ', m);
+    //{"Ok":true,"MsgId":"browser-4414-befb-cf1e00-5bbcf7aebe90","Data":"{¦success¦:true,¦id¦:¦event_52f087c-4250-a23f-364ec41a2de8¦,¦text¦:¦came ¦,¦type¦:¦verb¦,¦mean_vi¦:¦đã đến; đến; đi đến; đi lại; đi tới; lên đến; lên tới; xảy đến; xảy ra¦,¦x¦:175,¦y¦:262}","Message":"","MsgType":21}
+    //alert(data);
+    if (m && m.Ok) {
+        var s = m.MsgResponse;
+        if (s && s.length > 0) s = s.split('¦').join('"');
+        switch (m.MsgType) {
+            case _MSG_TYPE.EN_TRANSLATE_GOOGLE_RESPONSE:
+                var otran = JSON.parse(s);
+                f_displayTranslate(otran);
+                break;
+        }
+    } else
+        alert('ERROR: ' + m.MsgResponse);
+}
+function f_domLoaded() {
+    f_formatLinks();
+}
 ///////////////////////////////////////////////////////////////////////////
 var f_translate_Execute = function (oTran) { var type = _MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST; };
 function f_link_updateUrls(aLink) { f_log('jsonsUrls = ', aLink); API.f_link_updateUrls(JSON.stringify(aLink)); }
@@ -83,7 +102,7 @@ function f_main_openUrl(url, title) {
     API.f_main_openUrl(url, title);
 }
 
-function f_domLoaded() {
+function f_formatLinks() {
     var elTitle = document.getElementById('___title');
     if (elTitle) document.title = elTitle.value;
 

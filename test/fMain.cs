@@ -87,7 +87,7 @@ namespace test
             };
         }
 
-        public oAppInfo f_app_getInfo() { return new oAppInfo() { Height = this.Height, Width = this.Width, Left = this.Left, Top = this.Top, Url = ui_browser.Address }; }
+        public oAppInfo f_getInfo() { return new oAppInfo() { Height = this.Height, Width = this.Width, Left = this.Left, Top = this.Top, Url = ui_browser.Address }; }
 
         public fMain(IApp app)
         {
@@ -103,6 +103,7 @@ namespace test
             this.Controls.Add(ui_browser);
             ui_browser.PropertyChanged += (se, ev) => { switch (ev.PropertyName) { case "IsBrowserInitialized": f_browser_Go(URL); break; case "Title": f_browser_loadTitleReady(ui_browser.Title); break; case "IsLoading": f_browser_loadDomReady(); break; } };
             ui_browser.RequestHandler = new BrowserRequestHandler(app, this);
+            ui_browser.RegisterJsObject("API", new API(app, this));
 
             ContextMenu cm = new ContextMenu(f_build_contextMenu());
             ui_browser.ContextMenu = cm;
@@ -339,7 +340,7 @@ namespace test
                 case "english":
                 case "setting":
                 case "player":
-                    _app.f_local_openFormKey(key);
+                    _app.f_form_openByKey(key);
                     break;
                 case "devtool_open":
                     ui_browser.ShowDevTools();

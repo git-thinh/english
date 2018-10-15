@@ -1,0 +1,234 @@
+
+        #header {
+            height: 83px;
+            background-color: #fff;
+            text-align: center;
+            padding: 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1;
+        }
+
+            #header input[type="text"] {
+                width: 50%;
+                border: 1px solid #ccc;
+                height: 19px;
+                background-color: #fafafa;
+                padding: 2px 10px;
+            }
+
+            #header button {
+                border: none;
+                margin-top: 9px;
+                width: 44px;
+                color: gray;
+                padding-bottom: 3px;
+                background-color: #fff;
+                height: 22px;
+            }
+
+                #header button.active {
+                    border: none;
+                    color: #333;
+                    border-bottom: 1px solid orange;
+                }
+
+        #main {
+            width: 100%;
+            top: 83px;
+            position: fixed;
+            bottom: 30px;
+            display: inline-block;
+            z-index: 0;
+            overflow: auto;
+            padding-top: 10px;
+        }
+
+        #footer {
+            height: 25px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 5px 0 0 0;
+        }
+
+            #footer button {
+                width: 20%;
+                border: none;
+                background-color: transparent;
+                font-weight: bold;
+                font-size: 0.7em;
+                color: #777;
+            }
+
+        #pager {
+            width: 55%;
+            font-size: 0.8em;
+            display: inline-block;
+            text-align: center;
+            color: #444;
+        }
+
+        /************************************/
+        /*FILTER*/
+
+        #filter {
+            font-size: 0.9em;
+            padding-top: 6px;
+        }
+
+        .filter-items {
+            display: inline-block;
+            height: 19px;
+        }
+
+            .filter-items input[type="radio"] {
+                margin-top: 4px;
+                float: left;
+                margin-right: 3px;
+                margin-left: 9px;
+            }
+
+            .filter-items label {
+                line-height: 20px;
+                float: left;
+            }
+
+        /************************************/
+        /*ITEMS*/
+
+        ul.items {
+            list-style: none;
+            display: none;
+            width: 100%;
+        }
+
+            ul.items li:first-child {
+                border-top: none;
+            }
+        
+            ul.items li {
+                border-top: 1px solid #ddd;
+                list-style: none;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+
+                ul.items li:hover {
+                    background-color:orange;
+                }
+
+            ul.items li.active {
+                background-color: #ddd;
+            }
+
+                /************************************/
+                /*LINK*/
+
+                ul.items li.link label:hover,
+                ul.items li.link em:hover,
+                ul.items li.link span i:hover {
+                    color: dodgerblue;
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
+
+                ul.items li.link label,
+                ul.items li.link em,
+                ul.items li.link p,
+                ul.items li.link span {
+                    display: inline-block;
+                    width: 94%;
+                    padding-left: 3%;
+                    padding-right: 3%;
+                }
+
+                ul.items li.link label {
+                    font-weight: bold;
+                    font-size: 1em;
+                }
+
+                ul.items li.link span {
+                    text-align: right;
+                }
+
+                    ul.items li.link span i {
+                        border-right: 1px solid #ddd;
+                        font-style: normal;
+                        line-height: 0px;
+                        padding: 0 3px 0 0;
+                        color: #999;
+                        font-size: 0.9em;
+                    }
+
+                        ul.items li.link span i:last-of-type {
+                            border-right: none;
+                        }
+
+                ul.items li.link p {
+                    font-size: 0.9em;
+                    line-height: 1.5em;
+                }
+
+                ul.items li.link em {
+                    text-align: right;
+                    color: #999;
+                    font-size: 0.8em;
+                }
+
+                /************************************/
+                /*ENGLISH*/
+
+                ul.items li.english label:hover,
+                ul.items li.english em:hover,
+                ul.items li.english span i:hover {
+                    color: dodgerblue;
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
+
+                ul.items li.english label,
+                ul.items li.english em,
+                ul.items li.english p,
+                ul.items li.english span {
+                    display: inline-block;
+                    width: 94%;
+                    padding-left: 3%;
+                    padding-right: 3%;
+                }
+
+                ul.items li.english label {
+                    font-weight: bold;
+                    font-size: 1em;
+                }
+
+                ul.items li.english span {
+                    text-align: right;
+                }
+
+                    ul.items li.english span i {
+                        border-right: 1px solid #ddd;
+                        font-style: normal;
+                        line-height: 0px;
+                        padding: 0 3px 0 0;
+                        color: #999;
+                        font-size: 0.9em;
+                    }
+
+                        ul.items li.english span i:last-of-type {
+                            border-right: none;
+                        }
+
+                ul.items li.english p {
+                    font-size: 0.9em;
+                    line-height: 1.5em;
+                }
+
+                ul.items li.english em {
+                    text-align: right;
+                    color: #999;
+                    font-size: 0.8em;
+                }
+
+        /************************************/
+        /*LINK*/

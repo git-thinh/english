@@ -10,8 +10,10 @@ namespace test
     public class API
     {
         readonly IApp _app;
-        public API(IApp app)
+        readonly IForm _form;
+        public API(IApp app, IForm form)
         {
+            this._form = form;
             this._app = app;
         }
 
@@ -34,7 +36,7 @@ namespace test
 
         public String f_app_getInfo()
         {
-            String s = JsonConvert.SerializeObject(_app.f_app_getInfo());
+            String s = JsonConvert.SerializeObject(_form.f_getInfo());
             return s;
         }
 
@@ -118,7 +120,10 @@ namespace test
                         if (!path.EndsWith(".html")) return false;
                         if (File.Exists(path))
                         {
-                            byte[] bytes = File.ReadAllBytes(path);
+                            //byte[] bytes = File.ReadAllBytes(path);
+                            string html = File.ReadAllText(path);
+                            html = buildPageHtml(html, _form);
+                            byte[] bytes = Encoding.UTF8.GetBytes(html);
                             Stream resourceStream = new MemoryStream(bytes);
                             requestResponse.RespondWith(resourceStream, "text/html");
                             return false;

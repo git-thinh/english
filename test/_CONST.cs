@@ -9,14 +9,6 @@ using System.Text;
 
 namespace System
 {
-    static class _CONST
-    {
-        public const int APP_SPLITER_WIDTH = 5;
-        public const string NOTI_PIPE_NAME = "HTTPS_PIPE_NAME";
-        public const string RPC_NAME = "HTTPS_RPC_NAME";
-        public const string RPC_IID = "{1B617C4B-BF68-4B8C-AE2B-A77E6A3ECEC5}";
-    }
-
     static class _NAME_UI
     {
         public const string MAIN = "MAIN";
@@ -24,6 +16,7 @@ namespace System
         public const string BOX_ENGLISH = "BOX_ENGLISH";
         public const string SEARCH = "SEARCH";
         public const string SETTING = "SETTING";
+        public const string LINK = "LINK";
         public const string PLAYER = "PLAYER";
     }
 
@@ -64,25 +57,6 @@ namespace System
         public string Url { set; get; }
     }
     
-
-    //public class oMsgSocketReply
-    //{
-    //    public bool Ok { set; get; }
-    //    public string MsgId { set; get; }
-    //    public string Data { set; get; }
-    //    public string Message { set; get; }
-    //    public MSG_TYPE MsgType { set; get; }
-
-    //    public oMsgSocketReply(bool ok, MSG_TYPE msgType, string msgId = "", string message = "", string data = "") {
-    //        this.Ok = ok;
-    //        this.MsgType = msgType;
-    //        this.MsgId = msgId;
-    //        this.Message = message;
-    //        if (!string.IsNullOrEmpty(data)) data = data.Replace('"', '¦');
-    //        this.Data = data;
-    //    }
-    //}
-
     public class oMsgSocket
     {
         public bool Ok { set; get; }
