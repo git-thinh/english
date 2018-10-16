@@ -21,7 +21,7 @@ function f_domLoaded() {
 }
 ///////////////////////////////////////////////////////////////////////////
 var f_translate_Execute = function (oTran) { var type = _MSG_TYPE.EN_TRANSLATE_GOOGLE_REQUEST; };
-function f_link_updateUrls(aLink) { f_log('jsonsUrls = ', aLink); API.f_link_updateUrls(JSON.stringify(aLink)); }
+function f_link_updateUrls(aLink) { API.f_link_updateUrls(JSON.stringify(aLink)); }
 ///////////////////////////////////////////////////////////////////////////
 
 var _SELECT_OBJ = { x: 0, y: 0, text: '', id: '' };
@@ -118,10 +118,11 @@ function f_formatLinks() {
     if (URL[URL.length - 1] != '/')
         URL_DIR = URL.substring(0, URL.length - URL[URL.length - 1].length);
 
-    f_log("----> DOM loaded: URL_SCHEME = " + URL_SCHEME);
-    f_log("----> DOM loaded: DOMAIN_MAIN = " + DOMAIN_MAIN);
-    f_log("----> DOM loaded: URL_DIR = " + URL_DIR);
-    f_log("----> DOM loaded: HTTP_ROOT = " + HTTP_ROOT);
+    f_log("----> DOM loaded: URL = " + URL);
+    //f_log("----> DOM loaded: URL_SCHEME = " + URL_SCHEME);
+    //f_log("----> DOM loaded: DOMAIN_MAIN = " + DOMAIN_MAIN);
+    //f_log("----> DOM loaded: URL_DIR = " + URL_DIR);
+    //f_log("----> DOM loaded: HTTP_ROOT = " + HTTP_ROOT);
 
     var links = document.querySelectorAll('a'),
         aLink = [];
@@ -217,45 +218,58 @@ function f_displayTranslate(oTran) {
     //alert(JSON.stringify(oTran));
     var el = document.getElementById('___box_tran');
     if (el && oTran) {
-        var s = oTran.mean_vi;
-        if (s == null || s.length == 0) {
+        if (oTran.mean_vi == null || oTran.mean_vi.length == 0) {
             window.getSelection().empty();
             return;
         }
 
-        s = s[0].toUpperCase() + s.substr(1);
+        var s;
         var wiBrowser = APP_INFO.Width;
-        var wiText = f_getTextWidth(s, '0.7em Arial') + 25;
+        var w1 = f_getTextWidth(oTran.text, '1.3em Arial'),
+            w2 = f_getTextWidth(oTran.mean_vi, '1em Arial'),
+            wiText = 0, lines = false;
+        if (w1 + w2 >= wiBrowser) { wiText = w1; lines = true; } else wiText = w1 + w2;
 
-        if (wiText > wiBrowser) {
-            oTran.x = 40;
-            el.style.width = (wiBrowser - 99) + 'px';
-            el.style.top = (oTran.y + 25 + window.pageYOffset) + 'px';
+        if (lines || wiText >= wiBrowser) {
+            s = '<b class=lines>' + oTran.text[0].toUpperCase() + oTran.text.substr(1).trim() + '</b><p class=lines>' + oTran.mean_vi[0].toUpperCase() + oTran.mean_vi.substr(1) + '</p>';
+            if (wiText >= wiBrowser) {
+                wiText = wiBrowser - 45; 
+                el.style.left = '40px';
+            }
+            else {
+                wiText -= 74;
+                el.style.left = (wiBrowser - (wiText + 74)) + 'px';
+            }
+
+            el.style.width = wiText + 'px';
+            el.style.top = (oTran.y + 19 + window.pageYOffset) + 'px';
         }
         else {
+            s = '<b>' + oTran.text[0].toUpperCase() + oTran.text.substr(1).trim() + '</b>: ' + oTran.mean_vi[0].toUpperCase() + oTran.mean_vi.substr(1);
+            wiText -= 25;
             el.style.width = wiText + 'px';
-            el.style.top = (oTran.y + 21 + window.pageYOffset) + 'px';
+            el.style.top = (oTran.y + 17 + window.pageYOffset) + 'px';
             if (oTran.x + wiText > wiBrowser) oTran.x = wiBrowser - (wiText + 50);
+            el.style.left = oTran.x + 'px';
         }
 
         el.innerHTML = s;
-        el.style.left = oTran.x + 'px';
         el.style.display = 'inline-block';
 
-        if (oTran.cached == null || oTran.cached == false) {
-            var sel = window.getSelection();
-            if (sel.rangeCount) {
-                range = sel.getRangeAt(0);
-                range.deleteContents();
-                var node = document.createElement('i');
-                node.className = '___translated';
-                node.setAttribute('title', s);
-                var id = oTran.id;
-                node.setAttribute('id', id);
-                node.innerHTML = oTran.text;
-                //range.insertNode(document.createTextNode('[' + s + ']'));
-                range.insertNode(node);
-            }
+        if (oTran.cached != true) {
+            //var sel = window.getSelection();
+            //if (sel.rangeCount) {
+            //    range = sel.getRangeAt(0);
+            //    range.deleteContents();
+            //    var node = document.createElement('i');
+            //    node.className = '___translated';
+            //    node.setAttribute('title', s);
+            //    var id = oTran.id;
+            //    node.setAttribute('id', id);
+            //    node.innerHTML = oTran.text;
+            //    //range.insertNode(document.createTextNode('[' + s + ']'));
+            //    range.insertNode(node);
+            //}
             window.getSelection().empty();
         }
     }
