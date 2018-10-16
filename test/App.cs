@@ -31,8 +31,10 @@ namespace test
         string f_link_getHtmlOnline(string url);
         void f_link_updateUrls(oLink[] links);
 
+
         bool f_main_openUrl(string url, string title);
         void f_app_callFromJs(string data);
+
         void f_form_openByKey(string formKey);
         void f_form_unRegister(IForm form);
         void f_form_Register(IForm form);
@@ -87,7 +89,7 @@ namespace test
 
             TRANSLATE = new ConcurrentDictionary<string, string>();
             CACHE = new ConcurrentDictionary<string, string>();
-            LINK = new ConcurrentDictionary<string, string>();
+            LINK_TITLE = new ConcurrentDictionary<string, string>();
             LINK_LEVEL = new ConcurrentDictionary<int, int>();
             LINK_ID = new ConcurrentDictionary<string, int>();
             INDEX = new ConcurrentDictionary<string, List<int>>();
@@ -105,7 +107,7 @@ namespace test
         readonly List<string> DOMAIN_LIST;
 
         readonly ConcurrentDictionary<string, string> CACHE;
-        readonly ConcurrentDictionary<string, string> LINK;
+        readonly ConcurrentDictionary<string, string> LINK_TITLE;
         readonly ConcurrentDictionary<int, int> LINK_LEVEL;
         readonly ConcurrentDictionary<string, int> LINK_ID;
         readonly ConcurrentDictionary<int, int> TIME_VIEW_LINK;
@@ -280,11 +282,11 @@ namespace test
             if (string.IsNullOrEmpty(url) || string.IsNullOrEmpty(title)) return;
 
             if (domain == "") domain = Html.f_html_getDomainMainByUrl(url);
-            int id = LINK.Count + 1, time_view = int.Parse(DateTime.Now.ToString("1ddHHmmss")) + indexForEach;
+            int id = LINK_TITLE.Count + 1, time_view = int.Parse(DateTime.Now.ToString("1ddHHmmss")) + indexForEach;
 
-            if (!LINK.ContainsKey(url))
+            if (!LINK_TITLE.ContainsKey(url))
             {
-                LINK.TryAdd(url, title);
+                LINK_TITLE.TryAdd(url, title);
                 LINK_ID.TryAdd(url, id);
                 TIME_VIEW_LINK.TryAdd(id, time_view);
                 LINK_LEVEL.TryAdd(id, url.Split('/').Length - 3);
@@ -449,10 +451,22 @@ namespace test
                 GooTranslateService_v1.TranslateAsync(new oEN_TRANSLATE_GOOGLE_MESSAGE() { text = "ping" }, "en", "vi", string.Empty, (_otran) => Console.WriteLine("-> TRANSLATE.PING: {0} = {1}", _otran.text, _otran.mean_vi));
             }).Start();
 
+            //List<string> args = new List<string>();
+            //args.Add("--disable-web-security");
+            ////cefApp_ = CefApp.getInstance(args.ToArray());
+            
+
+            //BrowserSettings
             Settings settings = new Settings() { };
             if (!CEF.Initialize(settings)) return;
             //CEF.RegisterScheme("local", new LocalSchemeHandlerFactory(this));
             //CEF.RegisterJsObject("API", new API(this, main));
+            // BrowserSettings.WebSecurityDisabled
+            //browser.BrowserSettings.WebSecurity = CefState.Disabled; // allow cross domain
+            //browser.BrowserSettings.FileAccessFromFileUrls = CefState.Enabled;
+            //browser.BrowserSettings.UniversalAccessFromFileUrls = CefState.Enabled;
+
+
             Application.ApplicationExit += (se, ev) => f_app_Exit();
             var main = new fMain(this);
             main.Shown += (se, ev) =>
@@ -469,7 +483,7 @@ namespace test
             CLIENTS.Clear();
 
             CACHE.Clear();
-            LINK.Clear();
+            LINK_TITLE.Clear();
             LINK_LEVEL.Clear();
             LINK_ID.Clear();
             TIME_VIEW_LINK.Clear();

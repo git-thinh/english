@@ -65,6 +65,5 @@ function f_link_updateUrls(aLink) { f_log('jsonsUrls = ', aLink); API.f_link_upd
 ///////////////////////////////////////////////////////////////////////////
 
 document.addEventListener("DOMContentLoaded", function (event) {
-    console.log("DOM fully loaded and parsed");
-    flexibility(document.documentElement);
+
 });
