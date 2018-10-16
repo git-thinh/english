@@ -12,3 +12,4 @@ C:\english\test\obj\x86\Debug\test.csproj.GenerateResource.Cache
 C:\english\test\obj\x86\Debug\test.csproj.CoreCompileInputs.cache
 C:\english\test\obj\x86\Debug\test.exe
 C:\english\test\obj\x86\Debug\test.pdb
+C:\english\test\obj\x86\Debug\test.csprojResolveAssemblyReference.cache

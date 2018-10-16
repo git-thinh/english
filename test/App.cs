@@ -446,10 +446,7 @@ namespace test
 
         public void f_app_Run()
         {
-            new Thread(() =>
-            {
-                GooTranslateService_v1.TranslateAsync(new oEN_TRANSLATE_GOOGLE_MESSAGE() { text = "ping" }, "en", "vi", string.Empty, (_otran) => Console.WriteLine("-> TRANSLATE.PING: {0} = {1}", _otran.text, _otran.mean_vi));
-            }).Start();
+            new Thread(() => GooTranslateService_v1.TranslateAsync(new oEN_TRANSLATE_GOOGLE_MESSAGE() { text = "hello" }, "en", "vi", string.Empty, (_otran) => { })).Start();
 
             //List<string> args = new List<string>();
             //args.Add("--disable-web-security");

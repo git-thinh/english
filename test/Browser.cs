@@ -92,10 +92,8 @@ namespace test
 
         public bool OnBeforeBrowse(IWebBrowser browser, IRequest request, NavigationType naigationvType, bool isRedirect)
         {
-            ////Console.WriteLine("-> " + naigationvType.ToString() + ": " + request.Url);
             string url = request.Url;
             if (url.StartsWith("chrome-devtools")) return false;
-            //browser.TooltipText = request.Url;
             _url = url;
             Console.WriteLine("|> " + url);
             return false;
