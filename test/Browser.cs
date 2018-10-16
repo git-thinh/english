@@ -4,6 +4,7 @@ using System.Text;
 using System.Net;
 using System.IO;
 using Newtonsoft.Json;
+using System.Threading;
 
 namespace test
 {
@@ -101,6 +102,8 @@ namespace test
 
         bool _request_Fail(string url) { Console.WriteLine(" ?> " + url); return false; }
 
+        void _writeFileLogURL(string url) => new Thread(() => File.WriteAllText("url.txt", url)).Start();
+
         public bool OnBeforeResourceLoad(IWebBrowser browser, IRequestResponse requestResponse)
         {
             IRequest request = requestResponse.Request;
@@ -194,6 +197,7 @@ namespace test
                         html = buildPageHtml(html, _form);
                         Stream resourceStream = new MemoryStream(Encoding.UTF8.GetBytes(html));
                         requestResponse.RespondWith(resourceStream, "text/html");
+                        _writeFileLogURL(url);
                         return false;
                     }
                     else
@@ -210,6 +214,7 @@ namespace test
                         else
                         {
                             html = buildPageHtml(html, _form);
+                            _writeFileLogURL(url);
                         }
 
                         Stream resourceStream = new MemoryStream(Encoding.UTF8.GetBytes(html));
