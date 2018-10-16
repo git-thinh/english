@@ -5,3 +5,10 @@ G:\english\test\obj\x86\Debug\test.csproj.GenerateResource.Cache
 G:\english\test\obj\x86\Debug\test.exe
 G:\english\test\obj\x86\Debug\test.pdb
 G:\english\test\obj\x86\Debug\test.csprojResolveAssemblyReference.cache
+C:\english\build\test.exe
+C:\english\build\test.pdb
+C:\english\test\obj\x86\Debug\test.Properties.Resources.resources
+C:\english\test\obj\x86\Debug\test.csproj.GenerateResource.Cache
+C:\english\test\obj\x86\Debug\test.csproj.CoreCompileInputs.cache
+C:\english\test\obj\x86\Debug\test.exe
+C:\english\test\obj\x86\Debug\test.pdb

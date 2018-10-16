@@ -61,8 +61,17 @@ namespace test
     public class BrowserRequestHandler : IRequestHandler
     {
         readonly IForm _form;
+        readonly IApp _app;
+        string _url = string.Empty;
+
         static string view = string.Empty;
         static string view_end = string.Empty;
+
+        public BrowserRequestHandler(IApp app, IForm form) : base()
+        {
+            this._form = form;
+            this._app = app;
+        }
 
         static BrowserRequestHandler()
         {
@@ -77,35 +86,34 @@ namespace test
                   "</head><body>" + body + view_end;
         }
 
-        readonly IApp _app;
-        public BrowserRequestHandler(IApp app, IForm form) : base()
-        {
-            this._form = form;
-            this._app = app;
-        }
 
         public bool GetAuthCredentials(IWebBrowser browser, bool isProxy, string host, int port, string realm, string scheme, ref string username, ref string password) => false;
         public bool GetDownloadHandler(IWebBrowser browser, string mimeType, string fileName, long contentLength, ref IDownloadHandler handler) => false;
 
         public bool OnBeforeBrowse(IWebBrowser browser, IRequest request, NavigationType naigationvType, bool isRedirect)
         {
-            //Console.WriteLine("-> " + naigationvType.ToString() + ": " + request.Url);
+            ////Console.WriteLine("-> " + naigationvType.ToString() + ": " + request.Url);
             string url = request.Url;
             if (url.StartsWith("chrome-devtools")) return false;
-
-            browser.TooltipText = request.Url;
+            //browser.TooltipText = request.Url;
+            _url = url;
+            Console.WriteLine("|> " + url);
             return false;
         }
+
+        bool _request_Fail(string url) { Console.WriteLine(" ?> " + url); return false; }
 
         public bool OnBeforeResourceLoad(IWebBrowser browser, IRequestResponse requestResponse)
         {
             IRequest request = requestResponse.Request;
-            string url = request.Url, _url = browser.TooltipText;
-            if (url.StartsWith("chrome-devtools")) return false;
+            string url = request.Url;            
+            if (request.Method != "GET") return _request_Fail(url);
+            if (url.StartsWith("chrome-devtools")) return _request_Fail(url);
 
             Uri uri = new Uri(url);
             bool isView = uri.Segments.Length > 1 && uri.Segments[1] == "view/";
-            Console.WriteLine("> " + url);
+            Console.WriteLine(" -> " + url);
+
 
             if (isView)
             {
@@ -214,7 +222,7 @@ namespace test
                 }
                 else
                 {
-                    Console.WriteLine("!>" + url);
+                    Console.WriteLine("-ERROR->" + url);
                     return false;
                 }
                 #endregion

@@ -7,6 +7,7 @@ using test.Properties;
 using CefSharp.WinForms;
 using CefSharp;
 using System.Collections.Generic;
+using System.IO;
 
 namespace test
 {
@@ -14,6 +15,7 @@ namespace test
     public class fMain : Form, IForm
     {
         readonly string _form_name = _NAME_UI.MAIN;
+        readonly string URL = "about:blank";
 
         #region [ VAR ]
         readonly IApp _app;
@@ -39,7 +41,7 @@ namespace test
         //const string URL = "local://view/article.html";
         //const string URL = "http://test.local/demo.html";
         //const string URL = "https://vuejs.org/v2/guide/";
-        const string URL = "https://msdn.microsoft.com/en-us/library/ff361664(v=vs.110).aspx";
+        //const string URL = "https://msdn.microsoft.com/en-us/library/ff361664(v=vs.110).aspx";
         //const string URL = "https://developer.mozilla.org/en-US/docs/Web";
         //const string URL = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters";
         //const string URL = "https://www.myenglishpages.com/site_php_files/grammar-lesson-tenses.php";
@@ -99,8 +101,11 @@ namespace test
             this.Text = "Browser";
             this.Icon = Resources.icon;
 
-            ui_browser = new WebView() { Dock = DockStyle.Fill };
+            ui_browser = new WebView("about:blank", new BrowserSettings() {
+                WebSecurityDisabled = true,
+            }) { Dock = DockStyle.Fill };
             this.Controls.Add(ui_browser);
+            if (File.Exists("url.txt")) URL = File.ReadAllText("url.txt").Trim();
             ui_browser.PropertyChanged += (se, ev) => { switch (ev.PropertyName) { case "IsBrowserInitialized": f_browser_Go(URL); break; case "Title": f_browser_loadTitleReady(ui_browser.Title); break; case "IsLoading": f_browser_loadDomReady(); break; } };
             ui_browser.RequestHandler = new BrowserRequestHandler(app, this);
             ui_browser.RegisterJsObject("API", new API(app, this));
@@ -108,10 +113,7 @@ namespace test
             ContextMenu cm = new ContextMenu(f_build_contextMenu());
             ui_browser.ContextMenu = cm;
             ui_browser.MenuHandler = new BrowserMenuHandel();
-
-
-
-
+            
             this.Shown += (se, ev) =>
             {
                 //this.WindowState = FormWindowState.Maximized;
