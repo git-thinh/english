@@ -9,6 +9,33 @@ using System.Text;
 
 namespace System
 {
+    public interface IForm
+    {
+        void f_browser_Go(string url);
+        void f_browser_updateInfoPage(string url, string title);
+        oAppInfo f_getInfo();
+        string f_get_formKey();
+
+        void f_sendToBrowser(string data);
+    }
+
+    public interface IApp
+    {
+        void f_link_AddUrls(string[] urls);
+        string f_link_getHtmlCache(string url);
+        string f_link_getHtmlOnline(string url);
+        void f_link_updateUrls(oLink[] links);
+
+        oLinkResult f_link_getLinkPaging(oLinkRequest linkRequest);
+
+        bool f_main_openUrl(string url, string title);
+        void f_app_callFromJs(string data);
+
+        void f_form_openByKey(string formKey);
+        void f_form_unRegister(IForm form);
+        void f_form_Register(IForm form);
+    }
+
     static class _NAME_UI
     {
         public const string MAIN = "MAIN";
@@ -141,6 +168,7 @@ namespace System
 
     public class oLink
     {
+        public int recid { set; get; }
         public string Text { set; get; }
         public string Url { set; get; }
         public override string ToString()
@@ -148,7 +176,29 @@ namespace System
             return string.Format("{0} -> {1}", Text, Url);
         }
     }
-    
+
+    public class oLinkResult
+    {
+        //{"cmd":"get","selected":[],"limit":100,"offset":100}
+        public string status { set; get; }
+        public int total { set; get; }
+        public oLink[] records { set; get; }
+        public oLinkResult() {
+            status = "success";
+            total = 0;
+            records = new oLink[] { };
+        }
+    }
+
+    public class oLinkRequest
+    {
+        //{"cmd":"get","selected":[],"limit":100,"offset":100}
+        public string cmd { set; get; }
+        public int limit { set; get; }
+        public int offset { set; get; }
+        public int[] selected { set; get; }
+    }
+
     /////////////////////////////////////////////////
 
     public delegate void TranslateCallBack(oEN_TRANSLATE_GOOGLE_MESSAGE otran);

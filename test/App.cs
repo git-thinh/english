@@ -14,31 +14,7 @@ using System.Windows.Forms;
 
 namespace test
 {
-    public interface IForm
-    {
-        void f_browser_Go(string url);
-        void f_browser_updateInfoPage(string url, string title);
-        oAppInfo f_getInfo();
-        string f_get_formKey();
-
-        void f_sendToBrowser(string data);
-    }
-
-    public interface IApp
-    {
-        void f_link_AddUrls(string[] urls);
-        string f_link_getHtmlCache(string url);
-        string f_link_getHtmlOnline(string url);
-        void f_link_updateUrls(oLink[] links);
-
-
-        bool f_main_openUrl(string url, string title);
-        void f_app_callFromJs(string data);
-
-        void f_form_openByKey(string formKey);
-        void f_form_unRegister(IForm form);
-        void f_form_Register(IForm form);
-    }
+   
 
     class App : IApp
     {
@@ -115,6 +91,11 @@ namespace test
         readonly ConcurrentDictionary<string, List<int>> DOMAIN_LINK;
         readonly ConcurrentDictionary<string, List<int>> KEY_INDEX;
         readonly ConcurrentDictionary<string, string> TRANSLATE;
+
+        public oLinkResult f_link_getLinkPaging(oLinkRequest linkRequest) {
+            oLinkResult rs = new oLinkResult() { };
+            return rs;
+        }
 
         public void f_link_updateUrls(oLink[] links)
         {
@@ -452,10 +433,11 @@ namespace test
             //args.Add("--disable-web-security");
             ////cefApp_ = CefApp.getInstance(args.ToArray());
             
-
             //BrowserSettings
             Settings settings = new Settings() { };
             if (!CEF.Initialize(settings)) return;
+            CEF.RegisterScheme("http", "api", false, new ApiHandlerFactory(this));
+
             //CEF.RegisterScheme("local", new LocalSchemeHandlerFactory(this));
             //CEF.RegisterJsObject("API", new API(this, main));
             // BrowserSettings.WebSecurityDisabled
@@ -463,12 +445,11 @@ namespace test
             //browser.BrowserSettings.FileAccessFromFileUrls = CefState.Enabled;
             //browser.BrowserSettings.UniversalAccessFromFileUrls = CefState.Enabled;
 
-
             Application.ApplicationExit += (se, ev) => f_app_Exit();
             var main = new fMain(this);
             main.Shown += (se, ev) =>
             {
-                //f_view_Open("links");
+                //f_form_openByKey("link");
             };
             _fomMain = main;
             Application.Run(main);

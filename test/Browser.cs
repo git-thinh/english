@@ -23,6 +23,14 @@ namespace test
             return _app.f_main_openUrl(url, title);
         }
 
+        public String f_link_getLinkPaging(String linkRequest)
+        {
+            oLinkRequest lr = JsonConvert.DeserializeObject<oLinkRequest>(linkRequest);
+            oLinkResult rs = _app.f_link_getLinkPaging(lr);
+            string s = JsonConvert.SerializeObject(rs);
+            return s;
+        }
+
         public void f_link_updateUrls(String jsonsUrls)
         {
             oLink[] links = JsonConvert.DeserializeObject<oLink[]>(jsonsUrls);
@@ -110,6 +118,7 @@ namespace test
             string url = request.Url;            
             if (request.Method != "GET") return _request_Fail(url);
             if (url.StartsWith("chrome-devtools")) return _request_Fail(url);
+            if (url.StartsWith("http://api")) return _request_Fail(url);
 
             Uri uri = new Uri(url);
             bool isView = uri.Segments.Length > 1 && uri.Segments[1] == "view/";

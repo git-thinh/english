@@ -1,4 +1,8 @@
-﻿_CLIENT_ID = 1;
+﻿var linkRequest = { "cmd": "get", "selected": [], "limit": 100, "offset": 100 };
+var linkResult = API.f_link_getLinkPaging(JSON.stringify(linkRequest));
+f_log('link === ', JSON.parse(linkResult));
+
+_CLIENT_ID = 1;
 _CLIENT_NAME = _NAME_UI.MAIN;
 function f_receiveMessageFromAPI(m) {
     f_log('API.' + _CLIENT_NAME + ' <- ', m);

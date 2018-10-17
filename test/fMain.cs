@@ -108,7 +108,7 @@ namespace test
             if (File.Exists("url.txt")) URL = File.ReadAllText("url.txt").Trim();
             ui_browser.PropertyChanged += (se, ev) => { switch (ev.PropertyName) { case "IsBrowserInitialized": f_browser_Go(URL); break; case "Title": f_browser_loadTitleReady(ui_browser.Title); break; case "IsLoading": f_browser_loadDomReady(); break; } };
             ui_browser.RequestHandler = new BrowserRequestHandler(app, this);
-            ui_browser.RegisterJsObject("API", new API(app, this));
+            ui_browser.RegisterJsObject("API", new API(app, this)); 
 
             ContextMenu cm = new ContextMenu(f_build_contextMenu());
             ui_browser.ContextMenu = cm;
@@ -384,6 +384,7 @@ namespace test
 
         public void f_browser_Go(string url)
         {
+            url = "http://local/view/ajax_api.html";
             if (ui_browser.IsLoading) ui_browser.Stop();
             ui_browser.Load(url);
         }
