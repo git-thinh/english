@@ -384,7 +384,6 @@ namespace test
 
         public void f_browser_Go(string url)
         {
-            url = "http://local/view/ajax_api.html";
             if (ui_browser.IsLoading) ui_browser.Stop();
             ui_browser.Load(url);
         }

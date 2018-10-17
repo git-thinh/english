@@ -206,7 +206,7 @@ namespace test
                         html = buildPageHtml(html, _form);
                         Stream resourceStream = new MemoryStream(Encoding.UTF8.GetBytes(html));
                         requestResponse.RespondWith(resourceStream, "text/html");
-                        _writeFileLogURL(url);
+                        //_writeFileLogURL(url);
                         return false;
                     }
                     else
@@ -223,7 +223,7 @@ namespace test
                         else
                         {
                             html = buildPageHtml(html, _form);
-                            _writeFileLogURL(url);
+                            //_writeFileLogURL(url);
                         }
 
                         Stream resourceStream = new MemoryStream(Encoding.UTF8.GetBytes(html));
@@ -244,6 +244,11 @@ namespace test
             return false;
         }
 
-        public void OnResourceResponse(IWebBrowser browser, string url, int status, string statusText, string mimeType, WebHeaderCollection headers) { }
+        public void OnResourceResponse(IWebBrowser browser, string url, int status, string statusText, string mimeType, WebHeaderCollection headers) {
+
+            if (url.StartsWith("http://api")) { 
+                ;
+            }
+        }
     }
 }
