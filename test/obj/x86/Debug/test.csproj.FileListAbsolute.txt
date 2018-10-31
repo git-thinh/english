@@ -13,3 +13,11 @@ C:\english\test\obj\x86\Debug\test.csproj.CoreCompileInputs.cache
 C:\english\test\obj\x86\Debug\test.exe
 C:\english\test\obj\x86\Debug\test.pdb
 C:\english\test\obj\x86\Debug\test.csprojResolveAssemblyReference.cache
+F:\english\build\test.exe
+F:\english\build\test.pdb
+F:\english\test\obj\x86\Debug\test.csprojResolveAssemblyReference.cache
+F:\english\test\obj\x86\Debug\test.Properties.Resources.resources
+F:\english\test\obj\x86\Debug\test.csproj.GenerateResource.Cache
+F:\english\test\obj\x86\Debug\test.csproj.CoreCompileInputs.cache
+F:\english\test\obj\x86\Debug\test.exe
+F:\english\test\obj\x86\Debug\test.pdb

@@ -334,3 +334,23 @@
 [1013/082045:INFO:CONSOLE(0)] "[LOG] ," source: local://view/bc1.html(18)
 [1013/082045:INFO:CONSOLE(0)] "[LOG] ," source: local://view/bc1.html(18)
 [1013/082046:INFO:CONSOLE(0)] "[LOG] ," source: local://view/bc1.html(18)
+[1029/091859:ERROR:.\disk_cache\backend_impl.cc(1177)] Critical error found -8
+[1029/091859:ERROR:.\disk_cache\entry_impl.cc(315)] Failed to save user data
+[1029/092343:INFO:CONSOLE(0)] "Uncaught SyntaxError: Unexpected end of input," source: (1)
+[1031/084051:INFO:CONSOLE(0)] "add," source: http://w2ui.com/src/w2ui-1.5.rc1.min.js(3)
+[1031/084051:INFO:CONSOLE(0)] "add," source: http://w2ui.com/src/w2ui-1.5.rc1.min.js(3)
+[1031/084114:INFO:CONSOLE(0)] "add," source: http://w2ui.com/src/w2ui-1.5.rc1.min.js(3)
+[1031/084115:INFO:CONSOLE(0)] "add," source: http://w2ui.com/src/w2ui-1.5.rc1.min.js(3)
+[1031/084140:INFO:CONSOLE(0)] "add," source: http://w2ui.com/src/w2ui-1.5.rc1.min.js(3)
+[1031/084634:INFO:CONSOLE(0)] "Uncaught TypeError: Object [object DOMWindow] has no method 'requestAnimationFrame'," source: https://getbootstrap.com/docs/3.3/assets/js/docs.min.js(12)
+[1031/084635:INFO:CONSOLE(0)] "Unsafe JavaScript attempt to access frame with URL https://getbootstrap.com/docs/3.3/components/#dropdowns from frame with URL https://www.youtube.com/embed/zpOULjyy-n8?rel=0. Domains, protocols and ports must match.
+," source: (1)
+[1031/090452:INFO:CONSOLE(0)] "Service workers are not supported.," source: https://getbootstrap.com/docs/4.1/assets/js/docs.min.js(28)
+[1031/090456:INFO:CONSOLE(0)] "Service workers are not supported.," source: https://getbootstrap.com/docs/4.1/assets/js/docs.min.js(28)
+[1031/090523:INFO:CONSOLE(0)] "Service workers are not supported.," source: https://getbootstrap.com/docs/4.1/assets/js/docs.min.js(28)
+[1031/090554:INFO:CONSOLE(0)] "Service workers are not supported.," source: https://getbootstrap.com/docs/4.1/assets/js/docs.min.js(28)
+[1031/090637:INFO:CONSOLE(0)] "Service workers are not supported.," source: https://getbootstrap.com/docs/4.1/assets/js/docs.min.js(28)
+[1031/090704:INFO:CONSOLE(0)] "Service workers are not supported.," source: https://getbootstrap.com/docs/4.1/assets/js/docs.min.js(28)
+[1031/090845:INFO:CONSOLE(0)] "Service workers are not supported.," source: https://getbootstrap.com/docs/4.1/assets/js/docs.min.js(28)
+[1031/091048:INFO:CONSOLE(0)] "Service workers are not supported.," source: https://getbootstrap.com/docs/4.1/assets/js/docs.min.js(28)
+[1031/091327:INFO:CONSOLE(0)] "Service workers are not supported.," source: https://getbootstrap.com/docs/4.1/assets/js/docs.min.js(28)
