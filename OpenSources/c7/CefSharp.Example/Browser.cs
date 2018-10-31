@@ -13,7 +13,8 @@ namespace CefSharp.Example
     {
         private readonly CefWebBrowser _browserControl;
         //private const string cefSharpHomeUrl = "https://google.com.vn";
-        private const string cefSharpHomeUrl = "local://view/bc1.html";
+        //private const string cefSharpHomeUrl = "local://view/bc1.html";
+        private const string cefSharpHomeUrl = "http://localhost:56789/";
         //private const string cefSharpHomeUrl = "https://vnexpress.net";
 
         public Browser()
@@ -27,8 +28,8 @@ namespace CefSharp.Example
             _browserControl.ConsoleMessage += HandleConsoleMessage;
             _browserControl.BeforeResourceLoadHandler = this; 
             toolStripContainer.ContentPanel.Controls.Add(_browserControl);
-             
 
+            this.menuStrip1.Visible = false;
         }
 
         private string RunScript(string script, int timeout)
@@ -290,6 +291,12 @@ namespace CefSharp.Example
                 //    MessageBox.Show(err.ToString(), "Error");
                 //}
             }
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            _browserControl.Load("javascript:var firebug=document.createElement('script');firebug.setAttribute('src','http://localhost:56789/asset/firebug-lite.1.2/firebug-lite-compressed.js');document.body.appendChild(firebug);(function(){if(window.firebug.version){firebug.init();}else{setTimeout(arguments.callee);}})();void(firebug);");
+
         }
     }
 }

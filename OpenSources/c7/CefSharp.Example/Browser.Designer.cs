@@ -54,10 +54,11 @@
             this.transparencyExamplesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userInterfaceAppExampleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aJAXXMLHttpRequestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.callJSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bookmarksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cefSharpHomeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fireBugLiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.callJSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -92,7 +93,8 @@
             this.backButton,
             this.forwardButton,
             this.urlTextBox,
-            this.goButton});
+            this.goButton,
+            this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0);
@@ -292,6 +294,13 @@
             this.aJAXXMLHttpRequestToolStripMenuItem.Text = "AJAX XMLHttpRequest";
             this.aJAXXMLHttpRequestToolStripMenuItem.Click += new System.EventHandler(this.aJAXXMLHttpRequestToolStripMenuItem_Click);
             // 
+            // callJSToolStripMenuItem
+            // 
+            this.callJSToolStripMenuItem.Name = "callJSToolStripMenuItem";
+            this.callJSToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+            this.callJSToolStripMenuItem.Text = "Call JS";
+            this.callJSToolStripMenuItem.Click += new System.EventHandler(this.callJSToolStripMenuItem_Click);
+            // 
             // bookmarksToolStripMenuItem
             // 
             this.bookmarksToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -315,12 +324,15 @@
             this.fireBugLiteToolStripMenuItem.Text = "FireBug Lite";
             this.fireBugLiteToolStripMenuItem.Click += new System.EventHandler(this.fireBugLiteToolStripMenuItem_Click);
             // 
-            // callJSToolStripMenuItem
+            // toolStripButton1
             // 
-            this.callJSToolStripMenuItem.Name = "callJSToolStripMenuItem";
-            this.callJSToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
-            this.callJSToolStripMenuItem.Text = "Call JS";
-            this.callJSToolStripMenuItem.Click += new System.EventHandler(this.callJSToolStripMenuItem_Click);
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // Browser
             // 
@@ -378,5 +390,6 @@
         private System.Windows.Forms.ToolStripMenuItem userInterfaceAppExampleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aJAXXMLHttpRequestToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem callJSToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }
